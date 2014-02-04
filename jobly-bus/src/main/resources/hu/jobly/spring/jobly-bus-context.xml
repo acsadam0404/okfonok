@@ -19,16 +19,19 @@
 	<context:component-scan base-package="hu.jobly" />
 	<context:annotation-config />
 
-	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
-			<value>classpath:com/fc/properties/database.properties</value>
+			<value>classpath:hu/jobly/properties/database.properties</value>
 		</property>
 	</bean>
 
-	<jdbc:embedded-database id="dataSource" type="H2" >
-		<jdbc:script location="classpath:/hu/jobly/inmemorydb/initialconfig.sql"   encoding="utf-8" />
+	<jdbc:embedded-database id="dataSource" type="H2">
+		<jdbc:script location="classpath:/hu/jobly/inmemorydb/initialconfig.sql"
+			encoding="utf-8" />
 	</jdbc:embedded-database>
 
 	<!-- <bean id="dataSource" -->

@@ -1,0 +1,18 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="registrationForm">
+		<h:panelGrid columns="2">
+			<p:outputLabel for="userNameInput" value="Felhasználónév" />
+			<p:inputText id="userNameInput" maxlength="30" value="#{registrationBean.user.userName}" />
+			<p:outputLabel for="pwd1" value="Jelszó" />
+			<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" feedback="true" promptLabel="Adj meg egy jelszót" weakLabel="Gyenge" goodLabel="Jó" strongLabel="Erős" inline="true" />
+			<p:outputLabel for="pwd2" value="Jelszó ismét" />
+			<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
+			<p:commandButton value="Regisztráció" id="registrationCommand" update="@form" process="@form" actionListener="#{registrationBean.register()}" />
+			<p:commandButton id="clear" value="Töröl" update="@form" process="@this" actionListener="#{registrationBean.reset()}">
+				<p:resetInput target="@form" />
+			</p:commandButton>
+		</h:panelGrid>
+	</h:form>
+
+</ui:composition>

@@ -74,7 +74,7 @@
 	
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
-		<filter-class>com.fc.filters.CharacterEncodingFilter</filter-class>
+		<filter-class>hu.jobly.filters.CharacterEncodingFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
