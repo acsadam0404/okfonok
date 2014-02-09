@@ -1,6 +1,5 @@
 package hu.jobly.services;
 
-import java.util.List;
 
 /**
  * 
@@ -9,17 +8,13 @@ import java.util.List;
  * @param <T>
  */
 public interface BaseService<T> {
-	T create(T t);
+	T persist(T t);
 
-	void delete(long id);
+	void remove(long id);
 
-	void delete(T t);
+	void remove(T t);
 
 	T find(Class<T> tclazz, long id);
-
-	T save(T t);
-
-	List<T> findAll(Class<T> tclazz);
-
-	List<T> findAll();
+	
+	T merge(T t);
 }

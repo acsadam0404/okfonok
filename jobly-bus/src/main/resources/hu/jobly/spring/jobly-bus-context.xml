@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:cache="http://www.springframework.org/schema/cache" xmlns:p="http://www.springframework.org/schema/p" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
      http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/jdbc 
@@ -19,19 +16,16 @@
 	<context:component-scan base-package="hu.jobly" />
 	<context:annotation-config />
 
-	<bean
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-	<bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location">
 			<value>classpath:hu/jobly/properties/database.properties</value>
 		</property>
 	</bean>
 
 	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:/hu/jobly/inmemorydb/initialconfig.sql"
-			encoding="utf-8" />
+		<jdbc:script location="classpath:/hu/jobly/inmemorydb/initialconfig.sql" encoding="utf-8" />
 	</jdbc:embedded-database>
 
 	<!-- <bean id="dataSource" -->
@@ -41,24 +35,38 @@
 	<!-- <property name="username" value="${jdbc.username}" /> -->
 	<!-- <property name="password" value="${jdbc.password}" /> -->
 	<!-- </bean> -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="hu.jobly.entities" />
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.connection.characterEncoding">utf8</prop>
-				<prop key="hibernate.connection.useUnicode">true</prop>
+<!-- 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> -->
+<!-- 		<property name="dataSource" ref="dataSource" /> -->
+<!-- 		<property name="packagesToScan" value="hu.jobly.entities" /> -->
+<!-- 		<property name="hibernateProperties"> -->
+<!-- 			<props> -->
+<!-- 				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop> -->
+<!-- 				<prop key="hibernate.show_sql">true</prop> -->
+<!-- 				<prop key="hibernate.connection.characterEncoding">utf8</prop> -->
+<!-- 				<prop key="hibernate.connection.useUnicode">true</prop> -->
 
-			</props>
-		</property>
+<!-- 			</props> -->
+<!-- 		</property> -->
+<!-- 	</bean> -->
+
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
 	</bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+		<property name="database" value="H2" />
+		<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaDialect" ref="jpaDialect" />
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

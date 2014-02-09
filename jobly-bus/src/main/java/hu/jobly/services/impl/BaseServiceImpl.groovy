@@ -1,14 +1,12 @@
 package hu.jobly.services.impl;
 
-import hu.jobly.services.BaseService;
+import hu.jobly.services.BaseService
 
-import java.util.List;
+import javax.persistence.EntityManager
+import javax.persistence.PersistenceContext
 
-import org.hibernate.Criteria;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Propagation
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 
@@ -16,42 +14,37 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @param <T>
  */
-@Transactional
+@Transactional(propagation = Propagation.REQUIRED)
 abstract class BaseServiceImpl<T> implements BaseService<T> {
-	@Autowired
-	private SessionFactory sessionFactory
+	@PersistenceContext
+	protected final EntityManager em;
 
 
-	protected Session currentSession() {
-		sessionFactory.getCurrentSession()
-	}
-
-	T create(T t) {
+	T persist(T t) {
 		if (t) {
-			currentSession().persist(t)
+			em.persist(t)
 		}
 		return t
 	}
 
-	void delete(T t) {
+	void remove(T t) {
 		if (t) {
-			currentSession().delete(t)
+			em.remove(t)
 		}
 	}
 
-	void delete(long id) {
-		currentSession().delete(find(id))
+	void remove(long id) {
+		em.remove(find(id))
 	}
 
 	T find(Class<T> tclazz, long id) {
-		return (T) currentSession().get(tclazz, id)
+		return (T) em.find(tclazz, id)
 	}
-
-	T save(T t) {
-		currentSession().update(t)
-	}
-
-	List<T> findAll(Class<T> tclazz) {
-		currentSession().createCriteria(tclazz).setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY).list();
+	
+	T merge(T t) {
+		if (t) {
+			em.merge(t)
+		}
+		return t
 	}
 }

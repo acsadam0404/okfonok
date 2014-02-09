@@ -1,5 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>jobly-bus</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
@@ -10,10 +9,6 @@
 		<artifactId>jobly-superpom</artifactId>
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
-
-	<properties>
-		<org.hibernate.version>3.5.6-Final</org.hibernate.version>
-	</properties>
 
 	<developers>
 		<developer>
@@ -135,8 +130,7 @@
 		</plugins>
 		<pluginManagement>
 			<plugins>
-				<!--This plugin's configuration is used to store Eclipse m2e settings 
-					only. It has no influence on the Maven build itself. -->
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
 					<artifactId>lifecycle-mapping</artifactId>
@@ -195,20 +189,21 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>${org.hibernate.version}</version>
+			<artifactId>hibernate-core</artifactId>
+			<version>4.2.8.Final</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>${org.hibernate.version}</version>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.2.8.Final</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>4.2.0.Final</version>
+			<version>5.0.2.Final</version>
 		</dependency>
 
 		<dependency>
@@ -219,13 +214,19 @@
 
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
-			<artifactId>hibernate-jpa-2.0-api</artifactId>
-			<version>1.0.1.Final</version>
+			<artifactId>hibernate-jpa-2.1-api</artifactId>
+			<version>1.0.0.Final</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
 		</dependency>
 
 
@@ -243,6 +244,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
 			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>aspectjweaver</artifactId>
+					<groupId>org.aspectj</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -290,6 +297,7 @@
 			<artifactId>slf4j-log4j12</artifactId>
 		</dependency>
 
+		<!-- embedded database develop -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>

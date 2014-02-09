@@ -4,39 +4,38 @@ import hu.jobly.entities.User
 import hu.jobly.services.RoleService
 import hu.jobly.services.UserService
 
-import javax.faces.bean.SessionScoped
+import javax.inject.Inject
+import javax.inject.Named
 
 import org.apache.log4j.Logger
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Scope
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder
-import org.springframework.stereotype.Component
 
 /**
  * 
  * @author Ács Ádám
  *
  */
-@Component("registrationBean")
-@SessionScoped
+@Named("registrationBean")
+@Scope("session")
 class RegistrationBean implements Serializable {
 	private static final Logger log = Logger.getLogger(RegistrationBean.class)
 
-	@Autowired
+	@Inject
 	private RoleService roleService
-	@Autowired
+	@Inject
 	private UserService userService
-	@Autowired
+	@Inject
 	private Md5PasswordEncoder passwordEncoder
 
 	User user = new User()
 
 	void register() {
 		try {
-			userService.create(user);
 			user.roles.add(roleService.getUserRole())
 			user.password = passwordEncoder.encodePassword(user.password, "basicsalt")
-			userService.save(user)
+			userService.merge(user)
 			user = new User();
 		} 
 		catch (DataIntegrityViolationException divEx) {

@@ -2,7 +2,10 @@ package hu.jobly.services.impl
 
 import hu.jobly.entities.Role
 import hu.jobly.services.RoleService
-import org.springframework.stereotype.Repository
+
+import javax.inject.Named
+import javax.persistence.TypedQuery
+
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -10,18 +13,12 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Repository("roleService")
+@Named("roleService")
 @Transactional
 class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService  {
 	@Override
-	Role getUserRole() {
-		List<Role> roles = super.findAll(Role.class)
-		def userRole = roles.find() { it.name = 'ROLE_USER' }
-		return userRole
-	}
-
-	@Override
-	List<Role> findAll() {
-		findAll(Role.class)
+	Role getUserRole() {		
+		TypedQuery<Role> q2 = em.createQuery("SELECT c FROM Role c where c.name = 'USER_ROLE'", Role.class);
+		return q2.singleResult
 	}
 }

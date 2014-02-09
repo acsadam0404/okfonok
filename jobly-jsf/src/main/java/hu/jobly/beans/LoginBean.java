@@ -2,25 +2,25 @@ package hu.jobly.beans;
 
 import java.io.IOException;
 
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
+import javax.inject.Named;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.WebAttributes;
-import org.springframework.stereotype.Component;
 
 
-@Component("loginBean")
-@ViewScoped
+@Named("loginBean")
+@Scope("session")
 public class LoginBean implements PhaseListener {
 	/**
 	 * 
