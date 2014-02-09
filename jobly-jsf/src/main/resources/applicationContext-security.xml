@@ -11,6 +11,7 @@
 	<http auto-config="true" use-expressions="true">
 		<intercept-url pattern="/index.xhtml" access="permitAll" />
 		<intercept-url pattern="/resources/img/**" access="permitAll" />
+		<intercept-url pattern="/jobly/tags/**" access="permitAll" />
 		<intercept-url pattern="/home.xhtml" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/jobly/*.xhtml" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/**" access="denyAll" />

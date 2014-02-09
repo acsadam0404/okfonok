@@ -1,6 +1,7 @@
 package hu.jobly.beans;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -21,7 +22,7 @@ import org.springframework.security.web.WebAttributes;
 
 @Named("loginBean")
 @Scope("session")
-public class LoginBean implements PhaseListener {
+public class LoginBean implements PhaseListener, Serializable {
 	/**
 	 * 
 	 * Redirects the login request directly to spring security check. Leave this method as it is to properly support spring security.
