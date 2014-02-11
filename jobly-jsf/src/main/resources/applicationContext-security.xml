@@ -12,11 +12,10 @@
 		<intercept-url pattern="/index.xhtml" access="permitAll" />
 		<intercept-url pattern="/resources/img/**" access="permitAll" />
 		<intercept-url pattern="/jobly/tags/**" access="permitAll" />
-		<intercept-url pattern="/home.xhtml" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/jobly/*.xhtml" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/**" access="denyAll" />
-		<access-denied-handler error-page="/home.xhtml" />
-		<form-login login-page="/index.xhtml" default-target-url="/home.xhtml" always-use-default-target="true" password-parameter="j_password" username-parameter="j_username" />
+		<access-denied-handler error-page="/index.xhtml" />
+		<form-login login-page="/index.xhtml" default-target-url="/index.xhtml" always-use-default-target="true" password-parameter="j_password" username-parameter="j_username" />
 	</http>
 
 	<authentication-manager>
