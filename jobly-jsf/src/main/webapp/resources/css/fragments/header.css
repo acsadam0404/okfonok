@@ -1,0 +1,8 @@
+.homeLink {
+	background-image: url("#{resource['img/fragments/logo.png']}");
+}
+
+.homeLinkDiv {
+	height: 32px;
+	width: 32px;
+}

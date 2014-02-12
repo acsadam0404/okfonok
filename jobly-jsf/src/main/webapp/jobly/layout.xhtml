@@ -27,9 +27,12 @@
 			</ui:insert>
 		</div>
 	</div>
-	<h:form prependId="false"> 
-		<div id="help"> 
-			<h:link outcome="/jobly/help" value="help" />
+	<h:form prependId="false">
+		<div id="help">
+			<h:link outcome="/jobly/help" value="">
+				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítség" />
+			</h:link>
+
 		</div>
 	</h:form>
 </h:body>

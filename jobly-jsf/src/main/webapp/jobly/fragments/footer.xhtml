@@ -1,9 +1,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:jobly="http://jobly.hu/facelets">
 	<f:facet name="last">
-		<h:outputStylesheet library="css" name="site/footer.css" />
+		<h:outputStylesheet library="css" name="fragments/footer.css" />
 	</f:facet>
 
 	<h:form>
 		<h:link outcome="/jobly/footer/about" value="Rólunk" />
+		<h:link outcome="/jobly/footer/privacy" value="Adatvédelem" />
+		<h:link outcome="/jobly/footer/conditions" value="Felhasználói feltételek" />
+		<h:link outcome="/jobly/footer/fees" value="Díjak&amp;Költségek" />
+		<h:link outcome="/jobly/footer/faq" value="GYIK" />
+		<h:link outcome="/jobly/footer/blog" value="Blog" />
 	</h:form>
 </ui:composition>
