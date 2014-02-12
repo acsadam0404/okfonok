@@ -9,6 +9,7 @@ create table User (
     enabled bit,
     password varchar(255),
     userName varchar(255) unique,
+    email varchar(255),
     primary key (id)
 );
 

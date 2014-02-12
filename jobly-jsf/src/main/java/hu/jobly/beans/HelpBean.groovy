@@ -18,6 +18,7 @@ class HelpBean implements Serializable {
 	String name
 	String subject
 	String message
+	String category //TODO combobox
 
 	void sendMail() {
 		print "mail sent: $email, $name, $subject, $message"

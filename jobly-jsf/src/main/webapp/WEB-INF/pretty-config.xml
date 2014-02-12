@@ -1,0 +1,14 @@
+<pretty-config xmlns="http://ocpsoft.org/schema/rewrite-config-prettyfaces" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ocpsoft.org/schema/rewrite-config-prettyfaces http://ocpsoft.org/xml/ns/prettyfaces/rewrite-config-prettyfaces.xsd">
+
+<!--  TODO NEM MŰKÖDik -->
+<!-- 	<url-mapping id="index"> -->
+<!-- 		<pattern value="/home" /> -->
+<!-- 		<view-id value="/index.xhtml" /> -->
+<!-- 	</url-mapping> -->
+
+<!-- 	<url-mapping id="postad"> -->
+<!-- 		<pattern value="/postad" /> -->
+<!-- 		<view-id value="/jobly/postad.xhtml" /> -->
+<!-- 	</url-mapping> -->
+
+</pretty-config>

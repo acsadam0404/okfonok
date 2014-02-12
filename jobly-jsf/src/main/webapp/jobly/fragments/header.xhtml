@@ -1,7 +1,24 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
 	<h:form id="menuForm">
 		<p:menubar>
 			<p:menuitem value="Hirdetés feladása" url="/jobly/postad.xhtml" />
+
+			<f:facet name="options">
+				<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
+				<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade">
+					<div>
+						<p:schedule id="schedule" value="#{scheduleBean.eventModel}" widgetVar="wvSchedule">
+
+						</p:schedule>
+					</div>
+				</p:overlayPanel>
+
+				<p:commandButton id="accountLink" value="#{userBean.user.userName}" />
+				<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
+
+					<p:commandLink value="Kilépés" action="#{loginBean.doLogout()}" ajax="false" />
+				</p:overlayPanel>
+			</f:facet>
 		</p:menubar>
 	</h:form>
 </ui:composition>

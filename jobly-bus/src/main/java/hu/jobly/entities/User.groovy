@@ -37,4 +37,14 @@ class User extends BaseEntity {
 	@JoinTable(name = "User_Roles", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "role_id", referencedColumnName="id") ])
 	Set<Role> roles = new HashSet<Role>()
 	
+//	@Column
+//	@NotNull
+//	@Size(min=4)
+//	String realName
+	
+	@Column
+	@NotNull
+	@Size(min = 4)
+	String email
+	
 }

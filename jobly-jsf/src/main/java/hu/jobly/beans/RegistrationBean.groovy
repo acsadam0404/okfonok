@@ -36,6 +36,7 @@ class RegistrationBean implements Serializable {
 			user.roles.add(roleService.getUserRole())
 			user.password = passwordEncoder.encodePassword(user.password, "basicsalt")
 			userService.merge(user)
+			log.info("Sikeres regisztráció: $user.userName")
 			user = new User();
 		} 
 		catch (DataIntegrityViolationException divEx) {
