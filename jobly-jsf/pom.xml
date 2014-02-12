@@ -32,11 +32,11 @@
 	</repositories>
 
 	<dependencies>
-	<dependency>
-    <groupId>cglib</groupId>
-    <artifactId>cglib</artifactId>
-    <version>2.2.2</version>
-</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
 		<dependency>
 			<groupId>hu.jobly</groupId>
 			<artifactId>jobly-bus</artifactId>
@@ -79,7 +79,7 @@
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 		</dependency>
-		
+
 		<!-- JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -178,6 +178,18 @@
 			<artifactId>testng</artifactId>
 			<version>6.8.7</version>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- PrettyFaces -->
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-servlet</artifactId>
+			<version>2.0.10.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.ocpsoft.rewrite</groupId>
+			<artifactId>rewrite-config-prettyfaces</artifactId>
+			<version>2.0.10.Final</version>
 		</dependency>
 
 	</dependencies>
