@@ -27,3 +27,12 @@ html,body {
 	height: 60px; /* Height of the footer */
 	background: #6cf;
 }
+
+#help {
+	width: 30px;
+	height: 50px;
+	background-color: red;
+	position: absolute;
+	right: 0px;
+	top: 50%;
+}
