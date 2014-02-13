@@ -18,6 +18,10 @@
 			<sec:authorize ifNotGranted="USER_ROLE">
 				<ui:include src="fragments/index_unauth.xhtml" />
 			</sec:authorize>
+			
+			<ui:include src="fragments/index_employer.xhtml" />
+			<ui:include src="fragments/index_employee.xhtml" />
+			<ui:include src="fragments/index_about.xhtml" />
 		</ui:define>
 	</ui:composition>
 

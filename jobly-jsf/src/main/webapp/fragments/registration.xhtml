@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+
+	<h:form id="registrationForm">
+		<p:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" update="registrationFormPanel" process="@this" />
+		<h:panelGroup id="registrationFormPanel">
+			<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
+				<h:panelGrid columns="3">
+					<p:outputLabel for="email" value="E-mail cím" />
+					<p:inputText id="email" maxlength="60" value="#{registrationBean.user.email}" />
+					<p:message for="email" />
+					<p:outputLabel for="userName" value="Felhasználónév" />
+					<p:inputText id="userName" maxlength="30" value="#{registrationBean.user.userName}" />
+					<p:message for="userName" />
+					<p:outputLabel for="pwd1" value="Jelszó" />
+					<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" feedback="true" promptLabel="Adj meg egy jelszót" weakLabel="Gyenge" goodLabel="Jó" strongLabel="Erős" inline="true" />
+					<p:message for="pwd1" />
+					<p:outputLabel for="pwd2" value="Jelszó ismét" />
+					<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
+					<p:message for="pwd2" />
+				</h:panelGrid>
+				<p:commandButton value="Regisztráció" id="registrationCommand" process="@form" update="@form" action="#{registrationBean.register()}" />
+			</h:panelGroup>
+		</h:panelGroup>
+	</h:form>
+
+</ui:composition>

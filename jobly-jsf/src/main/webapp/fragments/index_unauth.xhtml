@@ -7,12 +7,7 @@
 			<h:form>
 				<p:graphicImage id="employee" library="img" name="employee.png" title="Munkát vállalnál?" />
 
-				<p:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" update="registrationFormPanel" />
-				<h:panelGroup id="registrationFormPanel">
-					<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
-						<ui:include src="index_unauth_registration.xhtml" />
-					</h:panelGroup>
-				</h:panelGroup>
+				<ui:include src="registration.xhtml"></ui:include>
 			</h:form>
 		</div>
 	</div>
