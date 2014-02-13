@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="mail.mycompany.com" />
+	</bean>
+
+	<!-- this is a template message that we can pre-load with default state -->
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="customerservice@mycompany.com" />
+		<property name="subject" value="Your order" />
+	</bean>
+
+	<bean id="orderManager" class="hu.okfonok.RegistrationMailSender">
+		<property name="mailSender" ref="mailSender" />
+		<property name="templateMessage" ref="templateMessage" />
+	</bean>
+</beans>
