@@ -2,6 +2,7 @@ package hu.okfonok.beans
 
 import javax.inject.Named
 
+import org.openqa.jetty.http.handler.SetResponseHeadersHandler;
 import org.springframework.context.annotation.Scope
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.context.annotation.Scope
  *
  */
 @Named("indexBean")
-@Scope("session")
+@Scope("view")
 class IndexBean implements Serializable{
 	boolean registrationFormVisible
 }

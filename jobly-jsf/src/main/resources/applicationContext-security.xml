@@ -9,13 +9,16 @@
 	<http pattern="/javax.faces.resource/**" security="none" />
 
 	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/admin/**" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/index.xhtml" access="permitAll" />
 		<intercept-url pattern="/resources/img/**" access="permitAll" />
 		<intercept-url pattern="/okfonok/tags/**" access="permitAll" />
+		<intercept-url pattern="/okfonok/fragments/**" access="permitAll" />
 		<intercept-url pattern="/okfonok/*.xhtml" access="isFullyAuthenticated()" />
+		<intercept-url pattern="/*.xhtml" access="permitAll" />
 		<intercept-url pattern="/**" access="denyAll" />
 		<access-denied-handler error-page="/index.xhtml" />
-		<form-login login-page="/index.xhtml" default-target-url="/index.xhtml" always-use-default-target="true" password-parameter="j_password" username-parameter="j_username" />
+		<form-login login-page="/index.xhtml" default-target-url="/index.xhtml" always-use-default-target="false" password-parameter="j_password" username-parameter="j_username" />
 	</http>
 
 	<authentication-manager>

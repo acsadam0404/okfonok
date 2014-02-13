@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
 
 <h:head>
 </h:head>
@@ -12,7 +12,12 @@
 		</f:facet>
 
 		<ui:define name="content">
-			<ui:include src="fragments/index_unauth.xhtml" />
+			<sec:authorize ifAnyGranted="USER_ROLE">
+				<ui:include src="fragments/index_auth.xhtml" />
+			</sec:authorize>
+			<sec:authorize ifNotGranted="USER_ROLE">
+				<ui:include src="fragments/index_unauth.xhtml" />
+			</sec:authorize>
 		</ui:define>
 	</ui:composition>
 

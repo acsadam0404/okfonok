@@ -37,7 +37,7 @@ public class LoginBean implements PhaseListener, Serializable {
 		dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
 		FacesContext.getCurrentInstance().responseComplete();
 
-		return "home.xhtml";
+		return "index.xhtml";
 	}
 
 	public void afterPhase(PhaseEvent event) {
@@ -53,7 +53,7 @@ public class LoginBean implements PhaseListener, Serializable {
 
 	public String doLogout() {
 		SecurityContextHolder.clearContext();
-		return "index.xhtml";
+		return "index.xhtml?faces-redirect=true";
 		
 	}
 	public PhaseId getPhaseId() {

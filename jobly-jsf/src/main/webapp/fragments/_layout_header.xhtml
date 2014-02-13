@@ -1,28 +1,32 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:sec="http://www.springframework.org/security/tags">
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="fragments/_layout_header.css" />
 	</f:facet>
-	<h:form id="menuForm">
+	<h:form id="menuForm" prependId="false">
 		<p:menubar>
-			<p:menuitem value="" icon="homeLinkDiv" styleClass="homeLink" url="/index.xhtml"/>
+			<p:menuitem value="" icon="homeLinkDiv" styleClass="homeLink" url="/index.xhtml" />
 
 			<p:menuitem value="Hirdetés feladása" url="/postad.xhtml" />
 
 			<f:facet name="options">
-				<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
-				<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade">
-					<div>
-						<p:schedule id="schedule" value="#{scheduleBean.eventModel}" widgetVar="wvSchedule">
+				<sec:authorize ifAnyGranted="USER_ROLE">
+					<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
+					<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade">
+						itt lesz egy naptár
+					</p:overlayPanel>
 
-						</p:schedule>
-					</div>
-				</p:overlayPanel>
-
-				<p:commandButton id="accountLink" value="#{userBean.user.userName}" />
-				<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
-					<h:link value="Profil" outcome="/profile" />
-					<p:commandLink value="Kilépés" action="#{loginBean.doLogout()}" ajax="false" />
-				</p:overlayPanel>
+					<p:commandButton id="accountLink" value="#{userBean.user.userName}" />
+					<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
+						<h:link value="Profil" outcome="/profile" />
+						<p:commandLink value="Kilépés" action="#{loginBean.doLogout()}" ajax="false" />
+					</p:overlayPanel>
+				</sec:authorize>
+				<sec:authorize ifNotGranted="USER_ROLE">
+					<p:commandButton id="loginLink" value="Bejelentkezés" />
+					<p:overlayPanel id="loginPanel" for="loginLink" hideEffect="fade">
+						<ui:include src="_layout_header_login.xhtml"></ui:include>
+					</p:overlayPanel>
+				</sec:authorize>
 			</f:facet>
 		</p:menubar>
 	</h:form>
