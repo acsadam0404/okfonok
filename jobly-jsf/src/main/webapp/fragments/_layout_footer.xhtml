@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="fragments/_layout_footer.css" />
+	</f:facet>
+
+	<h:form>
+		<h:link outcome="/about" value="Rólunk" />
+		<h:link outcome="/privacy" value="Adatvédelem" />
+		<h:link outcome="/conditions" value="Felhasználói feltételek" />
+		<h:link outcome="/fees" value="Díjak&amp;Költségek" />
+		<h:link outcome="/faq" value="GYIK" />
+		<h:link outcome="/blog" value="Blog" />
+	</h:form>
+</ui:composition>

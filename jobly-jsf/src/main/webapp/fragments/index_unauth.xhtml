@@ -1,0 +1,17 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+	<div>
+		<div id="left">
+			<p:graphicImage id="employer" library="img" name="employer.png" title="Munkát adnál?" />
+		</div>
+		<div id="right">
+			<h:form>
+				<p:graphicImage id="employee" library="img" name="employee.png" title="Munkát vállalnál?" />
+
+				<h:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" process="@this" />
+				<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
+					<ui:include src="index_unauth_registration.xhtml" />
+				</h:panelGroup>
+			</h:form>
+		</div>
+	</div>
+</ui:composition>

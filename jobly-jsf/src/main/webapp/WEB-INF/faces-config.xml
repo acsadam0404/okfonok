@@ -20,7 +20,7 @@
 	</application>
 	
 	<lifecycle>
-		<phase-listener>hu.jobly.beans.LoginBean</phase-listener>
+		<phase-listener>hu.okfonok.beans.LoginBean</phase-listener>
 	</lifecycle>
 
 	<converter>

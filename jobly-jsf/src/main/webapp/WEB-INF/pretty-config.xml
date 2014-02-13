@@ -8,7 +8,7 @@
 
 <!-- 	<url-mapping id="postad"> -->
 <!-- 		<pattern value="/postad" /> -->
-<!-- 		<view-id value="/jobly/postad.xhtml" /> -->
+<!-- 		<view-id value="/okfonok/postad.xhtml" /> -->
 <!-- 	</url-mapping> -->
 
 </pretty-config>

@@ -7,14 +7,14 @@
 
 	<context:annotation-config />
 
-	<context:component-scan base-package="hu.jobly" />
-	<import resource="classpath*:hu/jobly/spring/jobly-bus-context.xml" />
+	<context:component-scan base-package="hu.okfonok" />
+	<import resource="classpath*:hu/okfonok/spring/okfonok-bus-context.xml" />
 	
 	 <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
         <property name="scopes">
             <map>
                 <entry key="view">
-                    <bean class="hu.jobly.spring.ViewScope"/>
+                    <bean class="hu.okfonok.spring.ViewScope"/>
                 </entry>
             </map>
         </property>
