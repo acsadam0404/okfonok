@@ -1,4 +1,6 @@
-package hu.okfonok
+package hu.okfonok.mail
+
+import hu.okfonok.mail.RegistrationMailSender;
 
 import javax.inject.Inject
 import javax.inject.Named
