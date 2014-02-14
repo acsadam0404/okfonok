@@ -50,6 +50,11 @@
 		
 		<dependency>
 			<groupId>hu.okfonok</groupId>
+			<artifactId>okfonok-bus-social</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>hu.okfonok</groupId>
 			<artifactId>okfonok-jsf-theme</artifactId>
 		</dependency>
 
