@@ -8,7 +8,6 @@
 	<context:annotation-config />
 
 	<context:component-scan base-package="hu.okfonok" />
-	<import resource="classpath*:hu/okfonok/spring/okfonok-bus-context.xml" />
 	
 	 <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
         <property name="scopes">
