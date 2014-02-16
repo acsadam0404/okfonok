@@ -1,6 +1,6 @@
 package hu.okfonok.services;
 
-import hu.okfonok.entities.User;
+import hu.okfonok.entities.user.User;
 
 /**
  * 

@@ -1,15 +1,13 @@
 package hu.okfonok.beans
 
-import hu.okfonok.entities.User
+import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 
-import javax.annotation.PostConstruct;
+import javax.annotation.PostConstruct
+import javax.inject.Inject
 import javax.inject.Named
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
-import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
 
 /**
  * 
@@ -21,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails
 class UserBean implements Serializable {
 	private User user
 
-	@Autowired
+	@Inject
 	private UserService userService
 	
 	@PostConstruct

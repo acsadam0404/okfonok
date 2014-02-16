@@ -1,6 +1,6 @@
 package hu.okfonok.services.impl;
 
-import hu.okfonok.entities.User
+import hu.okfonok.entities.user.User;
 import hu.okfonok.services.UserService
 
 import javax.inject.Named
