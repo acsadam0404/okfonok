@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-@Scope("application")
+@Scope("singleton")
 public class ServiceLocator implements ApplicationContextAware{
 	private static ApplicationContext springContext;
 

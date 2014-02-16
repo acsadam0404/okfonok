@@ -25,6 +25,6 @@ class ValueSet extends BaseEntity {
 	String valuesString
 	
 	List<String> getValues() {
-		valuesString.tokenize("|||") 
+		valuesString.tokenize("|") 
 	}
 }

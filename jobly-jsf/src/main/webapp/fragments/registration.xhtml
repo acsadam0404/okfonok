@@ -6,7 +6,7 @@
 			<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
 				<h:panelGrid columns="3">
 					<p:outputLabel for="email" value="E-mail cím" />
-					<p:inputText id="email" maxlength="60" value="#{registrationBean.user.email}" />
+					<p:inputText id="email" maxlength="60" value="#{registrationBean.user.profile.email}" />
 					<p:message for="email" />
 					<p:outputLabel for="userName" value="Felhasználónév" />
 					<p:inputText id="userName" maxlength="30" value="#{registrationBean.user.userName}" />
