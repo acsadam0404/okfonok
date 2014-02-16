@@ -9,7 +9,12 @@
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
 			<h:form>
-				<p:commandButton action="#{registrationMailSender.send()}" />
+				<p:commandButton value="email" action="#{registrationMailSender.send()}" />
+				<p:commandButton value="facebook" action="#{facebookRegistration.register()}" />
+
+				<p:autoComplete id="acSimple" value="#{settlementService.findAll()}" completeMethod="#{settlementService.findAll()}">
+					<f:converter  binding="#{settlementConverter}" />
+				</p:autoComplete>
 			</h:form>
 		</ui:define>
 	</ui:composition>
