@@ -23,6 +23,7 @@
 
 	<jdbc:embedded-database id="dataSource" type="H2">
 		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/initialconfig.sql" encoding="utf-8" />
+		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/settlement.sql" encoding="utf-8" />
 	</jdbc:embedded-database>
 
 	<!-- <bean id="dataSource" -->

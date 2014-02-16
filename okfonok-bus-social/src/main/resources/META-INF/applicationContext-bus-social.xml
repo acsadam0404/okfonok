@@ -3,4 +3,15 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
+	<bean id="connectionFactoryLocator" class="org.springframework.social.connect.support.ConnectionFactoryRegistry">
+		<property name="connectionFactories">
+			<list>
+				<bean class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
+					<constructor-arg value="1394332237496248" />
+					<constructor-arg value="83f1ed6808ab708fe16889e3d0db2418" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 </beans>
