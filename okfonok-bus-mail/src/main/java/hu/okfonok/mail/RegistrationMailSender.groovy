@@ -23,7 +23,7 @@ class RegistrationMailSender {
 	@Inject
 	private MailSender mailSender
 
-	public void send() {
+	void send() {
 
 		SimpleMailMessage msg = new SimpleMailMessage();
 		

@@ -9,7 +9,7 @@ import javax.persistence.Embeddable
  *
  */
 @Embeddable
-class Certification {
+class Certification implements Serializable {
 	
 	String idCardNumber
 	

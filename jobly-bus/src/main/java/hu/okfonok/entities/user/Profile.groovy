@@ -11,7 +11,7 @@ import javax.validation.constraints.Size
  *
  */
 @Embeddable
-class Profile {
+class Profile implements Serializable {
 	byte[] profilePicture
 	
 	@Size(max = 1000)

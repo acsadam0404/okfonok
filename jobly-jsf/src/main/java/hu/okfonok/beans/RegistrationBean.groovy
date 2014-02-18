@@ -1,6 +1,7 @@
 package hu.okfonok.beans;
 
 import hu.okfonok.entities.user.User;
+import hu.okfonok.mail.RegistrationMailSender;
 import hu.okfonok.services.RoleService
 import hu.okfonok.services.UserService
 
@@ -23,11 +24,13 @@ class RegistrationBean implements Serializable {
 	private static final Logger log = Logger.getLogger(RegistrationBean.class)
 
 	@Inject
-	private RoleService roleService
+	private transient RoleService roleService
 	@Inject
-	private UserService userService
+	private transient UserService userService
 	@Inject
-	private Md5PasswordEncoder passwordEncoder
+	private transient Md5PasswordEncoder passwordEncoder
+	@Inject
+	private transient RegistrationMailSender regMailSender
 
 	User user = new User()
 
@@ -36,6 +39,7 @@ class RegistrationBean implements Serializable {
 			user.roles.add(roleService.getUserRole())
 			user.password = passwordEncoder.encodePassword(user.password, "basicsalt")
 			userService.merge(user)
+			regMailSender.send();
 			log.info("Sikeres regisztráció: $user.userName")
 			user = new User();
 		} 

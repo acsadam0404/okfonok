@@ -35,19 +35,19 @@ class User extends BaseEntity implements Serializable{
 	String password
 	
 	@Column
-	Boolean enabled = true
+	Boolean enabled = false
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "User_Roles", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "role_id", referencedColumnName="id") ])
 	Set<Role> roles = new HashSet<Role>()
 	
 	@Embedded
-	Address address
+	Address address = new Address()
 	
 	@Embedded
-	Certification certification
+	Certification certification = new Certification()
 	
 	@Embedded
-	Profile profile
+	Profile profile = new Profile()
 
 }

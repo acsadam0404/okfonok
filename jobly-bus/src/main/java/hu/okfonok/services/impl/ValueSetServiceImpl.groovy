@@ -6,6 +6,7 @@ import hu.okfonok.entities.ValueSet
 import hu.okfonok.services.ValueSetService
 
 import javax.inject.Named
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional
@@ -22,12 +23,11 @@ class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetS
 	@Override
 	public List<String> getValues(String valueSetName) {
 		TypedQuery<ValueSet> query = em.createQuery("from ValueSet where name = '${valueSetName}'", ValueSet.class)
-		return query.getSingleResult().values 
+		try {
+			return query.getSingleResult().values
+		}
+		catch (NoResultException nrex) {
+			return Collections.emptyList()
+		}
 	}
-	
-	@Override
-	List<String> getHelpCategories() {
-		return getValues("helpCategory")
-	}
-
 }

@@ -3,7 +3,7 @@
 		<h:outputStylesheet library="css" name="fragments/_layout_header.css" />
 	</f:facet>
 	<h:form id="menuForm" prependId="false">
-		<p:menubar>
+		<p:menubar id="menubar">
 			<p:menuitem value="" icon="homeLinkDiv" styleClass="homeLink" url="/index.xhtml" />
 
 			<p:menuitem value="Hirdetés feladása" url="/postad.xhtml" />
@@ -29,5 +29,7 @@
 				</sec:authorize>
 			</f:facet>
 		</p:menubar>
+		
+		<p:sticky target="menubar" /> 
 	</h:form>
 </ui:composition>

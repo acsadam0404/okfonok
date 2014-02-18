@@ -11,6 +11,4 @@ import hu.okfonok.entities.ValueSet;
  */
 public interface ValueSetService extends BaseService<ValueSet>{
 	List<String> getValues(String valueSetName);
-	
-	List<String> getHelpCategories();
 }

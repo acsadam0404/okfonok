@@ -47,7 +47,7 @@ alter table User_Roles
     references User;
     
 insert into Role (id, name) values (1, 'USER_ROLE');
-insert into User (id, enabled, password, userName) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs');
+insert into User (id, enabled, password, userName, surName, firstName, email, phoneNumber) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121');
 insert into User_Roles (user_id, role_id) values (1, 1);
 
 
@@ -67,3 +67,4 @@ insert into User_Roles (user_id, role_id) values (1, 1);
 
 insert into Valueset (name, valuesstring) values ('help_category', 'kat1|kat2|kat3|kat4');
 insert into Valueset (name, valuesstring) values ('help_mail', 'acsadam0404@gmail.com');
+insert into Valueset (name, valuesstring) values ('employ_category', 'alkalmi|időszakos|tartós');

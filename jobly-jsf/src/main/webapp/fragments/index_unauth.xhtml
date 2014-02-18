@@ -1,13 +1,25 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
+	<h:outputStylesheet library="css" name="fragments/index_unauth.css" />
 	<div>
 		<div id="left">
 			<p:graphicImage id="employer" library="img" name="employer.png" title="Munkát adnál?" />
+			<p:selectOneRadio layout="pageDirection">
+				<f:selectItems value="#{valueSetService.getValues('employ_category')}" />
+			</p:selectOneRadio>
+			<h:form>
+				<div id="postAd">
+					<h:link outcome="/postad" value="">
+						<p:graphicImage id="helpLink" library="img" name="fragments/postad.png" style="cursor:pointer" title="Add fel hirdetésed!" />
+					</h:link>
+				</div>
+			</h:form>
+
 		</div>
 		<div id="right">
 			<h:form>
 				<p:graphicImage id="employee" library="img" name="employee.png" title="Munkát vállalnál?" />
-
-				<ui:include src="registration.xhtml"></ui:include>
+				
+				<ui:include src="registration.xhtml" />
 			</h:form>
 		</div>
 	</div>

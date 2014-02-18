@@ -1,6 +1,9 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 	<h:form id="registrationForm">
+		<p:commandLink>
+			<p:graphicImage id="facebookReg" library="img" name="fragments/facebookreg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
+		</p:commandLink>
 		<p:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" update="registrationFormPanel" process="@this" />
 		<h:panelGroup id="registrationFormPanel">
 			<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
@@ -17,8 +20,15 @@
 					<p:outputLabel for="pwd2" value="Jelszó ismét" />
 					<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
 					<p:message for="pwd2" />
+					<p:outputLabel value="Vállalsz is munkát?" />
+					<p:selectBooleanCheckbox value="#{registrationBean.user.profile.employee}" />
 				</h:panelGrid>
 				<p:commandButton value="Regisztráció" id="registrationCommand" process="@form" update="@form" action="#{registrationBean.register()}" />
+				<p:commandLink action="#{registrationBean.register()}">
+					<p:graphicImage id="createProfile" library="img" name="fragments/createprofile.png" style="cursor:pointer" title="Profil létrehozása" />
+				</p:commandLink>
+				<span id="registrationConditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
+				</span>
 			</h:panelGroup>
 		</h:panelGroup>
 	</h:form>
