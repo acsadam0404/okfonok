@@ -20,7 +20,7 @@ import org.springframework.mail.SimpleMailMessage
  *
  */
 @Named("helpMailSender")
-@Scope("singleton")
+@Scope("session")
 class HelpMailSender implements Serializable{
 	private static final Logger log = LoggerFactory.getLogger(HelpMailSender.class)
 
@@ -41,7 +41,7 @@ class HelpMailSender implements Serializable{
 		SimpleMailMessage msg = new SimpleMailMessage();
 
 		msg.setFrom("${email}")
-		msg.setTo("${to}")
+		msg.setTo("acsadam0404@gmail.com")
 		msg.setSubject("${subject}")
 		msg.setText(
 """

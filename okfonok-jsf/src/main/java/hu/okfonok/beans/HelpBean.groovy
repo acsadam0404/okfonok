@@ -1,16 +1,14 @@
 package hu.okfonok.beans
 
 import hu.okfonok.mail.HelpMailSender
-import hu.okfonok.services.ValueSetService
 
 import javax.faces.application.FacesMessage
 import javax.faces.context.FacesContext
+import javax.inject.Inject
 import javax.inject.Named
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
-import org.springframework.mail.MailException;
-import org.springframework.mail.MailSender
+import org.springframework.mail.MailException
 
 /**
  * 
@@ -26,7 +24,7 @@ class HelpBean implements Serializable {
 	String message
 	String category
 
-	@Autowired
+	@Inject
 	private HelpMailSender helpMailSender
 
 	void sendMail() {
