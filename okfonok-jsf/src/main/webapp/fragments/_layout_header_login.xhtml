@@ -11,7 +11,13 @@
 			<p:outputLabel for="j_spring_security_remember_me" value="Emlékezz rám" />
 			<p:selectBooleanCheckbox id="j_spring_security_remember_me" />
 		</h:panelGrid>
-
 		<p:commandButton type="submit" ajax="false" value="Bejelentkezés" action="#{userSessionBean.doLogin}" />
+	</h:form>
+	
+	<h:form>
+		<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
+			<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
+			<p:graphicImage id="facebookReg" library="img" name="fragments/facebooklogin.png" style="cursor:pointer" title="Belépés Facebookkal" />
+		</p:commandLink>
 	</h:form>
 </ui:composition>

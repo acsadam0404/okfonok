@@ -9,18 +9,24 @@
 			<p:menuitem value="Hirdetés feladása" url="/postad.xhtml" />
 
 			<f:facet name="options">
+				<!-- 				AUTHENTIKÁCIÓVAL -->
 				<sec:authorize ifAnyGranted="USER_ROLE">
 					<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
 					<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade">
 						itt lesz egy naptár
 					</p:overlayPanel>
 
-					<p:commandButton id="accountLink" value="#{userBean.user.userName}" />
+
+					<p:commandButton id="accountLink" value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 					<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
 						<h:link value="Profil" outcome="/profile" />
+						<h:link value="Admin" outcome="/admin/index" />
 						<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" />
 					</p:overlayPanel>
+					<h:graphicImage id="profileImage" value="#{userBean.user.profile.profileImagePath}" />
 				</sec:authorize>
+
+				<!-- 				AUTHENTIKÁCIÓ NÉLKÜL -->
 				<sec:authorize ifNotGranted="USER_ROLE">
 					<p:commandButton id="loginLink" value="Bejelentkezés" />
 					<p:overlayPanel id="loginPanel" for="loginLink" hideEffect="fade">
@@ -29,7 +35,7 @@
 				</sec:authorize>
 			</f:facet>
 		</p:menubar>
-		
-		<p:sticky target="menubar" /> 
+
+		<p:sticky target="menubar" />
 	</h:form>
 </ui:composition>

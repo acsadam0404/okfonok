@@ -37,10 +37,13 @@ class RegistrationBean implements Serializable {
 	
 	void register(User user) {
 		try {
+			userService.persist(user)
 			user.roles.add(roleService.getUserRole())
 			user.password = passwordEncoder.encodePassword(user.password, "basicsalt")
 			userService.merge(user)
-			regMailSender.send();
+			if (!user.enabled) {
+				regMailSender.send();
+			}
 			log.info("Sikeres regisztráció: $user.userName")
 			user = new User();
 		}

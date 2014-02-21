@@ -22,4 +22,5 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 		TypedQuery<User> query = em.createQuery("select u from User u where u.userName = '${userName}'", User.class)
 		return query.singleResult
 	}
+
 }

@@ -13,8 +13,8 @@
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Felhasználónév" for="userName" />
 						<p:inputText id="userName" value="#{profileBean.user.userName}" />
-						<p:outputLabel value="Vezetéknév" for="surName" />
-						<p:inputText id="surName" value="#{profileBean.user.profile.surName}" />
+						<p:outputLabel value="Vezetéknév" for="lastName" />
+						<p:inputText id="lastName" value="#{profileBean.user.profile.lastName}" />
 						<p:outputLabel value="Keresztnév" for="firstName" />
 						<p:inputText id="firstName" value="#{profileBean.user.profile.firstName}" />
 						<p:outputLabel value="E-mail" for="email" />
@@ -44,12 +44,12 @@
 						<p:outputLabel value="Személyi igazolvány szám" for="idCardNumber" />
 						<p:inputText id="idCardNumber" value="#{profileBean.user.certification.idCardNumber}" />
 					</h:panelGrid>
-					<p:fileUpload id="idCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Személyi igazolvány képe" fileUploadListener="#{profileBean.idCardPictureUpload()}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" />
+					<p:fileUpload id="idCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Személyi igazolvány képe" fileUploadListener="#{profileBean.idCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" />
 					<h:panelGrid columns="2">
 						<p:outputLabel value="Lakcímkártya szám" for="addressCardNumber" />
 						<p:inputText id="addressCardNumber" value="#{profileBean.user.certification.addressCardNumber}" />
 					</h:panelGrid>
-					<p:fileUpload id="addressCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Lakcímkártya képe" fileUploadListener="#{profileBean.addressCardPictureUpload()}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:"  />
+					<p:fileUpload id="addressCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Lakcímkártya képe" fileUploadListener="#{profileBean.addressCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:"  />
 		
 				</h:form>
 			</p:fieldset>

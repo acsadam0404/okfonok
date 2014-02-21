@@ -1,14 +1,15 @@
 package hu.okfonok.beans
 
+import hu.okfonok.config.Config
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
+import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
-import javax.faces.application.FacesMessage
-import javax.faces.context.FacesContext
 import javax.inject.Inject
 import javax.inject.Named
 
+import org.apache.commons.io.FileUtils
 import org.apache.commons.lang3.StringUtils
 import org.primefaces.event.FileUploadEvent
 import org.springframework.context.annotation.Scope
@@ -24,22 +25,19 @@ class ProfileBean implements Serializable{
 	@Inject
 	private transient UserService userService
 
-	@Inject
-	private transient UserBean userBean
-
 	User user
 
 	@PostConstruct
 	void init() {
-		user = userBean.user
+		user = ServiceLocator.getBean(UserBean.class).user
 	}
 
 	void save() {
-		if (!StringUtils.equalsIgnoreCase(user.profile.email, userBean.user.profile.email)) {
+		if (!StringUtils.equalsIgnoreCase(user.profile.email, ServiceLocator.getBean(UserBean.class).user.profile.email)) {
 			emailChanged()
 		}
 
-		if (!StringUtils.equalsIgnoreCase(user.profile.phoneNumber, userBean.user.profile.phoneNumber)) {
+		if (!StringUtils.equalsIgnoreCase(user.profile.phoneNumber, ServiceLocator.getBean(UserBean.class).user.profile.phoneNumber)) {
 			phoneChanged()
 		}
 
@@ -71,10 +69,11 @@ class ProfileBean implements Serializable{
 	}
 	
 	void idCardPictureUpload(FileUploadEvent event) {
-		print "fileupload ${event.file.fileName}" //TODO
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/idcard"), event.file.contents)
 	}
 	
 	void addressCardPictureUpload(FileUploadEvent event) {
-		print "fileupload ${event.file.fileName}" //TODO
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/addressCard"), event.file.contents)
 	} 
+	
 }

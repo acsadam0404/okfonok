@@ -38,18 +38,6 @@
 				</span>
 			</h:panelGroup>
 		</h:panelGroup>
-		
-		
-		
-		<!-- teszt -->
-		<h:panelGrid columns="3" rendered="#{not empty userSession.profile}">
-			<h:graphicImage rendered="#{not empty userSession.profile.profileImageURL}" value="#{userSession.profile.profileImageURL}" />
-
-			<h:outputText value="Hello, #{userSession.profile.fullName}" />
-
-			<h:commandButton value="Log out" actionListener="#{userSession.logOut}" />
-		</h:panelGrid>
-
 	</h:form>
 
 </ui:composition>
