@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+
+		<h:form>
+
+			<p:panelMenu style="width:200px">
+				<p:submenu label="Ajax Menuitems">
+					<p:menuitem value="Save" icon="ui-icon-disk" />
+					<p:menuitem value="Update" icon="ui-icon-arrowrefresh-1-w" />
+				</p:submenu>
+				<p:submenu label="Non-Ajax Menuitem">
+					<p:menuitem value="Delete" ajax="false" icon="ui-icon-close" />
+				</p:submenu>
+				<p:separator />
+				<p:submenu label="Navigations">
+					<p:submenu label="Links" icon="ui-icon-extlink">
+						<p:submenu label="PrimeFaces" icon="ui-icon-heart">
+							<p:menuitem value="Home" url="#" icon="ui-icon-home" />
+							<p:menuitem value="Docs" url="#" icon="ui-icon-document" />
+							<p:menuitem value="Download" url="#" icon="ui-icon-arrowthick-1-s" />
+							<p:menuitem value="Support" url="#" icon="ui-icon-wrench" />
+						</p:submenu>
+					</p:submenu>
+					<p:menuitem value="Mobile" icon="ui-icon-signal" />
+				</p:submenu>
+			</p:panelMenu>
+
+		</h:form>
+
+	</ui:composition>
+
+</h:body>
+</html>
