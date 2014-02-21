@@ -32,6 +32,14 @@
 	</repositories>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.brickred</groupId>
+			<artifactId>socialauth</artifactId>
+			<version>4.0</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
@@ -47,12 +55,12 @@
 			<groupId>hu.okfonok</groupId>
 			<artifactId>okfonok-bus-mail</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>hu.okfonok</groupId>
 			<artifactId>okfonok-bus-social</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>hu.okfonok</groupId>
 			<artifactId>okfonok-jsf-theme</artifactId>

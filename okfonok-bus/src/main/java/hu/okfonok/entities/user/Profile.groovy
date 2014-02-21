@@ -12,13 +12,13 @@ import javax.validation.constraints.Size
  */
 @Embeddable
 class Profile implements Serializable {
-	byte[] profilePicture
+	String profileImagePath
 	
 	@Size(max = 1000)
 	String introduction
 	
 	@Size(min=4)
-	String surName
+	String lastName
 	
 	@Size(min=4)
 	String firstName
@@ -33,4 +33,6 @@ class Profile implements Serializable {
 	Boolean employer
 	
 	Boolean employee
+	
+	String facebookValidatedId
 }

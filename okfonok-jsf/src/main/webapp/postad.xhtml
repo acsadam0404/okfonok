@@ -15,7 +15,7 @@
 
 			<sec:authorize ifAnyGranted="USER_ROLE">
 				<h:panelGrid columns="1">
-					<p:outputLabel value="#{userBean.user.profile.surName} #{userBean.user.profile.firstName}" />
+					<p:outputLabel value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 					<p:outputLabel id="email" value="#{userBean.user.profile.email}" />
 					<p:outputLabel id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" />
 				</h:panelGrid>

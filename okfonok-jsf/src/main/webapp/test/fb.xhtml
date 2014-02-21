@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<f:view>
+		<ui:param name="originalURL" value="#{request.requestURL}" />
+
+		<f:metadata>
+			<f:event rendered="#{empty userSession.profile}" type="preRenderView" listener="#{userSession.setOriginalURL(originalURL)}" />
+		</f:metadata>
+	</f:view>
+
+
+	<h:form>
+		<h:panelGroup rendered="#{empty userSession.profile}" id="socialButtons">
+			<h:commandLink id="facebook" action="#{userSession.socialConnect}">
+				<f:setPropertyActionListener target="#{userSession.providerID}" value="facebook" />
+				<h:graphicImage value="/images/facebook_icon.png" />
+			</h:commandLink>
+
+			<h:commandLink id="google" action="#{userSession.socialConnect}">
+				<f:setPropertyActionListener target="#{userSession.providerID}" value="google" />
+				<h:graphicImage value="/images/google-icon.jpg" />
+			</h:commandLink>
+		</h:panelGroup>
+
+		<h:panelGrid columns="3" rendered="#{not empty userSession.profile}">
+			<h:graphicImage rendered="#{not empty userSession.profile.profileImageURL}" value="#{userSession.profile.profileImageURL}" />
+
+			<h:outputText value="Hello, #{userSession.profile.fullName}" />
+
+			<h:commandButton value="Log out" actionListener="#{userSession.logOut}" />
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

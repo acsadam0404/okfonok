@@ -18,7 +18,7 @@
 					<p:commandButton id="accountLink" value="#{userBean.user.userName}" />
 					<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
 						<h:link value="Profil" outcome="/profile" />
-						<p:commandLink value="Kilépés" action="#{loginBean.doLogout()}" ajax="false" />
+						<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" />
 					</p:overlayPanel>
 				</sec:authorize>
 				<sec:authorize ifNotGranted="USER_ROLE">

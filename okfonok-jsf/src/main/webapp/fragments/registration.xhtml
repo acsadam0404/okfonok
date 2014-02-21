@@ -1,7 +1,14 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<f:view>
+		<ui:param name="originalURL" value="#{request.requestURI}?#{request.queryString}" />
 
+		<f:metadata>
+			<f:event rendered="#{empty userSessionBean.profile}" type="preRenderView" listener="#{userSessionBean.setOriginalURL(originalURL)}" />
+		</f:metadata>
+	</f:view>
 	<h:form id="registrationForm">
-		<p:commandLink>
+		<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
+			<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
 			<p:graphicImage id="facebookReg" library="img" name="fragments/facebookreg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
 		</p:commandLink>
 		<p:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" update="registrationFormPanel" process="@this" />
@@ -31,6 +38,18 @@
 				</span>
 			</h:panelGroup>
 		</h:panelGroup>
+		
+		
+		
+		<!-- teszt -->
+		<h:panelGrid columns="3" rendered="#{not empty userSession.profile}">
+			<h:graphicImage rendered="#{not empty userSession.profile.profileImageURL}" value="#{userSession.profile.profileImageURL}" />
+
+			<h:outputText value="Hello, #{userSession.profile.fullName}" />
+
+			<h:commandButton value="Log out" actionListener="#{userSession.logOut}" />
+		</h:panelGrid>
+
 	</h:form>
 
 </ui:composition>

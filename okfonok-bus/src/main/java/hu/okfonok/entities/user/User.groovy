@@ -21,7 +21,6 @@ import javax.validation.constraints.Size
  *
  */
 @Entity
-@Table(name = "User")
 class User extends BaseEntity implements Serializable{
 	
 	@Column(unique = true)
@@ -29,12 +28,10 @@ class User extends BaseEntity implements Serializable{
 	@Size(min=4, max=20)
 	String userName
 	
-	@Column
 	@NotNull
 	@Size(min=4)
 	String password
 	
-	@Column
 	Boolean enabled = false
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
@@ -49,5 +46,7 @@ class User extends BaseEntity implements Serializable{
 	
 	@Embedded
 	Profile profile = new Profile()
+	
+	String providerId
 
 }
