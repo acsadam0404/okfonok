@@ -4,21 +4,21 @@ import hu.okfonok.entities.data.Settlement;
 import hu.okfonok.services.data.SettlementService;
 import hu.okfonok.utils.ServiceLocator;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Named;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Scope;
 
 /**
  * 
  * @author Ács Ádám
  *
  */
-@Component("settlementConverter")
-@ApplicationScoped
+@Named("settlementConverter")
+@Scope("singleton")
 public class SettlementConverter implements Converter {
 	private SettlementService service;
 

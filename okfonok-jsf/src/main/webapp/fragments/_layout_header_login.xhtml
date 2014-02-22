@@ -1,23 +1,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui">
-	<h:form id="loginForm" prependId="false">
-		<p:focus context="loginForm" />
-		<h:panelGrid columns="2">
-			<p:outputLabel for="j_username" value="Felhasználónév" />
-			<p:inputText id="j_username" name="j_username" required="true" label="username" maxlength="20" />
+	<p:focus context="loginForm" />
+	<h:panelGrid id="loginForm" columns="2">
+		<p:outputLabel for="j_username" value="Felhasználónév" />
+		<p:inputText id="j_username" name="j_username" required="true" label="username" maxlength="20" />
 
-			<p:outputLabel for="j_password" value="Jelszó" />
-			<p:password id="j_password" name="j_password" label="password" required="true" maxlength="20" />
+		<p:outputLabel for="j_password" value="Jelszó" />
+		<p:password id="j_password" name="j_password" label="password" required="true" maxlength="20" />
 
-			<p:outputLabel for="j_spring_security_remember_me" value="Emlékezz rám" />
-			<p:selectBooleanCheckbox id="j_spring_security_remember_me" />
-		</h:panelGrid>
-		<p:commandButton type="submit" ajax="false" value="Bejelentkezés" action="#{userSessionBean.doLogin}" />
-	</h:form>
-	
-	<h:form>
-		<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
-			<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
-			<p:graphicImage id="facebookReg" library="img" name="fragments/facebooklogin.png" style="cursor:pointer" title="Belépés Facebookkal" />
-		</p:commandLink>
-	</h:form>
+		<p:outputLabel for="j_spring_security_remember_me" value="Emlékezz rám" />
+		<p:selectBooleanCheckbox id="j_spring_security_remember_me" />
+	</h:panelGrid>
+	<p:commandButton type="submit" ajax="false" value="Bejelentkezés" action="#{userSessionBean.doLogin}" />
+
+
+	<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
+		<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
+		<p:graphicImage id="facebookReg" library="img" name="fragments/facebooklogin.png" style="cursor:pointer" title="Belépés Facebookkal" />
+	</p:commandLink>
+
 </ui:composition>

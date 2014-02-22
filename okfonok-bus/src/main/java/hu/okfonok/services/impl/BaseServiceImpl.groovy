@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
  * @param <T>
  */
 @Transactional(propagation = Propagation.REQUIRED)
-abstract class BaseServiceImpl<T> implements BaseService<T> {
+abstract class BaseServiceImpl<T> implements BaseService<T>, Serializable {
 	@PersistenceContext
 	protected final EntityManager em;
 

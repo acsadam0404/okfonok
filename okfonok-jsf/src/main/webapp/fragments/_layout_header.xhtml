@@ -20,7 +20,9 @@
 					<p:commandButton id="accountLink" value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 					<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
 						<h:link value="Profil" outcome="/profile" />
-						<h:link value="Admin" outcome="/admin/index" />
+						<sec:authorize ifAnyGranted="ADMIN_ROLE">
+							<h:link value="Admin" outcome="/admin/index" />
+						</sec:authorize>
 						<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" />
 					</p:overlayPanel>
 					<h:graphicImage id="profileImage" value="#{userBean.user.profile.profileImagePath}" />
@@ -28,14 +30,18 @@
 
 				<!-- 				AUTHENTIKÁCIÓ NÉLKÜL -->
 				<sec:authorize ifNotGranted="USER_ROLE">
+					<p:commandButton id="registrationLink" value="Regisztráció" />
+					<p:overlayPanel id="registrationPanel" for="registrationLink" hideEffect="fade">
+						<ui:include src="registration.xhtml" />
+					</p:overlayPanel>
 					<p:commandButton id="loginLink" value="Bejelentkezés" />
 					<p:overlayPanel id="loginPanel" for="loginLink" hideEffect="fade">
-						<ui:include src="_layout_header_login.xhtml"></ui:include>
+						<ui:include src="_layout_header_login.xhtml" />
 					</p:overlayPanel>
 				</sec:authorize>
 			</f:facet>
 		</p:menubar>
 
 		<p:sticky target="menubar" />
-	</h:form>
+	</h:form> 
 </ui:composition>

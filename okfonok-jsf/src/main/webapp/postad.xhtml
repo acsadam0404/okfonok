@@ -10,19 +10,59 @@
 		<ui:define name="content">
 
 			<sec:authorize ifNotGranted="USER_ROLE">
-				<ui:include src="fragments/registration.xhtml" />
+				<f:subview id="postadRegForm">
+					<ui:include src="fragments/registration.xhtml" />
+				</f:subview>
 			</sec:authorize>
 
 			<sec:authorize ifAnyGranted="USER_ROLE">
 				<h:panelGrid columns="1">
+					<h:graphicImage value="#{userBean.user.profile.profileImagePath}" />
 					<p:outputLabel value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 					<p:outputLabel id="email" value="#{userBean.user.profile.email}" />
 					<p:outputLabel id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" />
+					<p:commandLink id="editPhoneNumberLink" action="#{postAdBean.switchPhoneEdit()}" update="phoneNumberEditor">
+						<h:graphicImage library="img" name="edit.png" />
+					</p:commandLink>
+					<h:form id="phoneNumberEditor">
+						<p:inputText rendered="#{postAdBean.phoneEdit}" value="#{postAdBean.phoneNumber}" />
+						<p:selectBooleanButton rendered="#{postAdBean.phoneEdit}" value="#{postAdBean.phoneEditOnProfile}" onLabel="Profilon is" offLabel="Csak ebben a hirdetésben" />
+						<p:commandLink id="editPhoneNumber" action="#{postAdBean.phoneEdited()}" rendered="#{postAdBean.phoneEdit}">
+							<h:graphicImage library="img" name="accept.png" />
+						</p:commandLink>
+					</h:form>
+
+					<p:commandLink id="editEmailLink" action="#{postAdBean.switchEmailEdit()}" update="emailEditor">
+						<h:graphicImage library="img" name="edit.png" />
+					</p:commandLink>
+					<h:form id="emailEditor">
+						<p:inputText rendered="#{postAdBean.emailEdit}" value="#{postAdBean.email}" />
+						<p:selectBooleanButton rendered="#{postAdBean.emailEdit}" value="#{postAdBean.emailEditOnProfile}" onLabel="Profilon is" offLabel="Csak ebben a hirdetésben" />
+						<p:commandLink id="editEmail" action="#{postAdBean.emailEdited()}" rendered="#{postAdBean.emailEdit}">
+							<h:graphicImage library="img" name="accept.png" />
+						</p:commandLink>
+					</h:form>
+
+					<h:form>
+						<h:panelGrid columns="1">
+							<p:selectOneMenu id="mainCategory" value="#{postAdBean.mainCategory}">
+								<p:ajax event="valueChange" update="subCategory" process="@this" />
+								<f:converter binding="#{jobCategoryConverter}" />
+								<f:selectItems value="#{jobCategoryService.findAllMain()}" />
+							</p:selectOneMenu>
+
+
+							<p:selectOneMenu id="subCategory" value="#{postAdBean.subCategory}">
+								<f:converter binding="#{jobCategoryConverter}" />
+								<f:selectItems value="#{postAdBean.findSubByMainCategory()}" />
+							</p:selectOneMenu>
+						</h:panelGrid>
+					</h:form>
 				</h:panelGrid>
 				<p:tooltip for="phoneNumber email" value="Csak létrejött munkakapcsolat esetén kerül a munkavállalóhoz." />
 			</sec:authorize>
 
-			
+
 		</ui:define>
 	</ui:composition>
 

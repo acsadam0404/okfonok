@@ -187,7 +187,10 @@ class UserSessionBean implements Serializable, PhaseListener {
 	}
 
 	public String doLogout() {
-		socialLogout();
+		/* manager abban az esetben null, ha nem volt sociallogin */
+		if (manager) {
+			socialLogout();
+		}
 		SecurityContextHolder.clearContext();
 		return "index.xhtml";
 

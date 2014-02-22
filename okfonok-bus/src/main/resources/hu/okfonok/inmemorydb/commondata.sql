@@ -13,3 +13,9 @@ insert into User_Roles (user_id, role_id) values (2, 1);
 insert into Valueset (name, valuesstring) values ('help_category', 'kat1|kat2|kat3|kat4');
 insert into Valueset (name, valuesstring) values ('help_mail', 'acsadam0404@gmail.com');
 insert into Valueset (name, valuesstring) values ('employ_category', 'alkalmi|időszakos|tartós');
+
+insert into JobCategory (id, main, name, main_id) values (1, 1, 'főkat1', null);
+insert into JobCategory (id, main, name, main_id) values (2, 1, 'főkat2', null);
+insert into JobCategory (id, main, name, main_id) values (3, 0, 'alkat1', 1);
+insert into JobCategory (id, main, name, main_id) values (4, 0, 'alkat2', 1);
+insert into JobCategory (id, main, name, main_id) values (5, 0, 'alkat3', 2);

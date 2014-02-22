@@ -30,7 +30,6 @@
 					<p:outputLabel value="Vállalsz is munkát?" />
 					<p:selectBooleanCheckbox value="#{registrationBean.user.profile.employee}" />
 				</h:panelGrid>
-				<p:commandButton value="Regisztráció" id="registrationCommand" process="@form" update="@form" action="#{registrationBean.register()}" />
 				<p:commandLink action="#{registrationBean.register()}">
 					<p:graphicImage id="createProfile" library="img" name="fragments/createprofile.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
