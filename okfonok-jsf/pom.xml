@@ -140,9 +140,15 @@
 		<dependency>
 			<groupId>org.primefaces.extensions</groupId>
 			<artifactId>primefaces-extensions</artifactId>
-			<version>0.7.1</version>
+			<version>1.1.0</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.primefaces.extensions</groupId>
+			<artifactId>resources-ckeditor</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		
 		<dependency>
 			<!-- primefaces fileupload használja -->
 			<groupId>commons-fileupload</groupId>

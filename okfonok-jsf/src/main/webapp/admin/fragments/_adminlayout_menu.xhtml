@@ -11,24 +11,17 @@
 		<h:form>
 
 			<p:panelMenu style="width:200px">
-				<p:submenu label="Ajax Menuitems">
-					<p:menuitem value="Save" icon="ui-icon-disk" />
-					<p:menuitem value="Update" icon="ui-icon-arrowrefresh-1-w" />
+				<p:submenu label="Lábléc">
+					<p:menuitem value="Rólunk" url="/admin/fileeditor.xhtml?editedFile=aboutContent.xhtml"  />
+					<p:menuitem value="Adatvédelem" url="/admin/fileeditor.xhtml?editedFile=privacyContent.xhtml"  />
+					<p:menuitem value="Felhasználói feltételek" url="/admin/fileeditor.xhtml?editedFile=conditionsContent.xhtml"  />
+					<p:menuitem value="Díjak&amp;Költségek" url="/admin/fileeditor.xhtml?editedFile=feesContent.xhtml"  />
+					<p:menuitem value="GYIK" url="/admin/fileeditor.xhtml?editedFile=faqContent.xhtml"  />
+					<p:menuitem value="Blog" url="/admin/fileeditor.xhtml?editedFile=blogcontent.xhtml"  />
 				</p:submenu>
-				<p:submenu label="Non-Ajax Menuitem">
-					<p:menuitem value="Delete" ajax="false" icon="ui-icon-close" />
-				</p:submenu>
-				<p:separator />
-				<p:submenu label="Navigations">
-					<p:submenu label="Links" icon="ui-icon-extlink">
-						<p:submenu label="PrimeFaces" icon="ui-icon-heart">
-							<p:menuitem value="Home" url="#" icon="ui-icon-home" />
-							<p:menuitem value="Docs" url="#" icon="ui-icon-document" />
-							<p:menuitem value="Download" url="#" icon="ui-icon-arrowthick-1-s" />
-							<p:menuitem value="Support" url="#" icon="ui-icon-wrench" />
-						</p:submenu>
-					</p:submenu>
-					<p:menuitem value="Mobile" icon="ui-icon-signal" />
+				<p:submenu label="E-mail">
+					<p:menuitem value="Regisztráció" url="/admin/emaileditor.xhtml?editedFile=registrationTemplate.txt" />
+					<p:menuitem value="Segítség" url="/admin/emaileditor.xhtml?editedFile=helpTemplate.txt" />
 				</p:submenu>
 			</p:panelMenu>
 

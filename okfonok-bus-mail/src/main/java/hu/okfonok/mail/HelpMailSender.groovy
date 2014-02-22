@@ -1,6 +1,7 @@
 package hu.okfonok.mail
 
 import hu.okfonok.services.ValueSetService
+import hu.okfonok.utils.Config
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
@@ -42,18 +43,7 @@ class HelpMailSender implements Serializable{
 
 		msg.setFrom("${email}")
 		msg.setTo("acsadam0404@gmail.com")
-		msg.setSubject("${subject}")
-		msg.setText(
-"""
-Levél érkezett az alábbi adatokkal:
-Név: ${name}
-Email: ${email}
-Tárgy: ${subject}
-Kategória: ${category}
--------------------------------------------
-${message}
-"""
-		)
+		msg.setSubject(new File("${Config.emailTemplatePath}/helpTemplate.txt").getText('UTF-8')) // TODO bind variables
 
 		try {
 			MailSender mailSender = ServiceLocator.getBean(MailSender.class);

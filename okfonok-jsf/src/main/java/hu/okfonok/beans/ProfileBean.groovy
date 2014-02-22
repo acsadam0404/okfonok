@@ -1,8 +1,8 @@
 package hu.okfonok.beans
 
-import hu.okfonok.config.Config
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
+import hu.okfonok.utils.Config;
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
@@ -52,7 +52,7 @@ class ProfileBean implements Serializable{
 	 * Ha visszaigazolta, onnantól él csak az új e-mail cím.
 	 */
 	private void emailChanged() {
-		user.profile.email = userBean.user.profile.email
+		user.profile.email = ServiceLocator.getBean(UserBean.class).user.profile.email
 		emailChangeEmailSender.send() //TODO
 	}
 
@@ -69,11 +69,11 @@ class ProfileBean implements Serializable{
 	}
 	
 	void idCardPictureUpload(FileUploadEvent event) {
-		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/idcard"), event.file.contents)
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${ServiceLocator.getBean(UserBean.class).user.userName}/idcard"), event.file.contents)
 	}
 	
 	void addressCardPictureUpload(FileUploadEvent event) {
-		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/addressCard"), event.file.contents)
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${ServiceLocator.getBean(UserBean.class).user.userName}/addressCard"), event.file.contents)
 	} 
 	
 }
