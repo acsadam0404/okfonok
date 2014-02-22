@@ -1,7 +1,4 @@
-package hu.okfonok.config
-
-import hu.okfonok.beans.UserBean
-import hu.okfonok.utils.ServiceLocator
+package hu.okfonok.utils
 
 /**
  * 
@@ -12,11 +9,15 @@ class Config {
 	private static final String ROOT = "/okfonok"
 	 
 	static String getUserProfilePath() {
-		return "${ROOT}/users/${ServiceLocator.getBean(UserBean.class).user.userName}"
+		return "${ROOT}/users"
 	}
 	
 	static String getStaticContextPath() {
 		return "${ROOT}/static"
+	}
+	
+	static String getEmailTemplatePath() {
+		return "${ROOT}/email"
 	}
 	
 	private Config() {
