@@ -48,5 +48,8 @@ class User extends BaseEntity implements Serializable{
 	Profile profile = new Profile()
 	
 	String providerId
+	
+	@Embedded
+	Paypal paypal
 
 }

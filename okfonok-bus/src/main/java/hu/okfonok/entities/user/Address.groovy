@@ -1,16 +1,15 @@
 package hu.okfonok.entities.user
 
-import javax.persistence.Column
 import javax.persistence.Embeddable
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max
 import javax.validation.constraints.Min
 
 @Embeddable
-class Address {
+class Address implements Serializable {
 	String state
 	
-	@Min(4L)
-	@Max(4L)
+	@Digits(integer = 4, fraction = 0)
 	Integer zipcode
 	
 	String city
