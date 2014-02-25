@@ -1,10 +1,11 @@
 package hu.okfonok.services.impl;
 
-import hu.okfonok.entities.user.User;
+import hu.okfonok.dao.UserDao
+import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 
+import javax.inject.Inject
 import javax.inject.Named
-import javax.persistence.TypedQuery
 
 import org.springframework.transaction.annotation.Transactional
 
@@ -17,10 +18,12 @@ import org.springframework.transaction.annotation.Transactional
 @Named("userService")
 @Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+	@Inject
+	private UserDao dao;
+	
 	@Override
 	User findByUserName(String userName) {
-		TypedQuery<User> query = em.createQuery("select u from User u where u.userName = '${userName}'", User.class)
-		return query.singleResult
+		dao.findByUserName(userName)
 	}
 
 }

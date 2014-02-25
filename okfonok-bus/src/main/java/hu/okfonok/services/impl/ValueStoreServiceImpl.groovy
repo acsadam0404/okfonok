@@ -1,10 +1,11 @@
 package hu.okfonok.services.impl
 
+import hu.okfonok.dao.ValueStoreDao
 import hu.okfonok.entities.ValueStore
 import hu.okfonok.services.ValueStoreService
 
+import javax.inject.Inject
 import javax.inject.Named
-import javax.persistence.TypedQuery
 
 import org.springframework.transaction.annotation.Transactional
 
@@ -16,11 +17,12 @@ import org.springframework.transaction.annotation.Transactional
 @Named("valueStoreService")
 @Transactional
 class ValueStoreServiceImpl extends BaseServiceImpl<ValueStore> implements ValueStoreService  {
-
+	@Inject
+	private ValueStoreDao dao;
+	
 	@Override
 	public String getValue(String storeName) {
-		TypedQuery<ValueStore> query = em.createQuery("from ValueStore where name = '${storeName}'", ValueStore.class)
-		return query.getSingleResult().getValue()
+		dao.getValue(storeName)
 	}
 	
 }

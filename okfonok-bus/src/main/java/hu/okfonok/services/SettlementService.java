@@ -1,6 +1,6 @@
-package hu.okfonok.services.data;
+package hu.okfonok.services;
 
-import hu.okfonok.entities.data.Settlement;
+import hu.okfonok.entities.Settlement;
 
 import java.util.List;
 
