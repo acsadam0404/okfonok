@@ -8,80 +8,119 @@
 <h:body>
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
-			<p:fieldset legend="Alap adatok" toggleable="true" toggleSpeed="500">
-				<h:form>
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Felhasználónév" for="userName" />
-						<p:inputText id="userName" value="#{profileBean.user.userName}" />
-						<p:outputLabel value="Vezetéknév" for="lastName" />
-						<p:inputText id="lastName" value="#{profileBean.user.profile.lastName}" />
-						<p:outputLabel value="Keresztnév" for="firstName" />
-						<p:inputText id="firstName" value="#{profileBean.user.profile.firstName}" />
-						<p:outputLabel value="E-mail" for="email" />
-						<p:inputText id="email" value="#{profileBean.user.profile.email}" />
-						<p:outputLabel value="Telefonszám (mobil)" for="phoneNumber" />
-						<p:inputMask id="phoneNumber" value="#{profileBean.user.profile.phoneNumber}" mask="(99) 999-9999" />
-						<p:outputLabel value="Megye" for="state" />
-						<p:inputText id="state" value="#{profileBean.user.address.state}" />
-						<p:outputLabel value="Irányítószám" for="zipcode" />
-						<p:inputMask id="zipcode" value="#{profileBean.user.address.zipcode}" mask="9999" />
-						<p:outputLabel value="Település" for="city" />
-						<p:inputText id="city" value="#{profileBean.user.address.city}" />
-						<p:outputLabel value="Utca" for="street" />
-						<p:autoComplete id="street" value="#{profileBean.user.address.street}" completeMethod="#{addressBean.completeStreet()}" />
-						<p:outputLabel value="Házszám" for="streetNumber" />
-						<p:inputText id="streetNumber" value="#{profileBean.user.address.streetNumber}" />
-						<p:outputLabel value="Bemutatkozás" for="introduction" />
-						<p:editor id="introduction" value="#{profileBean.user.profile.introduction}" controls="bold underline italic" />
-					</h:panelGrid>
-					<p:commandButton value="Mentés" action="#{profileBean.save()}" />
-				</h:form>
-			</p:fieldset>
+			<p:tabView id="profileTabView" dynamic="true" cache="false">
+				<p:tab title="Alap adatok">
+					<h:form prependId="false">
+						<h:panelGrid columns="3">
+							<p:outputLabel value="Felhasználónév" for="userName" />
+							<p:inputText id="userName" value="#{userBean.user.userName}" />
+							<p:message for="userName" />
 
-			<p:fieldset legend="Profil hitelesítése" toggleable="true" toggleSpeed="500">
-				<h:form>
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Személyi igazolvány szám" for="idCardNumber" />
-						<p:inputText id="idCardNumber" value="#{profileBean.user.certification.idCardNumber}" />
-					</h:panelGrid>
-					<p:fileUpload id="idCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Személyi igazolvány képe" fileUploadListener="#{profileBean.idCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" />
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Lakcímkártya szám" for="addressCardNumber" />
-						<p:inputText id="addressCardNumber" value="#{profileBean.user.certification.addressCardNumber}" />
-					</h:panelGrid>
-					<p:fileUpload id="addressCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Lakcímkártya képe" fileUploadListener="#{profileBean.addressCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:"  />
-		
-				</h:form>
-			</p:fieldset>
+							<p:outputLabel value="Vezetéknév" for="lastName" />
+							<p:inputText id="lastName" value="#{userBean.user.profile.lastName}" />
+							<p:message for="lastName" severity="error" />
 
-			<p:fieldset legend="Profilkép" toggleable="true" toggleSpeed="500">
-				<h:form>
-				profilkép és vághatósága
-				</h:form>
-			</p:fieldset>
+							<p:outputLabel value="Keresztnév" for="firstName" />
+							<p:inputText id="firstName" value="#{userBean.user.profile.firstName}" />
+							<p:message for="firstName" />
 
-			<p:fieldset legend="Profil célja" toggleable="true" toggleSpeed="500">
-				<h:form>
-					<h:panelGrid columns="2">
-						<p:outputLabel value="Munkát vállalok" for="employee" />
-						<p:selectBooleanCheckbox id="employee" value="#{profileBean.user.profile.employee}" />
-						<p:outputLabel value="Munkát adok" for="employer" />
-						<p:selectBooleanCheckbox id="employer" value="#{profileBean.user.profile.employer}" />
-					</h:panelGrid>
-				</h:form>
-			</p:fieldset>
+							<p:outputLabel value="E-mail" for="email" />
+							<p:inputText id="email" value="#{userBean.user.profile.email}" />
+							<p:message for="email" />
 
-			<p:fieldset legend="Munkavállaló" toggleable="true" toggleSpeed="500">
-				<h:form>
-				munkavállalói blokk
-				</h:form>
-			</p:fieldset>
+							<p:outputLabel value="Telefonszám (mobil)" for="phoneNumber" />
+							<p:inputMask id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" mask="(99) 999-9999" />
+							<p:message for="phoneNumber" />
 
-			<p:fieldset legend="Munkaadó" toggleable="true" toggleSpeed="500">
-				<h:form>
-				munkaadó
-				</h:form>
-			</p:fieldset>
+							<p:outputLabel value="Megye" for="state" />
+							<p:inputText id="state" value="#{userBean.user.address.state}" />
+							<p:message for="state" />
+
+							<p:outputLabel value="Irányítószám" for="zipcode" />
+							<p:inputMask id="zipcode" value="#{userBean.user.address.zipcode}" mask="9999" />
+							<p:message for="zipcode" />
+
+							<p:outputLabel value="Település" for="city" />
+							<p:inputText id="city" value="#{userBean.user.address.city}" />
+							<p:message for="city" />
+
+							<p:outputLabel value="Utca" for="street" />
+							<p:autoComplete id="street" value="#{userBean.user.address.street}" completeMethod="#{addressBean.completeStreet()}" />
+							<p:message for="street" />
+
+							<p:outputLabel value="Házszám" for="streetNumber" />
+							<p:inputText id="streetNumber" value="#{userBean.user.address.streetNumber}" />
+							<p:message for="streetNumber" />
+
+							<p:outputLabel value="Bemutatkozás" for="introduction" />
+							<p:editor id="introduction" value="#{userBean.user.profile.introduction}" controls="bold underline italic" />
+							<p:message for="introduction" />
+						</h:panelGrid>
+						<p:commandButton value="Mentés" action="#{profileBean.save()}" update="@form" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Profil hitelesítése">
+					<h:form prependId="false">
+						<p:fileUpload id="idCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Személyi igazolvány képe" fileUploadListener="#{profileBean.idCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" />
+						<p:fileUpload id="addressCardPicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Lakcímkártya képe" fileUploadListener="#{profileBean.addressCardPictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="100000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" />
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Személyi igazolvány szám" for="idCardNumber" />
+							<p:inputText id="idCardNumber" value="#{userBean.user.certification.idCardNumber}" />
+							<p:message for="idCardNumber" />
+						</h:panelGrid>
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Lakcímkártya szám" for="addressCardNumber" />
+							<p:inputText id="addressCardNumber" value="#{userBean.user.certification.addressCardNumber}" />
+							<p:message for="addressCardNumber" />
+						</h:panelGrid>
+						<p:commandButton value="Mentés" action="#{profileBean.save()}" update="@form" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Profilkép">
+					<h:form prependId="false">
+						<p:fileUpload id="profilePicture" cancelLabel="Mégse" uploadLabel="Feltöltés" label="Profilkép" fileUploadListener="#{profileBean.profilePictureUpload}" mode="advanced" dragDropSupport="false" sizeLimit="1000000" fileLimit="3" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" invalidFileMessage="Nem megfelelő fájl:" update=":menuForm:profileImage" />
+
+					</h:form>
+				</p:tab>
+
+				<p:tab title="Profil célja">
+					<h:form prependId="false">
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Munkát vállalok" for="employee" />
+							<p:selectBooleanCheckbox id="employee" value="#{userBean.user.profile.employee}" />
+							<p:outputLabel value="Munkát adok" for="employer" />
+							<p:selectBooleanCheckbox id="employer" value="#{userBean.user.profile.employer}" />
+						</h:panelGrid>
+						<p:commandButton value="Mentés" action="#{profileBean.save()}" update="@form" />
+					</h:form>
+				</p:tab>
+
+				<p:tab id="employeeTab" title="Munkavállaló">
+					<h:form prependId="false">
+						<p:accordionPanel>
+							<p:tab title="Hol végezne munkát?">
+							tab1
+						</p:tab>
+							<p:tab title="Milyen munkát vállal?">
+							tab2
+						</p:tab>
+							<p:tab title="Skill kör">
+							tab3
+						</p:tab>
+						</p:accordionPanel>
+					</h:form>
+				</p:tab>
+
+				<p:tab id="employerTab" title="Munkaadó">
+					<h:form prependId="false">
+						<p:outputLabel for="personalEmployer" value="Saját magam nevében" />
+						<p:selectBooleanCheckbox id="personalEmployer" value="#{userBean.user.companyEmployer}" />
+						<p:outputLabel for="companyEmployer" value="Cég nevében" />
+						<p:selectBooleanCheckbox id="companyEmployer" value="#{userBean.user.personalEmployer}" />
+						
+					</h:form>
+				</p:tab>
+			</p:tabView>
 		</ui:define>
 	</ui:composition>
 

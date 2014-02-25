@@ -12,8 +12,11 @@
 				<!-- 				AUTHENTIKÁCIÓVAL -->
 				<sec:authorize ifAnyGranted="USER_ROLE">
 					<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
-					<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade">
-						itt lesz egy naptár
+					<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade" appendToBody="true" style="width: 600px; height: 500px;">
+						<h:panelGroup layout="block"> 
+							<p:schedule id="menuSchedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" locale="hu"  >
+							</p:schedule>
+						</h:panelGroup>
 					</p:overlayPanel>
 
 
@@ -43,5 +46,5 @@
 		</p:menubar>
 
 		<p:sticky target="menubar" />
-	</h:form> 
+	</h:form>
 </ui:composition>

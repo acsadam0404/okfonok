@@ -24,23 +24,23 @@ class RegistrationBean implements Serializable {
 	private static final Logger log = Logger.getLogger(RegistrationBean.class)
 
 	@Inject
-	private transient RoleService roleService
+	private RoleService roleService
 	@Inject
-	private transient UserService userService
+	private UserService userService
 	@Inject
-	private transient Md5PasswordEncoder passwordEncoder
+	private Md5PasswordEncoder passwordEncoder
 	@Inject
-	private transient RegistrationMailSender regMailSender
+	private RegistrationMailSender regMailSender
 
 	User user = new User()
 
 	
 	void register(User user) {
 		try {
-			userService.persist(user)
+			userService.save(user)
 			user.roles.add(roleService.getUserRole())
 			user.password = passwordEncoder.encodePassword(user.password, "basicsalt")
-			userService.merge(user)
+			userService.save(user)
 			if (!user.enabled) {
 				regMailSender.send();
 			}

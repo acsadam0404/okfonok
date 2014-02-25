@@ -98,7 +98,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 				FacesContext.getCurrentInstance().getExternalContext().redirect(originalURL);
 
 			} else
-				FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "home.xhtml");
+				FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/home.xhtml");
 		} catch (Exception ex) {
 			log.error(ex);
 		}

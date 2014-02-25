@@ -24,10 +24,12 @@ class UserBean implements Serializable {
 	private UserService userService
 
 	User getUser() {
-		def principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal()
-		if (principal && principal instanceof UserDetails) {
-			return userService.findByUserName(principal.username)
+		if (user == null) {
+			def principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal()
+			if (principal && principal instanceof UserDetails) {
+				return userService.findByUserName(principal.username)
+			}
 		}
-		return null
+		return user
 	}
 }

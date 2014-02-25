@@ -1,8 +1,11 @@
 package hu.okfonok.beans
 
+import hu.okfonok.entities.user.Address
+import hu.okfonok.entities.user.Certification
+import hu.okfonok.entities.user.Profile
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
-import hu.okfonok.utils.Config;
+import hu.okfonok.utils.Config
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
@@ -13,6 +16,7 @@ import org.apache.commons.io.FileUtils
 import org.apache.commons.lang3.StringUtils
 import org.primefaces.event.FileUploadEvent
 import org.springframework.context.annotation.Scope
+import org.springframework.transaction.annotation.Transactional
 
 /**
  * 
@@ -23,25 +27,34 @@ import org.springframework.context.annotation.Scope
 @Scope("view")
 class ProfileBean implements Serializable{
 	@Inject
-	private transient UserService userService
-
-	User user
-
+	private UserService userService
+	@Inject
+	UserBean userBean
+	
+	
 	@PostConstruct
 	void init() {
-		user = ServiceLocator.getBean(UserBean.class).user
+		if (!userBean.user.address) {
+			userBean.user.address = new Address()
+		}
+		if (!userBean.user.profile) {
+			userBean.user.profile = new Profile()
+		}
+		if (!userBean.user.certification) {
+			userBean.user.certification = new Certification()
+		}
 	}
 
 	void save() {
-		if (!StringUtils.equalsIgnoreCase(user.profile.email, ServiceLocator.getBean(UserBean.class).user.profile.email)) {
-			emailChanged()
-		}
+//		if (!StringUtils.equalsIgnoreCase(userBean.user.profile.email, ServiceLocator.getBean(UserBean.class).user.profile.email)) {
+//			emailChanged()
+//		}
+//
+//		if (!StringUtils.equalsIgnoreCase(userBean.user.profile.phoneNumber, ServiceLocator.getBean(UserBean.class).user.profile.phoneNumber)) {
+//			phoneChanged()
+//		}
 
-		if (!StringUtils.equalsIgnoreCase(user.profile.phoneNumber, ServiceLocator.getBean(UserBean.class).user.profile.phoneNumber)) {
-			phoneChanged()
-		}
-
-		userService.persist(user)
+		userBean.user = userService.save(userBean.user)
 	}
 
 	/**
@@ -52,7 +65,6 @@ class ProfileBean implements Serializable{
 	 * Ha visszaigazolta, onnantól él csak az új e-mail cím.
 	 */
 	private void emailChanged() {
-		user.profile.email = ServiceLocator.getBean(UserBean.class).user.profile.email
 		emailChangeEmailSender.send() //TODO
 	}
 
@@ -69,11 +81,18 @@ class ProfileBean implements Serializable{
 	}
 	
 	void idCardPictureUpload(FileUploadEvent event) {
-		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${ServiceLocator.getBean(UserBean.class).user.userName}/idcard"), event.file.contents)
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${userBean.user.userName}/idcard"), event.file.contents)
 	}
 	
 	void addressCardPictureUpload(FileUploadEvent event) {
-		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${ServiceLocator.getBean(UserBean.class).user.userName}/addressCard"), event.file.contents)
+		FileUtils.writeByteArrayToFile(new File("${Config.userProfilePath}/${userBean.user.userName}/addressCard"), event.file.contents)
 	} 
+	
+	void profilePictureUpload(FileUploadEvent event) {
+		String path = "${Config.userProfilePath}/${userBean.user.userName}/profile";
+		FileUtils.writeByteArrayToFile(new File(path), event.file.contents);
+		userBean.user.profile.profileImagePath = path
+		userBean.user = userService.save(userBean.user)
+	}
 	
 }

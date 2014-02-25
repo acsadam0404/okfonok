@@ -1,7 +1,7 @@
 package hu.okfonok.converters.data;
 
-import hu.okfonok.entities.data.Settlement;
-import hu.okfonok.services.data.SettlementService;
+import hu.okfonok.entities.Settlement;
+import hu.okfonok.services.SettlementService;
 import hu.okfonok.utils.ServiceLocator;
 
 import javax.faces.component.UIComponent;

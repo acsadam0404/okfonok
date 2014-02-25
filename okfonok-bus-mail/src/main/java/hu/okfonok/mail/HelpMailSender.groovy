@@ -31,7 +31,7 @@ class HelpMailSender implements Serializable{
 	@Inject
 	private transient ValueSetService valueSetService
 
-	private String to
+	private List to
 
 	@PostConstruct
 	void init() {
@@ -39,20 +39,22 @@ class HelpMailSender implements Serializable{
 	}
 
 	void send(String email, String name, String subject, String category, String message) {
-		SimpleMailMessage msg = new SimpleMailMessage();
+		to.each {
+			SimpleMailMessage msg = new SimpleMailMessage();
 
-		msg.setFrom("${email}")
-		msg.setTo("acsadam0404@gmail.com")
-		msg.setSubject(new File("${Config.emailTemplatePath}/helpTemplate.txt").getText('UTF-8')) // TODO bind variables
+			msg.setFrom("${email}")
+			msg.setTo("${it}")
+			msg.setSubject(new File("${Config.emailTemplatePath}/helpTemplate.txt").getText('UTF-8')) // TODO bind variables
 
-		try {
-			MailSender mailSender = ServiceLocator.getBean(MailSender.class);
-			mailSender.send(msg);
-			log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
-		}
-		catch (MailException mex) {
-			log.error("Sikertelen üzenet küldés segítségkérésnél. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
-			throw mex
+			try {
+				MailSender mailSender = ServiceLocator.getBean(MailSender.class);
+				mailSender.send(msg);
+				log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
+			}
+			catch (MailException mex) {
+				log.error("Sikertelen üzenet küldés segítségkérésnél. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
+				throw mex
+			}
 		}
 	}
 }
