@@ -4,11 +4,14 @@
 	<classpath>
 		<dir name="F:/Dropbox/workspaces/git/jobly/okfonok-jsf/target/classes">
 		</dir>
-		<dir name="F:/Dropbox/workspaces/git/jobly/okfonok-jsf/target/test-classes">
-		</dir>
 	</classpath>
 
 	<web>
+		<link target="/">
+			<dir name="F:/Dropbox/workspaces/git/jobly/okfonok-jsf/target/m2e-wtp/web-resources">
+				<exclude name="/"/>
+			</dir>
+		</link>
 		<link target="/">
 			<dir name="F:/Dropbox/workspaces/git/jobly/okfonok-jsf/src/main/webapp">
 			</dir>

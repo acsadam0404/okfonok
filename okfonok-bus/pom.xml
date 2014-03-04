@@ -66,6 +66,26 @@
 						<format>true</format>
 					</componentProperties>
 				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-core</artifactId>
+						<version>3.5.3-Final</version>
+					</dependency>
+
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-entitymanager</artifactId>
+						<version>3.5.3-Final</version>
+					</dependency>
+
+					<dependency>
+						<groupId>org.hibernate</groupId>
+						<artifactId>hibernate-validator</artifactId>
+						<version>5.0.2.Final</version>
+					</dependency>
+
+				</dependencies>
 			</plugin>
 
 			<plugin>
@@ -170,6 +190,19 @@
 										</versionRange>
 										<goals>
 											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.mojo</groupId>
+										<artifactId>hibernate4-maven-plugin</artifactId>
+										<versionRange>[2.2,)</versionRange>
+										<goals>
+											<goal>hbm2ddl</goal>
 										</goals>
 									</pluginExecutionFilter>
 									<action>

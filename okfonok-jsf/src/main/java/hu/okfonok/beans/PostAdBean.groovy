@@ -1,11 +1,18 @@
 package hu.okfonok.beans
 
+import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
+import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
+import hu.okfonok.services.UserService
+import hu.okfonok.utils.Config
 
 import javax.inject.Inject
 import javax.inject.Named
 
+import org.apache.commons.io.FileUtils
+import org.primefaces.event.FileUploadEvent
+import org.primefaces.model.StreamedContent
 import org.springframework.context.annotation.Scope
 
 /**
@@ -27,8 +34,19 @@ class PostAdBean implements Serializable{
 	JobCategory mainCategory
 	JobCategory subCategory
 	
-	@Inject
-	private JobCategoryService jcs
+	Advertisement ad = new Advertisement()
+	
+	@Inject private AdvertisementService adService
+	@Inject	private UserBean userBean
+	@Inject	private JobCategoryService jcs
+	@Inject private UserService userService
+	
+	private FileUploadEvent[] uploadEvents = []
+	
+	StreamedContent image1
+	StreamedContent image2
+	StreamedContent image3
+	StreamedContent image4
 	
 	def switchPhoneEdit() {
 		phoneEdit = !phoneEdit
@@ -36,10 +54,8 @@ class PostAdBean implements Serializable{
 
 	def phoneEdited() {
 		if (phoneEditOnProfile) {
-			println "phone edit a profilon és a hirdetésben"
-		}
-		else {
-			println "phone edit a hirdetésben"
+			userBean.user.profile.phoneNumber = phoneNumber
+			userBean.user = userService.save(userBean.user)
 		}
 	}
 	
@@ -49,10 +65,9 @@ class PostAdBean implements Serializable{
 
 	def emailEdited() {
 		if (emailEditOnProfile) {
-			println "email edit a profilon és a hirdetésben"
-		}
-		else {
-			println "email edit a hirdetésben"
+			userBean.user.profile.email = email
+			userBean.user = userService.save(userBean.user)
+			// TODO email küldése előbb
 		}
 	}
 	
@@ -61,5 +76,17 @@ class PostAdBean implements Serializable{
 			return jcs.findSubsByMain(mainCategory.id)
 		}
 		return []
+	}
+	
+	void pictureUpload(FileUploadEvent event) {
+		uploadEvents << event
+	}
+	
+	void post() {
+		adService.save(ad);
+		uploadEvents.each { FileUploadEvent event ->
+			String path = "${Config.userProfilePath}/${userBean.user.userName}/ads/${ad.id}";
+			FileUtils.writeByteArrayToFile(new File(path), event.file.contents);
+		}
 	}
 }

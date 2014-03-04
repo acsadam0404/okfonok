@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<p:outputLabel value="Megye" for="state" />
+		<p:inputText id="state" value="#{address.state}" />
+		<p:message for="state" />
+
+		<p:outputLabel value="Irányítószám" for="zipcode" />
+		<p:inputMask id="zipcode" value="#{address.zipcode}" mask="9999" />
+		<p:message for="zipcode" />
+
+		<p:outputLabel value="Település" for="city" />
+		<p:inputText id="city" value="#{address.city}" />
+		<p:message for="city" />
+
+		<p:outputLabel value="Utca" for="street" />
+		<p:autoComplete id="street" value="#{address.street}" completeMethod="#{addressBean.completeStreet()}" />
+		<p:message for="street" />
+
+		<p:outputLabel value="Házszám" for="streetNumber" />
+		<p:inputText id="streetNumber" value="#{address.streetNumber}" />
+		<p:message for="streetNumber" />
+	</ui:composition>
+</h:body>
+</html>

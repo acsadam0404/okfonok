@@ -1,9 +1,10 @@
 package hu.okfonok.entities.user
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
+
+import org.hibernate.annotations.Formula
 
 /**
  * 
@@ -40,4 +41,7 @@ class Profile implements Serializable {
 	Boolean companyEmployer
 
 	String facebookValidatedId
+	
+	@Formula("0")
+	private int dummyFieldForHibernateNotNullEmbedded;
 }

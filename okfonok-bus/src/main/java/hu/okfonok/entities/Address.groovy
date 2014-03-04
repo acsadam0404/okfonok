@@ -1,9 +1,9 @@
-package hu.okfonok.entities.user
+package hu.okfonok.entities
 
 import javax.persistence.Embeddable
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max
-import javax.validation.constraints.Min
+import javax.validation.constraints.Digits
+
+import org.hibernate.annotations.Formula
 
 @Embeddable
 class Address implements Serializable {
@@ -17,4 +17,7 @@ class Address implements Serializable {
 	String street
 	
 	String streetNumber
+	
+	@Formula("0")
+	private int dummyFieldForHibernateNotNullEmbedded;
 }

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
 </h:head>
@@ -31,27 +31,9 @@
 							<p:outputLabel value="Telefonszám (mobil)" for="phoneNumber" />
 							<p:inputMask id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" mask="(99) 999-9999" />
 							<p:message for="phoneNumber" />
-
-							<p:outputLabel value="Megye" for="state" />
-							<p:inputText id="state" value="#{userBean.user.address.state}" />
-							<p:message for="state" />
-
-							<p:outputLabel value="Irányítószám" for="zipcode" />
-							<p:inputMask id="zipcode" value="#{userBean.user.address.zipcode}" mask="9999" />
-							<p:message for="zipcode" />
-
-							<p:outputLabel value="Település" for="city" />
-							<p:inputText id="city" value="#{userBean.user.address.city}" />
-							<p:message for="city" />
-
-							<p:outputLabel value="Utca" for="street" />
-							<p:autoComplete id="street" value="#{userBean.user.address.street}" completeMethod="#{addressBean.completeStreet()}" />
-							<p:message for="street" />
-
-							<p:outputLabel value="Házszám" for="streetNumber" />
-							<p:inputText id="streetNumber" value="#{userBean.user.address.streetNumber}" />
-							<p:message for="streetNumber" />
-
+							<ui:include src="fragments/address.xhtml">
+								<ui:param name="address" value="#{userBean.user.address}" />
+							</ui:include>
 							<p:outputLabel value="Bemutatkozás" for="introduction" />
 							<p:editor id="introduction" value="#{userBean.user.profile.introduction}" controls="bold underline italic" />
 							<p:message for="introduction" />
@@ -117,7 +99,7 @@
 						<p:selectBooleanCheckbox id="personalEmployer" value="#{userBean.user.companyEmployer}" />
 						<p:outputLabel for="companyEmployer" value="Cég nevében" />
 						<p:selectBooleanCheckbox id="companyEmployer" value="#{userBean.user.personalEmployer}" />
-						
+
 					</h:form>
 				</p:tab>
 			</p:tabView>

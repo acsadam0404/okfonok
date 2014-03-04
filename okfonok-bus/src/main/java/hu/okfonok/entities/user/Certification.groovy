@@ -1,7 +1,8 @@
 package hu.okfonok.entities.user
 
-import javax.persistence.Column
 import javax.persistence.Embeddable
+
+import org.hibernate.annotations.Formula
 
 /**
  * 
@@ -20,4 +21,7 @@ class Certification implements Serializable {
 	byte[] addressCardPicture
 	
 	Boolean certified
+	
+	@Formula("0")
+	private int dummyFieldForHibernateNotNullEmbedded;
 }

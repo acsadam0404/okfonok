@@ -1,6 +1,6 @@
 package hu.okfonok.beans
 
-import hu.okfonok.entities.user.Address
+import hu.okfonok.entities.Address;
 import hu.okfonok.entities.user.Certification
 import hu.okfonok.entities.user.Profile
 import hu.okfonok.entities.user.User

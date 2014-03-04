@@ -1,0 +1,12 @@
+.fileupload-buttonbar {
+    background: transparent none;
+    border: none;
+}
+
+.fileupload-content {
+    display: none;
+}
+
+.ui-fileupload .fileinput-button {
+    background-color: rgba(142, 103, 64, 0.98);
+}

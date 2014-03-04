@@ -1,5 +1,6 @@
 package hu.okfonok.entities.user
 
+import hu.okfonok.entities.Address;
 import hu.okfonok.entities.BaseEntity
 import hu.okfonok.entities.Role
 
@@ -51,5 +52,7 @@ class User extends BaseEntity implements Serializable{
 	
 	@Embedded
 	Paypal paypal
+	
+	
 
 }

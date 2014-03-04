@@ -1,13 +1,17 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
 </h:head>
 
 <h:body>
 	<ui:composition template="_layout.xhtml">
+
 		<ui:define name="content">
+			<f:facet name="last">
+				<h:outputStylesheet library="css" name="postad.css" />
+			</f:facet>
 
 			<sec:authorize ifNotGranted="USER_ROLE">
 				<f:subview id="postadRegForm">
@@ -16,35 +20,20 @@
 			</sec:authorize>
 
 			<sec:authorize ifAnyGranted="USER_ROLE">
-				<h:panelGrid columns="1">
-					<h:graphicImage value="#{userBean.user.profile.profileImagePath}" />
-					<p:outputLabel value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
-					<p:outputLabel id="email" value="#{userBean.user.profile.email}" />
-					<p:outputLabel id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" />
-					<p:commandLink id="editPhoneNumberLink" action="#{postAdBean.switchPhoneEdit()}" update="phoneNumberEditor">
-						<h:graphicImage library="img" name="edit.png" />
-					</p:commandLink>
-					<h:form id="phoneNumberEditor">
-						<p:inputText rendered="#{postAdBean.phoneEdit}" value="#{postAdBean.phoneNumber}" />
-						<p:selectBooleanButton rendered="#{postAdBean.phoneEdit}" value="#{postAdBean.phoneEditOnProfile}" onLabel="Profilon is" offLabel="Csak ebben a hirdetésben" />
-						<p:commandLink id="editPhoneNumber" action="#{postAdBean.phoneEdited()}" rendered="#{postAdBean.phoneEdit}">
-							<h:graphicImage library="img" name="accept.png" />
-						</p:commandLink>
-					</h:form>
-
-					<p:commandLink id="editEmailLink" action="#{postAdBean.switchEmailEdit()}" update="emailEditor">
-						<h:graphicImage library="img" name="edit.png" />
-					</p:commandLink>
-					<h:form id="emailEditor">
-						<p:inputText rendered="#{postAdBean.emailEdit}" value="#{postAdBean.email}" />
-						<p:selectBooleanButton rendered="#{postAdBean.emailEdit}" value="#{postAdBean.emailEditOnProfile}" onLabel="Profilon is" offLabel="Csak ebben a hirdetésben" />
-						<p:commandLink id="editEmail" action="#{postAdBean.emailEdited()}" rendered="#{postAdBean.emailEdit}">
-							<h:graphicImage library="img" name="accept.png" />
-						</p:commandLink>
-					</h:form>
-
-					<h:form>
+				<h:form>
+					<h:panelGrid columns="1">
+						<h:graphicImage value="#{userBean.user.profile.profileImagePath}" />
+						<p:outputLabel value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 						<h:panelGrid columns="1">
+							<p:selectOneRadio>
+								<f:selectItems value="#{advertisementService.getAdBearerTypes()}" />
+							</p:selectOneRadio>
+							<p:inplace editor="true" effectSpeed="fast">
+								<p:inputText id="email" value="#{userBean.user.profile.email}" />
+							</p:inplace>
+							<p:inplace editor="true" effectSpeed="fast">
+								<p:inputMask id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" mask="(99) 999-9999" />
+							</p:inplace>
 							<p:selectOneMenu id="mainCategory" value="#{postAdBean.mainCategory}">
 								<p:ajax event="valueChange" update="subCategory" process="@this" />
 								<f:converter binding="#{jobCategoryConverter}" />
@@ -56,10 +45,46 @@
 								<f:converter binding="#{jobCategoryConverter}" />
 								<f:selectItems value="#{postAdBean.findSubByMainCategory()}" />
 							</p:selectOneMenu>
+
+							<p:inputText id="adName" value="#{postAdBean.ad.name}" />
+							<p:watermark for="adName" value="Munka megnevezése" />
+							<p:inputTextarea id="adDescription" value="#{postAdBean.ad.description}" />
+							<p:watermark for="adDescription" value="Munka leírása" />
 						</h:panelGrid>
-					</h:form>
-				</h:panelGrid>
-				<p:tooltip for="phoneNumber email" value="Csak létrejött munkakapcsolat esetén kerül a munkavállalóhoz." />
+					</h:panelGrid>
+
+					<p:tooltip for="phoneNumber email" value="Csak létrejött munkakapcsolat esetén kerül a munkavállalóhoz." />
+					<p:lightBox styleClass="imagebox">
+						<h:outputLink value="#{postAdBean.image4}">
+							<p:graphicImage value="#{postAdBean.image1}" />
+						</h:outputLink>
+						<h:outputLink value="#{postAdBean.image4}">
+							<p:graphicImage value="#{postAdBean.image2}" />
+						</h:outputLink>
+						<h:outputLink value="#{postAdBean.image4}">
+							<p:graphicImage value="#{postAdBean.image3}" />
+						</h:outputLink>
+						<h:outputLink value="#{postAdBean.image4}">
+							<p:graphicImage value="#{postAdBean.image4}" />
+						</h:outputLink>
+					</p:lightBox>
+					<p:outputLabel value="Díjazás" for="remuneration" />
+					<p:selectOneRadio id="remuneration" value="#{postAdBean.ad.remuneration}">
+						<f:selectItems value="#{advertisementService.getRemunerations()}" />
+					</p:selectOneRadio>
+					<p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:600px;height:400px" />
+					<fieldset>
+						<legend>Munkavégzés helye</legend>
+						<h:panelGrid columns="3">
+							<ui:include src="fragments/address.xhtml">
+								<ui:param name="address" value="#{postAdBean.ad.address}" />
+							</ui:include>
+						</h:panelGrid>
+					</fieldset>
+					<p:commandLink id="postad" action="postadReview.xhtml?faces-redirect=true">
+						<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
+					</p:commandLink>
+				</h:form>
 			</sec:authorize>
 
 
