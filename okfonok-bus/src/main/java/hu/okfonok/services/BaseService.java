@@ -1,5 +1,7 @@
 package hu.okfonok.services;
 
+import java.io.Serializable;
+
 
 /**
  * 
@@ -7,6 +9,6 @@ package hu.okfonok.services;
  * 
  * @param <T>
  */
-public interface BaseService<T> {
+public interface BaseService<T> extends Serializable {
 	T save(T t);
 }
