@@ -1,14 +1,32 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="fragments/index_auth.css" />
+	</f:facet>
 	<div id="left">
-		
+		<p:tabView id="tabView" dynamic="true" cache="true">
+			<p:tab title="Munkák">
+				<ui:include src="index_employer.xhtml" />
+			</p:tab>
+			<p:tab title="Munkavállalók">
+				<ui:include src="index_employee.xhtml" />
+			</p:tab>
+		</p:tabView>
 	</div>
-	<div  id="right">
-		<div>
-		
-		</div>
-		
-		<div>
-			<ui:include src="index_schedule.xhtml"/>
-		</div>
+	<div id="right">
+		<h:panelGrid columns="2">
+			<h:graphicImage value="#{userBean.user.profile.profileImagePath}" />
+			<h:panelGroup>
+				<h:panelGrid columns="1">
+				<h:outputText value="#{userBean.user.userName}" />
+				<h:outputText value="#{userBean.user.profile.getRealName()}" />
+				<h:outputText value="#{userBean.user.profile.email}" />
+				</h:panelGrid>
+			</h:panelGroup>
+		</h:panelGrid>
+		<h:link outcome="/profile">
+			<p:graphicImage id="profileEditLink" library="img" name="fragments/profileedit.png" style="cursor:pointer" title="Profil szerkesztése" />
+		</h:link>
+		<ui:include src="index_schedule.xhtml" />
 	</div>
+	<ui:include src="index_about.xhtml" />
 </ui:composition>

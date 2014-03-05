@@ -44,4 +44,8 @@ class Profile implements Serializable {
 	
 	@Formula("0")
 	private int dummyFieldForHibernateNotNullEmbedded;
+	
+	String getRealName() {
+		return lastName + " " + firstName
+	}
 }
