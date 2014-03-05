@@ -41,12 +41,12 @@ class PostAdBean implements Serializable{
 	@Inject	private JobCategoryService jcs
 	@Inject private UserService userService
 	
-	private FileUploadEvent[] uploadEvents = []
+	transient private FileUploadEvent[] uploadEvents = []
 	
-	StreamedContent image1
-	StreamedContent image2
-	StreamedContent image3
-	StreamedContent image4
+	transient StreamedContent image1
+	transient StreamedContent image2
+	transient StreamedContent image3
+	transient StreamedContent image4
 	
 	def switchPhoneEdit() {
 		phoneEdit = !phoneEdit
