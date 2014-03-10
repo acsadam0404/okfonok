@@ -3,13 +3,13 @@
 		<h:outputStylesheet library="css" name="fragments/index_auth.css" />
 	</f:facet>
 	<div id="left">
-		<p:tabView id="tabView" dynamic="true" cache="true">
+		<p:tabView id="tabView" dynamic="true" cache="false">
 			<p:tab title="Munkák">
 				<ui:include src="index_employer.xhtml" />
 			</p:tab>
 			<p:tab title="Munkavállalók">
 				<ui:include src="index_employee.xhtml" />
-			</p:tab>
+			</p:tab> 
 		</p:tabView>
 	</div>
 	<div id="right">

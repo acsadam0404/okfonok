@@ -1,10 +1,21 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
-<h2>Munkák</h2>
-kép<br />
-főkategória<br />
-alkategória<br />
-megnevezés<br />
-dyjazás típusa<br />
-átlag díj<br />
-terület<br />
+	<h:form>
+		<p:dataTable value="#{advertisementsBean.ads}" var="ad" filteredValue="#{advertisementsBean.filteredAds}">
+			<p:column headerText="Név" filterBy="name" filterMatchMode="contains">  
+		#{ad.name}
+	</p:column>
+			<p:column headerText="Főkategória" filterBy="mainCategory" filterOptions="#{advertisementsBean.getMainCategoryOptions()}" filterMatchMode="exact">
+		#{ad.mainCategory} 
+			</p:column>
+			<p:column headerText="Alkategória" filterBy="subCategory" filterOptions="#{advertisementsBean.getSubCategoryOptions()}" filterMatchMode="exact">
+				#{ad.subCategory} 
+			</p:column>
+			<p:column headerText="Díjazás típusa" filterBy="remuneration" filterMatchMode="contains">
+		#{ad.remuneration} 
+			</p:column>
+			<p:column headerText="Feltöltés ideje" sortBy="jobTime">
+		#{ad.jobTime} 
+			</p:column>
+		</p:dataTable>
+	</h:form>
 </ui:composition>

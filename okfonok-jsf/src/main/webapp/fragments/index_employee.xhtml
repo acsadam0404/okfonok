@@ -1,11 +1,41 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
-<h:form>
-<h2>Munkavállalók</h2>
-Felhasználónév<br />
-profilkép<br />
-<p:rating value="4" readonly="true" /> 4.5<br />
-skill kör<br />
-naptár<br />
-terület<br />
-</h:form>
+	<h:form prependId="false">
+		<p:dataTable id="basic" value="#{employeeBean.users}" var="user">
+			<p:column headerText="Felhasználónév">
+				<h:graphicImage value="#{user.profile.profileImagePath}" />  
+            #{user.userName}
+            </p:column>
+			<p:column headerText="Értékelés">
+			
+				<p:rating value="4" readonly="true" /> 4.5<br />
+			</p:column>
+			<p:column headerText="Képességek">
+				<h:outputLabel value="kis skill kör" id="skills" />
+
+				<p:overlayPanel for="skills" showEvent="mouseover" hideEvent="mouseout" dynamic="true">
+                 nagy skill kör kép 
+        			  </p:overlayPanel>
+			</p:column>
+			<p:column headerText="Naptár">
+				<h:graphicImage id="calendar" library="img" name="fragments/calendar.png" style="cursor:pointer" />
+
+				<p:overlayPanel for="calendar" showEvent="mouseover" hideEvent="mouseout" dynamic="true">
+                naptár heti nézetben
+          </p:overlayPanel>
+			</p:column>
+
+			<p:column headerText="Terület">
+				<h:graphicImage id="map" library="img" name="fragments/map.png" style="cursor:pointer" />
+
+				<p:overlayPanel for="map" showEvent="mouseover" hideEvent="mouseout" dynamic="true" >
+					<h:panelGroup>
+						<p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width: 200px; height: 200px;" />
+					</h:panelGroup>
+				</p:overlayPanel>
+
+			</p:column>
+
+    
+		</p:dataTable>
+	</h:form>
 </ui:composition>

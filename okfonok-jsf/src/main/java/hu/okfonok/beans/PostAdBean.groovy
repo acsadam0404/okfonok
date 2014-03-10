@@ -37,8 +37,8 @@ class PostAdBean implements Serializable{
 	Advertisement ad = new Advertisement()
 	
 	@Inject private AdvertisementService adService
-	@Inject	private UserBean userBean
-	@Inject	private JobCategoryService jcs
+	@Inject private UserBean userBean
+	@Inject private JobCategoryService jcs
 	@Inject private UserService userService
 	
 	transient private FileUploadEvent[] uploadEvents = []
