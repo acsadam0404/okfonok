@@ -1,9 +1,7 @@
 package hu.okfonok.services.impl;
 
+import hu.okfonok.dao.BaseDao
 import hu.okfonok.services.BaseService
-
-import javax.persistence.EntityManager
-import javax.persistence.PersistenceContext
 
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
@@ -21,11 +19,17 @@ abstract class BaseServiceImpl<T> implements BaseService<T>, Serializable {
 	T save(T t) {
 		if (t) {
 			if (!t.id) {
-				return dao.persist(t);
+				return getDao().persist(t);
 			}
 			else {
-				return dao.merge(t);
+				return getDao().merge(t);
 			}
 		}
+	}
+	
+	abstract BaseDao<T> getDao();
+	
+	List<T> findAll() {
+		throw new UnsupportedOperationException()
 	}
 }

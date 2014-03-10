@@ -41,4 +41,9 @@ class BaseDaoImpl<T> implements BaseDao<T> {
 		}
 		return t
 	}
+
+	@Override
+	public List<T> findAll(Class<T> klass) {
+		return em.createQuery("SELECT e FROM ${klass.getSimpleName()} e").getResultList();
+	}
 }

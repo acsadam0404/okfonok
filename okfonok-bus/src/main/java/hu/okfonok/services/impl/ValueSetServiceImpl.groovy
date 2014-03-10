@@ -1,10 +1,11 @@
 package hu.okfonok.services.impl
 
+import hu.okfonok.dao.BaseDao
 import hu.okfonok.dao.ValueSetDao
 import hu.okfonok.entities.ValueSet
 import hu.okfonok.services.ValueSetService
+import hu.okfonok.utils.ServiceLocator
 
-import javax.inject.Inject
 import javax.inject.Named
 
 import org.springframework.transaction.annotation.Transactional
@@ -17,11 +18,13 @@ import org.springframework.transaction.annotation.Transactional
 @Named("valueSetService")
 @Transactional
 class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetService {
-	@Inject
-	private ValueSetDao dao;
-	
 	@Override
 	public List<String> getValues(String valueSetName) {
-		dao.getValues(valueSetName)
+		getDao().getValues(valueSetName)
+	}
+
+	@Override
+	public BaseDao<ValueSet> getDao() {
+		return ServiceLocator.getBean(ValueSetDao.class);
 	}
 }

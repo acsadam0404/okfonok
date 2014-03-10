@@ -1,8 +1,10 @@
 package hu.okfonok.services.impl
 
+import hu.okfonok.dao.BaseDao
 import hu.okfonok.dao.RoleDao
 import hu.okfonok.entities.Role
 import hu.okfonok.services.RoleService
+import hu.okfonok.utils.ServiceLocator
 
 import javax.inject.Inject
 import javax.inject.Named
@@ -17,11 +19,13 @@ import org.springframework.transaction.annotation.Transactional
 @Named("roleService")
 @Transactional
 class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService  {
-	@Inject
-	private RoleDao dao;
-	
 	@Override
 	Role getUserRole() {		
-		dao.getUserRole()
+		getDao().getUserRole()
+	}
+
+	@Override
+	public BaseDao<Role> getDao() {
+		return ServiceLocator.getBean(RoleDao.class);
 	}
 }

@@ -1,6 +1,7 @@
 package hu.okfonok.services;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 /**
@@ -11,4 +12,6 @@ import java.io.Serializable;
  */
 public interface BaseService<T> extends Serializable {
 	T save(T t);
+	
+	List<T> findAll();
 }
