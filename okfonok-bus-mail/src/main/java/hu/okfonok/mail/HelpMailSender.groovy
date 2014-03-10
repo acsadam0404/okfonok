@@ -44,8 +44,9 @@ class HelpMailSender implements Serializable{
 
 			msg.setFrom("${email}")
 			msg.setTo("${it}")
-			msg.setSubject(new File("${Config.emailTemplatePath}/helpTemplate.txt").getText('UTF-8')) // TODO bind variables
 
+			msg.setSubject("${subject}")
+			msg.setText("${message}")
 			try {
 				MailSender mailSender = ServiceLocator.getBean(MailSender.class);
 				mailSender.send(msg);
