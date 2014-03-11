@@ -8,7 +8,8 @@
 <h:body>
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
-		Díjak&amp;Költségek
+			<h:outputScript library="js" name="alertsize.js" />
+			<iframe id="myiframe" src="/static/feesContent.xhtml" frameborder="0" style="width: 100%;" scrolling="no" />
 		</ui:define>
 	</ui:composition>
 

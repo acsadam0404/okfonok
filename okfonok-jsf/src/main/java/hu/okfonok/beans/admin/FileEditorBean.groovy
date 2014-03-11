@@ -26,18 +26,16 @@ class FileEditorBean implements Serializable {
 	private final String jsfPrefix = """
 		<?xml version='1.0' encoding='UTF-8' ?>
 		<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-		<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:pe="http://primefaces.org/ui/extensions">
+		<html xmlns="http://www.w3.org/1999/xhtml">
 		
-		<h:head>
-		</h:head>
+		<head>
+		</head>
 		
-		<h:body>
-			<ui:composition>
+		<body onload="parent.alertsize(document.body.scrollHeight);">
 	"""
 
 	private final String jsfSuffix = """
-			</ui:composition>
-		</h:body>
+		</body>
 		</html>
 	"""
 

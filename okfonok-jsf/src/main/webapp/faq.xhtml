@@ -8,7 +8,8 @@
 <h:body>
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
-			<ui:include src="../static/faqcontent.xhtml"></ui:include>
+			<h:outputScript library="js" name="alertsize.js" />
+			<iframe id="myiframe" src="/static/faqContent.xhtml" frameborder="0" style="width: 100%;" scrolling="no" />
 		</ui:define>
 	</ui:composition>
 
