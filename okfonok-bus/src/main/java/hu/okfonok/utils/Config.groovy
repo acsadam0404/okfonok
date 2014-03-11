@@ -12,6 +12,10 @@ class Config {
 		return "${ROOT}/users"
 	}
 	
+	static String getUserProfileContext() {
+		return "/users"
+	}
+	
 	static String getStaticContextPath() {
 		return "${ROOT}/static"
 	}

@@ -91,7 +91,7 @@ class ProfileBean implements Serializable{
 	void profilePictureUpload(FileUploadEvent event) {
 		String path = "${Config.userProfilePath}/${userBean.user.userName}/profile";
 		FileUtils.writeByteArrayToFile(new File(path), event.file.contents);
-		userBean.user.profile.profileImagePath = path
+		userBean.user.profile.profileImagePath = "${Config.userProfileContext}/${userBean.user.userName}/profile"
 		userBean.user = userService.save(userBean.user)
 	}
 	

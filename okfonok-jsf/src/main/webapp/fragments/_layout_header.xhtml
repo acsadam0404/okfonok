@@ -20,7 +20,6 @@
 						</h:panelGroup>
 					</p:overlayPanel>
 
-
 					<p:commandButton id="accountLink" value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
 					<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
 						<h:link value="Profil" outcome="/profile" />
@@ -29,9 +28,11 @@
 						</sec:authorize>
 						<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" />
 					</p:overlayPanel>
-					<h:graphicImage id="profileImage" value="#{userBean.user.profile.profileImagePath}" />
+					<h:panelGroup id="profileImage">
+						<img src="#{userBean.user.profile.profileImagePath}" />
+					</h:panelGroup>
 				</sec:authorize>
-
+      
 				<!-- 				AUTHENTIKÁCIÓ NÉLKÜL -->
 				<sec:authorize ifNotGranted="USER_ROLE">
 					<p:commandButton id="registrationLink" value="Regisztráció" />
