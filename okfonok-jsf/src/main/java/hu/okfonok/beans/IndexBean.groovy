@@ -2,7 +2,6 @@ package hu.okfonok.beans
 
 import javax.inject.Named
 
-import org.openqa.jetty.http.handler.SetResponseHeadersHandler;
 import org.springframework.context.annotation.Scope
 
 /**
