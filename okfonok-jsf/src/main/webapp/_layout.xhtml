@@ -9,6 +9,9 @@
 <h:body>
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="styles.css" />
+		
+		<!-- google fonts -->
+		<h:outputLink href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css' />
 	</f:facet>
 
 	<div id="page">
@@ -33,7 +36,7 @@
 			<p:graphicImage id="helpLink" library="img" name="help.png" onclick="PF('help').show();" style="cursor:pointer" title="Segítség" />
 		</div>
 	</h:form>
-	
+
 	<p:dialog widgetVar="help" modal="true" header="Segítség kérése" resizable="false">
 		<ui:include src="fragments/help.xhtml" />
 	</p:dialog>
