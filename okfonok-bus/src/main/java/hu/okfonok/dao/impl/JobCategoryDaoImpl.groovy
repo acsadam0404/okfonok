@@ -16,12 +16,6 @@ class JobCategoryDaoImpl extends BaseDaoImpl<JobCategory> implements JobCategory
 	}
 	
 	@Override
-	List<JobCategory> findAll() {
-		TypedQuery<JobCategory> query = em.createQuery("select jc from JobCategory jc", JobCategory.class)
-		return query.resultList
-	}
-	
-	@Override
 	List<JobCategory> findAllMain() {
 		TypedQuery<JobCategory> query = em.createQuery("select jc from JobCategory jc where jc.main = 1", JobCategory.class)
 		return query.resultList

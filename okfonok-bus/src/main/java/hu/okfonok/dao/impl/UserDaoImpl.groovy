@@ -1,6 +1,9 @@
 package hu.okfonok.dao.impl
 
+import java.util.List;
+
 import hu.okfonok.dao.UserDao
+import hu.okfonok.entities.Settlement;
 import hu.okfonok.entities.user.User
 
 import javax.inject.Named
@@ -18,4 +21,5 @@ class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		TypedQuery<User> query = em.createQuery("select u from User u where u.userName = '${username}'", User.class)
 		return query.singleResult
 	}
+	
 }

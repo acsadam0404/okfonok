@@ -28,5 +28,10 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	public BaseDao<User> getDao() {
 		return ServiceLocator.getBean(UserDao.class);
 	}
+	
+	@Override
+	public List<User> findAll() {
+		return getDao().findAll(User.class)
+	}
 
 }

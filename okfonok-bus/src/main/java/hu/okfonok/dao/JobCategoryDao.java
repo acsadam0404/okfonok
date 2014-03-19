@@ -10,6 +10,4 @@ public interface JobCategoryDao extends BaseDao<JobCategory> {
 	List<JobCategory> findAllMain();
 
 	JobCategory findByName(String name);
-
-	List<JobCategory> findAll();
 }

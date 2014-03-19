@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional
 class SettlementServiceImpl extends BaseServiceImpl<Settlement> implements SettlementService {
 	@Override
 	public List<Settlement> findAll() {
-		getDao().findAll()
+		getDao().findAll(Settlement.class)
 	}
 
 	@Override

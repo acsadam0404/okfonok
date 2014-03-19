@@ -1,6 +1,8 @@
 package hu.okfonok.entities.user
 
 import javax.persistence.Embeddable
+import javax.validation.constraints.Max
+import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -41,7 +43,11 @@ class Profile implements Serializable {
 	Boolean companyEmployer
 
 	String facebookValidatedId
-	
+
+	@Min(0L)
+	@Max(5L)
+	Integer rating
+		
 	@Formula("0")
 	private int dummyFieldForHibernateNotNullEmbedded;
 	

@@ -25,7 +25,7 @@ class JobCategoryServiceImpl extends BaseServiceImpl<JobCategory> implements Job
 	
 	@Override
 	List<JobCategory> findAll() {
-		getDao().findAll()
+		getDao().findAll(JobCategory.class)
 	}	
 	
 	@Override
