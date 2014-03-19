@@ -21,6 +21,7 @@
         accountName varchar(255),
         companyEmployer bit ,
         email varchar(255),
+        rating integer,
         employee bit ,
         employer bit ,
         facebookValidatedId varchar(255),
