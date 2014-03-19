@@ -4,6 +4,8 @@ html,body {
 	padding: 0;
 	height: 100%;
 	background-color: #5ccccc;
+	
+	font-family: 'Jolly Lodger', cursive;
 }
 
 #page {

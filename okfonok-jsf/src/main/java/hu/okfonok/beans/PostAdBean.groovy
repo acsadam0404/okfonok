@@ -2,6 +2,7 @@ package hu.okfonok.beans
 
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
+import hu.okfonok.entities.user.User
 import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
 import hu.okfonok.services.UserService
@@ -33,6 +34,9 @@ class PostAdBean implements Serializable{
 	
 	JobCategory mainCategory
 	JobCategory subCategory
+	
+	Date from
+	Date to
 	
 	Advertisement ad = new Advertisement()
 	
@@ -88,5 +92,14 @@ class PostAdBean implements Serializable{
 			String path = "${Config.userProfilePath}/${userBean.user.userName}/ads/${ad.id}";
 			FileUtils.writeByteArrayToFile(new File(path), event.file.contents);
 		}
+	}
+	
+	List<User> getHighestRatedUsersInInterval() {
+		if (!from || !to) {
+			return
+		}
+		
+		/* TODO from - to értékek. csak akkor listázni ha ráér. első 10 legjobb értékelésűt visszaadni */
+		return userService.findAll()
 	}
 }
