@@ -30,11 +30,12 @@
 	</div>
 	<h:form prependId="false">
 		<div id="help">
-			<h:link outcome="/help" value="">
-				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítség" />
-			</h:link>
-
+			<p:graphicImage id="helpLink" library="img" name="help.png" onclick="PF('help').show();" style="cursor:pointer" title="Segítség" />
 		</div>
 	</h:form>
+	
+	<p:dialog widgetVar="help" modal="true" header="Segítség kérése" resizable="false">
+		<ui:include src="fragments/help.xhtml" />
+	</p:dialog>
 </h:body>
 </html>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h:form id="contactForm">
+			<p:growl id="helpGrowl" showDetail="false" />
+			<h:panelGrid id="contactTable" columns="2">
+				<p:outputLabel value="Név" for="name" />
+				<p:inputText id="name" value="#{helpBean.name}" />
+				<p:outputLabel value="E-mail" for="email" />
+				<p:inputText id="email" value="#{helpBean.email}" />
+				<p:outputLabel value="Kategória" for="category" />
+				<p:selectOneMenu id="category" value="#{helpBean.category}">
+					<f:selectItems value="#{valueSetService.getValues('help_category')}" />
+				</p:selectOneMenu>
+				<p:outputLabel value="Tárgy" for="subject" />
+				<p:inputText id="subject" value="#{helpBean.subject}" />
+				<p:outputLabel value="Üzenet" for="message" />
+				<p:inputTextarea id="message" value="#{helpBean.message}" rows="5" cols="30" />
+				<p:outputLabel value="" />
+				<p:commandButton value="küldés" action="#{helpBean.sendMail()}" update="helpGrowl" onclick="PF('help').hide()" />
+			</h:panelGrid>
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>
