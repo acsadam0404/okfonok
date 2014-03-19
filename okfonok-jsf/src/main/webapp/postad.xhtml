@@ -81,6 +81,28 @@
 							</ui:include>
 						</h:panelGrid>
 					</fieldset>
+					<fieldset>
+						<legend>Munkavégzés ideje</legend>
+						<h:outputText value="Tól" />
+						<p:calendar value="#{postAdBean.from}" pattern="yyyy/MM/dd HH:mm">
+							<p:ajax event="dateSelect" update="candidates" />
+						</p:calendar>
+						<h:outputText value="ig" />
+						<p:calendar value="#{postAdBean.to}" pattern="yyyy/MM/dd HH:mm">
+							<p:ajax event="dateSelect" update="candidates" />
+						</p:calendar>
+						<p:dataList id="candidates" value="#{postAdBean.getHighestRatedUsersInInterval()}" var="user">
+							<h:panelGroup id="profileImage">
+								<img src="#{user.profile.profileImagePath}" />
+							</h:panelGroup>
+							<p:rating readonly="true" value="#{user.profile.rating}" />
+							#{user.profile.getRealName()}
+							
+							<h:commandLink onclick="alert('nincs kész')">
+								<p:graphicImage library="img" name="x.png" style="cursor:pointer" />
+							</h:commandLink>
+						</p:dataList>
+					</fieldset>
 					<p:commandLink id="postad" action="postadReview.xhtml?faces-redirect=true">
 						<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
 					</p:commandLink>

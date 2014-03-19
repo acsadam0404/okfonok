@@ -8,12 +8,14 @@
 <h:body>
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
-			<p:commandLink action="postad.xhtml?faces-redirect=true">
-				<p:graphicImage library="img" name="editad.png" style="cursor:pointer" title="Hirdetés módosítása" />
-			</p:commandLink>
-			<p:commandLink action="#{postAdBean.post()}">
-				<p:graphicImage library="img" name="finalizead.png" style="cursor:pointer" title="Hirdetés véglegesítése" />
-			</p:commandLink>
+			<h:form>
+				<p:commandLink action="postad.xhtml?faces-redirect=true">
+					<p:graphicImage library="img" name="editad.png" style="cursor:pointer" title="Hirdetés módosítása" />
+				</p:commandLink>
+				<p:commandLink action="#{postAdBean.post()}">
+					<p:graphicImage library="img" name="finalizead.png" style="cursor:pointer" title="Hirdetés véglegesítése" />
+				</p:commandLink>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
