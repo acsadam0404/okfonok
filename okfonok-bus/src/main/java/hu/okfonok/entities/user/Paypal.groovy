@@ -5,7 +5,7 @@ import javax.persistence.Embeddable
 import org.hibernate.annotations.Formula
 
 @Embeddable
-class Paypal {
+class Paypal implements Serializable {
 	String accountName
 	
 	@Formula("0")

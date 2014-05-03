@@ -1,7 +1,6 @@
 package hu.okfonok.mail
 
 import hu.okfonok.services.ValueSetService
-import hu.okfonok.utils.Config
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
@@ -14,6 +13,7 @@ import org.springframework.context.annotation.Scope
 import org.springframework.mail.MailException
 import org.springframework.mail.MailSender
 import org.springframework.mail.SimpleMailMessage
+import org.springframework.scheduling.annotation.Async
 
 /**
  * 
