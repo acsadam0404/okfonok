@@ -14,8 +14,6 @@
 	<modules>
 		<module>../okfonok-superpom</module>
 		<module>../okfonok-bus</module>
-		<module>../okfonok-bus-social</module>
-		<module>../okfonok-bus-mail</module>
 		<module>../okfonok-jsf</module>
 		<module>../okfonok-jsf-theme</module>
 	</modules>

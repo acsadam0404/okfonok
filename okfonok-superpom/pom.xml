@@ -35,18 +35,6 @@
 
 			<dependency>
 				<groupId>hu.okfonok</groupId>
-				<artifactId>okfonok-bus-mail</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>hu.okfonok</groupId>
-				<artifactId>okfonok-bus-social</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>hu.okfonok</groupId>
 				<artifactId>okfonok-jsf</artifactId>
 				<version>${project.version}</version>
 			</dependency>
