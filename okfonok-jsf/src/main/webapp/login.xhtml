@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="styles.css" />
+		<h:outputStylesheet library="css" name="login.css" />
+	</f:facet>
+	<h:form>
+		<h:panelGrid columns="1" styleClass="login-panel">
+			<p:graphicImage styleClass="logo" library="img" name="logo.png" />
+			<p:inputText styleClass="email maxsize icon-input" id="email" />
+			<p:watermark for="email" value="E-mail cím" />
+			<p:password styleClass="password maxsize icon-input" id="password" />
+			<p:watermark for="password" value="Jelszó" />
+			<p:commandButton styleClass="login-button maxsize" value="Belépés" />
+			<h:outputText id="or" value="vagy" />
+			<p:commandButton styleClass="facebook-login-button maxsize" value="Belépés Facebokkal" />
+			<h:panelGroup layout="block">
+				<h:outputText value="Még nem vagy a felhasználónk?" />
+				<h:link styleClass="okflink" outcome="registration" value="Akkor regisztrálj!" />
+			</h:panelGroup>
+			<h:link styleClass="okflink" value="Elfelejtetted a jelszavad?" />
+			<!-- és akkor mivan? mit csináljak? -->
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

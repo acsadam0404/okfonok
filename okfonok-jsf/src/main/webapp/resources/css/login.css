@@ -1,0 +1,22 @@
+/* kizárólag login.xhtml számára */
+.logo {
+	margin-bottom: 10px;
+}
+.maxsize {
+	width: 450px;
+	height: 47px;
+	padding: 0;
+}
+
+.email {
+	/* TODO csodás ikonok */
+}
+
+.password {
+	/* TODO csodás ikonok */
+}
+
+.login-panel {
+	text-align: center;    
+	margin: 100px auto auto auto;
+}

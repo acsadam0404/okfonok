@@ -3,7 +3,8 @@ html,body {
 	margin: auto;
 	padding: 0;
 	height: 100%;
-	background-color: #5ccccc;
+	background-image: url("../img/background-pattern.png");
+	background-repeat: repeat;
 	
 	font-family: 'Jolly Lodger', cursive;
 }
@@ -38,4 +39,14 @@ html,body {
 	position: fixed;
 	right: 0px;
 	top: 45%;
+}
+
+.ui-panelgrid {
+	border: none;
+}
+
+
+.icon-input {
+	padding-left:50px;
+	width: 400px;
 }
