@@ -1,13 +1,12 @@
 package hu.okfonok.services.impl
 
-import hu.okfonok.dao.BaseDao
 import hu.okfonok.dao.JobCategoryDao
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.JobCategoryService
-import hu.okfonok.utils.ServiceLocator
 
 import javax.inject.Named
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -18,29 +17,32 @@ import org.springframework.transaction.annotation.Transactional
 @Named("jobCategoryService")
 @Transactional
 class JobCategoryServiceImpl extends BaseServiceImpl<JobCategory> implements JobCategoryService{
+	@Autowired
+	private transient JobCategoryDao repo
+	
+	@Autowired
+	JobCategoryServiceImpl(JobCategoryDao crudRepo) {
+		super(crudRepo);
+	}
+	
+	
 	@Override
-	public List<JobCategory> findSubsByMain(long mainId) {
-		getDao().findSubsByMain(mainId)	
+	List<JobCategory> findSubsByMain(long mainId) {
+		repo.findOne(mainId).subCategories	
 	}
 	
 	@Override
 	List<JobCategory> findAll() {
-		getDao().findAll(JobCategory.class)
+		repo.findAll()
 	}	
 	
 	@Override
 	List<JobCategory> findAllMain() {
-		getDao().findAllMain()
+		repo.findAllMain()
 	}
 	
 	@Override
-	public JobCategory findByName(String name) {
-		getDao().findByName(name)
+	JobCategory findByName(String name) {
+		repo.findByName(name)
 	}
-
-	@Override
-	public BaseDao<JobCategory> getDao() {
-		return ServiceLocator.getBean(JobCategoryDao.class);
-	}
-	
 }

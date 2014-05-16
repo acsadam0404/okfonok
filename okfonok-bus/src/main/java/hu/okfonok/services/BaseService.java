@@ -11,7 +11,11 @@ import java.util.List;
  * @param <T>
  */
 public interface BaseService<T> extends Serializable {
-	T save(T t);
+	void save(T t);
 	
+	void delete(T t);
+
 	List<T> findAll();
+	
+	T find(long id);
 }

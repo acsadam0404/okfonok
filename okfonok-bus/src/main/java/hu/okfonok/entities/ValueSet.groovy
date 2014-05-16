@@ -1,5 +1,9 @@
 package hu.okfonok.entities
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
+
 import javax.persistence.CollectionTable
 import javax.persistence.Column
 import javax.persistence.ElementCollection
@@ -8,23 +12,36 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 
-/**
- * 
- * @author Ács Ádám
- *
- */
 @Entity
-@Table(name = "ValueSet")
 class ValueSet extends BaseEntity {
-	@Column
 	@NotNull
-	String name
+	private String name;
 
-	@Column
 	@NotNull
-	String valuesString
-	
-	List<String> getValues() {
-		valuesString.tokenize("|") 
+	private String valuesString;
+
+	public List<String> getValues() {
+		StringTokenizer st = new StringTokenizer(valuesString, "|");
+		List<String> values = new ArrayList<>();
+		while (st.hasMoreTokens()) {
+			values.add(st.nextToken());
+		}
+		return values;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getValuesString() {
+		return valuesString;
+	}
+
+	public void setValuesString(String valuesString) {
+		this.valuesString = valuesString;
 	}
 }

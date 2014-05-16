@@ -7,8 +7,13 @@ import org.springframework.context.annotation.Scope
 @Named("addressBean")
 @Scope("singleton")
 class AddressBean implements Serializable{
-	
+
 	List<String> completeStreet() {
-		["elm utca", "szabadság út", "pacsirtamező utca", "elm2 út", "elm2 út és még valami"] //TODO
+		[
+			"elm utca",
+			"szabadság út",
+			"pacsirtamező utca",
+			"elm2 út",
+			"elm2 út és még valami"] //TODO
 	}
 }

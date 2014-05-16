@@ -1,6 +1,5 @@
 package hu.okfonok.services.impl;
 
-import hu.okfonok.dao.BaseDao
 import hu.okfonok.dao.UserDao
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
@@ -8,6 +7,7 @@ import hu.okfonok.utils.ServiceLocator
 
 import javax.inject.Named
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -19,19 +19,21 @@ import org.springframework.transaction.annotation.Transactional
 @Named("userService")
 @Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
+	@Autowired
+	private transient UserDao repo;
+
+	@Autowired
+	UserServiceImpl(UserDao crudRepo) {
+		super(crudRepo);
+	}
+
 	@Override
 	User findByUserName(String userName) {
-		getDao().findByUserName(userName)
+		repo.findByUserName(userName)
 	}
 
-	@Override
-	public BaseDao<User> getDao() {
-		return ServiceLocator.getBean(UserDao.class);
-	}
-	
 	@Override
 	public List<User> findAll() {
-		return getDao().findAll(User.class)
+		repo.findAll()
 	}
-
 }

@@ -4,9 +4,9 @@
 		<div id="left">
 			<p:graphicImage id="employer" library="img" name="employer.png" title="Munkát adnál?" />
 			<p:selectOneRadio layout="pageDirection">
-				<f:selectItems value="#{valueSetService.getValues('employ_category')}" />
+				<f:selectItems value="#{valueSetService.findValuesByName('employ_category')}" />
 			</p:selectOneRadio>
-			<h:form>
+			<h:form> 
 				<div id="postAd">
 					<h:link outcome="/postad" value="">
 						<p:graphicImage id="helpLink" library="img" name="fragments/postad.png" style="cursor:pointer" title="Add fel hirdetésed!" />

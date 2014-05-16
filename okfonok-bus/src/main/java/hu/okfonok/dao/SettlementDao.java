@@ -1,9 +1,9 @@
 package hu.okfonok.dao;
 
-import java.util.List;
-
 import hu.okfonok.entities.Settlement;
 
-public interface SettlementDao extends BaseDao<Settlement> {
-	Settlement findBySettlement(String value);
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SettlementDao extends JpaRepository<Settlement, Long> {
+	Settlement findBySettlement(String settlement);
 }

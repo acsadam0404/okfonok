@@ -2,6 +2,8 @@ package hu.okfonok.dao;
 
 import hu.okfonok.entities.user.User;
 
-public interface UserDao extends BaseDao<User> {
-	User findByUserName(String username);
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserDao extends JpaRepository<User, Long> {
+	User findByUserName(String userName);
 }

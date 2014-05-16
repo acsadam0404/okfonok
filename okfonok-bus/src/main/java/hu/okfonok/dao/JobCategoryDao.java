@@ -1,12 +1,14 @@
 package hu.okfonok.dao;
 
-import java.util.List;
-
 import hu.okfonok.entities.JobCategory;
 
-public interface JobCategoryDao extends BaseDao<JobCategory> {
-	List<JobCategory> findSubsByMain(long mainId);
+import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface JobCategoryDao extends JpaRepository<JobCategory, Long> {
+	@Query("select jc from JobCategory jc where jc.main = 1")
 	List<JobCategory> findAllMain();
 
 	JobCategory findByName(String name);

@@ -35,8 +35,8 @@ class HelpMailSender implements Serializable{
 
 	@PostConstruct
 	void init() {
-		to = valueSetService.getValues('help_mail')
-	}
+		to = valueSetService.findValuesByName('help_mail')
+	} 
 
 	void send(String email, String name, String subject, String category, String message) {
 		to.each {

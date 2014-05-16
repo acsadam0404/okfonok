@@ -1,9 +1,11 @@
 package hu.okfonok.dao;
 
-import java.util.List;
-
 import hu.okfonok.entities.ValueSet;
 
-public interface ValueSetDao extends BaseDao<ValueSet> {
-	List<String> getValues(String valueSetName);
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ValueSetDao extends JpaRepository<ValueSet, Long> {
+	List<ValueSet> findByName(String name);
 }

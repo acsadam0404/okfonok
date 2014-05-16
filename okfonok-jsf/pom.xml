@@ -10,23 +10,18 @@
 		<relativePath>../okfonok-superpom/pom.xml</relativePath>
 	</parent>
 
-	<developers>
-		<developer>
-			<id>aacs</id>
-			<name>Ács Ádám</name>
-			<email>acsadam0404@gmail.com</email>
-			<roles>
-				<role>developer</role>
-				<role>architect</role>
-			</roles>
-		</developer>
-	</developers>
-
 	<repositories>
 		<repository>
 			<id>prime-repo</id>
 			<name>PrimeFaces Maven Repository</name>
 			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+
+		<repository>
+			<id>spring</id>
+			<name>spring repo</name>
+			<url>http://repo.spring.io/libs-release-s3/</url>
 			<layout>default</layout>
 		</repository>
 	</repositories>
@@ -80,7 +75,12 @@
 		<dependency>
 			<groupId>org.springframework.webflow</groupId>
 			<artifactId>spring-faces</artifactId>
-			<version>2.3.2.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-asm</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -159,7 +159,7 @@
 			<version>3.1</version>
 		</dependency>
 
-	<!-- Primefaces PUSH -->
+		<!-- Primefaces PUSH -->
 		<dependency>
 			<groupId>org.atmosphere</groupId>
 			<artifactId>atmosphere-runtime</artifactId>
@@ -205,17 +205,17 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- PrettyFaces -->
-		<dependency>
-			<groupId>org.ocpsoft.rewrite</groupId>
-			<artifactId>rewrite-servlet</artifactId>
-			<version>2.0.10.Final</version>
-		</dependency>
-		<dependency>
-			<groupId>org.ocpsoft.rewrite</groupId>
-			<artifactId>rewrite-config-prettyfaces</artifactId>
-			<version>2.0.10.Final</version>
-		</dependency>
+		<!-- PrettyFaces TODO ezt majd be kell állítani -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.ocpsoft.rewrite</groupId> -->
+		<!-- <artifactId>rewrite-servlet</artifactId> -->
+		<!-- <version>2.0.10.Final</version> -->
+		<!-- </dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.ocpsoft.rewrite</groupId> -->
+		<!-- <artifactId>rewrite-config-prettyfaces</artifactId> -->
+		<!-- <version>2.0.10.Final</version> -->
+		<!-- </dependency> -->
 
 	</dependencies>
 

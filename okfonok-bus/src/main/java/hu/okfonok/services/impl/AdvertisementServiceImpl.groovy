@@ -3,17 +3,21 @@ package hu.okfonok.services.impl
 import hu.okfonok.dao.AdvertisementDao
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.services.AdvertisementService
-import hu.okfonok.utils.ServiceLocator
 
 import javax.inject.Named
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
 @Named("advertisementService")
 @Transactional
 class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements AdvertisementService{
-	AdvertisementDao getDao() {
-		ServiceLocator.getBean(AdvertisementDao.class)
+	@Autowired
+	private transient AdvertisementDao repo;
+	
+	@Autowired
+	AdvertisementServiceImpl(AdvertisementDao crudRepo) {
+		super(crudRepo);
 	}
 	
 	@Override
@@ -27,8 +31,8 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 	}
 	
 	@Override
-	public List<Advertisement> findAll() {
-		getDao().findAll(Advertisement.class)
+	List<Advertisement> findAll() {
+		repo.findAll()
 	}
 
 }
