@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("jobCategoryService")
+@org.springframework.stereotype.Component("jobCategoryService")
 @Transactional
 class JobCategoryServiceImpl extends BaseServiceImpl<JobCategory> implements JobCategoryService{
 	@Autowired

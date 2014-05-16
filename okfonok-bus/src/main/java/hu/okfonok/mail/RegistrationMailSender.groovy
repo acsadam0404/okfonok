@@ -1,12 +1,8 @@
 package hu.okfonok.mail
 
-import hu.okfonok.mail.RegistrationMailSender;
-
-import javax.inject.Inject
-import javax.inject.Named
-
 import org.slf4j.Logger
-import org.slf4j.LoggerFactory;
+import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.mail.MailException
 import org.springframework.mail.MailSender
 import org.springframework.mail.SimpleMailMessage
@@ -16,11 +12,11 @@ import org.springframework.mail.SimpleMailMessage
  * @author Ács Ádám
  *
  */
-@Named("registrationMailSender")
+@org.springframework.stereotype.Component("registrationMailSender")
 class RegistrationMailSender {
 	private static final Logger log = LoggerFactory.getLogger(RegistrationMailSender.class)
 	 
-	@Inject
+	@Autowired
 	private MailSender mailSender
 
 	void send() {

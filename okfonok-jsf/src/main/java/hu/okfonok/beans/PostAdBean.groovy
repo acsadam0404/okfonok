@@ -8,12 +8,10 @@ import hu.okfonok.services.JobCategoryService
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.Config
 
-import javax.inject.Inject
-import javax.inject.Named
-
 import org.apache.commons.io.FileUtils
 import org.primefaces.event.FileUploadEvent
 import org.primefaces.model.StreamedContent
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
 /**
@@ -21,7 +19,7 @@ import org.springframework.context.annotation.Scope
  * @author Ács Ádám
  *
  */
-@Named("postAdBean")
+@org.springframework.stereotype.Component("postAdBean")
 @Scope("view")
 class PostAdBean implements Serializable{
 	boolean phoneEdit
@@ -40,10 +38,14 @@ class PostAdBean implements Serializable{
 	
 	Advertisement ad = new Advertisement()
 	
-	@Inject private AdvertisementService adService
-	@Inject private UserBean userBean
-	@Inject private JobCategoryService jcs
-	@Inject private UserService userService
+	@Autowired 
+	private AdvertisementService adService
+	@Autowired 
+	private UserBean userBean
+	@Autowired 
+	private JobCategoryService jcs
+	@Autowired 
+	private UserService userService
 	
 	transient private FileUploadEvent[] uploadEvents = []
 	

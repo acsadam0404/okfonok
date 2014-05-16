@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Scope
  * @author Ács Ádám
  *
  */
-@Named("scheduleBean")
+@org.springframework.stereotype.Component("scheduleBean")
 @Scope("session")
 class ScheduleBean implements Serializable {
 	ScheduleModel eventModel = new DefaultScheduleModel();

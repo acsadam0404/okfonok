@@ -6,16 +6,17 @@ import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
 
 import javax.faces.model.SelectItem
-import javax.inject.Inject
-import javax.inject.Named
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
-@Named("advertisementsBean")
+@org.springframework.stereotype.Component("advertisementsBean")
 @Scope("view")
 class AdvertisementsBean implements Serializable {
-	@Inject private AdvertisementService service;
-	@Inject private JobCategoryService jcService;
+	@Autowired 
+	private AdvertisementService service;
+	@Autowired 
+	private JobCategoryService jcService;
 
 	private List<Advertisement> ads;
 	List<Advertisement> filteredAds;

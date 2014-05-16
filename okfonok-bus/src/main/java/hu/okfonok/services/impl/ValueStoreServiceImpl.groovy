@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("valueStoreService")
+@org.springframework.stereotype.Component("valueStoreService")
 @Transactional
 class ValueStoreServiceImpl extends BaseServiceImpl<ValueStore> implements ValueStoreService  {
 	@Autowired

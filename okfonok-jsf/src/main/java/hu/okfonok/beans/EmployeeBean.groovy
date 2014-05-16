@@ -6,7 +6,7 @@ import javax.inject.Named
 
 import org.springframework.context.annotation.Scope
 
-@Named("employeeBean")
+@org.springframework.stereotype.Component("employeeBean")
 @Scope("view")
 class EmployeeBean implements Serializable {
 	private List<User> users;

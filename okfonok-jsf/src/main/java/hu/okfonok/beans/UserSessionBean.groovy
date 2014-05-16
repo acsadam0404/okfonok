@@ -8,9 +8,7 @@ import javax.faces.context.FacesContext
 import javax.faces.event.PhaseEvent
 import javax.faces.event.PhaseId
 import javax.faces.event.PhaseListener
-import javax.inject.Inject
-import javax.inject.Named
-import javax.persistence.NoResultException;
+import javax.persistence.NoResultException
 import javax.servlet.RequestDispatcher
 import javax.servlet.ServletException
 import javax.servlet.ServletRequest
@@ -23,6 +21,7 @@ import org.brickred.socialauth.Profile
 import org.brickred.socialauth.SocialAuthConfig
 import org.brickred.socialauth.SocialAuthManager
 import org.brickred.socialauth.util.SocialAuthUtil
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.security.authentication.BadCredentialsException
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
@@ -40,7 +39,7 @@ import org.springframework.security.web.WebAttributes
  * @author http://mrj4mes.blogspot.hu/2013/03/how-to-implement-facebook-login-in-jsf.html
  *
  */
-@Named(value = "userSessionBean")
+@org.springframework.stereotype.Component(value = "userSessionBean")
 @Scope("session")
 class UserSessionBean implements Serializable, PhaseListener {
 	private static Logger log = Logger.getLogger(UserSessionBean.class)
@@ -50,11 +49,11 @@ class UserSessionBean implements Serializable, PhaseListener {
 	String providerID;
 	Profile profile;
 
-	@Inject
+	@Autowired
 	private UserDetailsService userDetailsService
-	@Inject
+	@Autowired
 	private RegistrationBean registrationService
-	@Inject
+	@Autowired
 	private UserService userService
 
 	void socialConnect() throws Exception {

@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails
  * @author Ács Ádám
  *
  */
-@Named("userBean")
+@org.springframework.stereotype.Component("userBean")
 @Scope("session")
 class UserBean implements Serializable {
 	private transient User user

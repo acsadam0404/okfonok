@@ -4,9 +4,8 @@ import hu.okfonok.mail.HelpMailSender
 
 import javax.faces.application.FacesMessage
 import javax.faces.context.FacesContext
-import javax.inject.Inject
-import javax.inject.Named
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.mail.MailException
 
@@ -15,7 +14,7 @@ import org.springframework.mail.MailException
  * @author Ács Ádám
  *
  */
-@Named("helpBean")
+@org.springframework.stereotype.Component("helpBean")
 @Scope("view")
 class HelpBean implements Serializable {
 	String email
@@ -24,7 +23,7 @@ class HelpBean implements Serializable {
 	String message
 	String category
 
-	@Inject
+	@Autowired
 	private HelpMailSender helpMailSender
 
 	void sendMail() {

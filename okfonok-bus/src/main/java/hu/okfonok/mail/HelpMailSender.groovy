@@ -4,31 +4,29 @@ import hu.okfonok.services.ValueSetService
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
-import javax.inject.Inject
-import javax.inject.Named
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.mail.MailException
 import org.springframework.mail.MailSender
 import org.springframework.mail.SimpleMailMessage
-import org.springframework.scheduling.annotation.Async
 
 /**
  * 
  * @author Ács Ádám
  *
  */
-@Named("helpMailSender")
+@org.springframework.stereotype.Component("helpMailSender")
 @Scope("session")
 class HelpMailSender implements Serializable{
 	private static final Logger log = LoggerFactory.getLogger(HelpMailSender.class)
 
-	@Inject
+	@Autowired
 	private transient MailSender mailSender
 
-	@Inject
+	@Autowired
 	private transient ValueSetService valueSetService
 
 	private List to

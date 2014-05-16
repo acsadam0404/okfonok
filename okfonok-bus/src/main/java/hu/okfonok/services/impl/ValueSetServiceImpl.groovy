@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("valueSetService")
+@org.springframework.stereotype.Component("valueSetService")
 @Transactional
 class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetService {
 	private static final Logger logger = Logger.getLogger(ValueSetServiceImpl.class);

@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Scope
  * @author Ács Ádám
  *
  */
-@Named("fileEditorBean")
+@org.springframework.stereotype.Component("fileEditorBean")
 @Scope("view")
 class FileEditorBean implements Serializable {
 	String content

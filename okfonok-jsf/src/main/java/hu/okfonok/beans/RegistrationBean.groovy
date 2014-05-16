@@ -5,10 +5,8 @@ import hu.okfonok.mail.RegistrationMailSender
 import hu.okfonok.services.RoleService
 import hu.okfonok.services.UserService
 
-import javax.inject.Inject
-import javax.inject.Named
-
 import org.apache.log4j.Logger
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder
@@ -18,18 +16,18 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder
  * @author Ács Ádám
  *
  */
-@Named("registrationBean")
+@org.springframework.stereotype.Component("registrationBean")
 @Scope("session")
 class RegistrationBean implements Serializable {
 	private static final Logger log = Logger.getLogger(RegistrationBean.class)
 
-	@Inject
+	@Autowired
 	private RoleService roleService
-	@Inject
+	@Autowired
 	private UserService userService
-	@Inject
-	private Md5PasswordEncoder passwordEncoder
-	@Inject
+	@Autowired
+	private transient Md5PasswordEncoder passwordEncoder
+	@Autowired
 	private RegistrationMailSender regMailSender
 
 	User user = new User()

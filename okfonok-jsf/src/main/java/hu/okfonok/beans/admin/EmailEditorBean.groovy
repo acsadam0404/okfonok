@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Scope
  * @author Ács Ádám
  *
  */
-@Named("emailEditorBean")
+@org.springframework.stereotype.Component("emailEditorBean")
 @Scope("view")
 class EmailEditorBean implements Serializable{
 	String content

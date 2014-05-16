@@ -4,11 +4,10 @@ import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 
 import javax.annotation.PostConstruct
-import javax.inject.Inject
-import javax.inject.Named
 
 import org.primefaces.push.PushContext
 import org.primefaces.push.PushContextFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
 /**
@@ -16,7 +15,7 @@ import org.springframework.context.annotation.Scope
  * @author Ács Ádám
  *
  */
-@Named("indexBean")
+@org.springframework.stereotype.Component("indexBean")
 @Scope("view")
 class IndexBean implements Serializable{
 	boolean registrationFormVisible
@@ -26,7 +25,7 @@ class IndexBean implements Serializable{
 	User emp2
 	int currentIndex
 
-	@Inject
+	@Autowired
 	private UserService userService
 
 	@PostConstruct

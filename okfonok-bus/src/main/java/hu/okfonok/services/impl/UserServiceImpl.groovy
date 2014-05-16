@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("userService")
+@org.springframework.stereotype.Component("userService")
 @Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	@Autowired

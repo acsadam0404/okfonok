@@ -1,34 +1,29 @@
 package hu.okfonok.beans
 
-import hu.okfonok.entities.Address;
+import hu.okfonok.entities.Address
 import hu.okfonok.entities.user.Certification
 import hu.okfonok.entities.user.Profile
-import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.Config
-import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
-import javax.inject.Inject
-import javax.inject.Named
 
 import org.apache.commons.io.FileUtils
-import org.apache.commons.lang3.StringUtils
 import org.primefaces.event.FileUploadEvent
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
-import org.springframework.transaction.annotation.Transactional
 
 /**
  * 
  * @author Ács Ádám
  *
  */
-@Named("profileBean")
+@org.springframework.stereotype.Component("profileBean")
 @Scope("view")
 class ProfileBean implements Serializable{
-	@Inject
+	@Autowired
 	private UserService userService
-	@Inject
+	@Autowired
 	UserBean userBean
 	
 	

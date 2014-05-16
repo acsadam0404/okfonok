@@ -9,7 +9,7 @@ import javax.inject.Named
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.transaction.annotation.Transactional
 
-@Named("advertisementService")
+@org.springframework.stereotype.Component("advertisementService")
 @Transactional
 class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements AdvertisementService{
 	@Autowired

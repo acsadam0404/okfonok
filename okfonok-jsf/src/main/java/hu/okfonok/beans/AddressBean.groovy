@@ -4,7 +4,7 @@ import javax.inject.Named
 
 import org.springframework.context.annotation.Scope
 
-@Named("addressBean")
+@org.springframework.stereotype.Component("addressBean")
 @Scope("singleton")
 class AddressBean implements Serializable{
 

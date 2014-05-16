@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("roleService")
+@org.springframework.stereotype.Component("roleService")
 @Transactional
 class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService  {
 	@Autowired

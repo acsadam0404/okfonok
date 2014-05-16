@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@Named("settlementService")
+@org.springframework.stereotype.Component("settlementService")
 @Transactional
 class SettlementServiceImpl extends BaseServiceImpl<Settlement> implements SettlementService {
 	@Autowired 
