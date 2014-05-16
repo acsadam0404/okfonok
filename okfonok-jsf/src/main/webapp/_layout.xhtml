@@ -9,27 +9,28 @@
 <h:body>
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="styles.css" />
-		
+
 		<!-- google fonts -->
 		<h:outputLink href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css' />
 	</f:facet>
 
 	<div id="page">
 		<div id="header">
-			<ui:insert name="header">
-				<ui:include src="fragments/_layout_header.xhtml" />
-			</ui:insert>
+			<div id="headerInner">
+				<ui:insert name="header">
+					<!-- 					<ui:include src="fragments/_layout_header.xhtml" /> -->
+				</ui:insert>
+			</div>
 		</div>
 
 		<div id="content">
 			<ui:insert name="content" />
 		</div>
 
-		<div id="footer">
-			<ui:insert name="footer">
-				<ui:include src="fragments/_layout_footer.xhtml" />
-			</ui:insert>
-		</div>
+
+		<ui:insert name="footer">
+			<ui:include src="fragments/_layout_footer.xhtml" />
+		</ui:insert>
 	</div>
 	<h:form prependId="false">
 		<div id="help">

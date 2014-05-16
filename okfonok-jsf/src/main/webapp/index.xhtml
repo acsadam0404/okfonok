@@ -3,19 +3,149 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
 
 <h:head>
+	<style>
+body {
+	margin: 0;
+	background-color: wheat;
+}
+
+.header {
+	height: 120px;
+}
+
+.header-inner {
+	width: 1000px;
+	margin: auto auto;
+	padding: 20px;
+}
+
+.header-login,.header-howitworks {
+	float: right;
+	font-size: 25px;
+	margin-left: 20px;
+	margin-top: 20px;
+	text-decoration: none;
+	color: #28b7c5;
+}
+
+.header-login:hover,.header-howitworks:hover {
+	color: #247984;
+}
+
+.top,.bottom {
+	height: 500px;
+	width: 1000px;
+	margin: auto auto;
+}
+
+.top {
+	background-color: #49e431;
+}
+
+.bottom {
+	background-color: white;
+}
+
+.left,.right {
+	width: 470px;
+	float: left;
+	padding: 15px;
+}
+
+.imgbox {
+	width: 470px;
+	height: 300px;
+	background-color: white;
+}
+
+.imgbox-button {
+	height: 40px;
+	width: 390px;
+	display: block;
+	margin: auto auto;
+	position: relative;
+	bottom: 25px;
+	color: white;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 20px;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.imgbox-button-left {
+	background-color: #247984;
+}
+
+.imgbox-button-right {
+	background-color: #28b7c5;
+}
+
+.rousing-text {
+	width: 390px;
+	color: white;
+	margin: auto auto;
+	text-align: justify;
+}
+
+.knowmore-link {
+	color: white;
+	background-color: red;
+	width: 190px; /* +10 padding */
+	height: 25px; /* +10 padding */
+	display: block;
+	margin: auto auto;
+	text-decoration: none;
+	font-size: 20px;
+	padding: 5px;
+	background-color: #49e431;
+}
+
+.steps-header {
+	font-size: 20px;
+}
+</style>
 </h:head>
 
 <h:body>
-	<ui:composition template="_layout.xhtml">
-		<ui:define name="content">
-			<sec:authorize ifAnyGranted="USER_ROLE">
-				<ui:include src="fragments/index_auth.xhtml" />
-			</sec:authorize>
-			<sec:authorize ifNotGranted="USER_ROLE">
-				<ui:include src="fragments/index_unauth.xhtml" />
-			</sec:authorize>
-		</ui:define>
-	</ui:composition>
+	<div class="header">
+		<div class="header-inner">
+			<p:graphicImage library="img" name="logo.png" />
+			<h:link value="Belépés" styleClass="header-login" />
+			<h:link value="Hogy működik?" styleClass="header-howitworks" />
+		</div>
+	</div>
+	<div class="content">
+		<div class="content-inner">
+			<div class="top">
+				<div class="left">
+					<div class="imgbox"></div>
+					<h:link value="Adj fel feladatot és válassz a jelentkezők közül!" styleClass="imgbox-button imgbox-button-left" />
+					<p class="rousing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non eros vitae metus varius ullamcorper eget vitae neque. Donec nisl purus, molestie at eros in, dignissim varius ipsum. Integer commodo semper mattis.</p>
+				</div>
+				<div class="right">
+					<div class="imgbox"></div>
+					<h:link value="Regisztrálj és vállalj feladatokat!" styleClass="imgbox-button imgbox-button-right" />
+					<p class="rousing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non eros vitae metus varius ullamcorper eget vitae neque. Donec nisl purus, molestie at eros in, dignissim varius ipsum. Integer commodo semper mattis.</p>
+				</div>
+			</div>
+			<div class="bottom">
+				<h:link value="Tudj meg többet!" styleClass="knowmore-link" />
+				<div class="left">
+					<p class="steps-header">Van valami feladat, amit el szeretnél végeztetni?</p>
+					<div class="step">Regisztrálj</div>
+					<div class="step">Készítsd el a hirdetésed!</div>
+				</div>
+				<div class="right">
+					<p class="steps-header">Szívesen vállalnál feladatokat?</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<ui:include src="fragments/_layout_footer.xhtml"></ui:include>
+	</div>
 
 </h:body>
 </html>

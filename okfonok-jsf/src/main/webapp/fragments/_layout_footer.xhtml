@@ -2,13 +2,16 @@
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="fragments/_layout_footer.css" />
 	</f:facet>
-
-	<h:form>
-		<h:link outcome="/about" value="Rólunk" />
-		<h:link outcome="/privacy" value="Adatvédelem" />
-		<h:link outcome="/conditions" value="Felhasználói feltételek" />
-		<h:link outcome="/fees" value="Díjak&amp;Költségek" />
-		<h:link outcome="/faq" value="GYIK" />
-		<h:link outcome="/blog" value="Blog" />
-	</h:form>
+	<div class="layout-footer">
+		<div id="layout-footer-inner">
+			<h:form>
+				<h:link outcome="/about" value="Rólunk" />
+				<h:link outcome="/privacy" value="Adatvédelem" />
+				<h:link outcome="/conditions" value="Felhasználói feltételek" />
+				<h:link outcome="/fees" value="Díjak&amp;Költségek" />
+				<h:link outcome="/faq" value="GYIK" />
+				<h:link outcome="/blog" value="Blog" />
+			</h:form>
+		</div>
+	</div>
 </ui:composition>

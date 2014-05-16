@@ -1,7 +1,6 @@
 html,body {
-	width: 1000px;
-	margin: auto;
 	padding: 0;
+	margin: 0;
 	height: 100%;
 	background-image: url("../img/background-pattern.png");
 	background-repeat: repeat;
@@ -15,21 +14,31 @@ html,body {
 }
 
 #header {
-	background: #ff0;
-	padding: 10px;
+	background: #4de336;
 }
 
 #content {
 	padding: 10px;
+	width: 1000px;
 	padding-bottom: 60px; /* Height of the footer */
+	margin: auto;
 }
 
 #footer {
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 60px; /* Height of the footer */
-	background: #6cf;
+	height: 100px; 
+	background: #959595;
+}
+
+#headerInner, #footerInner {
+	width: 1000px;
+	margin: auto auto;
+}
+
+#headerInner {
+	height: 50px;
 }
 
 #help {
