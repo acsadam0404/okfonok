@@ -4,6 +4,7 @@ import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
+import hu.okfonok.utils.ServiceLocator;
 
 import javax.faces.model.SelectItem
 
@@ -24,18 +25,12 @@ class AdvertisementsBean implements Serializable {
 	List<Advertisement> getAds() {
 		if (!ads) {
 			ads = service.findAll()
-			println ads
 		}
 		return ads
 	}
 
-	SelectItem[] getMainCategoryOptions() {
-		List<JobCategory> mains = jcService.findAllMain()
-		SelectItem[] options = new SelectItem[mains.size()]   
-		for (int i = 0; i < mains.size(); i++) {
-			options[i] = new SelectItem(mains.get(i), mains.get(i).name)
-		}
-		return options
+	def getMainCategoryOptions() {
+		ServiceLocator.getBean(JobCategoryService.class).findAllMain()
 	}
 	
 	SelectItem[] getSubCategoryOptions() {

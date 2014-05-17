@@ -51,6 +51,11 @@
 				<version>1.5.1.RELEASE</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.primefaces</groupId>
+				<artifactId>primefaces</artifactId>
+				<version>5.0</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
@@ -85,8 +90,8 @@
 				<artifactId>log4j</artifactId>
 				<version>1.2.14</version>
 			</dependency>
-			
-			
+
+
 			<!-- SPRING -->
 
 			<dependency>
@@ -155,15 +160,15 @@
 				<artifactId>spring-web</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
-			
+
+
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
-			
-			
+
+
 
 			<dependency>
 				<groupId>org.springframework.security</groupId>

@@ -3,6 +3,7 @@ html,body {
 	margin: 0;
 	background-image: url("../img/background-pattern.png");
 	background-repeat: repeat;
+	background-color: wheat;
 	font-family: 'Jolly Lodger', cursive;
 }
 

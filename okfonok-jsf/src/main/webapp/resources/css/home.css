@@ -20,24 +20,47 @@
 	background-color: blue;
 }
 
-.map {
+.map-div {
 	width: 330px;
 	height: 250px;
 	margin-right: 10px;
 	float: left;
-	background-color: wheat;
+	background-color: white;
 }
 
-.schedule {
+.map {
+	width: 320px;
+	height: 240px;
+	margin: 5px;
+}
+
+.schedule-div {
 	height: 250px;
 	width: 400px;
 	float: left;
-	background-color: aqua;
+	background-color: white;
+}
+
+.schedule {
+	width: 390px;
+	height: 240px;
+	margin: 5px;	
 }
 
 .table {
 	margin-top: 20px;
-	background-color: black;
 	width: 740px;
-	height: 400px;
+	font-size: 1em;
+}
+
+.table tr {
+	height: 70px;
+}
+
+.table-header {
+	text-align: initial;
+}
+
+.tablecol-description {
+	font-size: 0.7em;
 }

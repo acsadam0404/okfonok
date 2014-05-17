@@ -12,12 +12,81 @@
 				<h:outputStylesheet library="css" name="styles.css" />
 				<h:outputStylesheet library="css" name="home.css" />
 			</f:facet>
-			
+			<!-- az összes nbsp-t eltüntetjük, nem tudom miért kerülnek oda -->
+			<script>
+				jQuery(document).ready(function() {
+					jQuery('td').each(function() {
+						var v = jQuery(this);
+						v.html(v.html().replace(/&amp;nbsp;/g, ""));
+					});
+				});
+			</script>
+
+
+
 			<div class="left">
-				<div class="map"></div>
-				<div class="schedule"></div>
+				<div class="map-div">
+					<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" />
+				</div>
+				<div class="schedule-div">
+					<!-- 					<p:schedule styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
+				</div>
 				<div style="clear: both;" />
-				<div class="table"></div>
+				<div class="table">
+					<h:form id="data">
+						<p:dataTable id="dataTable" var="ad" value="#{advertisementsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{advertisementsBean.filteredAds}">
+							<f:facet name="header">
+								<div class="table-header">
+									<p:commandButton value="Feladatok" />
+									<p:commandButton value="Hirdetéseim" />
+									<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
+								</div>
+							</f:facet>
+						 <p:column id="img" headerText="Kép">
+            kép
+        </p:column>
+						
+						 <p:column headerText="Főkategória" filterBy="#{ad.mainCategory}" filterMatchMode="exact" filterValue="#{ad.mainCategory.name}">
+								<f:facet name="filter">
+									<p:selectOneMenu onchange="PF('adsTable').filter()">
+										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
+									</p:selectOneMenu>
+								</f:facet>
+            <h:outputText value="#{ad.mainCategory}" />
+        </p:column>
+
+	 <p:column headerText="Kategória" filterBy="#{ad.subCategory}">
+								<f:facet name="filter">
+									<p:selectOneMenu onchange="PF('adsTable').filter()">
+										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
+									</p:selectOneMenu>
+								</f:facet>
+            <h:outputText value="#{ad.subCategory}" />
+        </p:column>
+
+	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="description" filterMatchMode="contains">
+            <h:outputText value="#{ad.description}" />
+        </p:column>
+	 <p:column headerText="Díjazás">
+            <h:outputText value="#{ad.remuneration}" />
+        </p:column>
+
+	 <p:column headerText="Aktuális átlag díj">
+            <h:outputText value="..." />
+        </p:column>
+
+	 <p:column headerText="Távolság">
+            <h:outputText value="..." />
+        </p:column>
+
+
+	 <p:column headerText="">
+            <h:outputText value="műveletek" />
+        </p:column>
+
+						</p:dataTable>
+					</h:form>
+				</div>
 			</div>
 			<div class="right">
 				<div class="right-profile"></div>
@@ -25,6 +94,7 @@
 			</div>
 			<div style="clear: both;" />
 		</ui:define>
+
 	</ui:composition>
 </h:body>
 </html>
