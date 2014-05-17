@@ -1,0 +1,106 @@
+body {
+	margin: 0;
+	background-color: wheat;
+}
+
+.index-header {
+	height: 120px;
+}
+
+.index-header-inner {
+	width: 1000px;
+	margin: auto auto;
+	padding: 20px;
+}
+
+.header-login,.header-howitworks {
+	float: right;
+	font-size: 25px;
+	margin-left: 20px;
+	margin-top: 20px;
+	text-decoration: none;
+	color: #28b7c5;
+}
+
+.header-login:hover,.header-howitworks:hover {
+	color: #247984;
+}
+
+.index-content {
+	width: 1000px;
+	padding-bottom: 100px; /* Height of the footer */
+	margin: auto;
+}
+
+.top,.bottom {
+	height: 500px;
+	width: 1000px;
+	margin: auto auto;
+}
+
+.top {
+	background-color: #49e431;
+}
+
+.bottom {
+	background-color: white;
+}
+
+.left,.right {
+	width: 470px;
+	float: left;
+	padding: 15px;
+}
+
+.imgbox {
+	width: 470px;
+	height: 300px;
+	background-color: white;
+}
+
+.imgbox-button {
+	height: 40px;
+	width: 390px;
+	display: block;
+	margin: auto auto;
+	position: relative;
+	bottom: 25px;
+	color: white;
+	text-decoration: none;
+	font-weight: normal;
+	font-size: 16px;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.imgbox-button-left {
+	background-color: #247984;
+}
+
+.imgbox-button-right {
+	background-color: #28b7c5;
+}
+
+.rousing-text {
+	width: 390px;
+	color: white;
+	margin: auto auto;
+	text-align: justify;
+}
+
+.knowmore-link {
+	color: white;
+	background-color: red;
+	width: 190px; /* +10 padding */
+	height: 25px; /* +10 padding */
+	display: block;
+	margin: auto auto;
+	text-decoration: none;
+	font-size: 20px;
+	padding: 5px;
+	background-color: #49e431;
+}
+
+.steps-header {
+	font-size: 20px;
+}

@@ -14,16 +14,16 @@
 		<h:outputLink href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css' />
 	</f:facet>
 
-	<div id="page">
-		<div id="header">
-			<div id="headerInner">
+	<div class="page">
+		<div class="header">
+			<div class="header-inner">
 				<ui:insert name="header">
 					<!-- 					<ui:include src="fragments/_layout_header.xhtml" /> -->
 				</ui:insert>
 			</div>
 		</div>
 
-		<div id="content">
+		<div class="content">
 			<ui:insert name="content" />
 		</div>
 
@@ -32,14 +32,14 @@
 			<ui:include src="fragments/_layout_footer.xhtml" />
 		</ui:insert>
 	</div>
-	<h:form prependId="false">
-		<div id="help">
-			<p:graphicImage id="helpLink" library="img" name="help.png" onclick="PF('help').show();" style="cursor:pointer" title="Segítség" />
-		</div>
-	</h:form>
+<!-- 	<h:form prependId="false"> -->
+<!-- 		<div class="help"> -->
+<!-- 			<p:graphicImage id="helpLink" library="img" name="help.png" onclick="PF('help').show();" style="cursor:pointer" title="Segítség" /> -->
+<!-- 		</div> -->
+<!-- 	</h:form> -->
 
-	<p:dialog widgetVar="help" modal="true" header="Segítség kérése" resizable="false">
-		<ui:include src="fragments/help.xhtml" />
-	</p:dialog>
+<!-- 	<p:dialog widgetVar="help" modal="true" header="Segítség kérése" resizable="false"> -->
+<!-- 		<ui:include src="fragments/help.xhtml" /> -->
+<!-- 	</p:dialog> -->
 </h:body>
 </html>

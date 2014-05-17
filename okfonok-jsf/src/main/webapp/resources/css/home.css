@@ -1,0 +1,43 @@
+.left {
+	width: 740px; /* +10px margin-right */
+	float: left;
+	margin-right: 10px;
+}
+
+.right {
+	width: 250px;
+	float: left;
+}
+
+.right-profile {
+	height: 250px;
+	background-color: orange;
+}
+
+.right-data {
+	margin-top: 20px;
+	height: 270px;
+	background-color: blue;
+}
+
+.map {
+	width: 330px;
+	height: 250px;
+	margin-right: 10px;
+	float: left;
+	background-color: wheat;
+}
+
+.schedule {
+	height: 250px;
+	width: 400px;
+	float: left;
+	background-color: aqua;
+}
+
+.table {
+	margin-top: 20px;
+	background-color: black;
+	width: 740px;
+	height: 400px;
+}

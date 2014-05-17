@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="_layout.xhtml">
+		<ui:define name="content">
+			<f:facet name="last">
+				<h:outputStylesheet library="css" name="styles.css" />
+				<h:outputStylesheet library="css" name="home.css" />
+			</f:facet>
+			
+			<div class="left">
+				<div class="map"></div>
+				<div class="schedule"></div>
+				<div style="clear: both;" />
+				<div class="table"></div>
+			</div>
+			<div class="right">
+				<div class="right-profile"></div>
+				<div class="right-data"></div>
+			</div>
+			<div style="clear: both;" />
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
