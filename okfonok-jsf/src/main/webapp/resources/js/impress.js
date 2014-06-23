@@ -330,7 +330,6 @@
         
         // `init` API function that initializes (and runs) the presentation.
         var init = function () {
-        	alert('initing');
             if (initialized) { return; }
             
             // First we set up the viewport for mobile devices.

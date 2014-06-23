@@ -13,7 +13,7 @@
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.radar.js" />
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.common.core.js" />
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
-		<canvas id="cvs" width="600" height="250" style="border: 1px solid gray">[No canvas support]</canvas>
+		<canvas id="cvs" width="250" height="250" style="border: 1px solid gray">[No canvas support]</canvas>
 		<script>
 			jQuery(document).ready(
 					function() {
@@ -22,6 +22,7 @@
 								'labels',
 								[ 'Jeff', 'Luis', 'Norman', 'Janice', 'Bill',
 										'Henry', 'Kev' ]).draw();
+						console.log("itt"); 
 					})
 		</script>
 

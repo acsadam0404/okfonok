@@ -1,47 +1,50 @@
 package hu.okfonok.entities
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.StringTokenizer;
-
-import javax.persistence.CollectionTable
-import javax.persistence.Column
-import javax.persistence.ElementCollection
 import javax.persistence.Entity
+import javax.persistence.FetchType
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 
 @Entity
+@Table(name = 'ValueSet')
 class ValueSet extends BaseEntity {
-	@NotNull
-	private String name;
 
 	@NotNull
-	private String valuesString;
+	String name
 
-	public List<String> getValues() {
-		StringTokenizer st = new StringTokenizer(valuesString, "|");
-		List<String> values = new ArrayList<>();
-		while (st.hasMoreTokens()) {
-			values.add(st.nextToken());
-		}
-		return values;
+	@NotNull
+	@OneToMany(mappedBy = 'valueSet', fetch = FetchType.EAGER)
+	List<ValueSetEntry> entries
+
+	@Override
+	String toString() {
+		return 'ValueSet: ' + name
 	}
-
-	public String getName() {
-		return name;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getValuesString() {
-		return valuesString;
-	}
-
-	public void setValuesString(String valuesString) {
-		this.valuesString = valuesString;
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ValueSet other = (ValueSet) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 }

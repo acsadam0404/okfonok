@@ -13,7 +13,7 @@ import org.springframework.mail.SimpleMailMessage
  *
  */
 @org.springframework.stereotype.Component("registrationMailSender")
-class RegistrationMailSender {
+class RegistrationMailSender implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(RegistrationMailSender.class)
 	 
 	@Autowired

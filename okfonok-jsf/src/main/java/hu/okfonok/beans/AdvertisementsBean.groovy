@@ -30,7 +30,7 @@ class AdvertisementsBean implements Serializable {
 	}
 
 	def getMainCategoryOptions() {
-		ServiceLocator.getBean(JobCategoryService.class).findAllMain()
+		ServiceLocator.getBean(JobCategoryService.class).findAllMain() 
 	}
 	
 	SelectItem[] getSubCategoryOptions() {

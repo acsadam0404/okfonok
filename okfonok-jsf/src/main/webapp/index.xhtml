@@ -6,50 +6,94 @@
 </h:head>
 
 <h:body>
-	<f:facet name="last">
-		<h:outputStylesheet library="css" name="styles.css" />
-		<h:outputStylesheet library="css" name="index.css" />
-	</f:facet>
+	<ui:composition template="_layout.xhtml">
+		<ui:define name="content">
+			<f:facet name="last">
+				<h:outputStylesheet library="css" name="styles.css" />
+				<h:outputStylesheet library="css" name="home.css" />
+			</f:facet>
+			<!-- az összes nbsp-t eltüntetjük, nem tudom miért kerülnek oda -->
+			<script>
+				jQuery(document).ready(function() {
+					jQuery('td').each(function() {
+						var v = jQuery(this);
+						v.html(v.html().replace(/&amp;nbsp;/g, ""));
+					});
+				});
+			</script>
 
-
-	<div class="index-header">
-		<div class="index-header-inner">
-			<p:graphicImage library="img" name="logo.png" />
-			<h:link value="Belépés" styleClass="header-login" />
-			<h:link value="Hogy működik?" outcome="howitworks" styleClass="header-howitworks" />
-		</div>
-	</div>
-	<div class="index-content">
-		<div class="index-content-inner">
-			<div class="top">
-				<div class="left">
-					<div class="imgbox"></div>
-					<h:outputText value="Adj fel feladatot és válassz a jelentkezők közül!" styleClass="imgbox-button imgbox-button-left" />
-					<p class="rousing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non eros vitae metus varius ullamcorper eget vitae neque. Donec nisl purus, molestie at eros in, dignissim varius ipsum. Integer commodo semper mattis.</p>
+			<div class="left">
+				<div class="map-div">
+					<!-- 					<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" /> -->
+				</div> 
+				<div class="schedule-div"> 
+					<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
 				</div>
-				<div class="right">
-					<div class="imgbox"></div>
-					<h:outputText value="Regisztrálj és vállalj feladatokat!" styleClass="imgbox-button imgbox-button-right" />
-					<p class="rousing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non eros vitae metus varius ullamcorper eget vitae neque. Donec nisl purus, molestie at eros in, dignissim varius ipsum. Integer commodo semper mattis.</p>
+				<div style="clear: both;" />
+				<div class="table">
+					<h:form id="data">
+						<p:dataTable id="dataTable" var="ad" value="#{advertisementsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{advertisementsBean.filteredAds}">
+							<f:facet name="header">
+								<div class="table-header">
+									<p:commandButton value="Feladatok" />
+									<p:commandButton value="Hirdetéseim" />
+									<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
+								</div>
+							</f:facet>   
+						 <p:column id="img" headerText="Kép">
+            kép
+        </p:column>
+						
+						 <p:column headerText="Főkategória" filterBy="#{ad.mainCategory}" filterMatchMode="exact" filterValue="#{ad.mainCategory.name}">
+								<f:facet name="filter">
+									<p:selectOneMenu onchange="PF('adsTable').filter()">
+										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
+									</p:selectOneMenu>
+								</f:facet>
+            <h:outputText value="#{ad.mainCategory}" />
+        </p:column>
+
+	 <p:column headerText="Kategória" filterBy="#{ad.subCategory}">
+								<f:facet name="filter">
+									<p:selectOneMenu onchange="PF('adsTable').filter()">
+										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
+									</p:selectOneMenu>
+								</f:facet>
+            <h:outputText value="#{ad.subCategory}" />
+        </p:column>
+
+	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
+            <h:outputText value="#{ad.description}" />
+        </p:column>
+	 <p:column headerText="Díjazás">
+            <h:outputText value="#{ad.remuneration}" />
+        </p:column>
+
+	 <p:column headerText="Aktuális átlag díj">
+            <h:outputText value="..." />
+        </p:column>
+
+	 <p:column headerText="Távolság">
+            <h:outputText value="..." />
+        </p:column>
+
+
+	 <p:column headerText="">
+            <h:outputText value="műveletek" />
+        </p:column>
+
+						</p:dataTable>
+					</h:form>
 				</div>
 			</div>
-			<div class="bottom">
-				<h:link value="Tudj meg többet!" styleClass="knowmore-link" />
-				<div class="left">
-					<p class="steps-header">Van valami feladat, amit el szeretnél végeztetni?</p>
-					<div class="step">Regisztrálj</div>
-					<div class="step">Készítsd el a hirdetésed!</div>
+			<div class="right">
+				<div class="right-profile">
+					<ui:include src="fragments/skills.xhtml" />
 				</div>
-				<div class="right">
-					<p class="steps-header">Szívesen vállalnál feladatokat?</p>
-
-				</div>
+				<div class="right-data"></div>
 			</div>
-		</div>
-	</div>
-	<div class="index-footer">
-		<ui:include src="fragments/_layout_footer.xhtml"></ui:include>
-	</div>
-
+			<div style="clear: both;" />
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

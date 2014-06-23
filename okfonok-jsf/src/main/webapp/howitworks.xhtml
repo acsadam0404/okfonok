@@ -7,10 +7,35 @@
 
 <h:body>
 	<ui:composition template="_layout.xhtml">
+		<ui:define name="header"></ui:define>
 		<ui:define name="content">
-		hogyan működik oldal
-		
-				</ui:define>
+			<h:outputScript library="primefaces" name="jquery/jquery.js" />
+			<h:outputScript library="js" name="impress.js" />
+			<h:outputStylesheet library="css" name="howitworks.css" />
+
+			<div id="impress" class="content impress-not-supported">
+				<div class="step" data-x="0" data-y="0" data-scale="1" >
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales risus in odio pellentesque ultrices quis quis ante. Donec semper lectus vitae nunc convallis aliquet</p>
+				</div>
+				<div class="step" data-x="1500" data-y="2000" data-scale="1" data-rotate="180">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales risus in odio pellentesque ultrices quis quis ante. Donec semper lectus vitae nunc convallis aliquet</p>
+				</div>
+				<div class="step" data-x="1000" data-y="-1000" data-scale="2">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales risus in odio pellentesque ultrices quis quis ante. Donec semper lectus vitae nunc convallis aliquet</p>
+				</div>
+				
+				<div class="step" data-x="2000" data-y="-2000" data-z="500" data-scale="3" data-rotate="90">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sodales risus in odio pellentesque ultrices quis quis ante. Donec semper lectus vitae nunc convallis aliquet</p>
+				</div>
+			</div>
+			<script>
+				jQuery(document).ready(function() {
+					impress().init()
+				})
+			</script>
+		</ui:define>
+
+		<ui:define name="footer"></ui:define>
 
 	</ui:composition>
 </h:body>

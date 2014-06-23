@@ -13,17 +13,16 @@
 	<h:form>
 		<h:panelGrid columns="1" styleClass="login-panel">
 			<p:graphicImage styleClass="logo" library="img" name="logo.png" />
-			<p:inputText styleClass="email maxsize icon-input" id="email" />
-			<p:watermark for="email" value="E-mail cím" />
-			<p:password styleClass="password maxsize icon-input" id="password" />
-			<p:watermark for="password" value="Jelszó" />
-			<p:commandButton styleClass="login-button maxsize" value="Belépés" />
-			<h:outputText id="or" value="vagy" />
-			<p:commandButton styleClass="facebook-login-button maxsize" value="Belépés Facebokkal" />
-			<h:panelGroup layout="block">
-				<h:outputText value="Még nem vagy a felhasználónk?" />
-				<h:link styleClass="okflink" outcome="registration" value="Akkor regisztrálj!" />
-			</h:panelGroup>
+			<p:inputText id="j_username" name="j_username" styleClass="email maxsize icon-input" />
+			<p:watermark for="j_username" value="E-mail cím" />
+			<p:password id="j_password" name="j_password" styleClass="password maxsize icon-input" />
+			<p:watermark for="j_password" value="Jelszó" />
+			<p:commandButton type="submit" ajax="false" value="Belépés" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}" />
+			<h:outputText value="vagy" />
+			<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" styleClass="facebook-login-button maxsize">
+				<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
+				<p:graphicImage id="facebookReg" library="img" name="fragments/facebooklogin.png" style="cursor:pointer" title="Belépés Facebookkal" />
+			</p:commandLink>
 			<h:link styleClass="okflink" value="Elfelejtetted a jelszavad?" />
 			<!-- és akkor mivan? mit csináljak? -->
 		</h:panelGrid>

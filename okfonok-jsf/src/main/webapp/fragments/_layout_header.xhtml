@@ -2,47 +2,50 @@
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="fragments/_layout_header.css" />
 	</f:facet>
+	<div class="header">
+		<div class="header-inner"></div>
+	</div>
 
-		<p:button value="" icon="homeLinkDiv" styleClass="homeLink" outcome="/index.xhtml" />
+	<!-- 		<p:button value="" icon="homeLinkDiv" styleClass="homeLink" outcome="/index.xhtml" /> -->
 
-		<p:button value="Hirdetés feladása" outcome="/postad.xhtml" />
+	<!-- 		<p:button value="Hirdetés feladása" outcome="/postad.xhtml" /> -->
 
 
-	<h:form>
-		<div>
-			<sec:authorize ifAnyGranted="USER_ROLE">
-				<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" />
-				<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade" appendToBody="true" style="width: 600px; height: 500px;">
-					<h:panelGroup layout="block">
-						<p:schedule id="menuSchedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" locale="hu">
-						</p:schedule>
-					</h:panelGroup>
-				</p:overlayPanel>
+	<!-- 	<h:form> -->
+	<!-- 		<div> -->
+	<!-- 			<sec:authorize ifAnyGranted="USER_ROLE"> -->
+	<!-- 				<p:graphicImage id="scheduleLink" library="img" name="scheduleLink.png" style="cursor:pointer" title="Naptár" /> -->
+	<!-- 				<p:overlayPanel id="schedulePanel" for="scheduleLink" hideEffect="fade" appendToBody="true" style="width: 600px; height: 500px;"> -->
+	<!-- 					<h:panelGroup layout="block"> -->
+	<!-- 						<p:schedule id="menuSchedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" locale="hu"> -->
+	<!-- 						</p:schedule> -->
+	<!-- 					</h:panelGroup> -->
+	<!-- 				</p:overlayPanel> -->
 
-				<p:commandButton id="accountLink" value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
-				<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade">
-					<h:link value="Profil" outcome="/profile" />
-					<sec:authorize ifAnyGranted="ADMIN_ROLE">
-						<h:link value="Admin" outcome="/admin/index" />
-					</sec:authorize>
-					<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" />
-				</p:overlayPanel>
-				<h:panelGroup id="profileImage">
-					<img src="#{userBean.user.profile.profileImagePath}" />
-				</h:panelGroup>
-			</sec:authorize>
+	<!-- 				<p:commandButton id="accountLink" value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" /> -->
+	<!-- 				<p:overlayPanel id="accountPanel" for="accountLink" hideEffect="fade"> -->
+	<!-- 					<h:link value="Profil" outcome="/profile" /> -->
+	<!-- 					<sec:authorize ifAnyGranted="ADMIN_ROLE"> -->
+	<!-- 						<h:link value="Admin" outcome="/admin/index" /> -->
+	<!-- 					</sec:authorize> -->
+	<!-- 					<p:commandLink value="Kilépés" action="#{userSessionBean.doLogout()}" ajax="false" /> -->
+	<!-- 				</p:overlayPanel> -->
+	<!-- 				<h:panelGroup id="profileImage"> -->
+	<!-- 					<img src="#{userBean.user.profile.profileImagePath}" /> -->
+	<!-- 				</h:panelGroup> -->
+	<!-- 			</sec:authorize> -->
 
-			<sec:authorize ifNotGranted="USER_ROLE">
-				<p:commandButton id="registrationLink" value="Regisztráció" />
-				<p:overlayPanel id="registrationPanel" for="registrationLink" hideEffect="fade">
-					<ui:include src="registration.xhtml" />
-				</p:overlayPanel>
-				<p:commandButton id="loginLink" value="Bejelentkezés" />
-				<p:overlayPanel id="loginPanel" for="loginLink" hideEffect="fade">
-					<ui:include src="_layout_header_login.xhtml" />
-				</p:overlayPanel>
-			</sec:authorize>
+	<!-- 			<sec:authorize ifNotGranted="USER_ROLE"> -->
+	<!-- 				<p:commandButton id="registrationLink" value="Regisztráció" /> -->
+	<!-- 				<p:overlayPanel id="registrationPanel" for="registrationLink" hideEffect="fade"> -->
+	<!-- 					<ui:include src="registration.xhtml" /> -->
+	<!-- 				</p:overlayPanel> -->
+	<!-- 				<p:commandButton id="loginLink" value="Bejelentkezés" /> -->
+	<!-- 				<p:overlayPanel id="loginPanel" for="loginLink" hideEffect="fade"> -->
+	<!-- 					<ui:include src="_layout_header_login.xhtml" /> -->
+	<!-- 				</p:overlayPanel> -->
+	<!-- 			</sec:authorize> -->
 
-		</div>
-	</h:form>
+	<!-- 		</div> -->
+	<!-- 	</h:form> -->
 </ui:composition>

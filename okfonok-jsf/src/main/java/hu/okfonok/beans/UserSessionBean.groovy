@@ -96,8 +96,9 @@ class UserSessionBean implements Serializable, PhaseListener {
 				// Redirect the user back to where they have been before logging in
 				FacesContext.getCurrentInstance().getExternalContext().redirect(originalURL);
 
-			} else
-				FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/home.xhtml");
+			} else {
+				FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/info.xhtml");
+			}
 		} catch (Exception ex) {
 			log.error(ex);
 		}
@@ -113,7 +114,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 			externalContext.invalidateSession();
 
-			FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/index.xhtml");
+			FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/info.xhtml");
 		} catch (IOException ex) {
 			log.error(ex)
 		}
@@ -191,7 +192,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			socialLogout();
 		}
 		SecurityContextHolder.clearContext();
-		return "index.xhtml";
+		return "info.xhtml";
 
 	}
 	public PhaseId getPhaseId() {
