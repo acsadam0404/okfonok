@@ -1,106 +1,65 @@
-body {
-	margin: 0;
-	background-color: wheat;
-}
-
-.index-header {
-	height: 120px;
-}
-
-.index-header-inner {
-	width: 1000px;
-	margin: auto auto;
-	padding: 20px;
-}
-
-.header-login,.header-howitworks {
-	float: right;
-	font-size: 25px;
-	margin-left: 20px;
-	margin-top: 20px;
-	text-decoration: none;
-	color: #28b7c5;
-}
-
-.header-login:hover,.header-howitworks:hover {
-	color: #247984;
-}
-
-.index-content {
-	width: 1000px;
-	padding-bottom: 100px; /* Height of the footer */
-	margin: auto;
-}
-
-.top,.bottom {
-	height: 500px;
-	width: 1000px;
-	margin: auto auto;
-}
-
-.top {
-	background-color: #49e431;
-}
-
-.bottom {
-	background-color: white;
-}
-
-.left,.right {
-	width: 470px;
+.left {
+	width: 740px; /* +10px margin-right */
 	float: left;
-	padding: 15px;
+	margin-right: 10px;
 }
 
-.imgbox {
-	width: 470px;
-	height: 300px;
+.right {
+	width: 250px;
+	float: left;
+}
+
+.right-profile {
+	height: 250px;
+}
+
+.right-data {
+	margin-top: 20px;
+	height: 270px;
+	background-color: blue;
+}
+
+.map-div {
+	width: 330px;
+	height: 250px;
+	margin-right: 10px;
+	float: left;
 	background-color: white;
 }
 
-.imgbox-button {
-	height: 40px;
+.map {
+	width: 320px;
+	height: 240px;
+	margin: 5px;
+}
+
+.schedule-div {
+	height: 250px;
+	width: 400px;
+	float: left;
+	background-color: white;
+}
+
+.schedule {
 	width: 390px;
-	display: block;
-	margin: auto auto;
-	position: relative;
-	bottom: 25px;
-	color: white;
-	text-decoration: none;
-	font-weight: normal;
-	font-size: 16px;
-	text-align: center;
-	padding-top: 10px;
+	height: 240px;
+	margin: 5px;	
 }
 
-.imgbox-button-left {
-	background-color: #247984;
+.table {
+	margin-top: 20px;
+	width: 740px;
+	font-size: 1em;
 }
 
-.imgbox-button-right {
-	background-color: #28b7c5;
+.table tr {
+	height: 70px;
 }
 
-.rousing-text {
-	width: 390px;
-	color: white;
-	margin: auto auto;
-	text-align: justify;
+.table-header {
+	text-align: initial;
 }
 
-.knowmore-link {
-	color: white;
-	background-color: red;
-	width: 190px; /* +10 padding */
-	height: 25px; /* +10 padding */
-	display: block;
-	margin: auto auto;
-	text-decoration: none;
-	font-size: 20px;
-	padding: 5px;
-	background-color: #49e431;
-}
-
-.steps-header {
-	font-size: 20px;
+.tablecol-description {
+	font-size: 0.7em;
 }

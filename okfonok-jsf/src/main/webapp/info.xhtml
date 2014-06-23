@@ -8,7 +8,7 @@
 <h:body>
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="styles.css" />
-		<h:outputStylesheet library="css" name="index.css" />
+		<h:outputStylesheet library="css" name="info.css" />
 	</f:facet>
 
 
@@ -17,15 +17,15 @@
 			<p:graphicImage library="img" name="logo.png" />
 			<p:commandLink id="loginButton" value="Belépés" styleClass="header-login" />
 			<p:overlayPanel for="loginButton">
-				<ui:include src="fragments/login.xhtml" />
+				<ui:include src="fragments/info/login.xhtml" />
 			</p:overlayPanel>
 			
 			<p:commandLink id="registrationButton" value="Regisztráció" styleClass="header-login" />
 			<p:overlayPanel for="registrationButton">
-				<ui:include src="fragments/registration.xhtml" />
+				<ui:include src="fragments/info/registration.xhtml" />
 			</p:overlayPanel>
 			
-			<h:link value="Hogy működik?" outcome="howitworks" styleClass="header-howitworks" />
+			<p:link value="Hogy működik?" outcome="howitworks" styleClass="header-howitworks" />
 		</div>
 	</div>
 	<div class="index-content">
@@ -56,9 +56,5 @@
 			</div>
 		</div>
 	</div>
-	<div class="index-footer">
-		<ui:include src="fragments/_layout_footer.xhtml"></ui:include>
-	</div>
-
 </h:body>
 </html>
