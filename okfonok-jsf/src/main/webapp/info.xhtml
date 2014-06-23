@@ -15,16 +15,21 @@
 	<div class="index-header">
 		<div class="index-header-inner">
 			<p:graphicImage library="img" name="logo.png" />
-			<p:commandLink id="loginButton" value="Belépés" styleClass="header-login" />
-			<p:overlayPanel for="loginButton">
-				<ui:include src="fragments/info/login.xhtml" />
-			</p:overlayPanel>
-			
-			<p:commandLink id="registrationButton" value="Regisztráció" styleClass="header-login" />
-			<p:overlayPanel for="registrationButton">
-				<ui:include src="fragments/info/registration.xhtml" />
-			</p:overlayPanel>
-			
+			<sec:authorize ifNotGranted="USER_ROLE">
+				<p:commandLink id="loginButton" value="Belépés" styleClass="header-login" />
+				<p:overlayPanel for="loginButton">
+					<ui:include src="fragments/info/login.xhtml" />
+				</p:overlayPanel>
+
+				<p:commandLink id="registrationButton" value="Regisztráció" styleClass="header-login" />
+				<p:overlayPanel for="registrationButton">
+					<ui:include src="fragments/info/registration.xhtml" />
+				</p:overlayPanel>
+			</sec:authorize>
+			<sec:authorize ifAnyGranted="USER_ROLE">
+				<p:link id="loginLink" value="Belépés" styleClass="header-login" outcome="index.xhtml" />
+			</sec:authorize> 
+
 			<p:link value="Hogy működik?" outcome="howitworks" styleClass="header-howitworks" />
 		</div>
 	</div>

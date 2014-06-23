@@ -17,7 +17,7 @@
 		<intercept-url pattern="/*.xhtml" access="permitAll" />
 		<intercept-url pattern="/**" access="denyAll" />
 		<access-denied-handler error-page="/index.xhtml" />
-		<form-login login-page="/info.xhtml" default-target-url="/info.xhtml" always-use-default-target="false" password-parameter="j_password" username-parameter="j_username" />
+		<form-login login-page="/info.xhtml" default-target-url="/index.xhtml" always-use-default-target="false" password-parameter="j_password" username-parameter="j_username" />
 	</http>
 	
 	<beans:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder" />
