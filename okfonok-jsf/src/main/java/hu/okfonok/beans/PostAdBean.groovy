@@ -8,6 +8,9 @@ import hu.okfonok.services.JobCategoryService
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.Config
 
+import javax.faces.model.SelectItem
+import javax.faces.model.SelectItemGroup
+
 import org.apache.commons.io.FileUtils
 import org.primefaces.event.FileUploadEvent
 import org.primefaces.model.StreamedContent
@@ -22,86 +25,36 @@ import org.springframework.context.annotation.Scope
 @org.springframework.stereotype.Component("postAdBean")
 @Scope("view")
 class PostAdBean implements Serializable{
-	boolean phoneEdit
-	boolean phoneEditOnProfile
-	Integer phoneNumber
-
-	boolean emailEdit
-	boolean emailEditOnProfile
-	String email
-	
-	JobCategory mainCategory
-	JobCategory subCategory
-	
-	Date from
-	Date to
+	JobCategory category
 	
 	Advertisement ad = new Advertisement()
 	
 	@Autowired 
 	private AdvertisementService adService
 	@Autowired 
-	private UserBean userBean
-	@Autowired 
 	private JobCategoryService jcs
 	@Autowired 
 	private UserService userService
 	
-	transient private FileUploadEvent[] uploadEvents = []
 	
-	transient StreamedContent image1
-	transient StreamedContent image2
-	transient StreamedContent image3
-	transient StreamedContent image4
-	
-	def switchPhoneEdit() {
-		phoneEdit = !phoneEdit
-	}
-
-	def phoneEdited() {
-		if (phoneEditOnProfile) {
-			userBean.user.profile.phoneNumber = phoneNumber
-			userBean.user = userService.save(userBean.user)
-		}
-	}
-	
-	def switchEmailEdit() {
-		emailEdit = !emailEdit
-	}
-
-	def emailEdited() {
-		if (emailEditOnProfile) {
-			userBean.user.profile.email = email
-			userBean.user = userService.save(userBean.user)
-			// TODO email küldése előbb
-		}
-	}
-	
-	List<JobCategory> findSubByMainCategory() {
-		if (mainCategory) {
-			return jcs.findSubsByMain(mainCategory.id)
-		}
-		return []
-	}
-	
-	void pictureUpload(FileUploadEvent event) {
-		uploadEvents << event
-	}
 	
 	void post() {
 		adService.save(ad);
-		uploadEvents.each { FileUploadEvent event ->
-			String path = "${Config.userProfilePath}/${userBean.user.userName}/ads/${ad.id}";
-			FileUtils.writeByteArrayToFile(new File(path), event.file.contents);
-		}
 	}
 	
-	List<User> getHighestRatedUsersInInterval() {
-		if (!from || !to) {
-			return
-		}
+	List<SelectItem> getCategories() {
+		List<SelectItem> categories = []
+		SelectItemGroup g1 = new SelectItemGroup("German Cars");
+		SelectItem[] list1 = [new SelectItem("BMW", "BMW"), new SelectItem("Mercedes", "Mercedes"), new SelectItem("Volkswagen", "Volkswagen")]
+		g1.setSelectItems(list1);
+		 
+		SelectItemGroup g2 = new SelectItemGroup("American Cars");
+		SelectItem[] list2 = [new SelectItem("Chrysler", "Chrysler"), new SelectItem("GM", "GM"), new SelectItem("Ford", "Ford")]
+		g2.setSelectItems(list2);
 		
-		/* TODO from - to értékek. csak akkor listázni ha ráér. első 10 legjobb értékelésűt visszaadni */
-		return userService.findAll()
+		categories.add(g1);
+		categories.add(g2);
+		
+		return categories
 	}
 }

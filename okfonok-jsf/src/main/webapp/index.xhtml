@@ -8,25 +8,14 @@
 <h:body>
 	<ui:composition template="_layout.xhtml">
 		<ui:define name="content">
-			<f:facet name="last">
-				<h:outputStylesheet library="css" name="styles.css" />
-				<h:outputStylesheet library="css" name="index.css" />
-			</f:facet>
-			<!-- az összes nbsp-t eltüntetjük, nem tudom miért kerülnek oda -->
-			<script>
-				jQuery(document).ready(function() {
-					jQuery('td').each(function() {
-						var v = jQuery(this);
-						v.html(v.html().replace(/&amp;nbsp;/g, ""));
-					});
-				});
-			</script>
+			<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+			<h:outputStylesheet library="css" name="index.css" />
 
 			<div class="left">
 				<div class="map-div">
-					<!-- 					<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" /> -->
-				</div> 
-				<div class="schedule-div"> 
+					<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" />
+				</div>
+				<div class="schedule-div">
 					<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
 				</div>
 				<div style="clear: both;" />
@@ -93,6 +82,21 @@
 				<div class="right-data"></div>
 			</div>
 			<div style="clear: both;" />
+
+			<h:form prependId="false">
+				<p:commandButton id="postad" value="postad" />
+				<p:overlayPanel for="postad">
+					<ui:include src="postad.xhtml" />
+				</p:overlayPanel>
+			</h:form>
+
+
+			<div class="help">
+				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" />
+			</div>
+			<p:overlayPanel for="helpLink">
+				<ui:include src="fragments/help.xhtml" />
+			</p:overlayPanel>
 		</ui:define>
 	</ui:composition>
 </h:body>

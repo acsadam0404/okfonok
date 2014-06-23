@@ -2,9 +2,8 @@ package hu.okfonok.services.impl
 
 import hu.okfonok.dao.ValueSetDao
 import hu.okfonok.entities.ValueSet
+import hu.okfonok.entities.ValueSetEntry
 import hu.okfonok.services.ValueSetService
-
-import javax.inject.Named
 
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,10 +29,10 @@ class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetS
 	
 	
 	@Override
-	public List<String> findValuesByName(String name) {
+	public List<ValueSetEntry> findByName(String name) {
 		try {
 			ValueSet vs = repo.findByName(name).get(0);
-			return vs.getValues();
+			return vs.getEntries();
 		} catch (IndexOutOfBoundsException ioobex) {
 			logger.error("Nem található valueset: " + name, ioobex);
 			throw new RuntimeException(ioobex);
@@ -41,10 +40,10 @@ class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetS
 	}
 
 	@Override
-	public Set<String> findValuesByNameUnique(String name) {
+	public Set<ValueSetEntry> findByNameUnique(String name) {
 		try {
 			ValueSet vs = repo.findByName(name).get(0);
-			return new HashSet<>(vs.getValues());
+			return new HashSet<>(vs.getEntries());
 		} catch (IndexOutOfBoundsException ioobex) {
 			logger.error("Nem található valueset: " + name, ioobex);
 			throw new RuntimeException(ioobex);

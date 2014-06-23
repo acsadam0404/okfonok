@@ -1,116 +1,36 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
 </h:head>
 
 <h:body>
-	<ui:composition template="_layout.xhtml">
+	<ui:composition>
+		<h:outputStylesheet library="css" name="postad.css" />
 
-		<ui:define name="content">
-			<f:facet name="last">
-				<h:outputStylesheet library="css" name="postad.css" />
-			</f:facet>
+		<h:form>
+			<h:panelGrid columns="1">
+				<p:selectOneMenu id="category" value="#{postAdBean.category}" converter="omnifaces.SelectItemsConverter" filter="true">
+					<f:selectItems value="#{postAdBean.getCategories()}" />
+				</p:selectOneMenu>
 
-			<sec:authorize ifNotGranted="USER_ROLE">
-				<f:subview id="postadRegForm">
-					<ui:include src="fragments/registration.xhtml" />
-				</f:subview>
-			</sec:authorize>
+				<p:inputText id="adName" value="#{postAdBean.ad.name}" />
+				<p:watermark for="adName" value="Munka megnevezése" />
+				<p:inputTextarea id="adDescription" value="#{postAdBean.ad.description}" />
+				<p:watermark for="adDescription" value="Munka leírása" />
+			</h:panelGrid>
 
-			<sec:authorize ifAnyGranted="USER_ROLE">
-				<h:form>
-					<h:panelGrid columns="1">
-						<h:graphicImage value="#{userBean.user.profile.profileImagePath}" />
-						<p:outputLabel value="#{userBean.user.profile.lastName} #{userBean.user.profile.firstName}" />
-						<h:panelGrid columns="1">
-							<p:selectOneRadio>
-								<f:selectItems value="#{advertisementService.getAdBearerTypes()}" />
-							</p:selectOneRadio>
-							<p:inplace editor="true" effectSpeed="fast">
-								<p:inputText id="email" value="#{userBean.user.profile.email}" />
-							</p:inplace>
-							<p:inplace editor="true" effectSpeed="fast">
-								<p:inputMask id="phoneNumber" value="#{userBean.user.profile.phoneNumber}" mask="(99) 999-9999" />
-							</p:inplace>
-							<p:selectOneMenu id="mainCategory" value="#{postAdBean.mainCategory}">
-								<p:ajax event="valueChange" update="subCategory" process="@this" />
-								<f:converter binding="#{jobCategoryConverter}" />
-								<f:selectItems value="#{jobCategoryService.findAllMain()}" />
-							</p:selectOneMenu>
+			<p:outputLabel value="Díjazás" for="remuneration" />
+			<p:selectOneRadio id="remuneration" value="#{postAdBean.ad.remuneration}">
+				<f:selectItems value="#{advertisementService.getRemunerations()}" />
+			</p:selectOneRadio>
+			<p:commandLink id="postad">
+				<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
+			</p:commandLink>
+		</h:form>
 
-
-							<p:selectOneMenu id="subCategory" value="#{postAdBean.subCategory}">
-								<f:converter binding="#{jobCategoryConverter}" />
-								<f:selectItems value="#{postAdBean.findSubByMainCategory()}" />
-							</p:selectOneMenu>
-
-							<p:inputText id="adName" value="#{postAdBean.ad.name}" />
-							<p:watermark for="adName" value="Munka megnevezése" />
-							<p:inputTextarea id="adDescription" value="#{postAdBean.ad.description}" />
-							<p:watermark for="adDescription" value="Munka leírása" />
-						</h:panelGrid>
-					</h:panelGrid>
-
-					<p:tooltip for="phoneNumber email" value="Csak létrejött munkakapcsolat esetén kerül a munkavállalóhoz." />
-					<p:lightBox styleClass="imagebox">
-						<h:outputLink value="#{postAdBean.image4}">
-							<p:graphicImage value="#{postAdBean.image1}" />
-						</h:outputLink>
-						<h:outputLink value="#{postAdBean.image4}">
-							<p:graphicImage value="#{postAdBean.image2}" />
-						</h:outputLink>
-						<h:outputLink value="#{postAdBean.image4}">
-							<p:graphicImage value="#{postAdBean.image3}" />
-						</h:outputLink>
-						<h:outputLink value="#{postAdBean.image4}">
-							<p:graphicImage value="#{postAdBean.image4}" />
-						</h:outputLink>
-					</p:lightBox>
-					<p:outputLabel value="Díjazás" for="remuneration" />
-					<p:selectOneRadio id="remuneration" value="#{postAdBean.ad.remuneration}">
-						<f:selectItems value="#{advertisementService.getRemunerations()}" />
-					</p:selectOneRadio>
-					<p:gmap center="41.381542, 2.122893" zoom="15" type="HYBRID" style="width:600px;height:400px" />
-					<fieldset>
-						<legend>Munkavégzés helye</legend>
-						<h:panelGrid columns="3">
-							<ui:include src="fragments/address.xhtml">
-								<ui:param name="address" value="#{postAdBean.ad.address}" />
-							</ui:include>
-						</h:panelGrid>
-					</fieldset>
-					<fieldset>
-						<legend>Munkavégzés ideje</legend>
-						<h:outputText value="Tól" />
-						<p:calendar value="#{postAdBean.from}" pattern="yyyy/MM/dd HH:mm">
-							<p:ajax event="dateSelect" update="candidates" />
-						</p:calendar>
-						<h:outputText value="ig" />
-						<p:calendar value="#{postAdBean.to}" pattern="yyyy/MM/dd HH:mm">
-							<p:ajax event="dateSelect" update="candidates" />
-						</p:calendar>
-						<p:dataList id="candidates" value="#{postAdBean.getHighestRatedUsersInInterval()}" var="user">
-							<h:panelGroup id="profileImage">
-								<img src="#{user.profile.profileImagePath}" />
-							</h:panelGroup>
-							<p:rating readonly="true" value="#{user.profile.rating}" />
-							#{user.profile.getRealName()}
-							
-							<h:commandLink onclick="alert('nincs kész')">
-								<p:graphicImage library="img" name="x.png" style="cursor:pointer" />
-							</h:commandLink>
-						</p:dataList>
-					</fieldset>
-					<p:commandLink id="postad" action="postadReview.xhtml?faces-redirect=true">
-						<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
-					</p:commandLink>
-				</h:form>
-			</sec:authorize>
-
-
-		</ui:define>
 	</ui:composition>
 
 </h:body>

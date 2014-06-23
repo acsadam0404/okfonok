@@ -16,14 +16,14 @@
 				<p:inputText id="email" value="#{helpBean.email}" />
 				<p:outputLabel value="Kategória" for="category" />
 				<p:selectOneMenu id="category" value="#{helpBean.category}">
-					<f:selectItems value="#{valueSetService.findValuesByName('help_category')}" />
+					<f:selectItems value="#{valueSetService.findByName('help_category')}" />
 				</p:selectOneMenu>
 				<p:outputLabel value="Tárgy" for="subject" />
 				<p:inputText id="subject" value="#{helpBean.subject}" />
 				<p:outputLabel value="Üzenet" for="message" />
 				<p:inputTextarea id="message" value="#{helpBean.message}" rows="5" cols="30" />
 				<p:outputLabel value="" />
-				<p:commandButton value="küldés" action="#{helpBean.sendMail()}" update="helpGrowl" onclick="PF('help').hide()" />
+				<p:commandButton value="küldés" action="#{helpBean.sendMail()}" update="helpGrowl" />
 			</h:panelGrid>
 		</h:form>
 	</ui:composition>

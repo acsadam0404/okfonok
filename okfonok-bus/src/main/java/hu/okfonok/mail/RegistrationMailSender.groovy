@@ -17,7 +17,7 @@ class RegistrationMailSender implements Serializable {
 	private static final Logger log = LoggerFactory.getLogger(RegistrationMailSender.class)
 	 
 	@Autowired
-	private MailSender mailSender
+	private transient MailSender mailSender
 
 	void send() {
 

@@ -1,9 +1,10 @@
 package hu.okfonok.services;
 
+import hu.okfonok.entities.ValueSet;
+import hu.okfonok.entities.ValueSetEntry;
+
 import java.util.List;
 import java.util.Set;
-
-import hu.okfonok.entities.ValueSet;
 
 /**
  * TODO közös kód
@@ -11,7 +12,7 @@ import hu.okfonok.entities.ValueSet;
  *
  */
 public interface ValueSetService extends BaseService<ValueSet>{
-	List<String> findValuesByName(String name);
+	List<ValueSetEntry> findByName(String name);
 
-	Set<String> findValuesByNameUnique(String name);
+	Set<ValueSetEntry> findByNameUnique(String name);
 }

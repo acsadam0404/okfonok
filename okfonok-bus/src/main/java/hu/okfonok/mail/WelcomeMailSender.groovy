@@ -15,25 +15,25 @@ import org.springframework.mail.SimpleMailMessage
 @org.springframework.stereotype.Component("welcomeMailSender")
 class WelcomeMailSender {
 	private static final Logger log = LoggerFactory.getLogger(RegistrationMailSender.class)
-	
-   @Autowired
-   private MailSender mailSender
 
-   void send() {
+	@Autowired
+	private transient MailSender mailSender
 
-	   SimpleMailMessage msg = new SimpleMailMessage();
-	   
-	   msg.setFrom("acsadam0404@gmail.com")
-	   msg.setTo("acsadam0404@gmail.com")
-	   msg.setText("okfonok welcome")
-	   msg.setSubject("okfonok welcome")
-	   
-	   try {
-		   mailSender.send(msg);
-		   log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
-	   }
-	   catch (MailException mex) {
-		   log.error("Sikertelen üzenet küldés regisztrációkor. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
-	   }
-   }
+	void send() {
+
+		SimpleMailMessage msg = new SimpleMailMessage();
+
+		msg.setFrom("acsadam0404@gmail.com")
+		msg.setTo("acsadam0404@gmail.com")
+		msg.setText("okfonok welcome")
+		msg.setSubject("okfonok welcome")
+
+		try {
+			mailSender.send(msg);
+			log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
+		}
+		catch (MailException mex) {
+			log.error("Sikertelen üzenet küldés regisztrációkor. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
+		}
+	}
 }

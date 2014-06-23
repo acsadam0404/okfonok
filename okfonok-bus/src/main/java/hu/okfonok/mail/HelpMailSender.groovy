@@ -33,7 +33,7 @@ class HelpMailSender implements Serializable{
 
 	@PostConstruct
 	void init() {
-		to = valueSetService.findValuesByName('help_mail')
+		to =  ['help_mail@gmail.com'] //TODO ide kell propertiesből kivenni a help mail címet
 	} 
 
 	void send(String email, String name, String subject, String category, String message) {

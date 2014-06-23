@@ -204,6 +204,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.7</version>
+		</dependency>
+
 		<!-- PrettyFaces TODO ezt majd be kell állítani -->
 		<!-- <dependency> -->
 		<!-- <groupId>org.ocpsoft.rewrite</groupId> -->
