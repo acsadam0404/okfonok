@@ -30,7 +30,6 @@
 		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/initialconfig.sql" encoding="utf-8" />
 		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/settlement.sql" encoding="utf-8" />
 		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/commondata.sql" encoding="utf-8" />
-		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/advertisements.sql" encoding="utf-8" />
 	</jdbc:embedded-database>
 
 	<!-- <bean id="dataSource" -->

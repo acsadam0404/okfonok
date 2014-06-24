@@ -33,16 +33,8 @@
             kép
         </p:column>
 						
-						 <p:column headerText="Főkategória" filterBy="#{ad.mainCategory}" filterMatchMode="exact" filterValue="#{ad.mainCategory.name}">
-								<f:facet name="filter">
-									<p:selectOneMenu onchange="PF('adsTable').filter()">
-										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
-									</p:selectOneMenu>
-								</f:facet>
-            <h:outputText value="#{ad.mainCategory}" />
-        </p:column>
 
-	 <p:column headerText="Kategória" filterBy="#{ad.subCategory}">
+	 <p:column headerText="Kategória" filterBy="#{ad.category}">
 								<f:facet name="filter">
 									<p:selectOneMenu onchange="PF('adsTable').filter()">
 										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />

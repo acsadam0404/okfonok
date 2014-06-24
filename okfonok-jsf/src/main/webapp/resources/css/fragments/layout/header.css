@@ -1,8 +1,9 @@
-.homeLink {
-	background-image: url("#{resource['img/fragments/logo.png']}");
+.header-inner {
+	padding-top: 5px;
 }
 
-.homeLinkDiv {
-	height: 32px;
-	width: 32px;
+.homeLink {
+	background-image: url("#{resource['img/logo.png']}");
+	height: 40px;
+	width: 128px;
 }

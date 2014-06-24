@@ -1,8 +1,6 @@
 html,body {
 	padding: 0;
 	margin: 0;
-	background-image: url("../img/background-pattern.png");
-	background-repeat: repeat;
 	background-color: wheat;
 	font-family: 'Jolly Lodger', cursive;
 }
