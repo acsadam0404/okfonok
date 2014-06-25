@@ -88,6 +88,7 @@
         category_id bigint,
         remuneration varchar(255),
         specifiedJobTime boolean not null,
+        user_id bigint,
         homework boolean,
         maxOffer integer,
         primary key (id)

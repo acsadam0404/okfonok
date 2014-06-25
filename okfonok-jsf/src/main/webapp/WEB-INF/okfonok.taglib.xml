@@ -5,7 +5,7 @@
 <facelet-taglib>
 	<namespace>http://okfonok.hu/facelets</namespace>
 	<tag>
-		<tag-name>hunmap</tag-name>
-		<source>../okfonok/tags/hunmap.xhtml</source>
+		<tag-name>viewad</tag-name>
+		<source>../fragments/index/viewad.xhtml</source>
 	</tag>
 </facelet-taglib>
