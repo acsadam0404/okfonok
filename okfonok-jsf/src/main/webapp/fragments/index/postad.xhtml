@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
@@ -10,7 +9,8 @@
 	<ui:composition>
 		<h:outputStylesheet library="css" name="postad.css" />
 
-		<h:form>
+		<h:form id="postadForm">
+		<p:messages id="msgs" />
 			<h:panelGrid columns="1">
 				<h1>Hirdetés feladás</h1>
 				<p:selectOneMenu id="category" value="#{postAdBean.category}" converter="omnifaces.SelectItemsConverter" filter="true">
@@ -37,12 +37,11 @@
 					<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
 					<p:watermark for="other" value="cím*" />
 				</h:panelGrid>
-   
-				
-				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg. A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek."  />
+
+
+				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg. A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
 
 				<p:selectBooleanButton id="homework" value="#{postAdBean.ad.homework}" onLabel="Otthonról is végezhető" offLabel="Nem végezhető otthonról" onIcon="ui-icon-check" offIcon="ui-icon-close" />
-
 				<h2>Díjazás</h2>
 
 				<p:selectOneRadio id="renumeration" value="#{postAdBean.ad.remuneration}">
@@ -52,7 +51,7 @@
 				<p:watermark for="maxOffer" value="maximum ajánlat (Ft)" />
 			</h:panelGrid>
 
-			<p:commandLink id="postad" action="#{postAdBean.post()}">
+			<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true" update="msgs">
 				<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
 			</p:commandLink>
 		</h:form>
