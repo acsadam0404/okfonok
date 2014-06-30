@@ -4,8 +4,4 @@
   "http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
 <facelet-taglib>
 	<namespace>http://okfonok.hu/facelets</namespace>
-	<tag>
-		<tag-name>viewad</tag-name>
-		<source>../fragments/index/viewad.xhtml</source>
-	</tag>
 </facelet-taglib>

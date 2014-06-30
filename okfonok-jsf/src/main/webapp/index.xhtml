@@ -10,6 +10,7 @@
 		<ui:define name="content">
 			<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 			<h:outputStylesheet library="css" name="index.css" />
+			<h:outputScript name="jquery/jquery-plugins.js" library="primefaces"/>
 
 			<div class="left">
 				<div class="map-div">
@@ -20,51 +21,7 @@
 				</div>
 				<div style="clear: both;" />
 				<div class="table">
-					<h:form id="data">
-						<p:dataTable id="dataTable" var="ad" value="#{advertisementsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{advertisementsBean.filteredAds}">
-							<f:facet name="header">
-								<div class="table-header">
-									<p:commandButton value="Feladatok" />
-									<p:commandButton value="Hirdetéseim" />
-									<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
-								</div>
-							</f:facet>   
-						 <p:column id="img" headerText="Kép">
-            kép
-        </p:column>
-						
-
-	 <p:column headerText="Kategória" filterBy="#{ad.category}">
-								<f:facet name="filter">
-									<p:selectOneMenu onchange="PF('adsTable').filter()">
-										<f:selectItems value="#{advertisementsBean.getMainCategoryOptions()}" />
-									</p:selectOneMenu>
-								</f:facet>
-            <h:outputText value="#{ad.subCategory}" />
-        </p:column>
-
-	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
-            <h:outputText value="#{ad.description}" />
-        </p:column>
-	 <p:column headerText="Díjazás">
-            <h:outputText value="#{ad.remuneration}" />
-        </p:column>
-
-	 <p:column headerText="Aktuális átlag díj">
-            <h:outputText value="..." />
-        </p:column>
-
-	 <p:column headerText="Távolság">
-            <h:outputText value="..." />
-        </p:column>
-
-
-	 <p:column headerText="">
-            <h:outputText value="műveletek" />
-        </p:column>
-
-						</p:dataTable>
-					</h:form>
+					<ui:include src="fragments/index/table.xhtml" />
 				</div>
 			</div>
 			<div class="right">

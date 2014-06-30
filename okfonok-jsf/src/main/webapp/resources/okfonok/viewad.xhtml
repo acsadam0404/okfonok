@@ -3,12 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
 	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:composite="http://java.sun.com/jsf/composite">
 
-<h:head>
-</h:head>
-
-<h:body>
 	<composite:interface>
-		<composite:attribute name="ad" required="true" />
+		<composite:attribute name="ad" required="true"  type="hu.okfonok.entities.Advertisement"/>
 	</composite:interface>
 
 	<composite:implementation>
@@ -22,10 +18,9 @@
 
 		</div>
 		<div class="right">
-			<h:outputText value="#{cc.attrs.ad}">
+			<h:outputText value="#{cc.attrs.ad}" />
 		</div>
 
 	</composite:implementation>
-</h:body>
 
 </html>
