@@ -13,8 +13,8 @@
 		<p:messages id="msgs" />
 			<h:panelGrid columns="1">
 				<h1>Hirdetés feladás</h1>
-				<p:selectOneMenu id="category" value="#{postAdBean.category}" converter="omnifaces.SelectItemsConverter" filter="true">
-					<f:selectItems value="#{postAdBean.getCategories()}" />
+				<p:selectOneMenu id="category" value="#{postAdBean.ad.category}" converter="omnifaces.SelectItemsConverter" filter="true">
+					<f:selectItems value="#{adsBean.getCategories()}" />
 				</p:selectOneMenu>
 
 				<p:editor value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" />
@@ -39,7 +39,9 @@
 				</h:panelGrid>
 
 
-				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg. A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
+				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg." />
+				<h:outputText value="  A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
+				
 
 				<p:selectBooleanButton id="homework" value="#{postAdBean.ad.homework}" onLabel="Otthonról is végezhető" offLabel="Nem végezhető otthonról" onIcon="ui-icon-check" offIcon="ui-icon-close" />
 				<h2>Díjazás</h2>

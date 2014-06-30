@@ -4,12 +4,13 @@ import hu.okfonok.dao.AdvertisementDao
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.services.AdvertisementService
 
-import javax.inject.Named
-
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Scope
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
-@org.springframework.stereotype.Component("advertisementService")
+@Service("advertisementService")
+@Scope("singleton")
 @Transactional
 class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements AdvertisementService{
 	@Autowired

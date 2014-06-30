@@ -17,6 +17,7 @@ import org.primefaces.event.FileUploadEvent
 import org.primefaces.model.StreamedContent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * 
@@ -24,10 +25,8 @@ import org.springframework.context.annotation.Scope
  *
  */
 @org.springframework.stereotype.Component("postAdBean")
-@Scope("view")
+@Scope("session")
 class PostAdBean implements Serializable{
-	JobCategory category
-	
 	Advertisement ad = new Advertisement()
 	
 	@Autowired 
@@ -36,26 +35,13 @@ class PostAdBean implements Serializable{
 	private JobCategoryService jcs
 	@Autowired 
 	private UserService userService
+	@Autowired
+	private UserBean userBean
 	
 	
 	
 	void post() {
+		ad.user = userBean.user
 		adService.save(ad);   
-	}
-	
-	List<SelectItem> getCategories() {
-		JobCategoryService service = ServiceLocator.getBean(JobCategoryService)
-		List<SelectItem> categories = []
-		service.findAllMain().each { JobCategory maincat ->
-			SelectItemGroup g = new SelectItemGroup(maincat.name);
-			List<SelectItem> items = []
-			maincat.subCategories?.each { JobCategory subcat ->
-				items << new SelectItem(subcat, subcat.name)
-			}
-			g.setSelectItems(items as SelectItem[])
-			categories.add(g)
-		}
-
-		return categories
 	}
 }

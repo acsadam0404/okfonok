@@ -8,27 +8,27 @@
 
 <h:body>
 	<ui:composition>
-		<h:form id="data">
-			<p:dataTable id="dataTable" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}">
-				<p:ajax event="rowSelect" listener="#{adsBean.viewAd()}" />
-				<f:facet name="header">
-					<div class="table-header">
-						<p:commandButton value="Feladatok" />
-						<p:commandButton value="Hirdetéseim" />
-						<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
-					</div>
-				</f:facet>   
+		<!-- 		<h:form id="data"> -->
+		<p:dataTable id="dataTable" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}">
+			<p:ajax event="rowSelect" listener="#{adsBean.viewAd()}" />
+			<f:facet name="header">
+				<div class="table-header">
+					<p:commandButton value="Feladatok" />
+					<p:commandButton value="Hirdetéseim" />
+					<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
+				</div>
+			</f:facet>   
 						 <p:column id="img" headerText="Kép">
              <h:outputText value="kép" />
         </p:column>
 						
 
 	 <p:column headerText="Kategória" filterBy="#{ad.category}">
-					<f:facet name="filter">
-						<p:selectOneMenu onchange="PF('adsTable').filter()">
-							<f:selectItems value="#{adsBean.getMainCategoryOptions()}" />
-						</p:selectOneMenu>
-					</f:facet>
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('adsTable').filter()">
+						<f:selectItems value="#{adsBean.getCategories()}" />
+					</p:selectOneMenu>
+				</f:facet>
             <h:outputText value="#{ad.category}" />
         </p:column>
 
@@ -40,11 +40,11 @@
         </p:column>
 
 	 <p:column headerText="Aktuális átlag díj">
-            <h:outputText value="..." />
+            <h:outputText value="" />
         </p:column>
 
 	 <p:column headerText="Távolság">
-            <h:outputText value="..." />
+            <h:outputText value="" />
         </p:column>
 
 
@@ -52,8 +52,8 @@
             <h:outputText value="műveletek" />
         </p:column>
 
-			</p:dataTable>
-		</h:form>
+		</p:dataTable>
+		<!-- 		</h:form> -->
 	</ui:composition>
 
 </h:body>

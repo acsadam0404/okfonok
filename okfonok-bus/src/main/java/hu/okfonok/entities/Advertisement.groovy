@@ -16,8 +16,10 @@ class Advertisement extends BaseEntity{
 	User user
 	
 	@Size(max = 2000)
+	@NotNull
 	String description
 	
+	@NotNull
 	String remuneration
 	
 	@ElementCollection(targetClass = String.class)

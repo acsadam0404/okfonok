@@ -1,11 +1,13 @@
 package hu.okfonok.beans;
 
 import hu.okfonok.entities.Advertisement
+import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
 import hu.okfonok.utils.ServiceLocator
 
 import javax.faces.model.SelectItem
+import javax.faces.model.SelectItemGroup
 
 import org.primefaces.context.RequestContext
 import org.springframework.beans.factory.annotation.Autowired
@@ -34,15 +36,6 @@ class AdvertisementsBean implements Serializable {
 		return ads
 	}
 
-	def getMainCategoryOptions() {
-		ServiceLocator.getBean(JobCategoryService.class).findAllMain()
-	}
-
-	SelectItem[] getSubCategoryOptions() {
-		SelectItem[] options = new SelectItem[0] //TODO
-		return options
-	}
-
 	public void viewAd() {
 		Map options = [
 			modal: true
@@ -53,8 +46,24 @@ class AdvertisementsBean implements Serializable {
 			,width: 650
 			,height: 500
 		]
+		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
+//		RequestContext.getCurrentInstance().openDialog("test");
+	}
+	
+	
+	List<SelectItem> getCategories() {
+		JobCategoryService service = ServiceLocator.getBean(JobCategoryService)
+		List<SelectItem> categories = []
+		service.findAllMain().each { JobCategory maincat ->
+			SelectItemGroup g = new SelectItemGroup(maincat.name);
+			List<SelectItem> items = []
+			maincat.subCategories?.each { JobCategory subcat ->
+				items << new SelectItem(subcat, subcat.name)
+			}
+			g.setSelectItems(items as SelectItem[])
+			categories.add(g)
+		}
 
-//		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
-		RequestContext.getCurrentInstance().openDialog("test");
+		return categories
 	}
 }
