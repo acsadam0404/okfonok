@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
 @org.springframework.stereotype.Component("adsBean")
-@Scope("view")
+@Scope("session")
 class AdvertisementsBean implements Serializable {
 	@Autowired
 	private AdvertisementService service
@@ -24,19 +24,22 @@ class AdvertisementsBean implements Serializable {
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds
 	Advertisement selected
+	Advertisement adToView
 
 	List<Advertisement> getAds() {
 		if (!ads) {
 			ads = service.findAll()
+					//FIXME testadat
+			ads << new Advertisement(description: 'teszt leírás', jobTime: new Date(), expiration :new Date())
+			ads << new Advertisement(description: 'teszt leírás 2', jobTime: new Date(), expiration :new Date())
+			//FIXME vége
 		}
 
-		//FIXME testadat
-		ads << new Advertisement(description: 'teszt leírás', jobTime: new Date(), expiration :new Date())
-		//FIXME vége
 		return ads
 	}
 
-	public void viewAd() {
+	void viewAd(Advertisement ad) {
+		adToView = ad
 		Map options = [
 			modal: true
 			,draggable: false
@@ -47,7 +50,6 @@ class AdvertisementsBean implements Serializable {
 			,height: 500
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
-//		RequestContext.getCurrentInstance().openDialog("test");
 	}
 	
 	

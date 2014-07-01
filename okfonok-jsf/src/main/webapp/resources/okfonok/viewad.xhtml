@@ -3,24 +3,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
 	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:composite="http://java.sun.com/jsf/composite">
 
-	<composite:interface>
-		<composite:attribute name="ad" required="true"  type="hu.okfonok.entities.Advertisement"/>
-	</composite:interface>
+<composite:interface>
+	<composite:attribute name="ad" required="true" type="hu.okfonok.entities.Advertisement" />
+</composite:interface>
 
-	<composite:implementation>
-		<div class="left">
+<composite:implementation>
+	<div class="left">
+		<h:messages />
+		<h:panelGrid columns="2">
+		
 			<h:outputText value="Hirdető" />
+			<h:outputText value="#{cc.attrs.ad.user.userName}" />
 			<h:outputText value="Főkategória" />
+			<h:outputText value="#{cc.attrs.ad.category.mainCategory}" />
 			<h:outputText value="Kategória" />
+			<h:outputText value="#{cc.attrs.ad.category}" />
 			<h:outputText value="Hirdetés szövege" />
+			<h:outputText value="#{cc.attrs.ad.description}" />
 			<h:outputText value="Díjazás" />
+			<h:outputText value="#{cc.attrs.ad.remuneration}" />
 			<h:outputText value="Maximum díj" />
+			<h:outputText value="#{cc.attrs.ad.maxOffer}" />
+		</h:panelGrid>
+	</div>
+	<div class="right">
+		<h:outputText value="#{cc.attrs.ad}" />
+	</div>
 
-		</div>
-		<div class="right">
-			<h:outputText value="#{cc.attrs.ad}" />
-		</div>
-
-	</composite:implementation>
+</composite:implementation>
 
 </html>

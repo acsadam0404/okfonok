@@ -33,7 +33,11 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 	
 	@Override
 	List<Advertisement> findAll() {
-		repo.findAll()
+		List<Advertisement> ads = repo.findAll()
+		if (!ads) {
+			ads  = []
+		}
+		return ads
 	}
 
 }
