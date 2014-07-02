@@ -4,15 +4,23 @@
 	</f:facet>
 	<div class="header">
 		<div class="header-inner">
-
 			<p:button value="" styleClass="homeLink" outcome="/index.xhtml" />
+
+			<h:panelGroup style="float: right;">
+				<p:graphicImage id="messages" library="img" name="help.png" style="cursor:pointer" title="Üzenetek" />
+				<p:overlayPanel for="messages">
+					<ui:include src="/fragments/header/messages.xhtml" />
+				</p:overlayPanel>
+
+				<h:outputText value="#{userBean.user.profile.realName}" />
+				<h:link value="Szerkesztés" outcome="/profile" />
+			|
+			<h:form>
+					<p:commandLink value="Kijelentkezés" action="#{userSessionBean.doLogout()}" ajax="false" />
+				</h:form>
+			</h:panelGroup>
 		</div>
 
 	</div>
 
-
-	<h:outputText value="#{userBean.user.profile.realName}" />
-	<h:link value="Szerkesztés" outcome="/profile" /> | <h:form>
-		<p:commandLink value="Kijelentkezés" action="#{userSessionBean.doLogout()}" ajax="false" />
-	</h:form>
 </ui:composition>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<f:facet name="last">
+			<h:outputStylesheet library="css" name="styles.css" />
+		</f:facet>
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+
+		<p:tabView>
+			<p:tab title="Bejövő üzenetek">
+				<h:outputText value="The story begins as Don Vito Corleone..." />
+			</p:tab>
+			<p:tab title="Kimenő üzenetek">
+				<h:outputText value="Francis Ford Coppola's legendary..." />
+			</p:tab>
+			<p:tab title="Törölt üzenetek">
+				<h:outputText value="After a break of more than 15 years..." />
+			</p:tab>
+		</p:tabView>
+	</ui:composition>
+</h:body>
+</html>
+

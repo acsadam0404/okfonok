@@ -36,18 +36,19 @@
 
 
 
-			<p:graphicImage id="postad" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" />
-			<p:overlayPanel for="postad">
-				<ui:include src="fragments/index/postad.xhtml" />
-			</p:overlayPanel>
-
+			<div class="left-floating">
+				<p:graphicImage id="postad" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" />
+				<p:overlayPanel for="postad">
+					<ui:include src="fragments/index/postad.xhtml" />
+				</p:overlayPanel>
+			</div>
 
 			<div class="help">
 				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" />
 			</div>
 			<p:overlayPanel for="helpLink">
 				<ui:include src="fragments/help.xhtml" />
-			</p:overlayPanel>  
+			</p:overlayPanel>
 		</ui:define>
 	</ui:composition>
 </h:body>

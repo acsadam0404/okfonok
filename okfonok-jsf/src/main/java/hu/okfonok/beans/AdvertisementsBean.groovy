@@ -44,12 +44,16 @@ class AdvertisementsBean implements Serializable {
 			modal: true
 			,draggable: false
 			,resizable: false
+			,contentWidth: 450
+			,width: 450
 			,contentHeight: 470
-			,contentWidth: 620
-			,width: 650
-			,height: 500
+			,height: 470
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
+	}
+	
+	void closeAd() {
+		RequestContext.getCurrentInstance().closeDialog("fragments/index/viewAdDialog");
 	}
 	
 	

@@ -1,0 +1,28 @@
+.viewad-content {
+	width: 450px;
+	height: 480px;
+}
+
+.map {
+	width: 190px;
+	height: 130px;
+}
+
+.left {
+	width: 210px;
+}
+
+.right {
+	width: 210px;
+}
+
+.left, .right {
+	float: left;
+}
+
+.ui-dialog-titlebar-close {
+	float: right;
+	position: relative;
+	top: -40px;
+	z-index: 10000;
+}
