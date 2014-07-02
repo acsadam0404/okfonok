@@ -10,7 +10,7 @@
 		<ui:define name="content">
 			<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 			<h:outputStylesheet library="css" name="index.css" />
-			<h:outputScript name="jquery/jquery-plugins.js" library="primefaces"/>
+			<h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
 
 			<div class="left">
 				<div class="map-div">
@@ -28,16 +28,18 @@
 				<div class="right-profile">
 					<ui:include src="fragments/index/skills.xhtml" />
 				</div>
-				<div class="right-data"></div>
+				<div class="right-data">
+					<ui:include src="fragments/index/datapage.xhtml" />
+				</div>
 			</div>
 			<div style="clear: both;" />
 
-			<h:form prependId="false">
-				<p:commandButton id="postad" value="postad" />
-				<p:overlayPanel for="postad">
-					<ui:include src="fragments/index/postad.xhtml" />
-				</p:overlayPanel>
-			</h:form>
+
+
+			<p:graphicImage id="postad" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" />
+			<p:overlayPanel for="postad">
+				<ui:include src="fragments/index/postad.xhtml" />
+			</p:overlayPanel>
 
 
 			<div class="help">
@@ -45,7 +47,7 @@
 			</div>
 			<p:overlayPanel for="helpLink">
 				<ui:include src="fragments/help.xhtml" />
-			</p:overlayPanel>
+			</p:overlayPanel>  
 		</ui:define>
 	</ui:composition>
 </h:body>

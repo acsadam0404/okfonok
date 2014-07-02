@@ -92,6 +92,15 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 
+	<!-- EZ LEHET HOGY LASSÍT: http://stackoverflow.com/questions/14101380/force-jsf-to-refresh-page-view-form-when-back-button-is-pressed -->
+	<filter>
+		<filter-name>noCache</filter-name>
+		<filter-class>org.omnifaces.filter.CacheControlFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>noCache</filter-name>
+		<servlet-name>facesServlet</servlet-name>
+	</filter-mapping>
 
 	<mime-mapping>
 		<extension>ttf</extension>

@@ -20,7 +20,7 @@
 				</p:selectOneMenu>
 				<p:outputLabel value="Tárgy" for="subject" />
 				<p:inputText id="subject" value="#{helpBean.subject}" />
-				<p:outputLabel value="Üzenet" for="message" />
+				<p:outputLabel value="Üzenet" for="message" /> 
 				<p:inputTextarea id="message" value="#{helpBean.message}" rows="5" cols="30" />
 				<p:outputLabel value="" />
 				<p:commandButton value="küldés" action="#{helpBean.sendMail()}" update="helpGrowl" />

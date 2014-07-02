@@ -16,7 +16,7 @@
 .right-data {
 	margin-top: 20px;
 	height: 270px;
-	background-color: blue;
+	border: 1px;
 }
 
 .map-div {

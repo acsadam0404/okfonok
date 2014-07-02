@@ -13,6 +13,7 @@
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.radar.js" />
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.common.core.js" />
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+		<img src="#{userBean.user.profile.profileImagePath}" /> 
 		<canvas id="cvs" width="250" height="250" style="border: 1px solid gray">[No canvas support]</canvas>
 		<script>
 			jQuery(document).ready(
@@ -24,7 +25,9 @@
 										'Henry', 'Kev' ]).draw();
 					})
 		</script>
-
+	
+		<h:outputText value="#{userBean.user.profile.realName}" /> 
+		<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
 	</ui:composition>
 </h:body>
 </html>

@@ -16,4 +16,9 @@ class Address implements Serializable {
 	
 	@Formula("0")
 	private int dummyFieldForHibernateNotNullEmbedded;
+	
+	@Override
+	String toString() {
+		"$zipcode $city, $other" 
+	}
 }
