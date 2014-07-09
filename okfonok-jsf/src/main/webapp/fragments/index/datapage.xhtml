@@ -12,36 +12,39 @@
 		</f:facet>
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
-		<h2>Alapadatok</h2>
-		<h:panelGrid columns="3">
-			<h:outputText value="KÉP" />
-			<h:outputText value="#{userBean.user.profile.email}" />
-			<h:outputText value="KÉP" />
+		<h:form>
+			<h2>Alapadatok</h2>
+			<h:panelGrid columns="3">
+				<h:outputText value="KÉP" />
+				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.profile.email}" />
+				<h:outputText value="KÉP" />
 
-			<h:outputText value="KÉP" />
-			<h:outputText value="#{userBean.user.profile.phoneNumber}" />
-			<h:outputText value="KÉP" />
+				<h:outputText value="KÉP" />
+				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.profile.phoneNumber}" />
+				<h:outputText value="KÉP" />
 
-			<h:outputText value="KÉP" />
-			<h:outputText value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
-		</h:panelGrid>
-		<h2>Hitelesítéshez szükséges adatok</h2>
+				<h:outputText value="KÉP" />
+				<p:inputText readonly="#{dataPageBean.readonly}" value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
+			</h:panelGrid>
+			<h2>Hitelesítéshez szükséges adatok</h2>
 		Ezeket az adatokat csak Te láthatod! A hitelesített profilról és adatkezelésünkről<h:link value="itt" outcome="conditions" />olvashatsz
 		<h:panelGrid columns="2">
-			<h:outputText value="KÉP" />
-			<h:outputText value="#{userBean.user.address}" />
-			<h:outputText value="KÉP" />
-			<h:panelGrid columns="1">
-				<h:outputText value="#{userBean.user.certification.idCardNumber}" /> - személyazonosító ig.
-				<h:outputText value="#{userBean.user.certification.addressCardNumber}" /> - lakcímkártya	
+				<h:outputText value="KÉP" />
+				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.address}" />
+				<h:outputText value="KÉP" />
+				<h:panelGrid columns="1">
+					<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.certification.idCardNumber}" /> - személyazonosító ig.
+				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.certification.addressCardNumber}" /> - lakcímkártya	
 			</h:panelGrid>
-		</h:panelGrid>
-		<p:commandButton value="Igazolványok képének feltöltése" />
-		<p:commandButton value="Adatok szerkesztése" />
+			</h:panelGrid>
+			<p:commandButton rendered="#{!dataPageBean.readonly}" value="Igazolványok képének feltöltése" />
+			<p:commandButton value="Adatok szerkesztése" action="#{dataPageBean.edit}" />
 
-		<p:selectBooleanButton  onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" /><!-- TODO -->
-		<h2>Magamról</h2>
-		<h:outputText value="#{userBean.user.profile.introduction}"></h:outputText>
+			<p:selectBooleanButton  onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" />
+			<!-- TODO -->
+			<h2>Magamról</h2>
+			<h:outputText value="#{userBean.user.profile.introduction}"></h:outputText>
+		</h:form>
 	</ui:composition>
 </h:body>
 </html>
