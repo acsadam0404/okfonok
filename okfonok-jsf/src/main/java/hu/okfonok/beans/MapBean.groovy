@@ -47,6 +47,19 @@ class MapBean {
 
 	String getCenter() {
 		/* TODO mivan ha null az address? */
-		geocoder.toLatLng(userBean.user.address).toLatLngString()
+		getCenter(userBean.user.address)
+	}
+	
+	String getCenter(Address address) {
+		geocoder.toLatLng(address).toLatLngString()
+	}
+	
+	MapModel getModel(Address address) {
+		MapModel model = new DefaultMapModel()
+
+		LatLng addrll = geocoder.toLatLng(address).toPFLatLng()
+		model.addOverlay(new Marker(addrll, address.toString()));
+		
+		return model
 	}
 }

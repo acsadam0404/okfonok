@@ -32,7 +32,7 @@
 				<p:galleria value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false">
 					<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
 				</p:galleria>
-				<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" />
+				<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
 				<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
 				<p:commandLink value="Üzenetküldés a hirdetéssel kapcsolatban" />
 			</div>

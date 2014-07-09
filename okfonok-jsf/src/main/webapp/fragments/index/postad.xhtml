@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
@@ -10,9 +11,7 @@
 		<h:outputStylesheet library="css" name="postad.css" />
 
 		<h:form id="postadForm">
-			<p:messages id="msgs" />
 			<h:panelGrid columns="1">
-				<h1>Hirdetés feladás</h1>
 				<p:selectOneMenu id="category" value="#{postAdBean.ad.category}" converter="omnifaces.SelectItemsConverter" filter="true">
 					<f:selectItems value="#{adsBean.getCategories()}" />
 				</p:selectOneMenu>
@@ -49,11 +48,11 @@
 				<p:selectOneRadio id="renumeration" value="#{postAdBean.ad.remuneration}">
 					<f:selectItems value="#{advertisementService.getRemunerations()}" />
 				</p:selectOneRadio>
-				<pe:inputNumber id="maxOffer" value="#{postAdBean.ad.maxOffer}" symbol=" Ft" symbolPosition="suffix" />
+				<pe:inputNumber id="maxOffer" value="#{postAdBean.ad.maxOffer}" symbol=" Ft" symbolPosition="suffix" decimalPlaces="0" />
 				<p:watermark for="maxOffer" value="maximum ajánlat (Ft)" />
 			</h:panelGrid>
 
-			<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true" update="msgs">
+			<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true">
 				<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
 			</p:commandLink>
 		</h:form>

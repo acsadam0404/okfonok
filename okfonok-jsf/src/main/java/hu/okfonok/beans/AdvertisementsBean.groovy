@@ -1,5 +1,6 @@
 package hu.okfonok.beans;
 
+import hu.okfonok.entities.Address
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.AdvertisementService
@@ -10,6 +11,10 @@ import javax.faces.model.SelectItem
 import javax.faces.model.SelectItemGroup
 
 import org.primefaces.context.RequestContext
+import org.primefaces.model.map.DefaultMapModel
+import org.primefaces.model.map.LatLng
+import org.primefaces.model.map.MapModel
+import org.primefaces.model.map.Marker
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
@@ -20,6 +25,9 @@ class AdvertisementsBean implements Serializable {
 	private AdvertisementService service
 	@Autowired
 	private JobCategoryService jcService
+	
+	@Autowired
+	private MapBean mapBean
 
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds
@@ -29,7 +37,7 @@ class AdvertisementsBean implements Serializable {
 	List<Advertisement> getAds() {
 		if (!ads) {
 			ads = service.findAll()
-					//FIXME testadat
+			//FIXME testadat
 			ads << new Advertisement(description: 'teszt leírás', jobTime: new Date(), expiration :new Date())
 			ads << new Advertisement(description: 'teszt leírás 2', jobTime: new Date(), expiration :new Date())
 			//FIXME vége
@@ -51,12 +59,12 @@ class AdvertisementsBean implements Serializable {
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
 	}
-	
+
 	void closeAd() {
 		RequestContext.getCurrentInstance().closeDialog("fragments/index/viewAdDialog");
 	}
-	
-	
+
+
 	List<SelectItem> getCategories() {
 		JobCategoryService service = ServiceLocator.getBean(JobCategoryService)
 		List<SelectItem> categories = []
