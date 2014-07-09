@@ -35,11 +35,3 @@ html,body {
 	padding-left:50px;
 	width: 400px;
 }
-
-.ui-dialog-content {
-	padding: 0 !important; 
-}
-
-.ui-widget-header {
-	display: none !important; 
-}
