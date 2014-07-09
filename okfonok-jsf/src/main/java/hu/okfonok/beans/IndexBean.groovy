@@ -16,7 +16,8 @@ import org.springframework.context.annotation.Scope
 @org.springframework.stereotype.Component("indexBean")
 @Scope("view")
 class IndexBean implements Serializable{
-
+	boolean registrationFormVisible
+	
 	@Autowired
 	private UserService userService
 
