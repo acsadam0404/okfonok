@@ -1,8 +1,3 @@
-body {
-	margin: 0;
-	background-color: wheat;
-}
-
 .index-header {
 	height: 120px;
 }
@@ -28,7 +23,6 @@ body {
 
 .index-content {
 	width: 1000px;
-	padding-bottom: 100px; /* Height of the footer */
 	margin: auto;
 }
 
