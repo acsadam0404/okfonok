@@ -6,30 +6,25 @@
 </h:head>
 
 <h:body>
-	<ui:composition>
-		<h:form id="contactForm">
-		
-			<p:growl id="helpGrowl" showDetail="false" />
+	<h:form id="contactForm">
+		<h:panelGrid columns="1">
+			<p:inputText id="subject" value="#{helpBean.subject}" />
+			<p:inputTextarea id="message" value="#{helpBean.message}" rows="10" cols="40" />
+		</h:panelGrid>
+		<p:watermark value="Üzenet* - Kérjük írd le kérdésed/észrevételed!" for="message" />
+		<p:watermark value="Tárgy* - Kérjük röviden írd le kérdésed!" for="subject" />
 
-			<h:panelGrid columns="1">
-				<p:inputText id="subject" value="#{helpBean.subject}" />
-				<p:inputTextarea id="message" value="#{helpBean.message}" rows="10" cols="40" />
-			</h:panelGrid>
-			<p:watermark value="Üzenet* - Kérjük írd le kérdésed/észrevételed!" for="message" />
-			<p:watermark value="Tárgy* - Kérjük röviden írd le kérdésed!" for="subject" />
+		<h:panelGrid columns="2">
+			<p:inputText id="name" value="#{helpBean.name}" />
+			<p:inputText id="email" value="#{helpBean.email}" />
+			<p:selectOneMenu id="category" value="#{helpBean.category}">
+				<f:selectItems value="#{valueSetService.findByName('help_category')}" />
+			</p:selectOneMenu>
+			<p:commandButton value="Elküldés" action="#{helpBean.sendMail()}"/>
+		</h:panelGrid>
+		<p:watermark value="E-mail címed" for="email" />
+		<p:watermark value="Neved*" for="name" />
 
-			<h:panelGrid columns="2">
-				<p:inputText id="name" value="#{helpBean.name}" />
-				<p:inputText id="email" value="#{helpBean.email}" />
-				<p:selectOneMenu id="category" value="#{helpBean.category}">
-					<f:selectItems value="#{valueSetService.findByName('help_category')}" />
-				</p:selectOneMenu>
-				<p:commandButton value="Elküldés" action="#{helpBean.sendMail()}" update="helpGrowl" />
-			</h:panelGrid>
-			<p:watermark value="E-mail címed" for="email" />
-			<p:watermark value="Neved*" for="name" />
-			
-		</h:form>
-	</ui:composition>
+	</h:form>
 </h:body>
 </html>
