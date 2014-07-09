@@ -13,20 +13,19 @@
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.radar.js" />
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.common.core.js" />
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
-		<img src="#{userBean.user.profile.profileImagePath}" /> 
-		<canvas id="cvs" width="250" height="250" style="border: 1px solid gray">[No canvas support]</canvas>
+		<img src="#{userBean.user.profile.profileImagePath}" />
+		<canvas id="skillsRadar" width="250" height="250" style="border: 1px solid gray">[No canvas support]</canvas>
 		<script>
 			jQuery(document).ready(
 					function() {
-						var radar = new RGraph.Radar('cvs', [ 4, 3, 8, 4, 6, 7,
-								5 ]).set(
-								'labels',
-								[ 'Jeff', 'Luis', 'Norman', 'Janice', 'Bill',
-										'Henry', 'Kev' ]).draw();
+						var radar = new RGraph.Radar('skillsRadar', [ #{skillsBean.ratings} ], [ #{skillsBean.ownRatings} ])
+						.set('labels', [ #{skillsBean.names} ])
+						.trace({frames: 60}, null)
+						.draw();
 					})
 		</script>
-	
-		<h:outputText value="#{userBean.user.profile.realName}" /> 
+
+		<h:outputText value="#{userBean.user.profile.realName}" />
 		<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
 	</ui:composition>
 </h:body>
