@@ -26,6 +26,6 @@ class GoogleGeocodingService implements GeocodingService{
 //		GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest)
 //		geocoderResponse.getResults()
 		
-		return new LatLng(47.5057173,19.054924) //TODO 
+		return new LatLng("47.5057173","19.054924") //TODO 
 	}
 }

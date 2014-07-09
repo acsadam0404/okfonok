@@ -1,5 +1,6 @@
 package hu.okfonok.beans;
 
+import hu.okfonok.entities.Address
 import hu.okfonok.services.GeocodingService
 import javax.annotation.PostConstruct
 
@@ -35,14 +36,17 @@ class MapBean {
 	MapModel getModel() {
 		if (!model) {
 			model = new DefaultMapModel()
+			/* TODO mivan ha null az address? */
 
-			LatLng home = geocoder.toLatLng(userBean.user.address).toPFLatLng()
-			model.addOverlay(new Marker(home, "Saját cím"));
+			Address home = userBean.user.address
+			LatLng homell = geocoder.toLatLng(home).toPFLatLng()
+			model.addOverlay(new Marker(homell, "Saját cím - " + home.toString()));
 		}
 		return model;
 	}
 
 	String getCenter() {
+		/* TODO mivan ha null az address? */
 		geocoder.toLatLng(userBean.user.address).toLatLngString()
 	}
 }
