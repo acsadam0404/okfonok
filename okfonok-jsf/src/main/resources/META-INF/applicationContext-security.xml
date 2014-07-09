@@ -9,7 +9,7 @@
 	<http auto-config="true" use-expressions="true" disable-url-rewriting="true">
 		<intercept-url pattern="/admin/**" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/static/**" access="permitAll" />
-		<intercept-url pattern="/index.xhtml" access="permitAll" /><!-- AUTHENTICATED -->
+		<intercept-url pattern="/index.xhtml" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/info.xhtml" access="permitAll" />
 		<intercept-url pattern="/resources/img/**" access="permitAll" />
 		<intercept-url pattern="/test/**" access="permitAll" />

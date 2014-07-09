@@ -26,20 +26,17 @@
 
 				<h2>Feladatvégzés helye</h2>
 
-				<h:panelGrid columns="6">
-					<p:inputText id="zipcode" value="#{postAdBean.ad.address.zipcode}" />
-					<p:watermark for="zipcode" value="ir.szám" />
-
+				<h:panelGrid columns="3">
+					<p:inputMask id="zipcode" styleClass="zipcode" value="#{postAdBean.ad.address.zipcode}" mask="9999" />
 					<p:inputText id="city" value="#{postAdBean.ad.address.city}" />
-					<p:watermark for="city" value="helyiség" />
-
 					<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
-					<p:watermark for="other" value="cím*" />
 				</h:panelGrid>
-
+				<p:watermark for="zipcode" value="ir.szám" />
+				<p:watermark for="city" value="helyiség" />
+				<p:watermark for="other" value="cím*" />
 
 				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg." />
-				<h:outputText value="  A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
+				<h:outputText value="&nbsp;&nbsp;A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
 
 
 				<p:selectBooleanButton id="homework" value="#{postAdBean.ad.homework}" onLabel="Otthonról is végezhető" offLabel="Nem végezhető otthonról" onIcon="ui-icon-check" offIcon="ui-icon-close" />
