@@ -7,3 +7,8 @@
 	height: 40px;
 	width: 128px;
 }
+
+.header-right {
+	float: right;
+}
+
