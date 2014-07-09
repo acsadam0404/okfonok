@@ -1,5 +1,6 @@
 package hu.okfonok.beans
 
+import hu.okfonok.entities.user.Skill
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.ServiceLocator
@@ -25,9 +26,21 @@ class UserBean implements Serializable {
 		if (user == null) {
 			def principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal()
 			if (principal && principal instanceof UserDetails) {
-				return ServiceLocator.getBean(UserService.class).findByUserName(principal.username)
+				user = ServiceLocator.getBean(UserService.class).findByUserName(principal.username)
 			}
 		}
+		
+		
+		testTempData()
 		return user
+	}
+	
+	void testTempData() {
+		if (user.skills.empty) {
+			user.skills.add(new Skill(name: 'asd', rating: 3, ownRating: 5))
+			user.skills.add(new Skill(name: 'bsd', rating: 5, ownRating: 5))
+			user.skills.add(new Skill(name: 'csd', rating: 2, ownRating: 3))
+			user.skills.add(new Skill(name: 'dsd', rating: 1, ownRating: 2))
+		}
 	}
 }
