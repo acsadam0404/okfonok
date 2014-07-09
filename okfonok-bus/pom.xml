@@ -144,6 +144,12 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.google.code.geocoder-java</groupId>
+			<artifactId>geocoder-java</artifactId>
+			<version>0.16</version>
+		</dependency>
 	</dependencies>
 
 
