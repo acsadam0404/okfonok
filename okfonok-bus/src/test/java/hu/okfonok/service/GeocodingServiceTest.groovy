@@ -13,3 +13,4 @@ class GeocodingServiceTest extends GroovyTestCase{
 		s.asd();
 	}
 }
+ 

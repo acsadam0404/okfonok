@@ -14,7 +14,7 @@
 
 			<div class="left">
 				<div class="map-div">
-					<p:gmap center="41.381542, 2.122893" zoom="15" type="ROADMAP" styleClass="map" />
+					<p:gmap center="#{mapBean.center}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.model}" mapTypeControl="false" navigationControl="false" />
 				</div>
 				<div class="schedule-div">
 					<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
