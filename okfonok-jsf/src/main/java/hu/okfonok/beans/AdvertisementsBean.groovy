@@ -1,6 +1,5 @@
 package hu.okfonok.beans;
 
-import hu.okfonok.entities.Address
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.AdvertisementService
@@ -11,14 +10,13 @@ import javax.faces.model.SelectItem
 import javax.faces.model.SelectItemGroup
 
 import org.primefaces.context.RequestContext
-import org.primefaces.model.map.DefaultMapModel
-import org.primefaces.model.map.LatLng
-import org.primefaces.model.map.MapModel
-import org.primefaces.model.map.Marker
+import org.primefaces.model.DefaultScheduleModel
+import org.primefaces.model.ScheduleModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
+import org.springframework.stereotype.Component
 
-@org.springframework.stereotype.Component("adsBean")
+@Component("adsBean")
 @Scope("session")
 class AdvertisementsBean implements Serializable {
 	@Autowired
@@ -28,6 +26,8 @@ class AdvertisementsBean implements Serializable {
 	
 	@Autowired
 	private MapBean mapBean
+	
+	ScheduleModel eventModel = new DefaultScheduleModel()
 
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds

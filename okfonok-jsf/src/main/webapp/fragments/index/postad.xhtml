@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -19,9 +19,16 @@
 				<p:editor value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" />
 				<h:outputText value="A feladat leírásába ne adj meg elérhetőségi adatokat!" />
 				<h:panelGrid columns="5">
-					<ui:repeat var="imgPath" value="#{postAdBean.ad.imagePaths}">
-						<p:graphicImage library="img" name="logo.png" />
-					</ui:repeat>
+					<c:if test="#{not empty postAdBean.ad.imagePaths[0]}">
+						<p:graphicImage library="img" name="help.png" />
+					</c:if>
+					<c:otherwise>
+						<p:fileUpload label=""  styleClass="postad-fileupload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+					</c:otherwise>
+					<p:graphicImage library="img" name="help.png" />
+					<p:graphicImage library="img" name="help.png" />
+					<p:graphicImage library="img" name="help.png" />
+					<p:graphicImage library="img" name="help.png" />
 				</h:panelGrid>
 
 				<h2>Feladatvégzés helye</h2>
@@ -47,6 +54,11 @@
 				</p:selectOneRadio>
 				<pe:inputNumber id="maxOffer" value="#{postAdBean.ad.maxOffer}" symbol=" Ft" symbolPosition="suffix" decimalPlaces="0" />
 				<p:watermark for="maxOffer" value="maximum ajánlat (Ft)" />
+				
+				<p:commandButton id="timechooser" value="Időpont választása"  onclick="PF('timechooserDialog').show();" />
+				<p:dialog widgetVar="timechooserDialog" header="Időpont választása" showEffect="clip" hideEffect="clip">
+					<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="adsSchedule" value="#{adsBean.eventModel}" widgetVar="adsScheduleWgt" />
+				</p:dialog>
 			</h:panelGrid>
 
 			<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true">

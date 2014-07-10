@@ -6,6 +6,7 @@ import javax.persistence.ElementCollection
 import javax.persistence.Embedded
 import javax.persistence.Entity
 import javax.persistence.ManyToOne
+import javax.persistence.OrderColumn
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
@@ -22,8 +23,8 @@ class Advertisement extends BaseEntity{
 	@NotNull
 	String remuneration
 	
-	@ElementCollection(targetClass = String.class)
-	List<String> imagePaths = new ArrayList<String>()
+	@OrderColumn
+	String[] imagePaths = new String[5] 
 	
 	@ManyToOne
 	@NotNull

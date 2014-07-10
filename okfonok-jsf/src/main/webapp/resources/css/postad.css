@@ -14,3 +14,16 @@
 .zipcode {
 	width: 50px;
 }
+
+.postad-fileupload .ui-fileupload-buttonbar {
+    background: transparent none;
+    border: none;
+}
+
+.postad-fileupload .ui-fileupload-content {
+    display: none;
+}
+
+.postad-fileupload .ui-fileupload-buttonbar .ui-fileupload-choose {
+    background-color: rgba(142, 103, 64, 0.98);
+}

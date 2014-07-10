@@ -113,6 +113,7 @@
         other varchar(255),
         zipcode integer,
         description varchar(2000),
+        imagepaths varchar(4000),
         expiration timestamp,
         jobTime timestamp,
         category_id bigint,
@@ -122,9 +123,4 @@
         homework boolean,
         maxOffer integer,
         primary key (id)
-    );
-
-    create table Advertisement_imagePaths (
-        Advertisement_id bigint not null,
-        imagePaths varchar(255)
     );
