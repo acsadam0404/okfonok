@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="OkFonok" metadata-complete="true" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="OkFonok" metadata-complete="true"
+	version="3.0">
 	<display-name>okfonok</display-name>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -101,6 +102,16 @@
 		<filter-name>noCache</filter-name>
 		<servlet-name>facesServlet</servlet-name>
 	</filter-mapping>
+	<!-- http://stackoverflow.com/questions/8769733/jsf-jboss-eclipse-xhtml-arent-refresh -->
+	<context-param>
+		<param-name>javax.faces.FACELETS_REFRESH_PERIOD</param-name>
+		<param-value>0</param-value>
+	</context-param>
+	<!-- http://hirenscafe.blogspot.hu/2010/03/facelet-performance-webapp-performance.html -->
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>false</param-value>
+	</context-param>
 
 	<mime-mapping>
 		<extension>ttf</extension>
