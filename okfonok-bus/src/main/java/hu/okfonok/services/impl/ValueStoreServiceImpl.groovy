@@ -4,9 +4,8 @@ import hu.okfonok.dao.ValueStoreDao
 import hu.okfonok.entities.ValueStore
 import hu.okfonok.services.ValueStoreService
 
-import javax.inject.Named
-
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@org.springframework.stereotype.Component("valueStoreService")
+@Service("valueStoreService")
 @Transactional
 class ValueStoreServiceImpl extends BaseServiceImpl<ValueStore> implements ValueStoreService  {
 	@Autowired

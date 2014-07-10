@@ -4,9 +4,8 @@ import hu.okfonok.dao.JobCategoryDao
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.JobCategoryService
 
-import javax.inject.Named
-
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -14,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@org.springframework.stereotype.Component("jobCategoryService")
+@Service("jobCategoryService")
 @Transactional
 class JobCategoryServiceImpl extends BaseServiceImpl<JobCategory> implements JobCategoryService{
 	@Autowired

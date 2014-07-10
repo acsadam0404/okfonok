@@ -7,6 +7,7 @@ import hu.okfonok.services.ValueSetService
 
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@org.springframework.stereotype.Component("valueSetService")
+@Service("valueSetService")
 @Transactional
 class ValueSetServiceImpl extends BaseServiceImpl<ValueSet> implements ValueSetService {
 	private static final Logger logger = Logger.getLogger(ValueSetServiceImpl.class);

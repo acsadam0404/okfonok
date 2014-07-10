@@ -3,11 +3,9 @@ package hu.okfonok.services.impl
 import hu.okfonok.dao.SettlementDao
 import hu.okfonok.entities.Settlement
 import hu.okfonok.services.SettlementService
-import hu.okfonok.utils.ServiceLocator
-
-import javax.inject.Named
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 /**
@@ -15,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@org.springframework.stereotype.Component("settlementService")
+@Service("settlementService")
 @Transactional
 class SettlementServiceImpl extends BaseServiceImpl<Settlement> implements SettlementService {
 	@Autowired 

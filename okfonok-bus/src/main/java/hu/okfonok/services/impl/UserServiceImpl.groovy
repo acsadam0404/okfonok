@@ -3,11 +3,9 @@ package hu.okfonok.services.impl;
 import hu.okfonok.dao.UserDao
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
-import hu.okfonok.utils.ServiceLocator
-
-import javax.inject.Named
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -16,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional
  * @author Ács Ádám
  *
  */
-@org.springframework.stereotype.Component("userService")
+@Service("userService")
 @Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	@Autowired
