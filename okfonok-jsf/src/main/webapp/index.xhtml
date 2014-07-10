@@ -42,6 +42,13 @@
 			<p:dialog widgetVar="postadDialog" modal="true" closeOnEscape="true" resizable="false" header="Hirdetés feladása" draggable="false">
 				<ui:include src="fragments/index/postad.xhtml" />
 			</p:dialog>
+			
+			<div class="left-floating">
+				<p:graphicImage id="points" library="img" name="help.png" style="cursor:pointer" title="Pontok" onclick="PF('pointsDialog').show();" />
+			</div>
+			<p:dialog widgetVar="pointsDialog" modal="true" closeOnEscape="true" resizable="false" header="Pontok" draggable="false">
+				<ui:include src="fragments/index/points.xhtml" />
+			</p:dialog>
 
 			<div class="help">
 				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" onclick="PF('helpDialog').show();" />

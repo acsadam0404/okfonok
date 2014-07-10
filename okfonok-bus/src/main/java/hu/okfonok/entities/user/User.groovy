@@ -56,4 +56,8 @@ class User extends BaseEntity implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "User_Skills", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "skill_id", referencedColumnName="id") ])
 	Set<Skill> skills = new HashSet<Skill>()
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "User_Points", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "point_id", referencedColumnName="id") ])
+	Set<Point> points = new HashSet<Point>()
 }

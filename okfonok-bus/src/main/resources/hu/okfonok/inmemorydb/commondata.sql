@@ -29,3 +29,14 @@ insert into JobCategory (id, main, name, main_id) values (2, 1, 'főkat2', null)
 insert into JobCategory (id, main, name, main_id) values (3, 0, 'alkat1', 1);
 insert into JobCategory (id, main, name, main_id) values (4, 0, 'alkat2', 1);
 insert into JobCategory (id, main, name, main_id) values (5, 0, 'alkat3', 2);
+
+
+insert into Point (id, sum, datum) values (1, 15, {ts '2014-07-05'});
+insert into Point (id, sum, datum) values (2, 30, {ts '2014-07-06'});
+insert into Point (id, sum, datum) values (3, 10, {ts '2014-07-07'});
+insert into Point (id, sum, datum) values (4, 20, {ts '2014-07-08'});
+
+insert into User_Points (user_id, point_id) values (1, 1);
+insert into User_Points (user_id, point_id) values (1, 2);
+insert into User_Points (user_id, point_id) values (1, 3);
+insert into User_Points (user_id, point_id) values (1, 4);
