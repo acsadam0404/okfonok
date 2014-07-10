@@ -81,5 +81,12 @@
 	background-color: red;
 	position: fixed;
 	left: 0px;
+}
+
+.postad {
 	top: 45%;
+}
+
+ .points {
+	top: 55%;
 }
