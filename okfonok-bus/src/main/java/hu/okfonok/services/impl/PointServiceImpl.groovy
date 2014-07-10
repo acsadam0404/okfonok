@@ -1,16 +1,14 @@
 package hu.okfonok.services.impl;
 
-import java.util.List;
-
 import hu.okfonok.dao.PointDao
-import hu.okfonok.entities.user.Point;
+import hu.okfonok.entities.user.Point
 import hu.okfonok.services.PointService
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.annotation.Transactional
 
-@Service
+@Service("pointService")
 @Transactional
 class PointServiceImpl implements PointService {
 	
@@ -24,7 +22,8 @@ class PointServiceImpl implements PointService {
 
 	@Override
 	Point findLast() {
-		dao.findLast()
+//	dao.findLast() //TODO
+		return new Point(sum: 15)
 	}
 
 	void add(int sum) {
