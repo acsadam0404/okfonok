@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+	<div class="left-floating postad" style="cursor: pointer" onclick="PF('postadDialog').show();">
+		<span style="cursor: pointer">Hirdetés feladás</span>
+	</div>
+	<p:dialog widgetVar="postadDialog" modal="true" closeOnEscape="true" resizable="false" header="Hirdetés feladása" draggable="false">
+		<ui:include src="/fragments/index/postad.xhtml" />
+	</p:dialog>
+
+	<div class="left-floating points" style="cursor: pointer" onclick="PF('pointsDialog').show();">
+		<span style="cursor: pointer">#{pointService.findLast().sum} pont</span>
+	</div>
+	<p:dialog widgetVar="pointsDialog" modal="true" closeOnEscape="true" resizable="false" header="Pontok" draggable="false">
+		<ui:include src="/fragments/index/points.xhtml" />
+	</p:dialog>
+
+	<div class="help">
+		<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" onclick="PF('helpDialog').show();" />
+	</div>
+	<p:dialog widgetVar="helpDialog" modal="true" closeOnEscape="true" resizable="false" header="Segítséget kérek" draggable="false">
+		<ui:include src="/fragments/help.xhtml" />
+	</p:dialog>
+</ui:composition>

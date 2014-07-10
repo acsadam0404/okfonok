@@ -12,50 +12,17 @@
 			<h:outputStylesheet library="css" name="index.css" />
 			<h:outputScript name="jquery/jquery-plugins.js" library="primefaces" />
 
-			<div class="left">
-				<div class="map-div">
-					<p:gmap center="#{mapBean.center}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.model}" mapTypeControl="false" navigationControl="false" />
-				</div>
-				<div class="schedule-div">
-					<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
-				</div>
-				<div style="clear: both;" />
-				<div class="table">
-					<ui:include src="fragments/index/table.xhtml" />
-				</div>
+			<div class="map-div">
+				<p:gmap center="#{mapBean.center}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.model}" mapTypeControl="false" navigationControl="false" />
 			</div>
-			<div class="right">
-				<div class="right-profile">
-					<ui:include src="fragments/index/skills.xhtml" />
-				</div>
-				<div class="right-data">
-					<ui:include src="fragments/index/datapage.xhtml" />
-				</div>
+			<div class="schedule-div">
+				<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
 			</div>
 			<div style="clear: both;" />
-
-
-
-			<div class="left-floating postad">
-				<p:graphicImage id="postad" library="img" name="help.png" style="cursor:pointer" title="Hirdetés feladása" onclick="PF('postadDialog').show();" />
+			<div class="table">
+				<ui:include src="fragments/index/table.xhtml" />
 			</div>
-			<p:dialog widgetVar="postadDialog" modal="true" closeOnEscape="true" resizable="false" header="Hirdetés feladása" draggable="false">
-				<ui:include src="fragments/index/postad.xhtml" />
-			</p:dialog>
-			
-			<div class="left-floating points">
-				<p:graphicImage id="points" library="img" name="help.png" style="cursor:pointer" title="Pontok" onclick="PF('pointsDialog').show();" />
-			</div>
-			<p:dialog widgetVar="pointsDialog" modal="true" closeOnEscape="true" resizable="false" header="Pontok" draggable="false">
-				<ui:include src="fragments/index/points.xhtml" />
-			</p:dialog>
 
-			<div class="help">
-				<p:graphicImage id="helpLink" library="img" name="help.png" style="cursor:pointer" title="Segítséget kérek" onclick="PF('helpDialog').show();" />
-			</div>
-			<p:dialog widgetVar="helpDialog" modal="true" closeOnEscape="true" resizable="false" header="Segítséget kérek" draggable="false">
-				<ui:include src="fragments/help.xhtml" />
-			</p:dialog>
 		</ui:define>
 	</ui:composition>
 </h:body>

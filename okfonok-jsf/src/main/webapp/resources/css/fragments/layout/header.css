@@ -2,8 +2,14 @@
 	padding-top: 5px;
 }
 
-.homeLink {
+.home-link {
 	background-image: url("#{resource['img/logo.png']}");
+	height: 40px;
+	width: 128px;
+}
+
+.messages-link {
+	background-image: url("#{resource['img/help.png']}");
 	height: 40px;
 	width: 128px;
 }

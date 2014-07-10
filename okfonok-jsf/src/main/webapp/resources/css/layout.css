@@ -1,0 +1,69 @@
+.page {
+	position: relative;
+}
+
+.header {
+	background: #4de336;
+}
+
+.content {
+	width: 1000px;
+	margin: auto;
+	margin-top: 20px;
+}
+
+
+.header-inner{
+	width: 1000px;
+	margin: auto auto;
+	height: 50px;
+}
+
+
+.left {
+	width: 740px; /* +10px margin-right */
+	float: left;
+	margin-right: 10px;
+}
+
+.right {
+	width: 250px;
+	float: left;
+}
+
+.right-profile {
+	height: 250px;
+}
+
+.right-data {
+	margin-top: 20px;
+/* 	height: 270px; */
+	border: 1px;
+}
+
+
+
+.help {
+	width: 30px;
+	height: 50px;
+	background-color: red;
+	position: fixed;
+	right: 0px;
+	top: 45%;
+}
+
+.left-floating {
+	width: 30px;
+	height: 50px;
+	background-color: red;
+	position: fixed;
+	left: 0px;
+}
+
+.postad {
+	top: 45%;
+}
+
+ .points {
+	top: 55%;
+}

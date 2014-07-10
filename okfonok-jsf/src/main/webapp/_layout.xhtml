@@ -8,24 +8,32 @@
 <h:body>
 	<f:facet name="last">
 		<h:outputStylesheet library="css" name="styles.css" />
+		<h:outputStylesheet library="css" name="layout.css" />
 
 		<!-- google fonts -->
 		<h:outputLink href='http://fonts.googleapis.com/css?family=Jolly+Lodger' rel='stylesheet' type='text/css' />
 	</f:facet>
 
 	<div class="page">
-
-		<ui:insert name="header">
-			<ui:include src="fragments/layout/header.xhtml" />
-		</ui:insert>
+		<ui:include src="fragments/layout/header.xhtml" />
 
 		<div class="content">
-			<ui:insert name="content" />
+			<div class="left">
+				<ui:insert name="content" />
+			</div>
+
+			<div class="right">
+				<ui:include src="fragments/layout/contentright.xhtml" />
+			</div>
+
+			<div style="clear: both;" />
 		</div>
 
-		<ui:insert name="footer">
-			<ui:include src="fragments/layout/footer.xhtml" />
-		</ui:insert>
+		<div class="floating">
+			<ui:include src="fragments/layout/floating.xhtml" />
+		</div>
+
+		<ui:include src="fragments/layout/footer.xhtml" />
 	</div>
 </h:body>
 </html>

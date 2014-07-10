@@ -5,27 +5,6 @@ html,body {
 	font-family: 'Jolly Lodger', cursive;
 }
 
-.page {
-	position: relative;
-}
-
-.header {
-	background: #4de336;
-}
-
-.content {
-	width: 1000px;
-	margin: auto;
-	margin-top: 20px;
-}
-
-
-.header-inner{
-	width: 1000px;
-	margin: auto auto;
-	height: 50px;
-}
-
 .ui-panelgrid {
 	border: none;
 }
