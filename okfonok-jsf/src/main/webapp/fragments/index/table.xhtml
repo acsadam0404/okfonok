@@ -1,25 +1,38 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
 
 <h:head>
 </h:head>
 
 <h:body>
 	<ui:composition>
+		<f:facet name="last">
+			<h:outputStylesheet library="css" name="/fragments/index/table.css" />
+		</f:facet>
 		<h:form id="data">
-			<p:dataTable id="dataTable" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}">
+			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}">
 				<f:facet name="header">
 					<div class="table-header">
 						<p:commandButton value="Feladatok" />
 						<p:commandButton value="Hirdetéseim" />
-						<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter()" placeholder="Keresés" style="float: right;" />
+						<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter();" placeholder="Keresés" style="float: right;" />
 					</div>
 				</f:facet>   
 						 	<p:column>
 					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" />
 				</p:column>
 						
+
+	 <p:column headerText="Főkategória" filterBy="#{ad.category.mainCategory}">
+					<f:facet name="filter">
+						<p:selectOneMenu onchange="PF('adsTable').filter()">
+							<f:selectItems value="#{jobCategoryService.findAllMain()}" />
+						</p:selectOneMenu>
+					</f:facet>
+            <h:outputText value="#{ad.category}" />
+        </p:column>
 
 	 <p:column headerText="Kategória" filterBy="#{ad.category}">
 					<f:facet name="filter">
@@ -30,6 +43,7 @@
             <h:outputText value="#{ad.category}" />
         </p:column>
 
+
 	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
             <h:outputText value="#{ad.description}" />
         </p:column>
@@ -38,11 +52,12 @@
         </p:column>
 
 	 <p:column headerText="Aktuális átlag díj">
-            <h:outputText value="" />
+            <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
         </p:column>
 
 	 <p:column headerText="Távolság">
-            <h:outputText value="" />
+            <h:outputText value="#{advertisementService.getDistance(ad.address)}" />
+
         </p:column>
 
 
@@ -52,6 +67,8 @@
 
 			</p:dataTable>
 		</h:form>
+
+
 	</ui:composition>
 
 </h:body>

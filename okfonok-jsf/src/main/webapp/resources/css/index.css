@@ -25,20 +25,6 @@
 	margin: 5px;	
 }
 
-.table {
-	margin-top: 20px;
-	width: 740px;
-	font-size: 1em;
-}
-
-.table tr {
-	height: 70px;
-}
-
-.table-header {
-	text-align: initial;
-}
-
 .tablecol-description {
 	font-size: 0.7em;
 }
