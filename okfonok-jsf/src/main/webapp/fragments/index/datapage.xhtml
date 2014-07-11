@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
 </h:head>
@@ -13,37 +13,62 @@
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
 		<h:form>
-			<h2>Alapadatok</h2>
-			<h:panelGrid columns="3">
-				<h:outputText value="KÉP" />
-				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.profile.email}" />
-				<h:outputText value="KÉP" />
+			<h:panelGroup id="baseDataPanel">
+				<h2>Alapadatok</h2>
+				<h:panelGrid columns="3">
+					<h:outputText value="KÉP" />
+					<h:panelGroup>
+						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
+						<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
+					</h:panelGroup>
+					<h:outputText value="KÉP" />
 
-				<h:outputText value="KÉP" />
-				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.profile.phoneNumber}" />
-				<h:outputText value="KÉP" />
+					<h:outputText value="KÉP" />
+					<h:panelGroup>
+						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
+						<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
+					</h:panelGroup>
+					<h:outputText value="KÉP" />
 
-				<h:outputText value="KÉP" />
-				<p:inputText readonly="#{dataPageBean.readonly}" value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
-			</h:panelGrid>
-			<h2>Hitelesítéshez szükséges adatok</h2>
-		Ezeket az adatokat csak Te láthatod! A hitelesített profilról és adatkezelésünkről<h:link value="itt" outcome="conditions" />olvashatsz
-		<h:panelGrid columns="2">
-				<h:outputText value="KÉP" />
-				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.address}" />
-				<h:outputText value="KÉP" />
-				<h:panelGrid columns="1">
-					<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.certification.idCardNumber}" /> - személyazonosító ig.
-				<p:inputText readonly="#{dataPageBean.readonly}" value="#{userBean.user.certification.addressCardNumber}" /> - lakcímkártya	
-			</h:panelGrid>
-			</h:panelGrid>
-			<p:commandButton rendered="#{!dataPageBean.readonly}" value="Igazolványok képének feltöltése" />
-			<p:commandButton value="Adatok szerkesztése" action="#{dataPageBean.edit}" />
+					<h:outputText value="KÉP" />
+					<h:outputText value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
+				</h:panelGrid>
+				<h2>Hitelesítéshez szükséges adatok</h2>
+				<p>
+					Ezeket az adatokat csak Te láthatod! A hitelesített profilról és adatkezelésünkről
+					<h:link value="itt" outcome="conditions" />
+					olvashatsz
+				</p>
+				<h:panelGrid columns="2">
+					<h:outputText value="KÉP" />
+					<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
+					<okfonokcc:addressEditor rendered="#{dataPageBean.dataEditing}" address="#{userBean.user.address}" />
+					<h:outputText value="KÉP" />
+					<h:panelGrid columns="1">
+						<h:panelGroup>
+							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
+							<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
+						</h:panelGroup>
+					- személyazonosító ig.
+						<h:panelGroup>
+							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
+							<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
+						</h:panelGroup>
+						- lakcímkártya
+					</h:panelGrid>
+				</h:panelGrid>
+				<p:commandButton rendered="#{dataPageBean.dataEditing}" value="Igazolványok képének feltöltése" />
+				<p:commandButton value="#{dataPageBean.dataBtnText}" action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this" />
 
-			<p:selectBooleanButton  onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" />
-			<!-- TODO -->
+			</h:panelGroup>
+			<p:remoteCommand  name="working" action="#{dataPageBean.workingAction}" />
+			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" />
 			<h2>Magamról</h2>
-			<h:outputText value="#{userBean.user.profile.introduction}"></h:outputText>
+			<h:panelGroup id="aboutPanel">
+				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" />
+				<p:editor rendered="#{dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" controls="bold italic underline strikethrough" />
+			</h:panelGroup>
+			<p:commandButton value="#{dataPageBean.aboutBtnText}" action="#{dataPageBean.aboutBtnAction}" update="aboutPanel @this" />
 		</h:form>
 	</ui:composition>
 </h:body>

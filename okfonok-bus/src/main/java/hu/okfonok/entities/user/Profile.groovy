@@ -46,6 +46,8 @@ class Profile implements Serializable {
 	Boolean companyEmployer
 
 	String facebookValidatedId
+	
+	Boolean working
 
 	@Formula("0")
 	private int dummyFieldForHibernateNotNullEmbedded;

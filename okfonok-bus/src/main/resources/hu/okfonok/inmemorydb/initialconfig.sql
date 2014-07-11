@@ -45,6 +45,7 @@
         rating integer,
         employee bit ,
         employer bit ,
+        working bit ,
         facebookValidatedId varchar(255),
         firstName varchar(255),
         introduction varchar(255),

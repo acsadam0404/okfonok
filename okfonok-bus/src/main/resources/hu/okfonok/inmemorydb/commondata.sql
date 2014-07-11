@@ -2,7 +2,7 @@
 insert into Role (id, name) values (1, 'USER_ROLE');
 insert into Role (id, name) values (2, 'DEV_ROLE');
 insert into Role (id, name) values (3, 'ADMIN_ROLE');
-insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber, certified) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121', 1);
+insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121');
 insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber) values (2, 1, '82b9a701f55b9a48c6083f247beea5c1', 'test', 'User', 'Test', 'acsadam0404@gmail.com', '062012121');
 insert into User_Roles (user_id, role_id) values (1, 1);
 insert into User_Roles (user_id, role_id) values (1, 2);

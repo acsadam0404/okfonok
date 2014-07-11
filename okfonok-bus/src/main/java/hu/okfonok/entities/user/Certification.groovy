@@ -20,7 +20,7 @@ class Certification implements Serializable {
 
 	byte[] addressCardPicture
 	
-	boolean certified
+	Boolean certified
 	
 	@Formula("0")
 	private int dummyFieldForHibernateNotNullEmbedded;
