@@ -192,7 +192,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			socialLogout();
 		}
 		SecurityContextHolder.clearContext();
-		return "info.xhtml";
+		return "info.xhtml?faces-redirect=true";
 
 	}
 	public PhaseId getPhaseId() {
