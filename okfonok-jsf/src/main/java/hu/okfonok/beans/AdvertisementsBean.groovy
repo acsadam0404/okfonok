@@ -38,8 +38,17 @@ class AdvertisementsBean implements Serializable {
 		if (!ads) {
 			ads = service.findAll()
 			//FIXME testadat
-			ads << new Advertisement(description: 'teszt leírás', jobTime: new Date(), expiration :new Date())
-			ads << new Advertisement(description: 'teszt leírás 2', jobTime: new Date(), expiration :new Date())
+			ads << new Advertisement(
+				description: 'teszt leírás', 
+				jobTime: new Date(), 
+				expiration :new Date(), 
+				category: new JobCategory(name: 'Tanítás', mainCategory: new JobCategory(name: 'Szellemi')),
+				homework: false, 
+				maxOffer: 5000,
+				specifiedJobTime: true,
+				remuneration: 'Órabér', 
+				user: ServiceLocator.getBean(UserBean).user   
+				)
 			//FIXME vége
 		}
 
@@ -52,10 +61,10 @@ class AdvertisementsBean implements Serializable {
 			modal: true
 			,draggable: false
 			,resizable: false
-			,contentWidth: 450
-			,width: 450
-			,contentHeight: 470
-			,height: 470
+			,contentWidth: 480
+			,width: 510
+			,contentHeight: 530
+			,height: 560
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
 	}

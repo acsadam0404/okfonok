@@ -1,6 +1,7 @@
 package hu.okfonok.services.impl
 
 import hu.okfonok.dao.AdvertisementDao
+import hu.okfonok.entities.Address;
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.services.AdvertisementService
 
@@ -38,6 +39,17 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 			ads  = []
 		}
 		return ads
+	}
+
+	@Override
+	String getDistance(Address adress) {
+		/* TODO google distance matrix service https://developers.google.com/maps/documentation/javascript/examples/distance-matrix */
+		"1km"
+	}
+
+	@Override
+	String getAvgPrice(Advertisement ad) {
+		"1000 Ft"
 	}
 
 }
