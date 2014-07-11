@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition template="_layout.xhtml">
+		<ui:define name="content">
+			<h:outputStylesheet library="css" name="postad.css" />
+
+			<p:messages autoUpdate="true"></p:messages>
+			<h:form id="postadForm">
+				<h:panelGrid columns="1">
+					<p:selectOneMenu id="category" value="#{postAdBean.ad.category}" converter="omnifaces.SelectItemsConverter" filter="true">
+						<f:selectItems value="#{adsBean.getCategories()}" />
+					</p:selectOneMenu>
+
+					<p:editor value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" />
+					<h:outputText value="A feladat leírásába ne adj meg elérhetőségi adatokat!" />
+					<h:panelGrid columns="5">
+						<c:if test="#{not empty postAdBean.ad.imagePaths[0]}">
+							<p:graphicImage library="img" name="help.png" />
+						</c:if>
+						<c:otherwise>
+							<p:fileUpload label="" styleClass="postad-fileupload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+						</c:otherwise>
+						<p:graphicImage library="img" name="help.png" />
+						<p:graphicImage library="img" name="help.png" />
+						<p:graphicImage library="img" name="help.png" />
+						<p:graphicImage library="img" name="help.png" />
+					</h:panelGrid>
+
+					<h2>Feladatvégzés helye</h2>
+
+					<h:panelGrid columns="3">
+						<p:inputMask id="zipcode" styleClass="zipcode" value="#{postAdBean.ad.address.zipcode}" mask="9999" />
+						<p:inputText id="city" value="#{postAdBean.ad.address.city}" />
+						<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
+					</h:panelGrid>
+					<p:watermark for="zipcode" value="ir.szám" />
+					<p:watermark for="city" value="helyiség" />
+					<p:watermark for="other" value="cím*" />
+
+					<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg." />
+					<h:outputText value="&nbsp;&nbsp;A pontos címet csak létrejött kapcsolat esetén küljük el a feladatot elvégzőnek." />
+
+
+					<p:selectBooleanButton id="homework" value="#{postAdBean.ad.homework}" onLabel="Otthonról is végezhető" offLabel="Nem végezhető otthonról" onIcon="ui-icon-check" offIcon="ui-icon-close" />
+					<h2>Díjazás</h2>
+
+					<p:selectOneRadio id="renumeration" value="#{postAdBean.ad.remuneration}">
+						<f:selectItems value="#{advertisementService.getRemunerations()}" />
+					</p:selectOneRadio>
+					<pe:inputNumber id="maxOffer" value="#{postAdBean.ad.maxOffer}" symbol=" Ft" symbolPosition="suffix" decimalPlaces="0" />
+					<p:watermark for="maxOffer" value="maximum ajánlat (Ft)" />
+
+					<p:commandButton id="timechooser" value="Időpont választása" onclick="PF('timechooserDialog').show();" />
+					<p:dialog widgetVar="timechooserDialog" header="Időpont választása" showEffect="clip" hideEffect="clip">
+						<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="adsSchedule" value="#{adsBean.eventModel}" widgetVar="adsScheduleWgt" />
+					</p:dialog>
+				</h:panelGrid>
+
+				<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true">
+					<p:graphicImage library="img" name="postad.png" style="cursor:pointer" title="Hirdetés feladása" />
+				</p:commandLink>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>
