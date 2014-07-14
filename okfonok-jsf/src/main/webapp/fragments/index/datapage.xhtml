@@ -19,14 +19,14 @@
 					<h:outputText value="KÉP" />
 					<h:panelGroup>
 						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
-						<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
+						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 					</h:panelGroup>
 					<h:outputText value="KÉP" />
 
 					<h:outputText value="KÉP" />
 					<h:panelGroup>
 						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
-						<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
+						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 					</h:panelGroup>
 					<h:outputText value="KÉP" />
 
@@ -47,12 +47,12 @@
 					<h:panelGrid columns="1">
 						<h:panelGroup>
 							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
-							<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
+							<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
 						</h:panelGroup>
 					- személyazonosító ig.
 						<h:panelGroup>
 							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
-							<h:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
+							<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
 						</h:panelGroup>
 						- lakcímkártya
 					</h:panelGrid>
@@ -65,7 +65,7 @@
 			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" />
 			<h2>Magamról</h2>
 			<h:panelGroup id="aboutPanel">
-				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" />
+				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" escape="false" />
 				<p:editor rendered="#{dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" controls="bold italic underline strikethrough" />
 			</h:panelGroup>
 			<p:commandButton value="#{dataPageBean.aboutBtnText}" action="#{dataPageBean.aboutBtnAction}" update="aboutPanel @this" />
