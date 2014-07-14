@@ -40,10 +40,5 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	public List<User> findAll() {
 		repo.findAll()
 	}
-
-	@Override
-	void removeSavedAd(User user, Advertisement ad) {
-		em.createNativeQuery("delete from User_SavedAds where ad_id = ${ad.id} and user_id = ${user.id}").executeUpdate()
-	}
 	
 }

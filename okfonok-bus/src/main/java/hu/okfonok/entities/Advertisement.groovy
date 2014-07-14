@@ -79,7 +79,7 @@ class Advertisement extends BaseEntity{
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this.is(obj))
 			return true;
 		if (!super.equals(obj))
 			return false;

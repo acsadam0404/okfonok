@@ -12,7 +12,7 @@
 			<h:outputStylesheet library="css" name="/fragments/index/table.css" />
 		</f:facet>
 		<h:form id="data">
-			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}"
+			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}"
 				rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}"  scrollable="true" scrollHeight="500">
 				<f:facet name="header">
 					<div class="table-header">

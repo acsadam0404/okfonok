@@ -41,6 +41,10 @@ class UserBean implements Serializable {
 			user.skills.add(new Skill(name: 'bsd', rating: 5, ownRating: 5))
 			user.skills.add(new Skill(name: 'csd', rating: 2, ownRating: 3))
 			user.skills.add(new Skill(name: 'dsd', rating: 1, ownRating: 2))
+			user.skills.add(new Skill(name: 'esd', rating: 5, ownRating: 3))
+			user.skills.add(new Skill(name: 'fsd', rating: 4, ownRating: 4))
+			user.skills.add(new Skill(name: 'gsd', rating: 5, ownRating: 5))
+			user.skills.add(new Skill(name: 'hsd', rating: 3, ownRating: 2))
 		}
 	}
 }

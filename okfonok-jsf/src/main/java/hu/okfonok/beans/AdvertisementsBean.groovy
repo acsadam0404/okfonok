@@ -29,10 +29,10 @@ class AdvertisementsBean implements Serializable {
 	private UserBean userBean
 	@Autowired
 	private UserService userService
-	
+
 	@Autowired
 	private MapBean mapBean
-	
+
 	ScheduleModel eventModel = new DefaultScheduleModel()
 
 	private List<Advertisement> ads
@@ -41,11 +41,7 @@ class AdvertisementsBean implements Serializable {
 	Advertisement adToView
 
 	List<Advertisement> getAds() {
-		if (!ads) {
-			ads = service.findAll()
-		}
-
-		return ads
+		service.findAll()
 	}
 
 	void viewAd(Advertisement ad) {
@@ -82,28 +78,28 @@ class AdvertisementsBean implements Serializable {
 
 		return categories
 	}
-	
+
 	boolean isSaved(Advertisement ad) {
 		boolean saved = userBean.user.savedAds.contains(ad)
 		return saved
 	}
-	
-	void saveAd(Advertisement ad) {
+
+	void saveAd(Advertisement ad) { 
 		if (!userBean.user.savedAds.contains(ad)) {
 			userBean.user.savedAds.add(ad)
 			userService.save(userBean.user)
 		}
 	}
-	
+
 	void removeAd(Advertisement ad) {
 		if (userBean.user.savedAds.contains(ad)) {
-			userService.removeSavedAd(userBean.user, ad)
 			userBean.user.savedAds.remove(ad)
+			userService.save(userBean.user)
 		}
 	}
-	
+
 	//TODO
 	void shareAd(Advertisement ad) {
-		print ad + ' megosztva'
+		print ad.toString() + ' megosztva'
 	}
 }

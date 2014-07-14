@@ -39,6 +39,6 @@ class PostAdBean implements Serializable{
 		RequestContext.getCurrentInstance().execute("postadDialog.hide();")
 		ad = new Advertisement()
 		
-		return 'index.xhtml'
+		return 'index.xhtml?faces-redirect=true'
 	}
 }

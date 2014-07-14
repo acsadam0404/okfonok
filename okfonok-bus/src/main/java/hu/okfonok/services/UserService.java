@@ -1,6 +1,5 @@
 package hu.okfonok.services;
 
-import hu.okfonok.entities.Advertisement;
 import hu.okfonok.entities.user.User;
 
 /**
@@ -10,6 +9,4 @@ import hu.okfonok.entities.user.User;
  */
 public interface UserService extends BaseService<User> {
 	User findByUserName(String username);
-	
-	void removeSavedAd(User user, Advertisement ad);
 }
