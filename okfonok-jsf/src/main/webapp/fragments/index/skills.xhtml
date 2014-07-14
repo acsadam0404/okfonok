@@ -15,8 +15,8 @@
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.common.core.js" />
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
-		<img src="#{userBean.user.profile.profileImagePath}" />
 		<div class="profile">
+			<img class="profile-image" src="#{userBean.user.profile.profileImagePath}" />
 			<canvas id="skillsRadar" width="250" height="250">[No canvas support]</canvas>
 			<script>
 			jQuery(document).ready(
