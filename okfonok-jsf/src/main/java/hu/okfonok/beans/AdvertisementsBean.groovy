@@ -4,6 +4,7 @@ import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
 import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
+import hu.okfonok.services.UserService;
 import hu.okfonok.utils.ServiceLocator
 
 import javax.faces.model.SelectItem
@@ -14,6 +15,7 @@ import org.primefaces.model.DefaultScheduleModel
 import org.primefaces.model.ScheduleModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 
 @Component("adsBean")
@@ -23,6 +25,10 @@ class AdvertisementsBean implements Serializable {
 	private AdvertisementService service
 	@Autowired
 	private JobCategoryService jcService
+	@Autowired
+	private UserBean userBean
+	@Autowired
+	private UserService userService
 	
 	@Autowired
 	private MapBean mapBean
@@ -37,19 +43,6 @@ class AdvertisementsBean implements Serializable {
 	List<Advertisement> getAds() {
 		if (!ads) {
 			ads = service.findAll()
-			//FIXME testadat
-			ads << new Advertisement(
-				description: 'teszt leírás', 
-				jobTime: new Date(), 
-				expiration :new Date(), 
-				category: new JobCategory(name: 'Tanítás', mainCategory: new JobCategory(name: 'Szellemi')),
-				homework: false, 
-				maxOffer: 5000,
-				specifiedJobTime: true,
-				remuneration: 'Órabér', 
-				user: ServiceLocator.getBean(UserBean).user   
-				)
-			//FIXME vége
 		}
 
 		return ads
@@ -88,5 +81,29 @@ class AdvertisementsBean implements Serializable {
 		}
 
 		return categories
+	}
+	
+	boolean isSaved(Advertisement ad) {
+		boolean saved = userBean.user.savedAds.contains(ad)
+		return saved
+	}
+	
+	void saveAd(Advertisement ad) {
+		if (!userBean.user.savedAds.contains(ad)) {
+			userBean.user.savedAds.add(ad)
+			userService.save(userBean.user)
+		}
+	}
+	
+	void removeAd(Advertisement ad) {
+		if (userBean.user.savedAds.contains(ad)) {
+			userService.removeSavedAd(userBean.user, ad)
+			userBean.user.savedAds.remove(ad)
+		}
+	}
+	
+	//TODO
+	void shareAd(Advertisement ad) {
+		print ad + ' megosztva'
 	}
 }

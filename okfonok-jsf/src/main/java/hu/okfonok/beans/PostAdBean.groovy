@@ -37,7 +37,6 @@ class PostAdBean implements Serializable{
 		ad.user = userBean.user
 		adService.save(ad)
 		RequestContext.getCurrentInstance().execute("postadDialog.hide();")
-		adsBean.ads << ad
 		ad = new Advertisement()
 		
 		return 'index.xhtml'

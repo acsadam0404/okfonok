@@ -1,6 +1,7 @@
 package hu.okfonok.entities.user
 
 import hu.okfonok.entities.Address;
+import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.BaseEntity
 import hu.okfonok.entities.Role
 
@@ -60,4 +61,9 @@ class User extends BaseEntity implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "User_Points", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "point_id", referencedColumnName="id") ])
 	Set<Point> points = new HashSet<Point>()
+	
+	@OneToMany(orphanRemoval=true ,cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "User_SavedAds", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "ad_id", referencedColumnName="id") ])
+	Set<Advertisement> savedAds = new HashSet<Advertisement>()
+	
 }

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions">
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -12,7 +12,8 @@
 			<h:outputStylesheet library="css" name="/fragments/index/table.css" />
 		</f:facet>
 		<h:form id="data">
-			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}">
+			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladatott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}"
+				rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}"  scrollable="true" scrollHeight="500">
 				<f:facet name="header">
 					<div class="table-header">
 						<p:commandButton value="Feladatok" />
@@ -21,7 +22,8 @@
 					</div>
 				</f:facet>   
 						 	<p:column>
-					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" />
+						<p:rowToggler />
+<!-- 					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" /> -->
 				</p:column>
 						
 
@@ -61,9 +63,17 @@
         </p:column>
 
 
-	 <p:column headerText="">
-            <h:outputText value="műveletek" />
+	 <p:column headerText="Állapot">
+					<h:panelGrid columns="1">
+						<p:commandButton value="Törlöm" rendered="#{adsBean.isSaved(ad)}" action="#{adsBean.removeAd(ad)}" update="@form" />
+						<p:commandButton value="Elmentem" rendered="#{!adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form" />
+						<p:commandButton value="Megosztom"  action="#{adsBean.shareAd(ad)}"/>
+					</h:panelGrid>
         </p:column>
+
+				<p:rowExpansion>
+					<okfonokcc:viewad ad="#{ad}" />
+				</p:rowExpansion>
 
 			</p:dataTable>
 		</h:form>

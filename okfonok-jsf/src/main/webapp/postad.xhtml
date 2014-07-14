@@ -21,7 +21,7 @@
 					<p:editor value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" />
 					<h:outputText value="A feladat leírásába ne adj meg elérhetőségi adatokat!" />
 					<h:panelGrid columns="5">
-						<c:if test="#{not empty postAdBean.ad.imagePaths[0]}">
+						<c:if test="#{not empty postAdBean.ad.imagePaths.get(0)}">
 							<p:graphicImage library="img" name="help.png" />
 						</c:if>
 						<c:otherwise>

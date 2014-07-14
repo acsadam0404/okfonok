@@ -1,4 +1,3 @@
-/*
 .main-table {
 	margin-top: 20px;
 	width: 740px;
@@ -12,4 +11,7 @@
 .main-table-header {
 	text-align: initial;
 }
-*/
+
+.main-table >div >table> tbody> tr.saved > td:nth-child(1) {
+	background-color: red;
+}

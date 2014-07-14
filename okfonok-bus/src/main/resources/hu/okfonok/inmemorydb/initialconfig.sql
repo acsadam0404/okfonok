@@ -73,6 +73,13 @@
         primary key (user_id, skill_id)
      
     );
+      create table User_SavedAds (
+        user_id bigint not null,
+        ad_id bigint not null,
+        primary key (user_id, ad_id)
+     
+    );
+    
     
      create table User_Points (
         user_id bigint not null,
@@ -129,7 +136,7 @@
         other varchar(255),
         zipcode integer,
         description varchar(2000),
-        imagepaths varchar(4000),
+        imagepathsstring varchar(4000),
         expiration timestamp,
         jobTime timestamp,
         category_id bigint,

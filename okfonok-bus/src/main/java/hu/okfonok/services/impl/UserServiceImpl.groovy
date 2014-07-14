@@ -1,8 +1,11 @@
 package hu.okfonok.services.impl;
 
 import hu.okfonok.dao.UserDao
+import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
+
+import javax.persistence.EntityManager
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -19,6 +22,9 @@ import org.springframework.transaction.annotation.Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	@Autowired
 	private transient UserDao repo;
+	
+	@Autowired
+	private EntityManager em
 
 	@Autowired
 	UserServiceImpl(UserDao crudRepo) {
@@ -34,4 +40,10 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	public List<User> findAll() {
 		repo.findAll()
 	}
+
+	@Override
+	void removeSavedAd(User user, Advertisement ad) {
+		em.createNativeQuery("delete from User_SavedAds where ad_id = ${ad.id} and user_id = ${user.id}").executeUpdate()
+	}
+	
 }
