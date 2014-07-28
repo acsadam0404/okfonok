@@ -8,6 +8,13 @@
 	padding: 20px;
 }
 
+.index-upper {
+	background: url("#{resource['img/landing_page/kep.png']}");
+	width: 100%;
+	height: 500px;
+	position: fixed;
+}
+
 .header-login,.header-howitworks {
 	float: right;
 	font-size: 1.5em !important;
@@ -52,27 +59,22 @@
 	background-color: white;
 }
 
+.imgbox-left {
+	background: url("#{resource['img/landing_page/bal_oldal:kep.png']}");
+}
+
+.imgbox-right {
+	background: url("#{resource['img/landing_page/jobb_oldal:kep.png']}");
+}
+
+
 .imgbox-button {
 	height: 40px;
 	width: 390px;
 	display: block;
 	margin: auto auto;
 	position: relative;
-	bottom: 25px;
-	color: white;
-	text-decoration: none;
-	font-weight: normal;
-	font-size: 16px;
-	text-align: center;
-	padding-top: 10px;
-}
-
-.imgbox-button-left {
-	background-color: #247984;
-}
-
-.imgbox-button-right {
-	background-color: #28b7c5;
+	top: -20px;
 }
 
 .rousing-text {
@@ -98,4 +100,42 @@
 
 .steps-header {
 	font-size: 20px;
+}
+
+.step-regisztralj {
+	background: url("#{resource['img/landing_page:regisztralj.png']}");
+}
+
+.step-vegeztesdel {
+	background: url("#{resource['img/landing_page:vegeztesd el.png']}");
+}
+.step-valogass {
+	background: url("#{resource['img/landing_page:valogass.png']}");
+}
+.step-toltsdfel {
+	background: url("#{resource['img/landing_page:toltsd_fel.png']}");
+}
+.step-keszitsdel {
+	background: url("#{resource['img/landing_page:keszitsd_el_hirdetesed.png']}");
+}
+.step-igazold {
+	background: url("#{resource['img/landing_page:igazold_madad.png']}");
+}
+.step-fizess {
+	background: url("#{resource['img/landing_page:fizess.png']}");
+}
+.step-ertekelj {
+	background: url("#{resource['img/landing_page:ertekelj.png']}");
+}
+
+.step {
+	background-repeat: no-repeat;
+	padding-left: 40px;
+	padding-top: 30px;
+	width: 100px;
+	height: 50px;
+}
+
+.login-overlay {
+	
 }

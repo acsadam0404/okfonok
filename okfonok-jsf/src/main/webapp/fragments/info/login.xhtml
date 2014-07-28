@@ -12,12 +12,13 @@
 	</f:facet>
 	<h:form prependId="false">
 		<h:panelGrid columns="1" styleClass="login-panel">
-			<p:graphicImage styleClass="logo" library="img" name="logo.png" />
 			<p:inputText id="j_username" name="j_username" styleClass="email maxsize icon-input" />
 			<p:watermark for="j_username" value="E-mail cím" />
 			<p:password id="j_password" name="j_password" styleClass="password maxsize icon-input" />
 			<p:watermark for="j_password" value="Jelszó" />
-			<p:commandButton type="submit" ajax="false" value="Belépés" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}" />
+			<p:commandLink ajax="false" value="Belépés" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}">
+				<p:graphicImage library="img" name="landing_page/belepes/belepes.png" style="cursor:pointer"  />
+			</p:commandLink>
 			<h:outputText value="vagy" />
 			<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" styleClass="facebook-login-button maxsize">
 				<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
