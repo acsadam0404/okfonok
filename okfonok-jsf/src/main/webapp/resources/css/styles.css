@@ -1,7 +1,7 @@
 html,body {
 	padding: 0;
 	margin: 0;
-	background-color: wheat;
+	background: url("#{resource['img/alap:alap_hatter.png']}");
 	font-family: 'Jolly Lodger', cursive;
 }
 
