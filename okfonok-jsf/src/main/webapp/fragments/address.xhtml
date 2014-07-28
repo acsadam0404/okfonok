@@ -7,25 +7,11 @@
 
 <h:body>
 	<ui:composition>
-		<p:outputLabel value="Megye" for="state" />
-		<p:inputText id="state" value="#{address.state}" />
-		<p:message for="state" />
+		<p:outputLabel value="Település" for="zipcode" />
+		<p:autoComplete id="zipcode" completeMethod="#{addressBean.completeSettlement()}" value="#{address.zipcodeAndCity}"  />
 
-		<p:outputLabel value="Irányítószám" for="zipcode" />
-		<p:inputMask id="zipcode" value="#{address.zipcode}" mask="9999" />
-		<p:message for="zipcode" />
-
-		<p:outputLabel value="Település" for="city" />
-		<p:inputText id="city" value="#{address.city}" />
-		<p:message for="city" />
-
-		<p:outputLabel value="Utca" for="street" />
-		<p:autoComplete id="street" value="#{address.street}" completeMethod="#{addressBean.completeStreet()}" />
-		<p:message for="street" />
-
-		<p:outputLabel value="Házszám" for="streetNumber" />
-		<p:inputText id="streetNumber" value="#{address.streetNumber}" />
-		<p:message for="streetNumber" />
+		<p:outputLabel value="Lakhely" for="other" />
+		<p:inputText id="other" value="#{address.other}" />
 	</ui:composition>
 </h:body>
 </html>

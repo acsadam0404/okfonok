@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
 </h:head>
@@ -16,21 +17,21 @@
 			<h:panelGroup id="baseDataPanel">
 				<h2>Alapadatok</h2>
 				<h:panelGrid columns="3">
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/moritek.png" />
 					<h:panelGroup>
 						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 					</h:panelGroup>
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
 
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/mobile.png" />
 					<h:panelGroup>
 						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 					</h:panelGroup>
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
 
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
 					<h:outputText value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
 				</h:panelGrid>
 				<h2>Hitelesítéshez szükséges adatok</h2>
@@ -40,10 +41,10 @@
 					olvashatsz
 				</p>
 				<h:panelGrid columns="2">
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/hely.png" />
 					<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
 					<okfonokcc:addressEditor rendered="#{dataPageBean.dataEditing}" address="#{userBean.user.address}" />
-					<h:outputText value="KÉP" />
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/igazolvany.png" />
 					<h:panelGrid columns="1">
 						<h:panelGroup>
 							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
@@ -61,7 +62,7 @@
 				<p:commandButton value="#{dataPageBean.dataBtnText}" action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this" />
 
 			</h:panelGroup>
-			<p:remoteCommand  name="working" action="#{dataPageBean.workingAction}" />
+			<p:remoteCommand name="working" action="#{dataPageBean.workingAction}" />
 			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" />
 			<h2>Magamról</h2>
 			<h:panelGroup id="aboutPanel">

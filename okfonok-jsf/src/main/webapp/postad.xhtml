@@ -36,12 +36,10 @@
 					<h2>Feladatvégzés helye</h2>
 
 					<h:panelGrid columns="3">
-						<p:inputMask id="zipcode" styleClass="zipcode" value="#{postAdBean.ad.address.zipcode}" mask="9999" />
-						<p:inputText id="city" value="#{postAdBean.ad.address.city}" />
+						<p:autoComplete completeMethod="#{addressBean.completeSettlement()}"  id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
 						<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
 					</h:panelGrid>
-					<p:watermark for="zipcode" value="ir.szám" />
-					<p:watermark for="city" value="helyiség" />
+					<p:watermark for="settlement" value="település*" />
 					<p:watermark for="other" value="cím*" />
 
 					<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg." />

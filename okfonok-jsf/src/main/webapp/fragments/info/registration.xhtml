@@ -7,35 +7,28 @@
 		</f:metadata>
 	</f:view>
 	<h:form id="registrationForm">
-		<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
-			<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
-			<p:graphicImage id="facebookReg" library="img" name="fragments/facebookreg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
-		</p:commandLink>
-		<p:commandLink value="Regisztrálj e-mail címeddel" action="#{indexBean.setRegistrationFormVisible(true)}" update="registrationFormPanel" process="@this" />
 		<h:panelGroup id="registrationFormPanel">
-			<h:panelGroup rendered="#{indexBean.registrationFormVisible}">
-				<h:panelGrid columns="3">
-					<p:outputLabel for="email" value="E-mail cím" />
-					<p:inputText id="email" maxlength="60" value="#{registrationBean.user.profile.email}" />
-					<p:message for="email" />
-					<p:outputLabel for="userName" value="Felhasználónév" />
-					<p:inputText id="userName" maxlength="30" value="#{registrationBean.user.userName}" />
-					<p:message for="userName" />
-					<p:outputLabel for="pwd1" value="Jelszó" />
-					<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" feedback="true" promptLabel="Adj meg egy jelszót" weakLabel="Gyenge" goodLabel="Jó" strongLabel="Erős" inline="true" />
-					<p:message for="pwd1" />
-					<p:outputLabel for="pwd2" value="Jelszó ismét" />
-					<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
-					<p:message for="pwd2" />
-					<p:outputLabel value="Vállalsz is munkát?" />
-					<p:selectBooleanCheckbox value="#{registrationBean.user.profile.employee}" />
-				</h:panelGrid>
+			<h:panelGrid columns="1">
+				<p:inputText id="userName" maxlength="30" value="#{registrationBean.user.profile.realName}" />
+				<p:inputText id="email" maxlength="60" value="#{registrationBean.user.profile.email}" />
+				<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" />
+				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
+
 				<p:commandLink action="#{registrationBean.register()}">
-					<p:graphicImage id="createProfile" library="img" name="fragments/createprofile.png" style="cursor:pointer" title="Profil létrehozása" />
+					<p:graphicImage id="createProfile" library="img" name="landing_page/jobb_oldal/regisztracio/reg.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
 				<span id="registrationConditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
 				</span>
-			</h:panelGroup>
+				<h:outputText value="vagy" />
+				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
+					<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
+					<p:graphicImage id="facebookReg" library="img" name="landing_page/jobb_oldal/regisztracio/faceb_reg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
+				</p:commandLink>
+			</h:panelGrid>
+			<p:watermark for="pwd2" value="Jelszó ismét" />
+			<p:watermark for="pwd1" value="Jelszó" />
+			<p:watermark for="email" value="E-mail cím" />
+			<p:watermark for="userName" value="Teljes név" />
 		</h:panelGroup>
 	</h:form>
 

@@ -71,6 +71,17 @@ class Profile implements Serializable {
 		
 	
 	String getRealName() {
-		return lastName + " " + firstName
+		if (!lastName || !firstName) {
+			return null
+		}
+		return lastName+ " " + firstName
+	}
+	
+	void setRealName(String realName) {
+		if (realName && realName.contains(" ")) {
+			String split = realName.split(" ")
+			lastName = split[0]
+			firstName = realName - split[0]	
+		}
 	}
 }
