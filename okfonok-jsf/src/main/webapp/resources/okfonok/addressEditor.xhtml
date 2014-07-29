@@ -8,20 +8,12 @@
 </composite:interface>
 
 <composite:implementation>
-<style>
-.zipcode {
-	width: 60px;
-}
-</style>
-
-	<h:panelGrid columns="3">
-		<p:inputMask id="zipcode" styleClass="zipcode" value="#{cc.attrs.address.zipcode}" mask="9999" />
-		<p:inputText id="city" value="#{cc.attrs.address.city}" />
-		<p:inputText id="other" value="#{cc.attrs.address.other}" />
+	<h:panelGrid columns="2">
+		<p:autoComplete id="zipcode" completeMethod="#{addressBean.completeSettlement()}" value="#{address.zipcodeAndCity}" />
+		<p:inputText id="other" value="#{address.other}" />
 	</h:panelGrid>
-	<p:watermark for="zipcode" value="ir.szám" />
-	<p:watermark for="city" value="helyiség" />
-	<p:watermark for="other" value="cím*" />
+	<p:watermark for="zipcode" value="Település" />
+	<p:watermark for="other" value="Lakhely" />
 </composite:implementation>
 
 </html>

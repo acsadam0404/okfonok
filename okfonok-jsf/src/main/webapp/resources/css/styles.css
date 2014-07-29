@@ -9,8 +9,53 @@ html,body {
 	border: none;
 }
 
-
 .icon-input {
-	padding-left:50px;
+	padding-left: 50px;
 	width: 400px;
+}
+
+.color-green {
+	color: #49e431;
+}
+
+.color-lblue {
+	color: #28b7c5;
+}
+
+.color-mblue {
+	color: #1e9cb2;
+}
+
+.color-hblue {
+	color: #247984;
+}
+
+.color-xblue {
+	color: #3b5998;
+}
+
+.color-lorange {
+	color: #efae61;
+}
+
+.color-horange {
+	color: #f26522;
+}
+
+.color-grey {
+	color: #ababab;
+}
+
+h2 {
+	font-size: 18px;
+	color: #247984;
+}
+
+a {
+	text-decoration: none;
+	color: #247984;
+}
+
+.note {
+	font-size: 12px;
 }

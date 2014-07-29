@@ -24,9 +24,6 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	private transient UserDao repo;
 	
 	@Autowired
-	private EntityManager em
-
-	@Autowired
 	UserServiceImpl(UserDao crudRepo) {
 		super(crudRepo);
 	}

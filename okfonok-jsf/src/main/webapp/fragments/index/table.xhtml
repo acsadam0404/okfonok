@@ -13,7 +13,7 @@
 		</f:facet>
 		<h:form id="data">
 			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}"
-				rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}"  scrollable="true" scrollHeight="500">
+				rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500">
 				<f:facet name="header">
 					<div class="table-header">
 						<p:commandButton value="Feladatok" />
@@ -22,8 +22,7 @@
 					</div>
 				</f:facet>   
 						 	<p:column>
-						<p:rowToggler />
-<!-- 					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" /> -->
+					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" />
 				</p:column>
 						
 
@@ -67,7 +66,7 @@
 					<h:panelGrid columns="1">
 						<p:commandButton value="Törlöm" rendered="#{adsBean.isSaved(ad)}" action="#{adsBean.removeAd(ad)}" update="@form" />
 						<p:commandButton value="Elmentem" rendered="#{!adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form" />
-						<p:commandButton value="Megosztom"  action="#{adsBean.shareAd(ad)}"/>
+						<p:commandButton value="Megosztom" action="#{adsBean.shareAd(ad)}" />
 					</h:panelGrid>
         </p:column>
 

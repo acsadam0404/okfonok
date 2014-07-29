@@ -26,13 +26,10 @@ class DataPageBean {
 		}
 	}
 
-	String getDataBtnText() {
-		if (!dataEditing) {
-			return 'Adatok szerkesztése'
-		}
-		return 'Mentés'
+	void workingBtnAction() {
+		userBean.user.profile.working = !userBean.user.profile.working
+		saveUser()
 	}
-
 
 	void aboutBtnAction() {
 		aboutEditing = !aboutEditing
@@ -40,14 +37,6 @@ class DataPageBean {
 			saveUser()
 		}
 	}
-	
-	String getAboutBtnText() {
-		if (!aboutEditing) {
-			return 'Szerkesztés'
-		}
-		return 'Mentés'
-	}
-
 
 	void workingAction() {
 		saveUser()

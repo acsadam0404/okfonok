@@ -10,68 +10,88 @@
 	<ui:composition>
 		<f:facet name="last">
 			<h:outputStylesheet library="css" name="styles.css" />
+			<h:outputStylesheet library="css" name="/fragments/index/datapage.css" />
 		</f:facet>
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
+		<p:messages autoUpdate="true">
+		</p:messages>
 		<h:form>
 			<h:panelGroup id="baseDataPanel">
 				<h2>Alapadatok</h2>
 				<h:panelGrid columns="3">
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/moritek.png" />
 					<h:panelGroup>
-						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
+						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 					</h:panelGroup>
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
 
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/mobile.png" />
 					<h:panelGroup>
-						<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
+						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 					</h:panelGroup>
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
 
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
-					<h:outputText value="csak létrejött kapcsolat esetén kerül tovbábbításra" />
+					<p class="note">csak létrejött kapcsolat esetén kerül továbbításra</p>
 				</h:panelGrid>
-				<h2>Hitelesítéshez szükséges adatok</h2>
-				<p>
+				<h2 class="color-hblue">Hitelesítéshez szükséges adatok</h2>
+				<p class="note">
 					Ezeket az adatokat csak Te láthatod! A hitelesített profilról és adatkezelésünkről
 					<h:link value="itt" outcome="conditions" />
 					olvashatsz
 				</p>
 				<h:panelGrid columns="2">
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/hely.png" />
-					<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
-					<okfonokcc:addressEditor rendered="#{dataPageBean.dataEditing}" address="#{userBean.user.address}" />
+					<h:panelGrid columns="2">
+						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
+						<h:panelGrid columns="1">
+							<p:autoComplete rendered="#{dataPageBean.dataEditing}" id="zipcode" completeMethod="#{addressBean.completeSettlement()}" value="#{userBean.user.address.zipcodeAndCity}" />
+							<p:inputText rendered="#{dataPageBean.dataEditing}" id="other" value="#{userBean.user.address.other}" />
+						</h:panelGrid>
+					</h:panelGrid>
+					<p:watermark for="zipcode" value="Település" />
+					<p:watermark for="other" value="Lakhely" />
 					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/igazolvany.png" />
-					<h:panelGrid columns="1">
+					<h:panelGrid columns="2">
 						<h:panelGroup>
-							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
-							<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
+							<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
+							<p:inputText styleClass="certification-textfield" rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
 						</h:panelGroup>
-					- személyazonosító ig.
+						<h:outputText styleClass="note" value="- személyazonosító ig." />
 						<h:panelGroup>
-							<h:outputText rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
-							<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
+							<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
+							<p:inputText styleClass="certification-textfield" rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.certification.addressCardNumber}" />
 						</h:panelGroup>
-						- lakcímkártya
+						<h:outputText styleClass="note" value="- lakcímkártya" />
 					</h:panelGrid>
 				</h:panelGrid>
-				<p:commandButton rendered="#{dataPageBean.dataEditing}" value="Igazolványok képének feltöltése" />
-				<p:commandButton value="#{dataPageBean.dataBtnText}" action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this" />
-
+				<p:commandLink>
+					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/igazolvanykep.png" />
+				</p:commandLink>
+				<p:commandLink action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this">
+					<p:graphicImage rendered="#{!dataPageBean.dataEditing}" library="img" name="/belepes_utan/adatok/normal/adatok_szerkeszt.png" />
+					<p:graphicImage rendered="#{dataPageBean.dataEditing}" library="img" name="/belepes_utan/adatok/szerkesztett/mentes.png" />
+				</p:commandLink>
 			</h:panelGroup>
 			<p:remoteCommand name="working" action="#{dataPageBean.workingAction}" />
-			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" />
+			<!-- 			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" /> -->
+			<p:commandLink action="#{dataPageBean.workingBtnAction}" update="baseDataPanel @this">
+				<p:graphicImage rendered="#{userBean.user.profile.working}" library="img" name="/belepes_utan/adatok/feladatot_vegez_nemvegez/feladat_igen.png" />
+				<p:graphicImage rendered="#{!userBean.user.profile.working}" library="img" name="/belepes_utan/adatok/feladatot_vegez_nemvegez/feladat_nem.png" />
+			</p:commandLink>
 			<h2>Magamról</h2>
-			<h:panelGroup id="aboutPanel">
+			<h:panelGrid columns="1" id="aboutPanel">
 				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" escape="false" />
 				<p:editor rendered="#{dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" controls="bold italic underline strikethrough" />
-			</h:panelGroup>
-			<p:commandButton value="#{dataPageBean.aboutBtnText}" action="#{dataPageBean.aboutBtnAction}" update="aboutPanel @this" />
+				<p:commandLink action="#{dataPageBean.aboutBtnAction}" update="aboutPanel @this">
+					<p:graphicImage rendered="#{!dataPageBean.aboutEditing}" library="img" name="/belepes_utan/magamrol/szerkesztes.png" />
+					<p:graphicImage rendered="#{dataPageBean.aboutEditing}" library="img" name="/belepes_utan/magamrol/mentes.png" />
+				</p:commandLink>
+			</h:panelGrid>
 		</h:form>
 	</ui:composition>
 </h:body>
 </html>
-

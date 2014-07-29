@@ -1,8 +1,8 @@
 .profile {
-	background-color: white;
 	position: relative;
 	width: 250px;
 	height: 250px;
+	display: table;
 }
 
 /* http://stackoverflow.com/questions/22577371/how-to-make-rectangular-image-appear-circular-with-css */
@@ -25,4 +25,49 @@
 	background-color: grey;
 	width: 200px;
 	height: 200px;
+}
+
+.profile-upload-outer {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.profile-upload {
+	width: 92px;
+	height: 90px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.profile-upload .ui-fileupload-buttonbar {
+	background: transparent none;
+	border: none;
+	width: 92px;
+	height: 90px;
+	cursor: pointer;
+}
+
+.profile-upload .ui-fileupload-content {
+	display: none;
+}
+
+.profile-upload .ui-fileupload-buttonbar .ui-fileupload-choose {
+	background:
+		url("#{resource['img/belepes_utan/adatok/szerkesztett:profil.png']}");
+	background-repeat: no-repeat;
+	width: 92px;
+	height: 90px;
+	border: 0 !important;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: auto auto;
+}
+
+.profile-upload .ui-fileupload-buttonbar .ui-fileupload-choose .ui-icon {
+	display: none;
+}
+
+.profile-upload .ui-fileupload-choose input {
+	height: 90px;
+	width: 92px;
 }
