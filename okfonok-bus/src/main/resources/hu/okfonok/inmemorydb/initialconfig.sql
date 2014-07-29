@@ -48,7 +48,7 @@
         working bit ,
         facebookValidatedId varchar(255),
         firstName varchar(255),
-        introduction varchar(255),
+        introduction varchar(1000),
         lastName varchar(255),
         personalEmployer bit ,
         phoneNumber varchar(255),
