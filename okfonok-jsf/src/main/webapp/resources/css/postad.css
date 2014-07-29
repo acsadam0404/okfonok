@@ -15,15 +15,46 @@
 	width: 50px;
 }
 
-.postad-fileupload .ui-fileupload-buttonbar {
-    background: transparent none;
-    border: none;
+.postad-upload-outer {
+	display: table-cell;
+	vertical-align: middle;
 }
 
-.postad-fileupload .ui-fileupload-content {
-    display: none;
+.postad-upload {
+	width: 46px;
+	height: 33px;
+	margin-right: auto;
+	margin-left: auto;
 }
 
-.postad-fileupload .ui-fileupload-buttonbar .ui-fileupload-choose {
-    background-color: rgba(142, 103, 64, 0.98);
+.postad-upload .ui-fileupload-buttonbar {
+	background: transparent none;
+	border: none;
+	width: 46px;
+	height: 33px;
+	cursor: pointer;
+}
+
+.postad-upload .ui-fileupload-content {
+	display: none;
+}
+
+.postad-upload .ui-fileupload-buttonbar .ui-fileupload-choose {
+	background: url("#{resource['img/postad:narancs__fenykepzo.png']}");
+	background-repeat: no-repeat;
+	width: 46px;
+	height: 33px;
+	border: 0 !important;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	margin: auto auto;
+}
+
+.postad-upload .ui-fileupload-buttonbar .ui-fileupload-choose .ui-icon {
+	display: none;
+}
+
+.postad-upload .ui-fileupload-choose input {
+	height: 33px;
+	width: 46px;
 }

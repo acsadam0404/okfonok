@@ -15,14 +15,14 @@
 				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
 
 				<p:commandLink action="#{registrationBean.register()}">
-					<p:graphicImage id="createProfile" library="img" name="landing_page/jobb_oldal/regisztracio/reg.png" style="cursor:pointer" title="Profil létrehozása" />
+					<p:graphicImage id="createProfile" library="img" name="registration/reg.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
 				<span class="registration-conditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
 				</span>
 				<h:outputText value="vagy" />
 				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
 					<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
-					<p:graphicImage id="facebookReg" library="img" name="landing_page/jobb_oldal/regisztracio/faceb_reg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
+					<p:graphicImage id="facebookReg" library="img" name="registration/faceb_reg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
 				</p:commandLink>
 			</h:panelGrid>
 			<p:watermark for="pwd2" value="Jelszó ismét" />

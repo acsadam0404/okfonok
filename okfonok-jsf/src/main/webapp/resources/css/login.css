@@ -10,10 +10,15 @@
 }
 
 .email {
-	
+	background: url("#{resource['img/login:mail.png']}") no-repeat !important;
 }
 
 .password {
+	background: url("#{resource['img/login:kulcs.png']}") no-repeat !important;
+}
+
+.icon-input {
+	padding-left: 20px;
 }
 
 .login-panel {

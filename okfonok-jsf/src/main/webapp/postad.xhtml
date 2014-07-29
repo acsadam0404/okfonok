@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -22,21 +21,46 @@
 					<h:outputText value="A feladat leírásába ne adj meg elérhetőségi adatokat!" />
 					<h:panelGrid columns="5">
 						<c:if test="#{not empty postAdBean.ad.imagePaths.get(0)}">
-							<p:graphicImage library="img" name="help.png" />
 						</c:if>
 						<c:otherwise>
-							<p:fileUpload label="" styleClass="postad-fileupload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							<h:panelGroup styleClass="postad-upload-outer">
+								<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:panelGroup>
 						</c:otherwise>
-						<p:graphicImage library="img" name="help.png" />
-						<p:graphicImage library="img" name="help.png" />
-						<p:graphicImage library="img" name="help.png" />
-						<p:graphicImage library="img" name="help.png" />
+						<c:if test="#{not empty postAdBean.ad.imagePaths.get(1)}">
+						</c:if>
+						<c:otherwise>
+							<h:panelGroup styleClass="postad-upload-outer">
+								<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:panelGroup>
+						</c:otherwise>
+						<c:if test="#{not empty postAdBean.ad.imagePaths.get(2)}">
+						</c:if>
+						<c:otherwise>
+							<h:panelGroup styleClass="postad-upload-outer">
+								<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:panelGroup>
+						</c:otherwise>
+						<c:if test="#{not empty postAdBean.ad.imagePaths.get(3)}">
+						</c:if>
+						<c:otherwise>
+							<h:panelGroup styleClass="postad-upload-outer">
+								<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:panelGroup>
+						</c:otherwise>
+						<c:if test="#{not empty postAdBean.ad.imagePaths.get(4)}">
+						</c:if>
+						<c:otherwise>
+							<h:panelGroup styleClass="postad-upload-outer">
+								<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:panelGroup>
+						</c:otherwise>
 					</h:panelGrid>
 
 					<h2>Feladatvégzés helye</h2>
 
 					<h:panelGrid columns="3">
-						<p:autoComplete completeMethod="#{addressBean.completeSettlement}"  id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
+						<p:autoComplete completeMethod="#{addressBean.completeSettlement}" id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
 						<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
 					</h:panelGrid>
 					<p:watermark for="settlement" value="település*" />

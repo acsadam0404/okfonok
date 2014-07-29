@@ -52,8 +52,7 @@
 }
 
 .profile-upload .ui-fileupload-buttonbar .ui-fileupload-choose {
-	background:
-		url("#{resource['img/belepes_utan/adatok/szerkesztett:profil.png']}");
+	background: url("#{resource['img/datapage:profil.png']}");
 	background-repeat: no-repeat;
 	width: 92px;
 	height: 90px;

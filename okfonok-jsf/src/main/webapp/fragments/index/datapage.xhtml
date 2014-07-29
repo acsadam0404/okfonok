@@ -20,21 +20,21 @@
 			<h:panelGroup id="baseDataPanel">
 				<h2>Alapadatok</h2>
 				<h:panelGrid columns="3">
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/moritek.png" />
+					<p:graphicImage library="img" name="/datapage/boritek.png" />
 					<h:panelGroup>
 						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.email}" />
 					</h:panelGroup>
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
+					<p:graphicImage library="img" name="/datapage/lakat.png" />
 
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/mobile.png" />
+					<p:graphicImage library="img" name="/datapage/mobile.png" />
 					<h:panelGroup>
 						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 						<p:inputText rendered="#{dataPageBean.dataEditing}" value="#{userBean.user.profile.phoneNumber}" />
 					</h:panelGroup>
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
+					<p:graphicImage library="img" name="/datapage/lakat.png" />
 
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/lakat.png" />
+					<p:graphicImage library="img" name="/datapage/lakat.png" />
 					<p class="note">csak létrejött kapcsolat esetén kerül továbbításra</p>
 				</h:panelGrid>
 				<h2 class="color-hblue">Hitelesítéshez szükséges adatok</h2>
@@ -44,7 +44,7 @@
 					olvashatsz
 				</p>
 				<h:panelGrid columns="2">
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/hely.png" />
+					<p:graphicImage library="img" name="/datapage/hely.png" />
 					<h:panelGrid columns="2">
 						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
 						<h:panelGrid columns="1">
@@ -54,7 +54,7 @@
 					</h:panelGrid>
 					<p:watermark for="zipcode" value="Település" />
 					<p:watermark for="other" value="Lakhely" />
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/igazolvany.png" />
+					<p:graphicImage library="img" name="/datapage/igazolvany.png" />
 					<h:panelGrid columns="2">
 						<h:panelGroup>
 							<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.certification.idCardNumber}" />
@@ -69,26 +69,26 @@
 					</h:panelGrid>
 				</h:panelGrid>
 				<p:commandLink>
-					<p:graphicImage library="img" name="/belepes_utan/adatok/normal/igazolvanykep.png" />
+					<p:graphicImage library="img" name="/datapage/igazolvanykep.png" />
 				</p:commandLink>
 				<p:commandLink action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this">
-					<p:graphicImage rendered="#{!dataPageBean.dataEditing}" library="img" name="/belepes_utan/adatok/normal/adatok_szerkeszt.png" />
-					<p:graphicImage rendered="#{dataPageBean.dataEditing}" library="img" name="/belepes_utan/adatok/szerkesztett/mentes.png" />
+					<p:graphicImage rendered="#{!dataPageBean.dataEditing}" library="img" name="/datapage/adatok_szerkeszt.png" />
+					<p:graphicImage rendered="#{dataPageBean.dataEditing}" library="img" name="/datapage/mentes.png" />
 				</p:commandLink>
 			</h:panelGroup>
 			<p:remoteCommand name="working" action="#{dataPageBean.workingAction}" />
 			<!-- 			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" /> -->
 			<p:commandLink action="#{dataPageBean.workingBtnAction}" update="baseDataPanel @this">
-				<p:graphicImage rendered="#{userBean.user.profile.working}" library="img" name="/belepes_utan/adatok/feladatot_vegez_nemvegez/feladat_igen.png" />
-				<p:graphicImage rendered="#{!userBean.user.profile.working}" library="img" name="/belepes_utan/adatok/feladatot_vegez_nemvegez/feladat_nem.png" />
+				<p:graphicImage rendered="#{userBean.user.profile.working}" library="img" name="/datapage/feladat_igen.png" />
+				<p:graphicImage rendered="#{!userBean.user.profile.working}" library="img" name="/datapage/feladat_nem.png" />
 			</p:commandLink>
 			<h2>Magamról</h2>
 			<h:panelGrid columns="1" id="aboutPanel">
 				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" escape="false" />
 				<p:editor rendered="#{dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" controls="bold italic underline strikethrough" />
 				<p:commandLink action="#{dataPageBean.aboutBtnAction}" update="aboutPanel @this">
-					<p:graphicImage rendered="#{!dataPageBean.aboutEditing}" library="img" name="/belepes_utan/magamrol/szerkesztes.png" />
-					<p:graphicImage rendered="#{dataPageBean.aboutEditing}" library="img" name="/belepes_utan/magamrol/mentes.png" />
+					<p:graphicImage rendered="#{!dataPageBean.aboutEditing}" library="img" name="/datapage/szerkesztes.png" />
+					<p:graphicImage rendered="#{dataPageBean.aboutEditing}" library="img" name="/datapage/mentes.png" />
 				</p:commandLink>
 			</h:panelGrid>
 		</h:form>

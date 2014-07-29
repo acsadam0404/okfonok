@@ -1,5 +1,5 @@
 body {
-	background: url("#{resource['img/alap:alap_hatter.png']}");
+	background: url("#{resource['img/layout:alap_hatter.png']}");
 }
 
 .page {

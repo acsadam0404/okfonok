@@ -9,7 +9,7 @@
 }
 
 .index-upper {
-	background: url("#{resource['img/landing_page/kep.png']}");
+	background: url("#{resource['img/info/kep.png']}");
 	width: 100%;
 	height: 500px;
 	position: fixed;
@@ -60,11 +60,11 @@
 }
 
 .imgbox-left {
-	background: url("#{resource['img/landing_page/bal_oldal:kep.png']}");
+	background: url("#{resource['img/info:balkep.png']}");
 }
 
 .imgbox-right {
-	background: url("#{resource['img/landing_page/jobb_oldal:kep.png']}");
+	background: url("#{resource['img/info:jobbkep.png']}");
 }
 
 
@@ -103,29 +103,29 @@
 }
 
 .step-regisztralj {
-	background: url("#{resource['img/landing_page:regisztralj.png']}");
+	background: url("#{resource['img/info:regisztralj.png']}");
 }
 
 .step-vegeztesdel {
-	background: url("#{resource['img/landing_page:vegeztesd el.png']}");
+	background: url("#{resource['img/info:vegeztesd el.png']}");
 }
 .step-valogass {
-	background: url("#{resource['img/landing_page:valogass.png']}");
+	background: url("#{resource['img/info:valogass.png']}");
 }
 .step-toltsdfel {
-	background: url("#{resource['img/landing_page:toltsd_fel.png']}");
+	background: url("#{resource['img/info:toltsd_fel.png']}");
 }
 .step-keszitsdel {
-	background: url("#{resource['img/landing_page:keszitsd_el_hirdetesed.png']}");
+	background: url("#{resource['img/info:keszitsd_el_hirdetesed.png']}");
 }
 .step-igazold {
-	background: url("#{resource['img/landing_page:igazold_madad.png']}");
+	background: url("#{resource['img/info:igazold_madad.png']}");
 }
 .step-fizess {
-	background: url("#{resource['img/landing_page:fizess.png']}");
+	background: url("#{resource['img/info:fizess.png']}");
 }
 .step-ertekelj {
-	background: url("#{resource['img/landing_page:ertekelj.png']}");
+	background: url("#{resource['img/info:ertekelj.png']}");
 }
 
 .step {
