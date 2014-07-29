@@ -66,5 +66,7 @@ class User extends BaseEntity implements Serializable{
 	@OneToMany(orphanRemoval=true ,cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "User_SavedAds", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "ad_id", referencedColumnName="id") ])
 	Set<Advertisement> savedAds = new HashSet<Advertisement>()
+	
+	Integer balance = 0
 
 }

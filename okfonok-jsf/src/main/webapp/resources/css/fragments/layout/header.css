@@ -18,3 +18,26 @@
 	float: right;
 }
 
+.header-icondiv {
+	border-right: 2px solid white;
+	float: right;
+	height: 45px;
+	width: 48px;
+}
+
+.header-icon {
+	height: 25px;
+	margin: auto auto;
+	display: block;
+	margin-top: 7px;
+}
+
+.header-balance {
+	width: 145px;
+}
+
+.header-balance .header-icon {
+	margin-left: inherit;
+	margin-right: inherit;
+	float: left;
+}

@@ -46,6 +46,7 @@
         employee bit ,
         employer bit ,
         working bit ,
+        balance integer,
         facebookValidatedId varchar(255),
         firstName varchar(255),
         introduction varchar(1000),

@@ -24,9 +24,31 @@
 			</div>
 
 			<div class="header-right">
-				<h:link outcome="/messages.xhtml">
-					<p:graphicImage library="img" name="help.png" />
-				</h:link>
+				<div class="header-icondiv">
+					<h:link outcome="/messages.xhtml">
+						<p:graphicImage library="img" name="header/lista.png" styleClass="header-icon" />
+					</h:link>
+				</div>
+				<div class="header-icondiv">
+					<h:link outcome="/messages.xhtml">
+						<p:graphicImage library="img" name="header/villanykorte1.png" styleClass="header-icon" />
+					</h:link>
+				</div>
+
+				<div class="header-icondiv">
+					<h:link outcome="/messages.xhtml">
+						<p:graphicImage library="img" name="header/boritek1.png" styleClass="header-icon" />
+					</h:link>
+				</div>
+				<div class="header-icondiv header-balance">
+					<h:link outcome="/messages.xhtml">
+						<p:graphicImage library="img" name="header/bankkartya.png" styleClass="header-icon" />
+						<h:panelGrid columns="1">
+							<h:outputText value="Egyenleg" />
+							<h:outputText value="#{userBean.user.balance} Ft" />
+						</h:panelGrid>
+					</h:link>
+				</div>
 			</div>
 		</div>
 
