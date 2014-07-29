@@ -9,35 +9,41 @@
 
 <composite:implementation>
 	<f:facet name="last">
+		<h:outputStylesheet library="css" name="styles.css" />
 		<h:outputStylesheet library="css" name="fragments/header/viewad.css" />
 	</f:facet>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<h:form styleClass="viewad-content">
-		<div class="left">
-			<h:messages />
+		<div class="viewad-left">
 			<h:panelGrid columns="2">
+				<h:outputText styleClass="title" value="Hirdető:" />
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.user.profile.realName}" />
+				<h:outputText styleClass="title" value="Főkategória:" />
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.category.mainCategory}" />
+				<h:outputText styleClass="title" value="Kategória:" />
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.category}" />
+			</h:panelGrid>
 
-				<h:outputText value="Hirdető" />
-				<h:outputText value="#{cc.attrs.ad.user.userName}" />
-				<h:outputText value="Főkategória" />
-				<h:outputText value="#{cc.attrs.ad.category.mainCategory}" />
-				<h:outputText value="Kategória" />
-				<h:outputText value="#{cc.attrs.ad.category}" />
-				<h:outputText value="Hirdetés szövege" />
-				<h:outputText value="#{cc.attrs.ad.description}" escape="false" />
-				<h:outputText value="Díjazás" />
-				<h:outputText value="#{cc.attrs.ad.remuneration}" />
-				<h:outputText value="Maximum díj" />
-				<h:outputText value="#{cc.attrs.ad.maxOffer}" />
+			<h:outputText styleClass="title title-ad" value="Hirdetés szövege" />
+			<div class="table-ad">
+				<h:outputText styleClass="text text-ad" value="#{cc.attrs.ad.description}" escape="false" />
+			</div>
+			<h:panelGrid columns="2">
+				<h:outputText styleClass="title" value="Díjazás:" />
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.remuneration}" />
+				<h:outputText styleClass="title" value="Maximum díj:" />
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.maxOffer}" />
 			</h:panelGrid>
 		</div>
-		<div class="right">
-			<p:galleria value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false">
+		<div class="viewad-right">
+			<p:galleria rendered="#{!empty ad.imagePaths}" autoPlay="true" value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false">
 				<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
 			</p:galleria>
+			<h:outputText rendered="#{empty ad.imagePaths}" value="nincs kép" />
 			<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
 			<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
-			<p:commandLink value="Üzenetküldés a hirdetéssel kapcsolatban" />
+			<p:graphicImage library="img" name="/belepes_utan/adatok/normal/moritek.png" />
+			<h:link styleClass="ad-msg" value=" - Üzenetküldés a hirdetéssel kapcsolatban" />
 		</div>
 	</h:form>
 </composite:implementation>

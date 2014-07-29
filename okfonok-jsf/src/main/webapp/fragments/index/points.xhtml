@@ -9,10 +9,10 @@
 <h:body>
 	<ui:composition>
 		<h:outputStylesheet library="css" name="fragments/index/points.css" />
-		Felhasználható pontjaid száma
+		<p>Felhasználható pontjaid száma</p>
 		<h:outputText  value="#{pointService.findLast().sum}" />
 		<p:chart type="line" model="#{pointsBean.model}" styleClass="points-chart" />
-		Váltsd be pontjaidat értékes tárgyakra <p:link value="áruházunkban" /> és hajts rá heti/havi <p:link value="versenyeinkre" />! 
+		<p>Váltsd be pontjaidat értékes tárgyakra <p:link value="áruházunkban" /> és hajts rá heti/havi <p:link value="versenyeinkre" />!</p> 
 	</ui:composition>
 </h:body>
 </html>

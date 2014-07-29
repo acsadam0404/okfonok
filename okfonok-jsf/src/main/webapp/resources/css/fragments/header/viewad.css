@@ -1,3 +1,4 @@
+
 .viewad-content {
 	width: 450px;
 	height: 480px;
@@ -8,16 +9,22 @@
 	height: 130px;
 }
 
-.left {
+.viewad-left {
+	width: 240px;
+}
+
+.viewad-left table {
+	width: 100%;
+	border: none;
+}
+
+.viewad-right {
 	width: 210px;
 }
 
-.right {
-	width: 210px;
-}
-
-.left, .right {
+.viewad-left, .viewad-right {
 	float: left;
+	height: 480px;
 }
 
 .ui-dialog-titlebar-close {
@@ -25,4 +32,24 @@
 	position: relative;
 	top: -40px;
 	z-index: 10000;
+}
+
+.title {
+	color: #247984;
+}
+
+.text {
+	float: right;
+}
+.text-ad {
+	height: 100%;
+	float: left;
+}
+
+.table-ad {
+	height: 80%;
+}
+
+.ad-msg {
+	font-size: 14px;
 }

@@ -1,3 +1,7 @@
+body {
+	background: url("#{resource['img/alap:alap_hatter.png']}");
+}
+
 .page {
 	position: relative;
 }
@@ -12,13 +16,11 @@
 	margin-top: 20px;
 }
 
-
-.header-inner{
+.header-inner {
 	width: 1000px;
 	margin: auto auto;
 	height: 50px;
 }
-
 
 .left {
 	width: 740px; /* +10px margin-right */
@@ -37,11 +39,9 @@
 
 .right-data {
 	margin-top: 20px;
-/* 	height: 270px; */
+	/* 	height: 270px; */
 	border: 1px;
 }
-
-
 
 .help {
 	position: fixed;
@@ -50,17 +50,27 @@
 }
 
 .left-floating {
-	width: 30px;
+	width: 50px;
 	height: 50px;
-	background-color: red;
 	position: fixed;
 	left: 0px;
+	font-size: 13px;
+	color: white !important;
+	text-align: center;
+	display: table; 
+	overflow: hidden;
 }
 
 .postad {
-	top: 45%;
+	top: 15%;
+	background-color: #f26522;
+	display: table-cell;
+	vertical-align: middle;
 }
 
- .points {
-	top: 55%;
+.points {
+	top: 20%;
+	background-color: #efae61;
+	display: table-cell;
+	vertical-align: middle;
 }

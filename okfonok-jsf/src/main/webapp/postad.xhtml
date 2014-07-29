@@ -36,7 +36,7 @@
 					<h2>Feladatvégzés helye</h2>
 
 					<h:panelGrid columns="3">
-						<p:autoComplete completeMethod="#{addressBean.completeSettlement()}"  id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
+						<p:autoComplete completeMethod="#{addressBean.completeSettlement}"  id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
 						<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
 					</h:panelGrid>
 					<p:watermark for="settlement" value="település*" />

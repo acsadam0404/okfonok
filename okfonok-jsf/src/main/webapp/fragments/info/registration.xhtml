@@ -17,7 +17,7 @@
 				<p:commandLink action="#{registrationBean.register()}">
 					<p:graphicImage id="createProfile" library="img" name="landing_page/jobb_oldal/regisztracio/reg.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
-				<span id="registrationConditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
+				<span class="registration-conditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
 				</span>
 				<h:outputText value="vagy" />
 				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">

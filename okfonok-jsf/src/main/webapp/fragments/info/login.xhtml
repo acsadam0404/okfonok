@@ -16,13 +16,13 @@
 			<p:watermark for="j_username" value="E-mail cím" />
 			<p:password id="j_password" name="j_password" styleClass="password maxsize icon-input" />
 			<p:watermark for="j_password" value="Jelszó" />
-			<p:commandLink ajax="false" value="Belépés" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}">
+			<p:commandLink ajax="false" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}">
 				<p:graphicImage library="img" name="landing_page/belepes/belepes.png" style="cursor:pointer"  />
 			</p:commandLink>
 			<h:outputText value="vagy" />
 			<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" styleClass="facebook-login-button maxsize">
 				<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
-				<p:graphicImage id="facebookReg" library="img" name="fragments/facebooklogin.png" style="cursor:pointer" title="Belépés Facebookkal" />
+				<p:graphicImage id="facebookReg" library="img" name="landing_page/belepes/belepes.png" style="cursor:pointer" title="Belépés Facebookkal" />
 			</p:commandLink>
 			<h:link styleClass="okflink" value="Elfelejtetted a jelszavad?" />
 			<!-- és akkor mivan? mit csináljak? -->
