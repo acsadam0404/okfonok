@@ -48,7 +48,7 @@
 					<h:panelGrid columns="2">
 						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
 						<h:panelGrid columns="1">
-							<p:autoComplete rendered="#{dataPageBean.dataEditing}" id="zipcode" completeMethod="#{addressBean.completeSettlement()}" value="#{userBean.user.address.zipcodeAndCity}" />
+							<p:autoComplete rendered="#{dataPageBean.dataEditing}" id="zipcode" completeMethod="#{addressBean.completeSettlement}" value="#{userBean.user.address.zipcodeAndCity}" maxResults="5" minQueryLength="2" />
 							<p:inputText rendered="#{dataPageBean.dataEditing}" id="other" value="#{userBean.user.address.other}" />
 						</h:panelGrid>
 					</h:panelGrid>

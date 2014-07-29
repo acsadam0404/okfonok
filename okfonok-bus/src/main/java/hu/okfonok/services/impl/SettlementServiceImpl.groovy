@@ -1,5 +1,7 @@
 package hu.okfonok.services.impl
 
+import java.util.List;
+
 import hu.okfonok.dao.SettlementDao
 import hu.okfonok.entities.Settlement
 import hu.okfonok.services.SettlementService
@@ -32,5 +34,10 @@ class SettlementServiceImpl extends BaseServiceImpl<Settlement> implements Settl
 	@Override
 	Settlement findBySettlement(String settlement) {
 		repo.findBySettlement(settlement)
+	}
+
+	@Override
+	List<Settlement> findBySettlementOrZipLike(String query) {
+		repo.findBySettlementLikeOrZipLike(query)
 	}
 }

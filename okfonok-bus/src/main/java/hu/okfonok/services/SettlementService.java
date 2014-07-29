@@ -13,4 +13,6 @@ public interface SettlementService {
 	List<Settlement> findAll();
 
 	Settlement findBySettlement(String value);
+	
+	List<Settlement> findBySettlementOrZipLike(String query);
 }
