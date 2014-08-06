@@ -1,5 +1,7 @@
 package hu.okfonok.entities.user
 
+import groovy.transform.EqualsAndHashCode;
+
 import javax.persistence.CascadeType
 import javax.persistence.Embeddable
 import javax.persistence.FetchType
@@ -17,6 +19,7 @@ import org.hibernate.annotations.Formula
  *
  */
 @Embeddable
+@EqualsAndHashCode
 class Profile implements Serializable {
 
 	String profileImagePath

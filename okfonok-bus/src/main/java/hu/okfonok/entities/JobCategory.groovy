@@ -1,10 +1,13 @@
 package hu.okfonok.entities
 
+import groovy.transform.EqualsAndHashCode;
+
 import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
+import javax.persistence.Table
 
 /**
  * 
@@ -12,6 +15,8 @@ import javax.persistence.OneToMany
  *
  */
 @Entity
+@Table(name = 'jobcategory')
+@EqualsAndHashCode
 class JobCategory extends BaseEntity{
 	boolean main
 
@@ -27,29 +32,6 @@ class JobCategory extends BaseEntity{
 	@Override
 	public String toString() {
 		return name;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		JobCategory other = (JobCategory) obj;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		return true;
 	}
 
 }

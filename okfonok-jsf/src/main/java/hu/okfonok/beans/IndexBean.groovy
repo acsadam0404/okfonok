@@ -1,10 +1,8 @@
 package hu.okfonok.beans
 
-import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
 
-import javax.annotation.PostConstruct
-
+import org.primefaces.context.RequestContext
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
 
@@ -14,9 +12,24 @@ import org.springframework.context.annotation.Scope
  *
  */
 @org.springframework.stereotype.Component("indexBean")
-@Scope("view")
+@Scope("session")
 class IndexBean implements Serializable{
 	@Autowired
 	private UserService userService
 
+	@Autowired
+	private UserBean userBean
+	
+	private boolean alreadyShowedFirstLoginDialog 
+	
+	/**
+	 *  első belépésnél megmutatja a dialógust
+	 */
+	def showOnFirstLogin() {
+		
+		if (!alreadyShowedFirstLoginDialog && userBean.user.loginCount == 1) {
+			alreadyShowedFirstLoginDialog = true
+			RequestContext.currentInstance.execute("PF('dlgFirstLogin').show();")
+		}
+	}
 }

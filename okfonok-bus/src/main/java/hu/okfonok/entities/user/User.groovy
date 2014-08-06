@@ -1,5 +1,7 @@
 package hu.okfonok.entities.user
 
+import groovy.transform.EqualsAndHashCode;
+import groovy.transform.ToString;
 import hu.okfonok.entities.Address
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.BaseEntity
@@ -13,10 +15,11 @@ import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.OneToMany
+import javax.persistence.Table
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-import org.hibernate.annotations.Formula
+import org.hibernate.annotations.Formula;
 
 /**
  * 
@@ -24,6 +27,9 @@ import org.hibernate.annotations.Formula
  *
  */
 @Entity
+@Table(name = 'user')
+@EqualsAndHashCode
+@ToString
 class User extends BaseEntity implements Serializable{
 
 	@Column(unique = true)
@@ -39,7 +45,7 @@ class User extends BaseEntity implements Serializable{
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinTable(name = "User_Roles", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "role_id", referencedColumnName="id") ])
-	Set<Role> roles = new HashSet<Role>()
+	Set<Role> roles = new HashSet<>()
 
 	@Embedded
 	Address address = new Address()
@@ -56,17 +62,18 @@ class User extends BaseEntity implements Serializable{
 	Paypal paypal
 
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "User_Skills", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "skill_id", referencedColumnName="id") ])
-	Set<Skill> skills = new HashSet<Skill>()
+	@JoinTable(name = "user_userskills", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "userskill_id", referencedColumnName="id") ])
+	Set<UserSkill> skills = new HashSet<>()
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "User_Points", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "point_id", referencedColumnName="id") ])
-	Set<Point> points = new HashSet<Point>()
+	@JoinTable(name = "user_points", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "point_id", referencedColumnName="id") ])
+	Set<Point> points = new HashSet<>()
 	
 	@OneToMany(orphanRemoval=true ,cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-	@JoinTable(name = "User_SavedAds", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "ad_id", referencedColumnName="id") ])
-	Set<Advertisement> savedAds = new HashSet<Advertisement>()
+	@JoinTable(name = "user_savedAds", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "ad_id", referencedColumnName="id") ])
+	Set<Advertisement> savedAds = new HashSet<>()
 	
 	Integer balance = 0
-
+	
+	Integer loginCount = 0
 }

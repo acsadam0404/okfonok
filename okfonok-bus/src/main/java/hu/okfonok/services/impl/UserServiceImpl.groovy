@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional
 class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	@Autowired
 	private transient UserDao repo;
-	
+
 	@Autowired
 	UserServiceImpl(UserDao crudRepo) {
 		super(crudRepo);
@@ -34,8 +34,14 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 	}
 
 	@Override
-	public List<User> findAll() {
+	List<User> findAll() {
 		repo.findAll()
 	}
-	
+
+	@Override
+	void loggedIn(String username) {
+		def user = findByUserName(username)
+		user.loginCount++
+		save(user)
+	}
 }

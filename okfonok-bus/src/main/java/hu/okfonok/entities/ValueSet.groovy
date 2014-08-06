@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull
 
 
 @Entity
-@Table(name = 'ValueSet')
+@Table(name = 'valueset')
 class ValueSet extends BaseEntity {
 
 	@NotNull

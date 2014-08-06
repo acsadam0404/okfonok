@@ -1,5 +1,7 @@
 package hu.okfonok.entities.user
 
+import groovy.transform.EqualsAndHashCode;
+
 import javax.persistence.Embeddable
 
 import org.hibernate.annotations.Formula
@@ -10,6 +12,7 @@ import org.hibernate.annotations.Formula
  *
  */
 @Embeddable
+@EqualsAndHashCode
 class Certification implements Serializable {
 	
 	String idCardNumber

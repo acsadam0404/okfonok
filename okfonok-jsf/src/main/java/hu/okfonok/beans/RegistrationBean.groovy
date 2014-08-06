@@ -32,7 +32,7 @@ class RegistrationBean implements Serializable {
 
 	User user = new User()
 
-	
+
 	void register(User user) {
 		try {
 			userService.save(user)
@@ -52,7 +52,7 @@ class RegistrationBean implements Serializable {
 			log.fatal("Sikertelen regisztráció!", e);
 		}
 	}
-	
+
 	void register() {
 		register(user)
 	}
@@ -60,5 +60,4 @@ class RegistrationBean implements Serializable {
 	void reset() {
 		user = new User()
 	}
-
 }

@@ -15,6 +15,7 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 
+import org.apache.commons.lang3.RandomStringUtils
 import org.apache.log4j.Logger
 import org.brickred.socialauth.AuthProvider
 import org.brickred.socialauth.Profile
@@ -45,9 +46,9 @@ class UserSessionBean implements Serializable, PhaseListener {
 	private static Logger log = Logger.getLogger(UserSessionBean.class)
 
 	SocialAuthManager manager
-	String originalURL;
-	String providerID;
-	Profile profile;
+	String originalURL
+	String providerID
+	Profile profile
 
 	@Autowired
 	private UserDetailsService userDetailsService
@@ -73,9 +74,9 @@ class UserSessionBean implements Serializable, PhaseListener {
 		// 'successURL' is the page you'll be redirected to on successful login
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		//		String successURL = externalContext.getRequestContextPath() + "socialLoginSuccess.xhtml";
-		String successURL = "http://localhost:18080/okfonok-jsf/socialLoginSuccess.xhtml"; //TODO
-		String authenticationURL = manager.getAuthenticationUrl(providerID, successURL);
-		FacesContext.getCurrentInstance().getExternalContext().redirect(authenticationURL);
+		String successURL = "http://localhost:18080/okfonok-jsf/socialLoginSuccess.xhtml" //TODO
+		String authenticationURL = manager.getAuthenticationUrl(providerID, successURL)
+		FacesContext.getCurrentInstance().getExternalContext().redirect(authenticationURL)
 	}
 
 	void socialPullUserInfo() {
@@ -141,7 +142,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			user.enabled = true
 			user.providerId = socialProfile.providerId
 			user.userName = userName
-			user.password = socialProfile.validatedId + 'somerandomstring' //TODO valami komolyabb password generálás
+			user.password = RandomStringUtils.randomAlphanumeric(10) 
 
 			registrationService.register(user)
 		}
@@ -166,11 +167,12 @@ class UserSessionBean implements Serializable, PhaseListener {
 	 * @throws IOException
 	 */
 	public String doLogin() throws ServletException, IOException {
-		ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
-		RequestDispatcher dispatcher = ((ServletRequest) context.getRequest()).getRequestDispatcher("/j_spring_security_check");
-		dispatcher.forward((ServletRequest) context.getRequest(), (ServletResponse) context.getResponse());
-		FacesContext.getCurrentInstance().responseComplete();
-
+		ExternalContext context = FacesContext.currentInstance.externalContext
+		RequestDispatcher dispatcher = context.request.getRequestDispatcher("/j_spring_security_check");
+		dispatcher.forward(context.request, context.response)
+		FacesContext.currentInstance.responseComplete()
+		
+		userService.loggedIn(context.request.getParameter("j_username"))
 		return "index.xhtml";
 	}
 
@@ -191,12 +193,14 @@ class UserSessionBean implements Serializable, PhaseListener {
 		if (manager) {
 			socialLogout();
 		}
-		SecurityContextHolder.clearContext();
-		return "info.xhtml?faces-redirect=true";
+		SecurityContextHolder.clearContext()
+		FacesContext.getCurrentInstance().getExternalContext().invalidateSession()
+		return "info.xhtml?faces-redirect=true"
 
 	}
-	public PhaseId getPhaseId() {
-		return PhaseId.RENDER_RESPONSE;
+	
+	PhaseId getPhaseId() {
+		return PhaseId.RENDER_RESPONSE
 	}
 
 	void setOriginalURL(String originalURL) {

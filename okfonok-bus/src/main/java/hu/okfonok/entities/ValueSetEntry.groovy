@@ -6,7 +6,7 @@ import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 @Entity
-@Table(name =  "ValueSetEntry")
+@Table(name =  "valuesetentry")
 class ValueSetEntry extends BaseEntity{
 	
 	@NotNull
