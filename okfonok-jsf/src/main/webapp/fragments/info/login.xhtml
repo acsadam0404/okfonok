@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets"  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 </h:head>
@@ -11,18 +11,16 @@
 		<h:outputStylesheet library="css" name="login.css" />
 	</f:facet>
 	<h:form prependId="false">
-		<h:panelGrid columns="1" styleClass="login-panel">
-			<p:inputText id="j_username" name="j_username" styleClass="email maxsize icon-input"  />
-			<p:watermark for="j_username" value="E-mail cím" />
-			<p:password id="j_password" name="j_password" styleClass="password maxsize icon-input" />
-			<p:watermark for="j_password" value="Jelszó" />
+		<h:panelGrid columns="1" styleClass="login-panel" >
+			<p:inputText id="j_username" name="j_username" styleClass="email icon-input login-input"  pt:placeholder="E-mail cím" />
+			<p:password id="j_password" name="j_password" styleClass="password icon-input login-input" pt:placeholder="Jelszó" />
 			<p:commandLink ajax="false" styleClass="login-button maxsize" action="#{userSessionBean.doLogin}">
-				<p:graphicImage library="img" name="login/belepes.png" style="cursor:pointer"  />
+				<p:graphicImage library="img" name="login/belepes.png" styleClass="pointer"  />
 			</p:commandLink>
-			<h:outputText value="vagy" />
+			<h:outputText value="vagy" styleClass="font-default" />
 			<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" styleClass="facebook-login-button maxsize">
 				<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
-				<p:graphicImage id="facebookReg" library="img" name="login/belepes.png" style="cursor:pointer" title="Belépés Facebookkal" />
+				<p:graphicImage id="facebookReg" library="img" name="login/login_fb.png" styleClass="pointer" title="Belépés Facebookkal" />
 			</p:commandLink>
 			<h:link styleClass="okflink" value="Elfelejtetted a jelszavad?" />
 			<!-- és akkor mivan? mit csináljak? -->

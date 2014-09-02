@@ -1,23 +1,17 @@
 .registration-input {
-	background: url("#{resource['img/registration:ember.png']}") !important;
+	background-image: url("#{resource['img/registration:ember.png']}") !important;
 }
 
 .password-input {
-	background: url("#{resource['img/registration:kulcs.png']}") !important;
+	background-image: url("#{resource['img/registration:kulcs.png']}") !important;
 }
 
 .address-input {
-	background: url("#{resource['img/registration:pointer.png']}") !important;
+	background-image: url("#{resource['img/registration:pointer.png']}") !important;
 }
 
 .email-input {
-	background: url("#{resource['img/registration:mail.png']}") !important;
-}
-
-.icon-input {
-	padding-left: 30px;
-	background-repeat: no-repeat !important;
-	background-position: 10px 10px !important;
+	background-image: url("#{resource['img/registration:mail.png']}") !important;
 }
 
 .screen-registration-input {

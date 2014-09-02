@@ -1,27 +1,24 @@
-/* kizárólag login.xhtml számára */
 .logo {
 	margin-bottom: 10px;
 }
-.maxsize {
-	width: 450px;
-	height: 47px;
-	padding: 0;
-	width: 265px;
-}
 
 .email {
-	background: url("#{resource['img/login:mail.png']}") no-repeat !important;
+	background-image: url("#{resource['img/login:mail.png']}") !important;
 }
 
 .password {
-	background: url("#{resource['img/login:kulcs.png']}") no-repeat !important;
-}
-
-.icon-input {
-	padding-left: 20px;
+	background-image: url("#{resource['img/login:kulcs.png']}") !important;
 }
 
 .login-panel {
-	text-align: center;    
-	margin: 10px auto auto auto;
+	width: 250px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.login-input {
+	margin-bottom: 10px;
+	width: 220px !important;
+	height: 30px;
+	padding-right: 0px;
 }

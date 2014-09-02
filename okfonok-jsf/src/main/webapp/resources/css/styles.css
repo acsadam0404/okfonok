@@ -9,8 +9,9 @@ html, body {
 }
 
 .icon-input {
-	padding-left: 50px;
-	width: 400px;
+	padding-left: 30px;
+	background-repeat: no-repeat !important;
+	background-position: 10px 10px !important;
 }
 
 .color-green {
@@ -81,4 +82,8 @@ a {
 
 .font-default {
 	font-size: 10.5pt;
+}
+
+.pointer {
+	cursor: pointer;
 }
