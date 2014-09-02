@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  *
  */
 @Entity
-@Table(name = "Role")
+@Table(name = "role")
 class Role extends BaseEntity {
 	
 	@Column

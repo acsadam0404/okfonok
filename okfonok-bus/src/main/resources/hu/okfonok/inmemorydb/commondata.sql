@@ -2,8 +2,8 @@
 insert into Role (id, name) values (1, 'USER_ROLE');
 insert into Role (id, name) values (2, 'DEV_ROLE');
 insert into Role (id, name) values (3, 'ADMIN_ROLE');
-insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121');
-insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber) values (2, 1, '82b9a701f55b9a48c6083f247beea5c1', 'test', 'User', 'Test', 'acsadam0404@gmail.com', '062012121');
+insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber, loginCount) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'aacs', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121', 0);
+insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber, loginCount) values (2, 1, '82b9a701f55b9a48c6083f247beea5c1', 'test', 'User', 'Test', 'acsadam0404@gmail.com', '062012121', 0);
 insert into User_Roles (user_id, role_id) values (1, 1);
 insert into User_Roles (user_id, role_id) values (1, 2);
 insert into User_Roles (user_id, role_id) values (1, 3);
@@ -40,3 +40,9 @@ insert into User_Points (user_id, point_id) values (1, 1);
 insert into User_Points (user_id, point_id) values (1, 2);
 insert into User_Points (user_id, point_id) values (1, 3);
 insert into User_Points (user_id, point_id) values (1, 4);
+
+
+insert into skill (id, name, question, skillGroup) values (1, 'Kalapácsolás', 'Tudsz-e kalapácsolni?', 'fizikai');
+insert into skill (id, name, question, skillGroup) values (2, 'Kódolás', 'Tudsz-e programozni?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (3, 'fúrás', 'Tudsz-e fúrni?', 'fizikai');
+insert into skill (id, name, question, skillGroup) values (4, 'photoshop', 'Photoshop?', 'szellemi');

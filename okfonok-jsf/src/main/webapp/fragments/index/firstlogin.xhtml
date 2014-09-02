@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="fragments/index/firstlogin.css" />
+	
+	<p:dialog widgetVar="dlgFirstLogin" resizable="false" draggable="false">
+		<h1>Üdvözlünk az oldalunkon #{userBean.user.profile.lastName}!</h1>
+		<p>Az oldal használata során egy kölcsönös segédnyújtáson alapuló közösség tagja leszel. Böngéssz feladatatok közt és keress egy kis pénzt, vagy adj fel te is egy hirdetést!</p>
+		<p>Mindenek előtt azonban töltsd ki a hiányzó adataidat, hogy teljes tagja lehess a közösségnek!</p>
+		<p>Ha azt akarod, hogy jobban megbízzanak benned, töltsd ki igazolványaid számát is és töltsd fel nekünk másolatukat, hogy azonosítani tudjunk. (A személyes adatokat nem adjuk ki 3. személy számára)</p>
+		<p:button value="Értettem, köszi!"  onclick="PF('dlgFirstLogin').hide();"/>
+	</p:dialog>
+	<h:inputHidden value="#{indexBean.showOnFirstLogin()}" />
+</h:body>
+</html>

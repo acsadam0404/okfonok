@@ -14,7 +14,7 @@
 				<h:panelGrid columns="1">
 					<h:outputText value="#{userBean.user.profile.realName}" />
 					<h:panelGroup>
-						<h:link value="Szerkesztés" outcome="/profile" />
+						<h:link value="Szerkesztés"  />
 						<h:outputText value=" | " />
 						<h:form style="display: inline;">
 							<p:commandLink value="Kijelentkezés" action="#{userSessionBean.doLogout()}" ajax="false" />

@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:outputStylesheet library="css" name="fragments/index/fillskills.css" />
+
+	<p:dialog widgetVar="dlgFillskills" resizable="false" draggable="false">
+		<h:form>
+			<h1>Skálázd tudásod és jártasságod!</h1>
+			<h:panelGrid columns="1">
+				<ui:repeat var="skill" value="#{skillsBean.getRandomQuestions()}">
+					<h:outputText value="#{skill.question}" />
+					<p:rating stars="10" cancel="false" />
+				</ui:repeat>
+			</h:panelGrid>
+			<p:commandButton process="@this" value="Most elég lesz ennyi" onclick="PF('dlgFillskills').hide();" />
+			<p:commandButton value="Jöhet még kérdés" />
+		</h:form>
+	</p:dialog>
+</h:body>
+</html>

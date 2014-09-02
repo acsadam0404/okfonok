@@ -15,7 +15,7 @@ class Address implements Serializable {
 	String other
 	
 	@Formula("0")
-	private int dummyFieldForHibernateNotNullEmbedded;
+	private int dummyFieldForHibernateNotNullEmbedded
 	
 	private transient String zipcodeAndCity
 	
