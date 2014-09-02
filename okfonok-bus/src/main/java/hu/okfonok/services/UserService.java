@@ -1,5 +1,7 @@
 package hu.okfonok.services;
 
+import java.util.Date;
+
 import hu.okfonok.entities.user.User;
 
 /**
@@ -9,9 +11,4 @@ import hu.okfonok.entities.user.User;
  */
 public interface UserService extends BaseService<User> {
 	User findByUserName(String username);
-	
-	/**
-	 * callback a login eseményre
-	 */
-	void loggedIn(String username);
 }

@@ -17,6 +17,24 @@
 		<h:outputStylesheet library="css" name="styles.css" />
 		<h:outputStylesheet library="css" name="layout.css" />
 	</f:facet>
+
+	<script type="text/javascript">
+	<!-- ez most nem működik még, de írtam fórumon: http://forum.primefaces.org/viewtopic.php?f=3&t=39533 -->
+		PrimeFaces.validator.Email = {
+			MESSAGE_ID : "org.hibernate.validator.constraints.Email",
+			validate : function(element, value) {
+				console.log("called");
+				var pattern = /\S+@\S+/;
+				if (!this.pattern.test(value)) {
+					var msg = {
+						summary : "invalid e-mail address",
+						detail : "invalid e-mail address"
+					};
+					throw msg;
+				}
+			}
+		};
+	</script>
 	<div class="page">
 		<ui:include src="fragments/layout/header.xhtml" />
 

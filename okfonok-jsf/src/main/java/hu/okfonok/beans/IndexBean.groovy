@@ -26,10 +26,9 @@ class IndexBean implements Serializable{
 	 *  első belépésnél megmutatja a dialógust
 	 */
 	def showOnFirstLogin() {
-		
-		if (!alreadyShowedFirstLoginDialog && userBean.user.loginCount == 1) {
+		if (!alreadyShowedFirstLoginDialog && !userBean.user.lastLogin) {
 			alreadyShowedFirstLoginDialog = true
-			RequestContext.currentInstance.execute("PF('dlgFirstLogin').show();")
+			RequestContext.getCurrentInstance().execute("PF('dlgFirstLogin').show();")
 		}
 	}
 }

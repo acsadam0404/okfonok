@@ -94,7 +94,7 @@
         facebookValidatedId varchar(255),
         firstName varchar(255),
         introduction varchar(255),
-                loginCount integer,
+                lastLogin timestamp,
         lastName varchar(255),
         personalEmployer boolean,
         phoneNumber varchar(255),

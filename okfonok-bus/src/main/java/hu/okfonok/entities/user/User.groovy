@@ -16,10 +16,12 @@ import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.OneToMany
 import javax.persistence.Table
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
 import org.hibernate.annotations.Formula;
+import org.hibernate.validator.constraints.Email;
 
 /**
  * 
@@ -35,6 +37,7 @@ class User extends BaseEntity implements Serializable{
 	@Column(unique = true)
 	@NotNull
 	@Size(min=4, max=60)
+	@Email
 	String userName
 
 	@NotNull
@@ -48,12 +51,15 @@ class User extends BaseEntity implements Serializable{
 	Set<Role> roles = new HashSet<>()
 
 	@Embedded
+	@NotNull
+	@Valid
 	Address address = new Address()
 
 	@Embedded
 	Certification certification = new Certification()
 
 	@Embedded
+	@Valid
 	Profile profile = new Profile()
 
 	String providerId
@@ -75,5 +81,10 @@ class User extends BaseEntity implements Serializable{
 	
 	Integer balance = 0
 	
-	Integer loginCount = 0
+	Date lastLogin
+	
+	void setUserName(String userName) {
+		this.userName = userName
+		profile.email = userName
+	}
 }

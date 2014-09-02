@@ -1,0 +1,17 @@
+.dialog-firstlogin {
+	width: 450px !important;
+	height: 220px !important;
+}
+
+p {
+	margin-bottom: 0 !important;
+	margin-top: 0 !important;
+}
+
+.ertettem-button {
+	float: right;
+}
+
+.ui-dialog-titlebar {
+	display: none;
+}

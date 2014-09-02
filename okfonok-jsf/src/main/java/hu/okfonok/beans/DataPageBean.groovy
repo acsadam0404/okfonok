@@ -1,5 +1,7 @@
 package hu.okfonok.beans
 
+import javax.annotation.PostConstruct;
+
 import hu.okfonok.services.UserService
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,6 +20,12 @@ class DataPageBean {
 
 	boolean dataEditing
 	boolean aboutEditing
+	
+	@PostConstruct
+	private void init() {
+		/* ha első belépés akkor mindig szerkeszthető módban vagyunk */
+		dataEditing = aboutEditing = !userBean.user.lastLogin
+	}
 
 	void dataBtnAction() {
 		dataEditing = !dataEditing

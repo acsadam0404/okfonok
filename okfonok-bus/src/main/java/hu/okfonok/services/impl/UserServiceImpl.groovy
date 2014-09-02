@@ -3,6 +3,7 @@ package hu.okfonok.services.impl;
 import hu.okfonok.dao.UserDao
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.user.User
+import hu.okfonok.events.LoginEvent
 import hu.okfonok.services.UserService
 
 import javax.persistence.EntityManager
@@ -10,6 +11,8 @@ import javax.persistence.EntityManager
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+
+import com.google.common.eventbus.Subscribe;
 
 
 /**
@@ -38,10 +41,10 @@ class UserServiceImpl extends BaseServiceImpl<User> implements UserService {
 		repo.findAll()
 	}
 
-	@Override
-	void loggedIn(String username) {
-		def user = findByUserName(username)
-		user.loginCount++
+	@Subscribe
+	void handleLogin(LoginEvent event) {
+		def user = findByUserName(event.username)
+		user.lastLogin = event.datum
 		save(user)
 	}
 }

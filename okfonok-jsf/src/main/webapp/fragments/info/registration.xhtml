@@ -1,4 +1,4 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 	<f:view>
 		<ui:param name="originalURL" value="#{request.requestURI}?#{request.queryString}" />
 
@@ -11,29 +11,45 @@
 		<h:outputStylesheet library="css" name="fragments/info/registration.css" />
 	</f:facet>
 	<h:form id="registrationForm">
-		<h:panelGroup id="registrationFormPanel">
-			<h:panelGrid columns="1">
-				<p:inputText id="realName" maxlength="30" value="#{registrationBean.user.profile.realName}" styleClass="icon-input registration-input" />
-				<p:inputText id="email" maxlength="60" value="#{registrationBean.user.userName}"  styleClass="icon-input email-input"/>
-				<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell"  styleClass="icon-input password-input"/>
-				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true"  styleClass="icon-input password-input" />
-				<p:inputText id="address" maxlength="4" value="#{registrationBean.user.address.zipcode}"  styleClass="icon-input address-input"/>
-				<p:commandLink action="#{registrationBean.register()}" ajax="false">
+		<h:panelGroup id="registrationFormPanel" layout="block" styleClass="registration-panel">
+			<h:panelGrid columns="2">
+				<p:inputText id="realName" maxlength="30" value="#{registrationBean.user.profile.realName}" styleClass="icon-input registration-input screen-registration-input" pt:placeholder="Teljes név">
+					<p:clientValidator event="keyup" />
+				</p:inputText>
+				<p:message for="realName" display="icon" />
+				<p:inputText id="email" maxlength="60" value="#{registrationBean.user.userName}" styleClass="icon-input email-input screen-registration-input" pt:placeholder="E-mail cím">
+					<p:clientValidator event="keyup" />
+				</p:inputText>
+				<p:message for="email" display="icon" />
+				<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" styleClass="icon-input password-input screen-registration-input" pt:placeholder="Jelszó">
+					<p:clientValidator event="keyup" />
+				</p:password>
+				<p:message for="pwd1" display="icon" />
+				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="20" name="pwd2" required="true" styleClass="icon-input password-input screen-registration-input" pt:placeholder="Jelszó ismét">
+					<p:clientValidator event="keyup" />
+				</p:password>
+				<p:message for="pwd2" display="icon" />
+				<p:inputText id="address" maxlength="4" value="#{registrationBean.user.address.zipcode}" styleClass="icon-input address-input screen-registration-input" pt:placeholder="Irányítószám">
+					<p:clientValidator event="keyup" />
+				</p:inputText>
+				<p:message for="address" display="icon" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="1" style="text-align: center;">
+				<p:commandLink action="#{registrationBean.register()}" ajax="false" validateClient="true" delay="100" onclick="if (typeof args !== 'undefined' &amp;&amp; !args.validationFailed) return false">
 					<p:graphicImage id="createProfile" library="img" name="registration/reg.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
-				<span class="registration-conditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
-				</span>
-				<h:outputText value="vagy" />
-				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}">
+				<h:panelGroup>
+					<span class="registration-conditions">Elolvastam, és elfogadom az <a href="/privacy">Adatkezelést</a> és a <a href="/privacy">Felhasználói feltételek</a>et.
+					</span>
+				</h:panelGroup>
+				<h:outputText value="vagy" styleClass="font-default" />
+				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" ajax="false" immediate="true">
 					<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
 					<p:graphicImage id="facebookReg" library="img" name="registration/faceb_reg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
 				</p:commandLink>
 			</h:panelGrid>
-			<p:watermark for="pwd2" value="Jelszó ismét" />
-			<p:watermark for="pwd1" value="Jelszó" />
-			<p:watermark for="email" value="E-mail cím" />
-			<p:watermark for="realName" value="Teljes név" />
-			<p:watermark for="address" value="Irányítószám" />
+
 		</h:panelGroup>
 	</h:form>
 

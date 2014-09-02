@@ -2,6 +2,7 @@ package hu.okfonok.beans;
 
 import hu.okfonok.beans.events.LoginAttemptEvent
 import hu.okfonok.entities.user.User
+import hu.okfonok.events.LoginEvent
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.EventBus
 import hu.okfonok.utils.ServiceLocator;
@@ -143,7 +144,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 	 * @param socialProfile
 	 */
 	void socialRegisterIfNeeded(Profile socialProfile) {
-		String userName = socialProfile.validatedId
+		String userName = socialProfile.email
 
 		try {
 			userService.findByUserName(userName)
@@ -154,7 +155,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			user.profile.firstName = socialProfile.firstName
 			user.profile.lastName = socialProfile.lastName
 			user.profile.profileImagePath = socialProfile.profileImageURL
-			user.profile.email = socialProfile.email
+			user.userName = socialProfile.email
 			user.enabled = true
 			user.providerId = socialProfile.providerId
 			user.userName = userName
@@ -188,7 +189,8 @@ class UserSessionBean implements Serializable, PhaseListener {
 		dispatcher.forward(context.request, context.response)
 		FacesContext.currentInstance.responseComplete()
 		//TODO ha nem sikerült a login ne hivjuk meg
-		//userService.loggedIn(context.request.getParameter("j_username"))
+		EventBus.post(new LoginEvent(context.request.getParameter("j_username"), new Date()))
+		
 		return "index.xhtml";
 	}
 

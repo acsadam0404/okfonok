@@ -2,14 +2,17 @@ package hu.okfonok.entities
 
 import javax.persistence.Embeddable
 import javax.validation.constraints.Digits
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Formula
 
 @Embeddable
 class Address implements Serializable {
 	@Digits(integer = 4, fraction = 0)
+	@NotNull
 	Integer zipcode
 	
+	@NotNull
 	String city
 	
 	String other
@@ -41,6 +44,7 @@ class Address implements Serializable {
 	}
 	
 	void setZipcode(Integer zipcode) {
+		this.zipcode = zipcode
 		if (zipcode) {
 			//TODO
 			city = "TODO beemelni regisztrációkor"

@@ -28,15 +28,16 @@ class Profile implements Serializable {
 	String introduction
 
 	@Size(min=1, max = 100)
+	@NotNull
 	String lastName
 
 	@Size(min=1, max=100)
+	@NotNull
 	String firstName
 
-	@NotNull
 	@Size(min = 4)
 	String email
-
+	
 	/* maskedinput validálja */	
 	String phoneNumber
 
@@ -73,6 +74,7 @@ class Profile implements Serializable {
 	}
 		
 	
+	@NotNull
 	String getRealName() {
 		if (!lastName || !firstName) {
 			return null
@@ -82,7 +84,7 @@ class Profile implements Serializable {
 	
 	void setRealName(String realName) {
 		if (realName && realName.contains(" ")) {
-			String split = realName.split(" ")
+			String[] split = realName.split(" ")
 			lastName = split[0]
 			firstName = realName - split[0]	
 		}

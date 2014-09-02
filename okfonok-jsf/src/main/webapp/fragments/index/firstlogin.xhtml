@@ -7,13 +7,16 @@
 
 <h:body>
 	<h:outputStylesheet library="css" name="fragments/index/firstlogin.css" />
-	
-	<p:dialog widgetVar="dlgFirstLogin" resizable="false" draggable="false">
-		<h1>Üdvözlünk az oldalunkon #{userBean.user.profile.lastName}!</h1>
-		<p>Az oldal használata során egy kölcsönös segédnyújtáson alapuló közösség tagja leszel. Böngéssz feladatatok közt és keress egy kis pénzt, vagy adj fel te is egy hirdetést!</p>
-		<p>Mindenek előtt azonban töltsd ki a hiányzó adataidat, hogy teljes tagja lehess a közösségnek!</p>
-		<p>Ha azt akarod, hogy jobban megbízzanak benned, töltsd ki igazolványaid számát is és töltsd fel nekünk másolatukat, hogy azonosítani tudjunk. (A személyes adatokat nem adjuk ki 3. személy számára)</p>
-		<p:button value="Értettem, köszi!"  onclick="PF('dlgFirstLogin').hide();"/>
+
+	<p:dialog widgetVar="dlgFirstLogin" styleClass="dialog-firstlogin" resizable="false" draggable="false">
+		<h1>Üdvözlünk az oldalunkon #{userBean.user.profile.firstName}!</h1>
+		<p>Az oldal használata során egy kölcsönös segédnyújtáson alapuló közösség tagja leszel. <a href="#">Böngéssz feladatatok közt</a> és keress egy kis pénzt, <a href="#">vagy adj fel te is egy hirdetést</a>!</p>
+		<p>Mindenek előtt azonban <a href="#">töltsd ki a hiányzó adataidat</a>, hogy teljes tagja lehess a közösségnek!</p>
+		<p>Ha azt akarod, hogy jobban megbízzanak benned, töltsd ki igazolványaid számát is és töltsd fel nekünk másolatukat, hogy azonosítani tudjunk. </p>
+		<p>(A személyes adatokat nem adjuk ki 3. személy számára)</p>
+		<h:link styleClass="ertettem-button"  value="" onclick="PF('dlgFirstLogin').hide();">
+			<p:graphicImage id="createProfile" library="img" name="firstlogin/ertettem_koszi.png" style="cursor:pointer" title="Értettem, köszi!" />
+		</h:link>
 	</p:dialog>
 	<h:inputHidden value="#{indexBean.showOnFirstLogin()}" />
 </h:body>

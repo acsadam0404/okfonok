@@ -1,11 +1,12 @@
-package hu.okfonok.beans.events;
+package hu.okfonok.events
+
+import java.util.Date
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.Immutable
-import hu.okfonok.entities.user.User
 
 @EqualsAndHashCode
 @Immutable
-class LoginAttemptEvent {
+class LoginEvent {
 	String username
-}
+	Date datum}
