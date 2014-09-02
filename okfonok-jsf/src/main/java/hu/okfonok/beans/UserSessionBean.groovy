@@ -1,7 +1,10 @@
 package hu.okfonok.beans;
 
+import hu.okfonok.beans.events.LoginAttemptEvent
 import hu.okfonok.entities.user.User
 import hu.okfonok.services.UserService
+import hu.okfonok.utils.EventBus
+import hu.okfonok.utils.ServiceLocator;
 
 import javax.faces.context.ExternalContext
 import javax.faces.context.FacesContext
@@ -11,8 +14,6 @@ import javax.faces.event.PhaseListener
 import javax.persistence.NoResultException
 import javax.servlet.RequestDispatcher
 import javax.servlet.ServletException
-import javax.servlet.ServletRequest
-import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 
 import org.apache.commons.lang3.RandomStringUtils
@@ -32,6 +33,8 @@ import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.web.WebAttributes
 
+import com.google.common.eventbus.Subscribe;
+
 /**
  * Lekezeli a social és a spring securitys authentikációt.
  * 
@@ -48,7 +51,6 @@ class UserSessionBean implements Serializable, PhaseListener {
 	SocialAuthManager manager
 	String originalURL
 	String providerID
-	Profile profile
 
 	@Autowired
 	private UserDetailsService userDetailsService
@@ -56,6 +58,21 @@ class UserSessionBean implements Serializable, PhaseListener {
 	private RegistrationBean registrationService
 	@Autowired
 	private UserService userService
+	
+	UserSessionBean() {
+		EventBus.register(this)
+	}
+	
+	@Subscribe
+	void handleLoginAttempt(LoginAttemptEvent event) {
+		try {
+			login(event.username)
+			ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+			externalContext.redirect(externalContext.getRequestContextPath() + "/index.xhtml")
+		} catch (e) {
+			log.error("sikertelen bejelentkezés", e)
+		}
+	}
 
 	void socialConnect() throws Exception {
 		// Put your keys and secrets from the providers here
@@ -73,10 +90,9 @@ class UserSessionBean implements Serializable, PhaseListener {
 
 		// 'successURL' is the page you'll be redirected to on successful login
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		//		String successURL = externalContext.getRequestContextPath() + "socialLoginSuccess.xhtml";
-		String successURL = "http://localhost:18080/okfonok-jsf/socialLoginSuccess.xhtml" //TODO
+		String successURL = externalContext.getRequestContextPath() + "/socialLoginSuccess.xhtml" 
 		String authenticationURL = manager.getAuthenticationUrl(providerID, successURL)
-		FacesContext.getCurrentInstance().getExternalContext().redirect(authenticationURL)
+		externalContext.redirect(authenticationURL)
 	}
 
 	void socialPullUserInfo() {
@@ -87,7 +103,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 			Map map = SocialAuthUtil.getRequestParametersMap(request);
 			if (this.manager != null) {
 				AuthProvider provider = manager.connect(map);
-				this.profile = provider.getUserProfile();
+				Profile profile = provider.getUserProfile();
 				socialRegisterIfNeeded(profile)
 				login(profile.validatedId)
 
@@ -95,10 +111,10 @@ class UserSessionBean implements Serializable, PhaseListener {
 				log.trace("User's Social profile: " + profile);
 
 				// Redirect the user back to where they have been before logging in
-				FacesContext.getCurrentInstance().getExternalContext().redirect(originalURL);
+				externalContext.redirect(originalURL);
 
 			} else {
-				FacesContext.getCurrentInstance().getExternalContext().redirect(externalContext.getRequestContextPath() + "/info.xhtml");
+				externalContext.redirect(externalContext.getRequestContextPath() + "/info.xhtml");
 			}
 		} catch (Exception ex) {
 			log.error(ex);
@@ -153,7 +169,7 @@ class UserSessionBean implements Serializable, PhaseListener {
 	 * @param userName
 	 */
 	void login(String userName) {
-		UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+		UserDetails userDetails = ServiceLocator.getBean(UserDetailsService).loadUserByUsername(userName);
 		Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, userDetails.getPassword(), userDetails.getAuthorities());
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}

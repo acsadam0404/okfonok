@@ -34,7 +34,7 @@ class User extends BaseEntity implements Serializable{
 
 	@Column(unique = true)
 	@NotNull
-	@Size(min=4, max=20)
+	@Size(min=4, max=60)
 	String userName
 
 	@NotNull

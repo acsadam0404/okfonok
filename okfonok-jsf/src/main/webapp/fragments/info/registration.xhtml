@@ -6,15 +6,19 @@
 			<f:event rendered="#{empty userSessionBean.profile}" type="preRenderView" listener="#{userSessionBean.setOriginalURL(originalURL)}" />
 		</f:metadata>
 	</f:view>
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="styles.css" />
+		<h:outputStylesheet library="css" name="fragments/info/registration.css" />
+	</f:facet>
 	<h:form id="registrationForm">
 		<h:panelGroup id="registrationFormPanel">
 			<h:panelGrid columns="1">
-				<p:inputText id="userName" maxlength="30" value="#{registrationBean.user.profile.realName}" />
-				<p:inputText id="email" maxlength="60" value="#{registrationBean.user.profile.email}" />
-				<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell" />
-				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true" />
-
-				<p:commandLink action="#{registrationBean.register()}">
+				<p:inputText id="realName" maxlength="30" value="#{registrationBean.user.profile.realName}" styleClass="icon-input registration-input" />
+				<p:inputText id="email" maxlength="60" value="#{registrationBean.user.userName}"  styleClass="icon-input email-input"/>
+				<p:password id="pwd1" value="#{registrationBean.user.password}" maxlength="20" match="pwd2" required="true" validatorMessage="A jelszavaknak egyezniük kell"  styleClass="icon-input password-input"/>
+				<p:password id="pwd2" value="#{registrationBean.user.password}" maxlength="30" name="pwd2" required="true"  styleClass="icon-input password-input" />
+				<p:inputText id="address" maxlength="4" value="#{registrationBean.user.address.zipcode}"  styleClass="icon-input address-input"/>
+				<p:commandLink action="#{registrationBean.register()}" ajax="false">
 					<p:graphicImage id="createProfile" library="img" name="registration/reg.png" style="cursor:pointer" title="Profil létrehozása" />
 				</p:commandLink>
 				<span class="registration-conditions">A regisztrációval beleegyezik, hogy elfogadja a <h:link outcome="/conditions" value="Felhasználói feltételeket" /> és <h:link outcome="/privacy" value="Adatvédelmet" />.
@@ -28,7 +32,8 @@
 			<p:watermark for="pwd2" value="Jelszó ismét" />
 			<p:watermark for="pwd1" value="Jelszó" />
 			<p:watermark for="email" value="E-mail cím" />
-			<p:watermark for="userName" value="Teljes név" />
+			<p:watermark for="realName" value="Teljes név" />
+			<p:watermark for="address" value="Irányítószám" />
 		</h:panelGroup>
 	</h:form>
 

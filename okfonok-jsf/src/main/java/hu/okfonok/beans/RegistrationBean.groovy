@@ -1,9 +1,11 @@
 package hu.okfonok.beans;
 
+import hu.okfonok.beans.events.LoginAttemptEvent
 import hu.okfonok.entities.user.User
 import hu.okfonok.mail.RegistrationMailSender
 import hu.okfonok.services.RoleService
 import hu.okfonok.services.UserService
+import hu.okfonok.utils.EventBus
 
 import org.apache.log4j.Logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,6 +33,7 @@ class RegistrationBean implements Serializable {
 	private RegistrationMailSender regMailSender
 
 	User user = new User()
+	
 
 
 	void register(User user) {
@@ -43,7 +46,8 @@ class RegistrationBean implements Serializable {
 				regMailSender.send();
 			}
 			log.info("Sikeres regisztráció: $user.userName")
-			user = new User();
+			print "itt"
+			EventBus.post(new LoginAttemptEvent(user.userName))
 		}
 		catch (DataIntegrityViolationException divEx) {
 			log.error("Sikertelen regisztráció!", divEx);

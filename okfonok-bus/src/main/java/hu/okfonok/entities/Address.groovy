@@ -39,4 +39,11 @@ class Address implements Serializable {
 		}
 		return "$zipcode - $city"
 	}
+	
+	void setZipcode(Integer zipcode) {
+		if (zipcode) {
+			//TODO
+			city = "TODO beemelni regisztrációkor"
+		}
+	}
 }

@@ -101,7 +101,7 @@
         profileImagePath varchar(255),
         working boolean,
         providerId varchar(255),
-        userName varchar(20) not null unique,
+        userName varchar(60) not null unique,
         primary key (id)
     );
 

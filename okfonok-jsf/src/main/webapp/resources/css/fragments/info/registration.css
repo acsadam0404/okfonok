@@ -1,0 +1,19 @@
+.registration-input {
+	background: url("#{resource['img/registration:ember.png']}") no-repeat	!important;
+}
+
+.password-input {
+	background: url("#{resource['img/registration:kulcs.png']}") no-repeat	!important;
+}
+
+.address-input {
+	background: url("#{resource['img/registration:pointer.png']}") no-repeat	!important;
+}
+
+.email-input {
+	background: url("#{resource['img/registration:mail.png']}") no-repeat	!important;
+}
+
+.icon-input {
+	padding-left: 20px;
+}

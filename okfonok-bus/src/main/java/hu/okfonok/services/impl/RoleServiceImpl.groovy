@@ -26,6 +26,6 @@ class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleService  {
 	
 	@Override
 	Role getUserRole() {		
-		repo.userRole
+		repo.getUserRole()
 	}
 }

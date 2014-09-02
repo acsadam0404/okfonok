@@ -29,7 +29,8 @@ class RegistrationMailSender implements Serializable {
 		msg.setSubject("okfonok")
 		
 		try {
-			mailSender.send(msg);
+			//XXX ideiglenesen kikommentezve
+		//	mailSender.send(msg);
 			log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
 		} 
 		catch (MailException mex) {
