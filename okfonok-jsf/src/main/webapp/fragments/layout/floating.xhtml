@@ -1,10 +1,16 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
-	<h:link value="Hirdetés feladás" class="left-floating postad" outcome="postad.xhtml" />
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+	<h:panelGroup id="postad" p:title="Hirdetés feladás" class="left-floating postad">
+		<span style="cursor: pointer">Hirdetés feladás</span>
+	</h:panelGroup>
+	<p:overlayPanel for="postad" my="left top" at="left top">
+		<ui:include src="/postad.xhtml" />
+	</p:overlayPanel>
 
-	<h:panelGroup id="points" class="left-floating points" style="cursor: pointer"> 
+	<h:panelGroup id="points" class="left-floating points" style="cursor: pointer">
 		<span style="cursor: pointer">#{pointService.findLast().sum} pont</span>
 	</h:panelGroup>
-	<p:overlayPanel for="points" my="left top" at="left top" >
+	<p:overlayPanel for="points" my="left top" at="left top">
 		<ui:include src="/fragments/index/points.xhtml" />
 	</p:overlayPanel>
 
@@ -12,6 +18,6 @@
 		<p:graphicImage id="helpLink" library="img" name="layout/segitseg_gomb.png" style="cursor:pointer" onclick="PF('helpDialog').show();" />
 	</h:panelGroup>
 	<p:overlayPanel for="help" my="right" at="right">
-			<ui:include src="/fragments/help.xhtml" />
+		<ui:include src="/fragments/help.xhtml" />
 	</p:overlayPanel>
 </ui:composition>
