@@ -16,7 +16,7 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name = 'jobcategory')
-@EqualsAndHashCode
+@EqualsAndHashCode(includes = 'name')
 class JobCategory extends BaseEntity{
 	boolean main
 
