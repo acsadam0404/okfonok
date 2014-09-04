@@ -47,13 +47,12 @@ class AdvertisementsBean implements Serializable {
 	void viewAd(Advertisement ad) {
 		adToView = ad
 		Map options = [
-			modal: true
-			,draggable: false
+			draggable: false
 			,resizable: false
-			,contentWidth: 480
-			,width: 510
-			,contentHeight: 530
-			,height: 560
+			,width: 450
+			,height: 470
+			,contentWidth: 420
+			,contentHeight: 440
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
 	}
