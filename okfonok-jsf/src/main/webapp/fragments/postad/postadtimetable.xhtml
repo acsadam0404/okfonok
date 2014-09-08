@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:growl id="postadschedule" showDetail="true" />
+		<p:tabView>
+			<p:tab title="Feladatok">
+			<!--TODO: ezt a részt implementálni kell -->
+			</p:tab>
+			<p:tab title="Hirdetéseim">
+				<h:form>
+					<p:growl id="messages" showDetail="true" />
+
+					<h:panelGrid columnClasses="value">
+						<h2>Jelöld ki, hogy mikor lenne neked a legalkalmasabb a feladat elvégzése.</h2>
+						<p:commandButton id="preftime" value="Preferált időpont" />
+						<p:commandButton id="fixtime" value="Fix időpont" />
+						<p:schedule id="schedule" leftHeaderTemplate="prev,next" rightHeaderTemplate="null" centerHeaderTemplate="null" value="#{postadBean.eventModel}" widgetVar="myschedule"
+							view="agendaWeek" style="width: 700px">
+
+							<p:ajax event="dateSelect" listener="#{postadBean.onDateSelect}" oncomplete="PF('eventDialog').show();" />
+<!-- 							<p:ajax event="eventSelect" listener="#{postadBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" /> -->
+							<p:ajax event="eventMove" listener="#{postadBean.onEventMove}" update="messages" />
+							<p:ajax event="eventResize" listener="#{postadBean.onEventResize}" update="messages" />
+
+						</p:schedule>
+					</h:panelGrid>
+				</h:form>
+			</p:tab>
+		</p:tabView>
+	</h:form>
+</h:body>
+</html>
