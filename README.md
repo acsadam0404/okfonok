@@ -15,7 +15,8 @@ Folyamatok:
 - https://docs.google.com/document/d/16GplwJmzq683byXZuopakOWxZ3d5hXJgDnem6DSG1cE/edit
 
 Szerver beállítása:
-Fel kell venni static context rootokat:
-- Context docBase="/okfonok/static" path="/static"
-- Context docBase="/okfonok/email" path="/email" 
-- Context docBase="/okfonok/users" path="/users" 
+
+Fel kell venni static context rootokat. 
+- Context docBase="/okfonokkönyvtár/static" path="/static"
+- Context docBase="/okfonokkönyvtár/email" path="/email" 
+- Context docBase="/okfonokkönyvtár/users" path="/users" 
