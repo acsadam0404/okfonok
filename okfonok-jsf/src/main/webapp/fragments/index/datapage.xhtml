@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok">
 
 <h:head>
@@ -14,10 +14,8 @@
 		</f:facet>
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
-		<p:messages autoUpdate="true">
-		</p:messages>
-		<h:form>
-			<h:panelGroup id="baseDataPanel">
+		<h:panelGroup id="baseDataPanel">
+			<h:form>
 				<h2>Alapadatok</h2>
 				<h:panelGrid columns="3">
 					<p:graphicImage library="img" name="/datapage/boritek.png" />
@@ -48,12 +46,10 @@
 					<h:panelGrid columns="2">
 						<h:outputText styleClass="color-green" rendered="#{!dataPageBean.dataEditing}" value="#{userBean.user.address}" />
 						<h:panelGrid columns="1">
-							<p:autoComplete rendered="#{dataPageBean.dataEditing}" id="zipcode" completeMethod="#{addressBean.completeSettlement}" value="#{userBean.user.address.zipcodeAndCity}" maxResults="5" minQueryLength="2" />
-							<p:inputText rendered="#{dataPageBean.dataEditing}" id="other" value="#{userBean.user.address.other}" />
+							<p:autoComplete rendered="#{dataPageBean.dataEditing}" id="zipcode" completeMethod="#{addressBean.completeSettlement}" value="#{userBean.user.address.zipcodeAndCity}" maxResults="5" minQueryLength="2" pt:placeholder="Település"/>
+							<p:inputText rendered="#{dataPageBean.dataEditing}" id="other" value="#{userBean.user.address.other}" pt:placeholder="Lakhely" />
 						</h:panelGrid>
 					</h:panelGrid>
-					<p:watermark for="zipcode" value="Település" />
-					<p:watermark for="other" value="Lakhely" />
 					<p:graphicImage library="img" name="/datapage/igazolvany.png" />
 					<h:panelGrid columns="2">
 						<h:panelGroup>
@@ -68,21 +64,24 @@
 						<h:outputText styleClass="note" value="- lakcímkártya" />
 					</h:panelGrid>
 				</h:panelGrid>
+				<p:messages autoUpdate="true" />
 				<p:commandLink>
 					<p:graphicImage library="img" name="/datapage/igazolvanykep.png" />
 				</p:commandLink>
-				<p:commandLink action="#{dataPageBean.dataBtnAction}" update="baseDataPanel @this">
+				<p:commandLink action="#{dataPageBean.dataBtnAction}" update="@form @this :messages">
 					<p:graphicImage rendered="#{!dataPageBean.dataEditing}" library="img" name="/datapage/adatok_szerkeszt.png" />
 					<p:graphicImage rendered="#{dataPageBean.dataEditing}" library="img" name="/datapage/mentes.png" />
 				</p:commandLink>
-			</h:panelGroup>
-			<p:remoteCommand name="working" action="#{dataPageBean.workingAction}" />
-			<!-- 			<p:selectBooleanButton onLabel="Feladatot végez" offLabel="Nem végez feladatot" onIcon="ui-icon-check" offIcon="ui-icon-close" value="#{userBean.user.profile.working}" onchange="working()" /> -->
-			<p:commandLink action="#{dataPageBean.workingBtnAction}" update="baseDataPanel @this">
+			</h:form>
+		</h:panelGroup>
+		<h:form>
+			<p:commandLink action="#{dataPageBean.workingBtnAction}" update="@this" immediate="true">
 				<p:graphicImage rendered="#{userBean.user.profile.working}" library="img" name="/datapage/feladat_igen.png" />
 				<p:graphicImage rendered="#{!userBean.user.profile.working}" library="img" name="/datapage/feladat_nem.png" />
 			</p:commandLink>
-			<h2>Magamról</h2>
+		</h:form>
+		<h2>Magamról</h2>
+		<h:form>
 			<h:panelGrid columns="1" id="aboutPanel">
 				<h:outputText rendered="#{!dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" escape="false" />
 				<p:editor rendered="#{dataPageBean.aboutEditing}" value="#{userBean.user.profile.introduction}" controls="bold italic underline strikethrough" />

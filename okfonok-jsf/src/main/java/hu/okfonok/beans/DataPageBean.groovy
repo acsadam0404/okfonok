@@ -28,10 +28,10 @@ class DataPageBean {
 	}
 
 	void dataBtnAction() {
-		dataEditing = !dataEditing
 		if (dataEditing) {
 			saveUser()
 		}
+		dataEditing = !dataEditing
 	}
 
 	void workingBtnAction() {
