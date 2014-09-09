@@ -16,7 +16,8 @@
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
 		<div class="profile">
-			<h:panelGroup rendered="#{userBean.user.profile.profileImagePath != null}">
+			<!-- 			<h:panelGroup rendered="#{userBean.user.profile.profileImagePath != null}"> -->
+			<h:panelGroup rendered="false">
 				<img class="profile-image" src="#{userBean.user.profile.profileImagePath}" />
 				<canvas id="skillsRadar" class="profile-radar" width="200" height="200">[No canvas support]</canvas>
 				<script>
@@ -28,19 +29,28 @@
 					})
 		</script>
 
-<!-- 				<c:if test="#{userBean.user.certification.certified}"> -->
-					<p:graphicImage library="img" name="help.png" />
-<!-- 				</c:if>  -->
+				<!-- 				<c:if test="#{userBean.user.certification.certified}"> -->
+				<p:graphicImage library="img" name="help.png" />
+				<!-- 				</c:if>  -->
 
 				<h:outputText value="#{userBean.user.profile.realName}" />
 				<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
 				<h:outputText value="#{userBean.user.profile.ratings.size()}" />
 			</h:panelGroup>
-			<h:panelGroup styleClass="profile-upload-outer" rendered="#{userBean.user.profile.profileImagePath == null}">
-				<p:fileUpload label="" styleClass="profile-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-			</h:panelGroup>
+			<!-- 			<h:panelGroup styleClass="profile-upload-outer" rendered="#{userBean.user.profile.profileImagePath == null}"> -->
+			<h:form>
+				<p:fileUpload fileUploadListener="#{profileBean.profilePictureUpload}" label="" styleClass="profile-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" oncomplete="PF('profileImageCropperDlg').show();" />
+			</h:form>
+			<p:dialog widgetVar="profileImageCropperDlg" closable="false">
+				<h:form>
+					<p:messages id="cropMessages" />
+					<p:imageCropper value="#{profileBean.croppedImage}" image="/#{profileBean.imagePath}" initialCoords="225,75,300,125"  />
+					<p:commandButton value="Vágás" action="#{profileBean.crop}" update="cropMessages" icon="ui-icon-scissors" />
+				</h:form>
+			</p:dialog>
+<!-- 						</h:panelGroup> -->
 		</div>
-	</ui:composition>
+	</ui:composition> 
 </h:body>
 </html>
 

@@ -21,7 +21,7 @@ public class Config implements ApplicationContextAware{
 	private String root;
 	
 	static String getUserProfilePath() {
-		return instance.root + "users";
+		return instance.root + "/users";
 	}
 	
 	static String getUserProfileContext() {
