@@ -14,9 +14,9 @@
 		<p>Mindenek előtt azonban <a href="#">töltsd ki a hiányzó adataidat</a>, hogy teljes tagja lehess a közösségnek!</p>
 		<p>Ha azt akarod, hogy jobban megbízzanak benned, töltsd ki igazolványaid számát is és töltsd fel nekünk másolatukat, hogy azonosítani tudjunk. </p>
 		<p>(A személyes adatokat nem adjuk ki 3. személy számára)</p>
-		<h:link styleClass="ertettem-button"  value="" onclick="PF('dlgFirstLogin').hide();">
+		<a class="ertettem-button"  href="#" onclick="PF('dlgFirstLogin').hide();return false;">
 			<p:graphicImage id="createProfile" library="img" name="firstlogin/ertettem_koszi.png" style="cursor:pointer" title="Értettem, köszi!" />
-		</h:link>
+		</a>
 	</p:dialog>
 	<h:inputHidden value="#{indexBean.showOnFirstLogin()}" />
 </h:body>
