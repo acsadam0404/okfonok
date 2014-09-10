@@ -5,6 +5,7 @@ import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
 import hu.okfonok.services.UserService
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage
 import javax.faces.event.ActionEvent
 
@@ -13,6 +14,7 @@ import org.primefaces.event.ScheduleEntryMoveEvent
 import org.primefaces.event.ScheduleEntryResizeEvent
 import org.primefaces.event.SelectEvent
 import org.primefaces.model.DefaultScheduleEvent
+import org.primefaces.model.DefaultScheduleModel
 import org.primefaces.model.ScheduleEvent
 import org.primefaces.model.ScheduleModel
 import org.springframework.beans.factory.annotation.Autowired
@@ -52,44 +54,49 @@ class PostAdBean implements Serializable{
 		return 'index.xhtml?faces-redirect=true'
 	}
 
+	@PostConstruct
+	public void init() {
+		eventModel = new DefaultScheduleModel()
+	}
+	
 	public void onDateSelect(SelectEvent selectEvent) {
-		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject());
+		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject())
 	}
 
 	public void onEventMove(ScheduleEntryMoveEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta())
 
-		addMessage(message);
+		addMessage(message)
 	}
 
 	public void onEventResize(ScheduleEntryResizeEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta())
 
-		addMessage(message);
+		addMessage(message)
 	}
 
 	public ScheduleModel getEventModel() {
-		return eventModel;
+		return eventModel
 	}
 
 	public ScheduleEvent getEvent() {
-		return event;
+		return event
 	}
 
 	public void setEvent(ScheduleEvent event) {
-		this.event = event;
+		this.event = event
 	}
 
 	public void onEventSelect(SelectEvent selectEvent) {
-		event = (ScheduleEvent) selectEvent.getObject();
+		event = (ScheduleEvent) selectEvent.getObject()
 	}
 	
 	public void addEvent(ActionEvent actionEvent) {
 		if(event.getId() == null)
-			eventModel.addEvent(event);
+			eventModel.addEvent(event)
 		else
-			eventModel.updateEvent(event);
+			eventModel.updateEvent(event)
 
-		event = new DefaultScheduleEvent();
+		event = new DefaultScheduleEvent()
 	}
 }
