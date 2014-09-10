@@ -7,6 +7,10 @@
 </h:head>
 
 <h:body>
-asd
+	<h:form>
+		<p:messages id="cropMessages" />
+		<p:imageCropper value="#{profileBean.croppedImage}" image="/#{profileBean.imagePath}" initialCoords="225,75,300,125" />
+		<p:commandButton value="Vágás" action="#{profileBean.crop}" update="cropMessages" icon="ui-icon-scissors" />
+	</h:form>
 </h:body>
 </html>

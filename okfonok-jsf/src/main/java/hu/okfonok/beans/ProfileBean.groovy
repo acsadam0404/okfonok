@@ -3,12 +3,12 @@ package hu.okfonok.beans
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.Config
 
-import javax.faces.application.FacesMessage
+import javax.annotation.PostConstruct
 import javax.faces.context.FacesContext
-import javax.imageio.stream.FileImageOutputStream
 import javax.servlet.ServletContext
 
 import org.apache.commons.io.FileUtils
+import org.primefaces.context.RequestContext
 import org.primefaces.event.FileUploadEvent
 import org.primefaces.model.CroppedImage
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,28 +22,44 @@ class ProfileBean implements Serializable{
 	private UserService userService
 	@Autowired
 	private UserBean userBean
-	
+
 	CroppedImage croppedImage
 	String imagePath
 
+	@PostConstruct
+	private void init() {
+		imagePath = "tmp/${userBean.user.userName}/profile"
+	}
+
 	void profilePictureUpload(FileUploadEvent event) {
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()
-		imagePath = "tmp/${userBean.user.userName}/profile"
 		FileUtils.writeByteArrayToFile(new File("${servletContext.getRealPath('')}/${imagePath}"), event.file.contents)
 	}
 
+	void openProfileCropperDialog() {
+		Map options = [
+			modal:	true,
+			draggable:	false,
+			resizable:	false,
+			contentHeight: 320
+		]
+
+		RequestContext.getCurrentInstance().openDialog("fragments/index/profileCropperDialog", options, null)
+	}
+	
 	void profilePictureCropped() {
 
 		userBean.user = userService.save(userBean.user)
 	}
-	
+
 	public void crop() {
 		if(croppedImage == null) {
 			return;
 		}
-		 
+
 		String newFileName = "${Config.userProfilePath}/${userBean.user.userName}/profile"
 		FileUtils.writeByteArrayToFile(new File(newFileName), croppedImage.bytes)
 		userBean.user.profile.profileImagePath = newFileName
+		RequestContext.getCurrentInstance().closeDialog()
 	}
 }

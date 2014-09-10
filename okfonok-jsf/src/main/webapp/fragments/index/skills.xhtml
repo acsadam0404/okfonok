@@ -15,14 +15,12 @@
 		<h:outputScript library="js" name="RGraph/libraries/RGraph.common.core.js" />
 		<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
-		<div class="profile">
-			<!-- 			<h:panelGroup rendered="#{userBean.user.profile.profileImagePath != null}"> -->
-			<h:panelGroup rendered="false">
+		<h:panelGroup layout="block" id="profile" class="profile">
+			<h:panelGroup id="profileImage" rendered="#{userBean.user.profile.profileImagePath != null}">
 				<img class="profile-image" src="#{userBean.user.profile.profileImagePath}" />
 				<canvas id="skillsRadar" class="profile-radar" width="200" height="200">[No canvas support]</canvas>
 				<script>
-			jQuery(document).ready(
-					function() {
+			jQuery(document).ready(function() {
 						var radar = new RGraph.Radar('skillsRadar', [ #{skillsBean.ratings} ], [ #{skillsBean.ownRatings} ])
 						.set('labels', [ #{skillsBean.names} ])
 						.draw();
@@ -37,20 +35,16 @@
 				<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
 				<h:outputText value="#{userBean.user.profile.ratings.size()}" />
 			</h:panelGroup>
-			<!-- 			<h:panelGroup styleClass="profile-upload-outer" rendered="#{userBean.user.profile.profileImagePath == null}"> -->
-			<h:form>
-				<p:fileUpload fileUploadListener="#{profileBean.profilePictureUpload}" label="" styleClass="profile-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" oncomplete="PF('profileImageCropperDlg').show();" />
-			</h:form>
-			<p:dialog widgetVar="profileImageCropperDlg" closable="false">
-				<h:form>
-					<p:messages id="cropMessages" />
-					<p:imageCropper value="#{profileBean.croppedImage}" image="/#{profileBean.imagePath}" initialCoords="225,75,300,125"  />
-					<p:commandButton value="Vágás" action="#{profileBean.crop}" update="cropMessages" icon="ui-icon-scissors" />
+			<h:panelGroup styleClass="profile-upload-outer" rendered="#{userBean.user.profile.profileImagePath == null}">
+				<h:form id="profileForm">
+					<p:fileUpload fileUploadListener="#{profileBean.profilePictureUpload}" label="" styleClass="profile-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" oncomplete="jQuery('#profileForm\\:profileCropperDialogOpener').click();" />
+					<p:commandButton id="profileCropperDialogOpener" style="display: none;" action="#{profileBean.openProfileCropperDialog()}">
+						<p:ajax event="dialogReturn" update=":profile" />
+					</p:commandButton>
 				</h:form>
-			</p:dialog>
-<!-- 						</h:panelGroup> -->
-		</div>
-	</ui:composition> 
+			</h:panelGroup>
+		</h:panelGroup>
+	</ui:composition>
 </h:body>
 </html>
 
