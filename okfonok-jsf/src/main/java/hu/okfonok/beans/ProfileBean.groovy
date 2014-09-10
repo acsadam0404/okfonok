@@ -28,7 +28,7 @@ class ProfileBean implements Serializable{
 
 	@PostConstruct
 	private void init() {
-		imagePath = "tmp/${userBean.user.userName}/profile"
+		imagePath = "tmp/${userBean.user.userName}/profile.jpg"
 	}
 
 	void profilePictureUpload(FileUploadEvent event) {
@@ -46,20 +46,15 @@ class ProfileBean implements Serializable{
 
 		RequestContext.getCurrentInstance().openDialog("fragments/index/profileCropperDialog", options, null)
 	}
-	
-	void profilePictureCropped() {
-
-		userBean.user = userService.save(userBean.user)
-	}
 
 	public void crop() {
 		if(croppedImage == null) {
 			return;
 		}
 
-		String newFileName = "${Config.userProfilePath}/${userBean.user.userName}/profile"
-		FileUtils.writeByteArrayToFile(new File(newFileName), croppedImage.bytes)
-		userBean.user.profile.profileImagePath = newFileName
+		String newFileName = "${userBean.user.userName}/profile.jpg"
+		FileUtils.writeByteArrayToFile(new File(Config.userProfilePath + '/' + newFileName), croppedImage.bytes)
+		userBean.user.profile.profileImagePath = "users/${newFileName}"
 		RequestContext.getCurrentInstance().closeDialog()
 	}
 }
