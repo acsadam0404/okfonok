@@ -20,7 +20,9 @@ class IndexBean implements Serializable{
 	@Autowired
 	private UserBean userBean
 	
-	private boolean alreadyShowedFirstLoginDialog 
+	private boolean alreadyShowedFirstLoginDialog
+	
+	String currentTable = "table"
 	
 	/**
 	 *  első belépésnél megmutatja a dialógust

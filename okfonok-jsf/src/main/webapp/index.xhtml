@@ -23,9 +23,16 @@
 				<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" />
 			</div>
 			<div style="clear: both;" />
-			<div class="table">
-				<ui:include src="fragments/index/table.xhtml" />
-			</div>
+
+			<p:commandButton value="Feladatok" update="tables">
+				<f:setPropertyActionListener target="#{indexBean.currentTable}" value="table" />
+			</p:commandButton>
+			<p:commandButton value="Hirdetéseim" update="tables">
+				<f:setPropertyActionListener target="#{indexBean.currentTable}" value="offersTable" />
+			</p:commandButton>
+			<h:panelGroup id="tables" layout="block" styleClass="table">
+				<ui:include src="fragments/index/#{indexBean.currentTable}.xhtml" />
+			</h:panelGroup>
 
 		</ui:define>
 	</ui:composition>

@@ -45,3 +45,22 @@ insert into skill (id, name, question, skillGroup) values (1, 'Kalapácsolás', 
 insert into skill (id, name, question, skillGroup) values (2, 'Kódolás', 'Tudsz-e programozni?', 'szellemi');
 insert into skill (id, name, question, skillGroup) values (3, 'fúrás', 'Tudsz-e fúrni?', 'fizikai');
 insert into skill (id, name, question, skillGroup) values (4, 'photoshop', 'Photoshop?', 'szellemi');
+
+insert into advertisement ( 
+id ,
+        city ,
+        other ,
+        zipcode ,
+        description,
+        expiration ,
+        homework ,
+        imagePathsString ,
+        jobTime ,
+        maxOffer ,
+        remuneration ,
+        specifiedJobTime ,
+        category_id ,
+        user_id )
+        values (1, 'boldog', 'streeet 19',  3016, 'hirdetés description', {ts '2014-12-05'}, 0, null, null, 2000, 1000, 0, 1, 1);
+        
+        insert into offer (id, ad_id, user_id, offer) values (1, 1, 1, 1500);

@@ -16,4 +16,6 @@ class Offer extends BaseEntity{
 	
 	@ManyToOne
 	User user
+	
+	Integer offer
 }

@@ -14,8 +14,6 @@
 			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}" rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500">
 				<f:facet name="header">
 					<div class="table-header">
-						<p:commandButton value="Feladatok" />
-						<p:commandButton value="Hirdetéseim" />
 						<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter();" placeholder="Keresés" style="float: right;" />
 					</div>
 				</f:facet>   
