@@ -11,13 +11,39 @@
 		<f:facet name="last">
 			<h:outputStylesheet library="css" name="/fragments/index/offerstable.css" />
 		</f:facet>
-		<p:dataTable id="offersTable" var="offer" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" selectionMode="single" value="#{offersBean.offers}"  selection="#{offersBean.selected}" filteredValue="#{offerseBean.filteredOffers}" rowKey="#{offer.id}" scrollable="true" scrollHeight="500">
-						 	<p:column>
-						asd
-				</p:column>
+		<p:dataTable id="offersTable" var="offer" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" selectionMode="single" value="#{offersBean.offers}" selection="#{offersBean.selected}" filteredValue="#{offerseBean.filteredOffers}" rowKey="#{offer.id}" scrollable="true" scrollHeight="500">
+						 	<p:column headerText="Kép">
+				<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
+			</p:column>
 
+			<p:column headerText="Név">
+				<h:outputText value="#{offer.user.profile.realName}" />
+			</p:column>
 
+			<p:column headerText="Értékelés">
+				<h:outputText value="#{offer.user.profile.rating}" />
+			</p:column>
 
+			<p:column headerText="Leírás">
+				<h:outputText value="#{offer.user.profile.introduction}" />
+			</p:column>
+			<p:column headerText="Díjazás">
+				<h:outputText value="#{offer.ad.remuneration}" />
+			</p:column>
+			<p:column headerText="Aktuális átlag díj">
+				<h:outputText value="#{offer.offer}" />
+			</p:column>
+
+			<p:column headerText="Ajánlatok száma">
+				<h:outputText value="#{offer.offer}" />
+			</p:column>
+			
+			<p:column>
+			</p:column>
+
+<f:facet name="header">
+fakjú
+</f:facet>
 		</p:dataTable>
 	</ui:composition>
 
