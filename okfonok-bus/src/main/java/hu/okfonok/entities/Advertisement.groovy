@@ -5,7 +5,9 @@ import hu.okfonok.entities.user.User
 
 import javax.persistence.Embedded
 import javax.persistence.Entity
+import javax.persistence.FetchType
 import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 import javax.persistence.Transient
 import javax.validation.constraints.NotNull
@@ -47,6 +49,9 @@ class Advertisement extends BaseEntity{
 	Integer maxOffer
 	
 	boolean homework
+	
+	@OneToMany(mappedBy = "ad", fetch = FetchType.EAGER)
+	Collection<Offer> offers = []
 
 	List<String> getImagePaths() {
 		if (imagePathsString != null) {

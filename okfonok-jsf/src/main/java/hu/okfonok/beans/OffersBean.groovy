@@ -1,9 +1,8 @@
 package hu.okfonok.beans
 
-import java.util.List;
-
-import hu.okfonok.entities.Advertisement;
+import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.Offer
+import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.OfferService
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -16,13 +15,13 @@ class OffersBean {
 	@Autowired
 	private OfferService service
 	@Autowired
+	private AdvertisementService adService
+	@Autowired
 	private UserBean userBean
 	
-	private List<Offer> offers
-	List<Offer> filteredOffer
-	Offer selected
+	List<Advertisement> filteredAds
 	
-	List<Offer> getOffers() {
-		service.findAllForUser(userBean.user)
+	List<Advertisement> getMyAds() {
+		adService.findByUser(userBean.user) 
 	}
 }

@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
 </h:head>
@@ -11,39 +10,63 @@
 		<f:facet name="last">
 			<h:outputStylesheet library="css" name="/fragments/index/offerstable.css" />
 		</f:facet>
-		<p:dataTable id="offersTable" var="offer" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" selectionMode="single" value="#{offersBean.offers}" selection="#{offersBean.selected}" filteredValue="#{offerseBean.filteredOffers}" rowKey="#{offer.id}" scrollable="true" scrollHeight="500">
-						 	<p:column headerText="Kép">
-				<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
-			</p:column>
-
-			<p:column headerText="Név">
-				<h:outputText value="#{offer.user.profile.realName}" />
-			</p:column>
-
-			<p:column headerText="Értékelés">
-				<h:outputText value="#{offer.user.profile.rating}" />
-			</p:column>
-
-			<p:column headerText="Leírás">
-				<h:outputText value="#{offer.user.profile.introduction}" />
-			</p:column>
-			<p:column headerText="Díjazás">
-				<h:outputText value="#{offer.ad.remuneration}" />
-			</p:column>
-			<p:column headerText="Aktuális átlag díj">
-				<h:outputText value="#{offer.offer}" />
-			</p:column>
-
-			<p:column headerText="Ajánlatok száma">
-				<h:outputText value="#{offer.offer}" />
-			</p:column>
+		<p:dataTable id="offersTable" var="ad" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" value="#{offersBean.myAds}" filteredValue="#{offerseBean.filteredAds}" rowKey="#{ad.id}" scrollable="true" scrollHeight="500">
+			<p:column style="width:16px">
+				<p:rowToggler />
+			</p:column> 	
 			
-			<p:column>
-			</p:column>
+			 <p:column headerText="Főkategória" filterBy="#{ad.category.mainCategory}">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('adsTable').filter()">
+						<f:selectItems value="#{jobCategoryService.findAllMain()}" />
+					</p:selectOneMenu>
+				</f:facet>
+            <h:outputText value="#{ad.category}" />
+            </p:column>
 
-<f:facet name="header">
-fakjú
-</f:facet>
+			<p:column headerText="Kategória" filterBy="#{ad.category}">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('adsTable').filter()">
+						<f:selectItems value="#{adsBean.getCategories()}" />
+					</p:selectOneMenu>
+				</f:facet>
+           		<h:outputText value="#{ad.category}" />
+	        </p:column>
+
+			 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
+		         <h:outputText value="#{ad.description}" />
+        	</p:column>
+
+			<p:column headerText="Díjazás">
+          		<h:outputText value="#{ad.remuneration}" />
+       		</p:column>
+
+			 <p:column headerText="Aktuális átlag díj">
+        	    <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
+        	</p:column>
+
+			<p:rowExpansion>
+				<p:dataList value="#{ad.offers}" var="offer" type="none">
+					<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
+					<h:outputText value="#{offer.user.profile.realName}" />
+					<h:panelGroup layout="block">
+						<h:outputText value="képhamegerősített" />
+						<h:outputText value="#{offer.user.profile.rating}" />
+					</h:panelGroup>
+					<h:outputText value="#{offer.user.profile.introduction}" />
+					<h:outputText value="#{offer.ad.remuneration}" />
+					<h:panelGroup layout="block">
+						<h:outputText value="Ajánlat:" />
+						<h:outputText value="#{offer.offer}" />
+					</h:panelGroup>
+					<h:outputText value="naptár" />
+					<h:panelGroup layout="block">
+						<h:outputText value="gomb1" />
+						<h:outputText value="gomb2" />
+					</h:panelGroup>
+				</p:dataList>
+			</p:rowExpansion>
+
 		</p:dataTable>
 	</ui:composition>
 

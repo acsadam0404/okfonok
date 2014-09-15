@@ -1,8 +1,11 @@
 package hu.okfonok.services.impl
 
+import java.util.List;
+
 import hu.okfonok.dao.AdvertisementDao
 import hu.okfonok.entities.Address;
 import hu.okfonok.entities.Advertisement
+import hu.okfonok.entities.user.User;
 import hu.okfonok.services.AdvertisementService
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -24,11 +27,13 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 	
 	@Override
 	public List<String> getRemunerations() {
+		//TODO valueset
 		return ['Fix', 'Óradíjas'];
 	}
 
 	@Override
 	public List<String> getAdBearerTypes() {
+		//TODO valueset
 		return ['Magánszemély', 'Cég' ];
 	}
 	
@@ -50,6 +55,11 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 	@Override
 	String getAvgPrice(Advertisement ad) {
 		"1000 Ft"
+	}
+
+	@Override
+	List<Advertisement> findByUser(User user) {
+		return repo.findByUser(user)
 	}
 
 }
