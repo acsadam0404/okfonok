@@ -1,6 +1,7 @@
 package hu.okfonok.beans;
 
 import hu.okfonok.entities.Skill
+import hu.okfonok.entities.user.User
 import hu.okfonok.services.SkillService
 
 import org.primefaces.context.RequestContext
@@ -13,42 +14,28 @@ import org.springframework.stereotype.Component
 class SkillsBean {
 	
 	@Autowired
-	private UserBean userBean
+	protected SkillService skillService
 	
-	@Autowired
-	private SkillService skillService
-	
-	boolean dialogAlreadyOpened
+	User user
 	
 	String getNames() {
-		List names = userBean.user.skills.collect() {
+		List names = getUser().skills.collect() {
 			"'" + it.skill.name + "'"
 		}
 		return names.join(',')
 	}
 	
 	String getOwnRatings() {
-		List ratings = userBean.user.skills.collect() {
+		List ratings = getUser().skills.collect() {
 			it.ownRating
 		}
 		return ratings.join(',')
 	}
 	
 	String getRatings() {
-		List ratings = userBean.user.skills.collect() {
+		List ratings = getUser().skills.collect() {
 			it.rating
 		}
 		return ratings.join(',')
-	}
-	
-	/* TODO */
-	List<Skill> getRandomQuestions() {
-		List<Skill> questions = skillService.findAll()
-		/* ha nem üres és még nem dobtuk fel akkor feldobjuk a dialógust */
-		if (!dialogAlreadyOpened && !questions.empty) {
-			dialogAlreadyOpened = true
-			RequestContext.currentInstance.execute("PF('dlgFillskills').show();")
-		}
-		return questions
 	}
 }

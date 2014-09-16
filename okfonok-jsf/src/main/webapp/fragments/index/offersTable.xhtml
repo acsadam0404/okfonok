@@ -48,7 +48,7 @@
 			<p:rowExpansion>
 				<p:dataList value="#{ad.offers}" var="offer" type="none">
 					<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
-					<h:outputText value="#{offer.user.profile.realName}" />
+					<p:commandLink value="#{offer.user.profile.realName}" action="#{userProfileBean.showDialog(offer.user)}" />
 					<h:panelGroup layout="block">
 						<h:outputText value="képhamegerősített" />
 						<h:outputText value="#{offer.user.profile.rating}" />
@@ -61,8 +61,7 @@
 					</h:panelGroup>
 					<h:outputText value="naptár" />
 					<h:panelGroup layout="block">
-						<h:outputText value="gomb1" />
-						<h:outputText value="gomb2" />
+						<h:outputText value="gombok" />
 					</h:panelGroup>
 				</p:dataList>
 			</p:rowExpansion>
