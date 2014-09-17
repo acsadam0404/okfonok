@@ -32,7 +32,6 @@ class PostAdBean implements Serializable{
 
 	@Autowired
 	private AdvertisementsBean adsBean
-
 	@Autowired
 	private AdvertisementService adService
 	@Autowired
@@ -42,8 +41,8 @@ class PostAdBean implements Serializable{
 	@Autowired
 	private UserBean userBean
 
-	private ScheduleModel eventModel;
-	private ScheduleEvent event = new DefaultScheduleEvent();
+	ScheduleModel eventModel = new DefaultScheduleModel()
+	ScheduleEvent event = new DefaultScheduleEvent()
 
 	String post() {
 		ad.user = userBean.user
@@ -54,49 +53,28 @@ class PostAdBean implements Serializable{
 		return 'index.xhtml?faces-redirect=true'
 	}
 
-	@PostConstruct
-	public void init() {
-		eventModel = new DefaultScheduleModel()
+	void onDateSelect(SelectEvent selectEvent) {
+		//TODO legyen valami név?
+		event = new DefaultScheduleEvent("TODO legyen ennek valami neve?", (Date) selectEvent.getObject(), (Date) selectEvent.getObject())
+		addEvent(event)
+	}
+
+	void onEventMove(ScheduleEntryMoveEvent event) {
+		print event
+		//TODO eltárolni adatbébe
+	}
+
+	void onEventResize(ScheduleEntryResizeEvent event) {
+		print event
+		//TODO eltárolni adatbébe
 	}
 	
-	public void onDateSelect(SelectEvent selectEvent) {
-		event = new DefaultScheduleEvent("", (Date) selectEvent.getObject(), (Date) selectEvent.getObject())
-	}
-
-	public void onEventMove(ScheduleEntryMoveEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta())
-
-		addMessage(message)
-	}
-
-	public void onEventResize(ScheduleEntryResizeEvent event) {
-		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta())
-
-		addMessage(message)
-	}
-
-	public ScheduleModel getEventModel() {
-		return eventModel
-	}
-
-	public ScheduleEvent getEvent() {
-		return event
-	}
-
-	public void setEvent(ScheduleEvent event) {
-		this.event = event
-	}
-
-	public void onEventSelect(SelectEvent selectEvent) {
-		event = (ScheduleEvent) selectEvent.getObject()
-	}
-	
-	public void addEvent(ActionEvent actionEvent) {
-		if(event.getId() == null)
+	private void addEvent(ScheduleEvent event) {
+		if(event.getId() == null) {
 			eventModel.addEvent(event)
-		else
+		}
+		else {
 			eventModel.updateEvent(event)
-
-		event = new DefaultScheduleEvent()
+		}
 	}
 }

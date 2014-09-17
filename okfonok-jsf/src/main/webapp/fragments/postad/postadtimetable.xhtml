@@ -1,79 +1,33 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 </h:head>
 
 <h:body>
 	<h:form id="postadScheduleForm">
-		<p:growl id="postadschedule" showDetail="true" />
 		<p:tabView>
 			<p:tab title="Feladatok">
-			<h2>Feladatok teszt!</h2>
+				<h2>Feladatok teszt!</h2>
 				<!--TODO: ezt a részt implementálni kell -->
 			</p:tab>
 			<p:tab title="Hirdetéseim">
 				<h:form>
-					<p:growl id="messages" showDetail="true" />
-
 					<h:panelGrid columnClasses="value">
 						<h2>Jelöld ki, hogy mikor lenne neked a legalkalmasabb a feladat elvégzése.</h2>
 						<p:commandButton id="preftime" value="Preferált időpont" />
 						<p:commandButton id="fixtime" value="Fix időpont" />
-						<p:schedule id="schedule" locale="hu" axisFormat="H:mm" leftHeaderTemplate="prev,next" rightHeaderTemplate="null" centerHeaderTemplate="null"
-							value="#{postAdBean.eventModel}" widgetVar="schedule" view="agendaWeek" style="width: 700px">
-
-							<p:ajax event="dateSelect" listener="#{postAdBean.onDateSelect}" oncomplete="PF('eventDialog').show();" />
-							<p:ajax event="eventSelect" listener="#{postAdBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-							<p:ajax event="eventMove" listener="#{postAdBean.onEventMove}" update="messages" />
-							<p:ajax event="eventResize" listener="#{postAdBean.onEventResize}" update="messages" />
-
+						<p:schedule id="schedule" locale="hu" axisFormat="H:mm" leftHeaderTemplate="prev,next" rightHeaderTemplate="null" centerHeaderTemplate="null" value="#{postAdBean.eventModel}" widgetVar="schedule" view="agendaWeek" style="width: 700px">
+							<p:ajax event="dateSelect" listener="#{postAdBean.onDateSelect}"  update="schedule"/>
+							<p:ajax event="eventSelect" listener="#{postAdBean.onEventSelect}" />
+							<p:ajax event="eventMove" listener="#{postAdBean.onEventMove}" />
+							<p:ajax event="eventResize" listener="#{postAdBean.onEventResize}" />
 						</p:schedule>
 					</h:panelGrid>
-
-					<p:dialog widgetVar="eventDialog" header="Preferált időpont tulajdonságai" showEffect="clip" hideEffect="clip">
-						<h:panelGrid id="eventDetails" columns="2">
-						
-							<h:outputLabel for="from" value="Mettől:" />
-							<p:inputMask id="from" value="#{postAdBean.event.startDate}" mask="99:99">
-								<f:convertDateTime pattern="HH:mm" />
-							</p:inputMask>
-
-							<h:outputLabel for="to" value="Meddig:" />
-							<p:inputMask id="to" value="#{postAdBean.event.endDate}" mask="99:99">
-								<f:convertDateTime pattern="HH:mm" />
-							</p:inputMask>
-
-							<h:outputLabel for="allDay" value="Minden nap:" />
-							<h:selectBooleanCheckbox id="allDay" value="#{postAdBean.event.allDay}" />
-
-							<p:commandButton type="reset" value="Alaphelyzet" />
-							<p:commandButton id="addButton" value="Mentés" actionListener="#{postAdBean.addEvent}"
-								oncomplete="PF('schedule').update();PF('eventDialog').hide();" />
-						</h:panelGrid>
-					</p:dialog>
 				</h:form>
 			</p:tab>
 		</p:tabView>
 	</h:form>
- 	<script type="text/javascript">
-<!-- // 		PrimeFaces.locales['hu'] = { -->
-<!-- // 			closeText : 'Bezárás', -->
-<!-- // 			prevText : 'Előző', -->
-<!-- // 			nextText : 'Következő', -->
-<!-- // 			dayNames : [ 'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', -->
-<!-- // 					'Péntek', 'Szombat' ], -->
-<!-- // 			firstDay : 1, -->
-<!-- // 			isRTL : false, -->
-<!-- // 			showMonthAfterYear : false, -->
-<!-- // 			yearSuffix : '', -->
-<!-- // 			month : 'Hónap', -->
-<!-- // 			week : 'Hét', -->
-<!-- // 			day : 'Nap', -->
-<!-- // 			allDayText : '' -->
-<!-- //		}; -->
-</script>
 </h:body>
 </html>

@@ -35,6 +35,7 @@
         expiration timestamp,
         homework boolean not null,
         imagePathsString varchar(255),
+         preferredTimesString TEXT,
         jobTime timestamp,
         maxOffer integer,
         remuneration varchar(255) not null,
