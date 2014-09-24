@@ -11,42 +11,44 @@
 			<h:outputStylesheet library="css" name="/fragments/index/table.css" />
 		</f:facet>
 		<h:form id="data">
-			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" selectionMode="single" selection="#{adsBean.selected}" rowKey="#{ad.id}" rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500">
-				<f:facet name="header">
-					<div class="table-header">
-						<p:inputText id="globalFilter" onkeyup="PF('adsTable').filter();" placeholder="Keresés" style="float: right;" />
-					</div>
-				</f:facet>   
-						 	<p:column>
+			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" rowKey="#{ad.id}" rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500">
+				<p:column headerText="Kép">
 					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" />
 				</p:column>
-						
 
-	 <p:column headerText="Főkategória" filterBy="#{ad.category.mainCategory}">
+				<p:column headerText="" filterBy="#{ad.category.mainCategory}">
 					<f:facet name="filter">
 						<p:selectOneMenu onchange="PF('adsTable').filter()">
+							<f:selectItem itemLabel="Főkategória" itemValue="" />
 							<f:selectItems value="#{jobCategoryService.findAllMain()}" />
 						</p:selectOneMenu>
 					</f:facet>
-            <h:outputText value="#{ad.category}" />
-        </p:column>
+         		    <h:outputText value="#{ad.category}" />
+      		  </p:column>
 
-	 <p:column headerText="Kategória" filterBy="#{ad.category}">
+			  <p:column headerText="" filterBy="#{ad.category}">
 					<f:facet name="filter">
 						<p:selectOneMenu onchange="PF('adsTable').filter()">
+							<f:selectItem itemLabel="Kategória" itemValue="" />
 							<f:selectItems value="#{adsBean.getCategories()}" />
 						</p:selectOneMenu>
 					</f:facet>
-            <h:outputText value="#{ad.category}" />
-        </p:column>
+                    <h:outputText value="#{ad.category}" />
+    	      </p:column>
 
 
 	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
             <h:outputText value="#{ad.description}" />
         </p:column>
-	 <p:column headerText="Díjazás">
-            <h:outputText value="#{ad.remuneration}" />
-        </p:column>
+				<p:column headerText="" filterBy="#{ad.category.remuneration}">
+					<f:facet name="filter">
+						<p:selectOneMenu onchange="PF('adsTable').filter()">
+							<f:selectItem itemLabel="Díjazás" itemValue="" />
+							<f:selectItems value="#{advertisementService.getRemunerations()}" />
+						</p:selectOneMenu>
+					</f:facet>
+          		<h:outputText value="#{ad.remuneration}" />
+       		</p:column>
 
 	 <p:column headerText="Aktuális átlag díj">
             <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
@@ -59,11 +61,24 @@
 
 
 	 <p:column headerText="Állapot">
-					<h:panelGrid columns="1">
-						<p:commandButton value="Törlöm" rendered="#{adsBean.isSaved(ad)}" action="#{adsBean.removeAd(ad)}" update="@form" />
-						<p:commandButton value="Elmentem" rendered="#{!adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form" />
-						<p:commandButton value="Megosztom" action="#{adsBean.shareAd(ad)}" />
-					</h:panelGrid>
+					<div class="coldiv">
+						<div class="colcontent">
+							<p:commandLink value="Elmentve" rendered="#{adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form">
+								<p:graphicImage library="img" name="tables/elmentve.png" style="cursor:pointer" title="Elmentve" />
+							</p:commandLink>
+						</div>
+
+						<div class="colcontent">
+							<p:commandLink value="Elmentem" rendered="#{!adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form">
+								<p:graphicImage library="img" name="tables/elmentem.png" style="cursor:pointer" title="Elmentem" />
+							</p:commandLink>
+						</div>
+						<div class="colcontent">
+							<p:commandLink value="Megosztom" action="#{adsBean.shareAd(ad)}">
+								<p:graphicImage library="img" name="tables/megosztom.png" style="cursor:pointer" title="Megosztom" />
+							</p:commandLink>
+						</div>
+					</div>
         </p:column>
 
 			</p:dataTable>

@@ -1,0 +1,45 @@
+.ui-rating-star a {
+	background: url("#{resource['img/tables:zold_csillag_ures.png']}") no-repeat 0 0 !important;
+}
+
+.ui-rating-star-on a {
+	background: url("#{resource['img/tables:zold_csillag_tomott.png']}") no-repeat 0 0 !important;
+}
+
+.offerstable-introduction {
+	color: #1e9cb2;
+	font-weight: bold;
+}
+
+.offerstable-introduction-content {
+	color: #ababab;
+	font: Rockwell;
+}
+
+.offerstable-remunaration {
+	color: #ababab;
+	font-size: 16px;
+}
+
+.offerstable-offer {
+	color: green;
+}
+
+.ui-row-toggler {
+	width: 50px !important;
+	height: 50px !important;
+	background: url("#{resource['img/tables:rowexpansion.png']}") no-repeat 0 0 !important;
+}
+
+.ui-column-customfilter {
+	font-size: 10px;
+	color: white;
+}
+
+.ui-datatable-scrollable-header-box table thead tr th {
+	background: #acacac no-repeat 0 0 !important;
+	border-color: #acacac !important;
+	color: white !important;
+	font-weight: normal !important;
+	font-size: 13px !important;
+}

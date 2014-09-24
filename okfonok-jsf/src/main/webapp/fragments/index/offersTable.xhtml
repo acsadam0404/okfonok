@@ -7,37 +7,42 @@
 
 <h:body>
 	<ui:composition>
-		<f:facet name="last">
-			<h:outputStylesheet library="css" name="/fragments/index/offerstable.css" />
-		</f:facet>
-		<p:dataTable id="offersTable" var="ad" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" value="#{offersBean.myAds}" filteredValue="#{offerseBean.filteredAds}" rowKey="#{ad.id}" scrollable="true" scrollHeight="500">
-			<p:column style="width:16px">
+		<p:dataTable id="offersTable" var="ad" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" value="#{offersBean.myAds}" filteredValue="#{offerseBean.filteredAds}" rowKey="#{ad.id}" scrollable="true" scrollHeight="500" expandedRow="true">
+			<p:column style="width:80px" >
 				<p:rowToggler />
 			</p:column> 	
 			
-			 <p:column headerText="Főkategória" filterBy="#{ad.category.mainCategory}">
+			 <p:column headerText="" filterBy="#{ad.category.mainCategory}" >
 				<f:facet name="filter">
-					<p:selectOneMenu onchange="PF('adsTable').filter()">
+					<p:selectOneMenu onchange="PF('vOfferTable').filter()">
+						<f:selectItem itemLabel="Főkategória" itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{jobCategoryService.findAllMain()}" />
 					</p:selectOneMenu>
 				</f:facet>
-            <h:outputText value="#{ad.category}" />
+            <h:outputText value="#{ad.category}" escape="false" />
             </p:column>
 
-			<p:column headerText="Kategória" filterBy="#{ad.category}">
+			<p:column headerText="" filterBy="#{ad.category}">
 				<f:facet name="filter">
-					<p:selectOneMenu onchange="PF('adsTable').filter()">
+					<p:selectOneMenu onchange="PF('vOfferTable').filter()">
+						<f:selectItem itemLabel="Kategória" itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{adsBean.getCategories()}" />
 					</p:selectOneMenu>
 				</f:facet>
            		<h:outputText value="#{ad.category}" />
 	        </p:column>
 
-			 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
+			 <p:column headerText="Leírás" styleClass="tablecol-description">
 		         <h:outputText value="#{ad.description}" />
         	</p:column>
 
-			<p:column headerText="Díjazás">
+			<p:column headerText="" filterBy="#{ad.category.remuneration}">
+				<f:facet name="filter">
+					<p:selectOneMenu onchange="PF('vOfferTable').filter()">
+						<f:selectItem itemLabel="Díjazás" itemValue="" noSelectionOption="true"/>
+						<f:selectItems value="#{advertisementService.getRemunerations()}" />
+					</p:selectOneMenu>
+				</f:facet>
           		<h:outputText value="#{ad.remuneration}" />
        		</p:column>
 
@@ -45,24 +50,54 @@
         	    <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
         	</p:column>
 
+			<p:column headerText="Ajánlatok száma">
+        	    <h:outputText value="#{ad.offers.size()}" />
+			</p:column>
+
+			<p:column headerText="">
+				<p:commandLink>
+					<p:graphicImage library="img" name="tables/modositom.png" />
+				</p:commandLink>
+				<p:commandLink>
+					<p:graphicImage library="img" name="tables/megosztom.png" />
+				</p:commandLink>
+			</p:column>
+
 			<p:rowExpansion>
 				<p:dataList value="#{ad.offers}" var="offer" type="none">
-					<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
-					<p:commandLink value="#{offer.user.profile.realName}" action="#{userProfileBean.showDialog(offer.user)}" />
-					<h:panelGroup layout="block">
-						<h:outputText value="képhamegerősített" />
-						<h:outputText value="#{offer.user.profile.rating}" />
-					</h:panelGroup>
-					<h:outputText value="#{offer.user.profile.introduction}" />
-					<h:outputText value="#{offer.ad.remuneration}" />
-					<h:panelGroup layout="block">
-						<h:outputText value="Ajánlat:" />
+					<div style="width: 80px; height: 80px; float: left;">
+						<p:graphicImage value="#{offer.user.profile.profileImagePath}" />
+					</div>
+					<div style="width: 100px; height: 80px; float: left;">
+						<p:commandLink value="#{offer.user.profile.realNameAbbr}" action="#{userProfileBean.showDialog(offer.user)}" />
+					</div>
+					<div style="width: 100px; height: 80px; float: left;">
+						<p:graphicImage library="img" name="tables/zold_ikon.png" style="left: 36px; position: relative;" />
+						<p:rating readonly="true" value="#{offer.user.profile.rating}" style="margin: auto auto;" />
+					</div>
+					<div style="width: 160px; height: 80px; float: left;">
+						<p class="offerstable-introduction">Bemutatkozás</p>
+						<h:outputText styleClass="offerstable-introduction-content" value="#{offer.user.profile.introduction}" />
+					</div>
+					<div style="width: 65px; height: 80px; float: left;">
+						<h:outputText styleClass="offerstable-remunaration" value="#{offer.ad.remuneration}" />
+					</div>
+					<div style="width: 85px; height: 80px; float: left;">
+						<p class="offerstable-offer">Ajánlat</p>
 						<h:outputText value="#{offer.offer}" />
-					</h:panelGroup>
-					<h:outputText value="naptár" />
-					<h:panelGroup layout="block">
-						<h:outputText value="gombok" />
-					</h:panelGroup>
+					</div>
+					<div style="width: 70px; height: 80px; float: left;">
+						<p:graphicImage rendered="false" library="img" name="tables/naptar_zold.png" />
+						<p:graphicImage rendered="true" library="img" name="tables/naptar_piros.png" />
+					</div>
+					<div style="width: 70px; height: 80px; float: left;">
+						<p:commandLink>
+							<p:graphicImage library="img" name="tables/elfogadom.png" />
+						</p:commandLink>
+						<p:commandLink>
+							<p:graphicImage library="img" name="tables/uzenetet_kuldok.png" />
+						</p:commandLink>
+					</div>
 				</p:dataList>
 			</p:rowExpansion>
 

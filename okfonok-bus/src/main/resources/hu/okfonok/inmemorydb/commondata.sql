@@ -61,6 +61,6 @@ id ,
         specifiedJobTime ,
         category_id ,
         user_id )
-        values (1, 'boldog', 'streeet 19',  3016, 'hirdetés description', {ts '2014-12-05'}, 0, null, null, 2000, 1000, 0, 1, 1);
+        values (1, 'boldog', 'streeet 19',  3016, 'hirdetés description', {ts '2014-12-05'}, 0, null, null, 2000, 'Órabér', 0, 1, 1);
         
         insert into offer (id, ad_id, user_id, offer) values (1, 1, 1, 1500);

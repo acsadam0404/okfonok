@@ -4,7 +4,7 @@
 	font-size: 1em;
 }
 
-.main-table tr {
+.main-table .ui-datatable-even, .main-table .ui-datatable-odd {
 	height: 70px;
 }
 
@@ -12,6 +12,15 @@
 	text-align: initial;
 }
 
-.main-table >div >table> tbody> tr.saved > td:nth-child(1) {
+.main-table>div>table>tbody>tr.saved>td:nth-child(1) {
 	background-color: red;
 }
+
+.coldiv {
+	padding: 0 0 0 8%;
+	width: 100%;
+}
+
+.colcontent {
+	width: 100%;
+	}

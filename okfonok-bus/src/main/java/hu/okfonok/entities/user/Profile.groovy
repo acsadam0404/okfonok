@@ -73,7 +73,18 @@ class Profile implements Serializable {
 		return Math.round(sum / ratings.size())
 	}
 		
+	/**
+	 * N. Árpád
+	 * @return
+	 */
+	String getRealNameAbbr() {
+		return lastName[0] + ". " + firstName
+	}
 	
+	/**
+	 * Nárasi Árpád
+	 * @return
+	 */
 	@NotNull
 	String getRealName() {
 		if (!lastName || !firstName) {
