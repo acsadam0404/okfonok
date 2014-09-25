@@ -188,7 +188,6 @@ class UserSessionBean implements Serializable, PhaseListener {
 		RequestDispatcher dispatcher = context.request.getRequestDispatcher("/j_spring_security_check");
 		dispatcher.forward(context.request, context.response)
 		FacesContext.currentInstance.responseComplete()
-		//TODO ha nem sikerült a login ne hivjuk meg
 		EventBus.post(new LoginEvent(context.request.getParameter("j_username"), new Date()))
 		
 		return "index.xhtml";
