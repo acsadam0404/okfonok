@@ -11,7 +11,7 @@
 			<h:outputStylesheet library="css" name="/fragments/index/table.css" />
 		</f:facet>
 		<h:form id="data">
-			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" rowKey="#{ad.id}" rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500">
+			<p:dataTable id="dataTable" styleClass="main-table" var="ad" value="#{adsBean.ads}" widgetVar="adsTable" emptyMessage="Nincs feladott hirdetés" filteredValue="#{adsBean.filteredAds}" rowKey="#{ad.id}" rowStyleClass="#{adsBean.isSaved(ad) ? 'saved' : ''}" scrollable="true" scrollHeight="500"  scrollWidth="740">
 				<p:column headerText="Kép">
 					<p:commandButton icon="ui-icon-search" action="#{adsBean.viewAd(ad)}" />
 				</p:column>
@@ -40,7 +40,7 @@
 				<p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
 					<h:outputText value="#{ad.description}" escape="false" />
 				</p:column>
-				<p:column headerText="" filterBy="#{ad.category.remuneration}">
+				<p:column headerText="" filterBy="#{ad.remuneration}">
 					<f:facet name="filter">
 						<p:selectOneMenu onchange="PF('adsTable').filter()">
 							<f:selectItem itemLabel="Díjazás" itemValue="" />

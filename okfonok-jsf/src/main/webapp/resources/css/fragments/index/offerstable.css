@@ -1,34 +1,18 @@
-.ui-rating-star a {
-	background: url("#{resource['img/tables:zold_csillag_ures.png']}") no-repeat 0 0 !important;
-}
-
-.ui-rating-star-on a {
-	background: url("#{resource['img/tables:zold_csillag_tomott.png']}") no-repeat 0 0 !important;
-}
-
-.offerstable-introduction {
-	color: #1e9cb2;
-	font-weight: bold;
-}
-
-.offerstable-introduction-content {
-	color: #ababab;
-	font: Rockwell;
-}
-
-.offerstable-remunaration {
-	color: #ababab;
-	font-size: 16px;
-}
-
-.offerstable-offer {
-	color: green;
+.offerstable-table {
+	table-layout: fixed;
+	word-wrap: break-word;
 }
 
 .ui-row-toggler {
 	width: 50px !important;
 	height: 50px !important;
 	background: url("#{resource['img/tables:rowexpansion.png']}") no-repeat 0 0 !important;
+	margin: auto;
+}
+
+.ui-datatable-scrollable-header-box {
+	/* szükséges important, mert inlineként van 15px jobb margin automatikusan */
+	margin-right: 0 !important;
 }
 
 .ui-column-customfilter {
@@ -42,4 +26,109 @@
 	color: white !important;
 	font-weight: normal !important;
 	font-size: 13px !important;
+}
+
+.ui-datatable thead th.offerstable-col {
+	padding-left: 0;
+	padding-right: 0;
+	border: 0;
+	border-radius: 0;
+	white-space: normal;
+}
+
+.ui-datatable tbody td.offerstable-col {
+	padding: 5px;
+	text-align: center;
+}
+
+.offerstable-col-img {
+	width: 75px;
+}
+
+.offerstable-col-maincat {
+	width: 95px;
+}
+
+.ui-datatable thead th.offerstable-col-cat {
+	width: 95px;
+}
+
+.offerstable-col-description {
+	width: 165px;
+	font-size: 10px;
+}
+
+.offerstable-col-remuneration {
+	width: 75px;
+}
+
+.offerstable-col-avgprice {
+	width: 75px;
+	white-space: normal;
+}
+
+.offerstable-col-offerscount {
+	width: 65px;
+}
+
+.offerstable-col-action {
+	width: 80px;
+}
+
+/* OFFERLIST */
+.offerstable-offerlist div.ui-widget-content {
+	border: none;
+	width: 740px;
+	padding: 5px;
+}
+
+.offerstable-offer-col {
+	height: 80px;
+	float: left;
+	text-align: center;
+}
+
+.offerstable-offer-img {
+	width: 75px;
+}
+
+.offerstable-offer-name {
+	width: 95px;
+}
+
+.offerstable-offer-rating {
+	width: 95px;
+}
+
+.offerstable-offer-desc {
+	width: 165px;
+}
+
+.offerstable-offer-desc p {
+	color: #ababab;
+	font: Rockwell;
+}
+
+.offerstable-offer-remuneration {
+	width: 75px;
+}
+
+.offerstable-offer-price {
+	width: 75px;
+}
+
+.offerstable-offer-calendar {
+	width: 65px;
+}
+
+.offerstable-offer-action {
+	width: 80px;
+}
+
+.offerstable-offer-rating .ui-rating-star a {
+	background: url("#{resource['img/tables:zold_csillag_ures.png']}") no-repeat 0 0;
+}
+
+.offerstable-offer-rating .ui-rating-star-on a {
+	background: url("#{resource['img/tables:zold_csillag_tomott.png']}") no-repeat 0 0;
 }
