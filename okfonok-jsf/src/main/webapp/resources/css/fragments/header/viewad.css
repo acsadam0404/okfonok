@@ -1,11 +1,4 @@
-
 .viewad-content {
-	width: 420px;
-	height: 440px;
-}
-
-
-html {
 	width: 420px;
 	height: 440px;
 }
@@ -44,7 +37,6 @@ html {
 	height: 440px;
 }
 
-
 .title {
 	color: #247984;
 }
@@ -53,6 +45,7 @@ html {
 	float: right;
 	white-space: nowrap;
 }
+
 .text-ad {
 	height: 220px;
 	float: left;
@@ -67,10 +60,31 @@ h1, h2 {
 	margin-top: 0;
 }
 
+.vieadad-offer-myoffer {
+	display: inline;
+	font-size: 20px;
+	color: #247984;
+	margin-right: 10px;
+}
 
-.ui-dialog-titlebar-close {
-	float: right;
-	position: relative;
-	top: -40px;
-	z-index: 10000;
+.vieadad-offer-first  {
+	display: inline;
+	font-size: 12px;
+	color: #247984;
+}
+
+.vieadad-offer-first span {
+	font-size: 20px;
+}
+
+.vieadad-offer-second  {
+	font-size: 11px;
+	color: #1e9cb2;
+}
+.viewad-offer input {
+	width: 200px;;
+}
+.viewad-offer-cal {
+	width: 380px;
+	height: 335px;
 }

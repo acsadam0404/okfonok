@@ -13,48 +13,57 @@
 	</f:facet>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<h:form styleClass="viewad-content">
-		<div class="viewad-left">
-			<h1>Hirdető:</h1>
-			<h:outputText styleClass="text" value="#{cc.attrs.ad.user.profile.realName}" />
-			<div style="clear: both;" />
-			<h1>Főkategória:</h1>
-			<h:outputText styleClass="text" value="#{cc.attrs.ad.category.mainCategory}" />
-			<div style="clear: both;" />
-			<h1>Kategória:</h1>
-			<h:outputText styleClass="text" value="#{cc.attrs.ad.category}" />
-			<div style="clear: both;" />
-			<h1>Hirdetés szövege:</h1>
+		<h:panelGroup rendered="#{!adsBean.overlayVisible}">
+			<div class="viewad-left">
+				<h1>Hirdető:</h1>
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.user.profile.realName}" />
+				<div style="clear: both;" />
+				<h1>Főkategória:</h1>
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.category.mainCategory}" />
+				<div style="clear: both;" />
+				<h1>Kategória:</h1>
+				<h:outputText styleClass="text" value="#{cc.attrs.ad.category}" />
+				<div style="clear: both;" />
+				<h1>Hirdetés szövege:</h1>
 
-			<div style="clear: both;" class="table-ad">
-				<h:outputText styleClass="text text-ad" value="#{cc.attrs.ad.description}" escape="false" />
+				<div style="clear: both;" class="table-ad">
+					<h:outputText styleClass="text text-ad" value="#{cc.attrs.ad.description}" escape="false" />
+				</div>
+				<h:panelGrid columns="2">
+					<h1>Díjazás</h1>
+					<h:outputText styleClass="text" value="#{cc.attrs.ad.remuneration}" />
+					<h2>Maximum díj</h2>
+					<h:outputText styleClass="text" value="#{cc.attrs.ad.maxOffer}" />
+				</h:panelGrid>
+				<p:commandLink id="makeOffer" action="#{adsBean.setOverlayVisible(!adsBean.overlayVisible)}" update="@form">
+					<p:graphicImage library="img" name="viewad/kek_ajanlatot_teszek.png" style="cursor:pointer" title="Ajánlatot teszek" />
+				</p:commandLink>
+				<p:commandLink>
+					<p:graphicImage library="img" name="viewad/kek_elmentem.png" style="cursor:pointer" title="Elmentem" />
+				</p:commandLink>
 			</div>
-			<h:panelGrid columns="2">
-				<h1>Díjazás</h1>
-				<h:outputText styleClass="text" value="#{cc.attrs.ad.remuneration}" />
-				<h2>Maximum díj</h2>
-				<h:outputText styleClass="text" value="#{cc.attrs.ad.maxOffer}" />
-			</h:panelGrid>
-			<p:commandLink id="makeOffer">
-				<p:graphicImage library="img" name="viewad/makeoffer.png" style="cursor:pointer" title="Ajánlatot teszek" />
+			<div class="viewad-right">
+				<p:galleria autoPlay="true" value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false" styleClass="gallery">
+					<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
+				</p:galleria>
+				<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
+				<!-- 			<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
+				<p:graphicImage library="img" name="/datapage/boritek.png" />
+				<h:link styleClass="ad-msg" value=" - Üzenetküldés a hirdetéssel kapcsolatban" />
+			</div>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{adsBean.overlayVisible}" layout="block" styleClass="viewad-offer">
+			<p class="vieadad-offer-myoffer">Ajánlatom:</p>
+			<pe:inputNumber decimalPlaces="0" symbol=" Ft" symbolPosition="last" />
+			<p class="vieadad-offer-first">
+				<br /><span>Jelöld be,</span> hogy mikor tudod elvégezni a feldatatot.
+			</p>
+			<p class="vieadad-offer-second">Vedd figyelembe, hogy a hirdető milyen időpontot preferál!</p>
+			<p:schedule view="basicWeek" styleClass="viewad-offer-cal" rightHeaderTemplate="" centerHeaderTemplate="" />
+			<p:commandLink action="#{adsBean.setOverlayVisible(!adsBean.overlayVisible)}" update="@form">
+				<p:graphicImage library="img" name="viewad/kek_elmentem.png" style="cursor:pointer" title="Elmentem" />
 			</p:commandLink>
-			<p:commandLink>
-				<p:graphicImage library="img" name="viewad/savead.png" style="cursor:pointer" title="Elmentem" />
-			</p:commandLink>
-			<p:overlayPanel for="makeOffer">
-				<p>Jelöld be, hogy mikor tudod elvégezni a feladatot.</p>
-				<p>Vedd figyelembe, hogy a hirdető milyen időpontot preferál!</p>
-				<p:schedule></p:schedule>
-			</p:overlayPanel>
-		</div>
-		<div class="viewad-right">
-			<p:galleria autoPlay="true" value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false" styleClass="gallery">
-				<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
-			</p:galleria>
-			<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
-			<!-- 			<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
-			<p:graphicImage library="img" name="/datapage/boritek.png" />
-			<h:link styleClass="ad-msg" value=" - Üzenetküldés a hirdetéssel kapcsolatban" />
-		</div>
+		</h:panelGroup>
 	</h:form>
 </composite:implementation>
 

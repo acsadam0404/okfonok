@@ -34,6 +34,12 @@ class AdvertisementsBean implements Serializable {
 	private MapBean mapBean
 
 	ScheduleModel eventModel = new DefaultScheduleModel()
+	
+	boolean overlayVisible
+	
+	public void setOverlayVisible(boolean overlayVisible) {
+		this.overlayVisible = overlayVisible;
+	}
 
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds
@@ -47,12 +53,10 @@ class AdvertisementsBean implements Serializable {
 	void viewAd(Advertisement ad) {
 		adToView = ad
 		Map options = [
-			draggable: false
-			,resizable: false
-			,width: 450
-			,height: 470
-			,contentWidth: 420
-			,contentHeight: 440
+			draggable: false,
+			resizable: false,
+			contentWidth: 430,
+			contentHeight: 460
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/index/viewAdDialog", options, null);
 	}
