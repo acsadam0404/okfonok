@@ -8,19 +8,19 @@
 <h:body>
 	<ui:composition>
 		<p:dataTable id="offersTable" var="ad" widgetVar="vOfferTable" emptyMessage="Nem érkezett még ajánlat" value="#{offersBean.myAds}" filteredValue="#{offerseBean.filteredAds}" rowKey="#{ad.id}" scrollable="true" scrollHeight="500" expandedRow="true">
-			<p:column style="width:80px" >
+			<p:column style="width:80px">
 				<p:rowToggler />
-			</p:column> 	
-			
-			 <p:column headerText="" filterBy="#{ad.category.mainCategory}" >
+			</p:column>
+
+			<p:column headerText="" filterBy="#{ad.category.mainCategory}">
 				<f:facet name="filter">
 					<p:selectOneMenu onchange="PF('vOfferTable').filter()">
 						<f:selectItem itemLabel="Főkategória" itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{jobCategoryService.findAllMain()}" />
 					</p:selectOneMenu>
 				</f:facet>
-            <h:outputText value="#{ad.category}" escape="false" />
-            </p:column>
+				<h:outputText value="#{ad.category}" escape="false" />
+			</p:column>
 
 			<p:column headerText="" filterBy="#{ad.category}">
 				<f:facet name="filter">
@@ -29,29 +29,29 @@
 						<f:selectItems value="#{adsBean.getCategories()}" />
 					</p:selectOneMenu>
 				</f:facet>
-           		<h:outputText value="#{ad.category}" />
-	        </p:column>
+				<h:outputText value="#{ad.category}" />
+			</p:column>
 
-			 <p:column headerText="Leírás" styleClass="tablecol-description">
-		         <h:outputText value="#{ad.description}" />
-        	</p:column>
+			<p:column headerText="Leírás" styleClass="tablecol-description">
+				<h:outputText value="#{ad.description}" />
+			</p:column>
 
 			<p:column headerText="" filterBy="#{ad.category.remuneration}">
 				<f:facet name="filter">
 					<p:selectOneMenu onchange="PF('vOfferTable').filter()">
-						<f:selectItem itemLabel="Díjazás" itemValue="" noSelectionOption="true"/>
+						<f:selectItem itemLabel="Díjazás" itemValue="" noSelectionOption="true" />
 						<f:selectItems value="#{advertisementService.getRemunerations()}" />
 					</p:selectOneMenu>
 				</f:facet>
-          		<h:outputText value="#{ad.remuneration}" />
-       		</p:column>
+				<h:outputText value="#{ad.remuneration}" />
+			</p:column>
 
-			 <p:column headerText="Aktuális átlag díj">
-        	    <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
-        	</p:column>
+			<p:column headerText="Aktuális átlag díj">
+				<h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
+			</p:column>
 
 			<p:column headerText="Ajánlatok száma">
-        	    <h:outputText value="#{ad.offers.size()}" />
+				<h:outputText value="#{ad.offers.size()}" />
 			</p:column>
 
 			<p:column headerText="">

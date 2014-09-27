@@ -23,23 +23,23 @@
 							<f:selectItems value="#{jobCategoryService.findAllMain()}" />
 						</p:selectOneMenu>
 					</f:facet>
-         		    <h:outputText value="#{ad.category}" />
-      		  </p:column>
+					<h:outputText value="#{ad.category}" />
+				</p:column>
 
-			  <p:column headerText="" filterBy="#{ad.category}">
+				<p:column headerText="" filterBy="#{ad.category}">
 					<f:facet name="filter">
 						<p:selectOneMenu onchange="PF('adsTable').filter()">
 							<f:selectItem itemLabel="Kategória" itemValue="" />
 							<f:selectItems value="#{adsBean.getCategories()}" />
 						</p:selectOneMenu>
 					</f:facet>
-                    <h:outputText value="#{ad.category}" />
-    	      </p:column>
+					<h:outputText value="#{ad.category}" />
+				</p:column>
 
 
-	 <p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
-            <h:outputText value="#{ad.description}" />
-        </p:column>
+				<p:column headerText="Leírás" styleClass="tablecol-description" filterBy="#{ad.description}" filterMatchMode="contains">
+					<h:outputText value="#{ad.description}" escape="false" />
+				</p:column>
 				<p:column headerText="" filterBy="#{ad.category.remuneration}">
 					<f:facet name="filter">
 						<p:selectOneMenu onchange="PF('adsTable').filter()">
@@ -47,20 +47,20 @@
 							<f:selectItems value="#{advertisementService.getRemunerations()}" />
 						</p:selectOneMenu>
 					</f:facet>
-          		<h:outputText value="#{ad.remuneration}" />
-       		</p:column>
+					<h:outputText value="#{ad.remuneration}" />
+				</p:column>
 
-	 <p:column headerText="Aktuális átlag díj">
-            <h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
-        </p:column>
+				<p:column headerText="Aktuális átlag díj">
+					<h:outputText value="#{advertisementService.getAvgPrice(ad)}" />
+				</p:column>
 
-	 <p:column headerText="Távolság">
-            <h:outputText value="#{advertisementService.getDistance(ad.address)}" />
+				<p:column headerText="Távolság">
+					<h:outputText value="#{advertisementService.getDistance(ad.address)}" />
 
-        </p:column>
+				</p:column>
 
 
-	 <p:column headerText="Állapot">
+				<p:column headerText="Állapot">
 					<div class="coldiv">
 						<div class="colcontent">
 							<p:commandLink value="Elmentve" rendered="#{adsBean.isSaved(ad)}" action="#{adsBean.saveAd(ad)}" update="@form">
@@ -79,11 +79,10 @@
 							</p:commandLink>
 						</div>
 					</div>
-        </p:column>
+				</p:column>
 
 			</p:dataTable>
 		</h:form>
-
 	</ui:composition>
 
 </h:body>
