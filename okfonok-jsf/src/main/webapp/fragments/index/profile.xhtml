@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 </h:head>
@@ -15,19 +14,32 @@
 	<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
 
-	<div class="userprofile-left">
-		<h1>Név:</h1>
-		<p>#{userProfileBean.user.profile.realName}</p>
-		<h1>Bemutatkozás:</h1>
-		<p>#{userProfileBean.user.profile.introduction}</p>
-		<div class="messagebox">
-			<p:inputTextarea pt:placeholder="Üzenet tartalma..." />
-			<p>Ne adj meg elérhetőségi adatokat!</p>
-			<p:commandButton value="Küldés" />
+	<div class="profile-left">
+		<p class="profile-name">Név:</p>
+		<p class="profile-name-value">#{userProfileBean.user.profile.realNameAbbr}</p>
+		<div style="clear: both;"></div>
+		<p class="profile-introduction">Bemutatkozás:</p>
+		<div class="profile-introduction-content">
+			<p>#{userProfileBean.user.profile.introduction}</p>
 		</div>
-		Üzenetküldés az ajánlattal kapcsolatban
+		<div class="profile-message">
+			<div class="profile-message-box">
+				<p:inputTextarea pt:placeholder="Üzenet tartalma..." />
+				<p>Ne adj meg elérhetőségi adatokat!</p>
+				<p:commandLink>
+					<p:graphicImage library="img" name="profile/kek_kuldes.png" style="cursor:pointer" />
+				</p:commandLink>
+			</div>
+			<div class="profile-message-info">
+				<p:graphicImage library="img" name="profile/kek_boritek.png" />
+				<p>Üzenetküldés az ajánlattal kapcsolatban</p>
+			</div>
+		</div>
 	</div>
 	<div class="profile-right">
+		<!-- 		<c:if test="#{userProfileBean.user.certification.certified}"> -->
+		<p:graphicImage library="img" name="profile/zoldpajzs.png" styleClass="profile-cert" />
+		<!-- 		</c:if> -->
 		<img class="profile-image" src="#{skillsBean.user.profile.profileImagePath}" />
 		<canvas id="skillsRadar" class="profile-radar" width="200" height="200">[No canvas support]</canvas>
 		<script>
@@ -38,15 +50,17 @@
 					})
 		</script>
 
-		<!-- 								<c:if test="#{userProfileBean.user.certification.certified}"> -->
-		<p:graphicImage library="img" name="help.png" />
-		<!-- 				</c:if>  -->
 
 		<h:outputText value="#{userProfileBean.user.profile.realName}" />
 		<p:rating readonly="true" value="#{userProfileBean.user.profile.rating}" stars="5" />
 		<h:outputText value="#{userProfileBean.user.profile.ratings.size()}" />
 		Elvégzett feladatainak száma:
-
+		<div class="profile-points">
+			<p>Eddig gyűjtött összes pontja:</p>
+			<p class="profile-points-sum">#{pointService.findLast(userProfileBean.user).sum}</p>
+<!-- 			<p:chart type="line" model="#{userProfileBean.model}" /> -->
+		<p:chart type="line" model="#{pointsBean.model}" styleClass="points-chart" />
+		</div>
 	</div>
 </h:body>
 </html>

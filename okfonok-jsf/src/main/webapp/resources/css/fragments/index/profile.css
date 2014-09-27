@@ -1,0 +1,97 @@
+.profile-left {
+	width: 225px;
+	float: left;
+}
+
+.profile-name {
+	font-size: 18px;
+	color: #247984;
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.profile-name-value {
+	font-size: 18px;
+	color: #ababab;
+	float: right;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.profile-introduction {
+	font-size: 18px;
+	color: #247984;
+	float: left;
+}
+
+.profile-introduction-content {
+	height: 230px;
+}
+
+.profile-introduction-content p {
+	color: #ababab;
+	font-size: 10px;
+}
+
+.profile-message {
+	width: 210px;
+	height: 150px;
+}
+
+.profile-message-box {
+	height: 130px;
+	background-color: #1e9cb2;
+	padding: 5px;
+}
+
+.profile-message-box img {
+	margin-top: 5px;
+	float: right;
+}
+.profile-message-box p {
+	font-size: 8px;
+	color: white;
+	float: left;
+}
+
+.profile-message-box textarea {
+	width: 192px;
+	height: 90px;
+	color: #bfbfbf;
+	font-size: 10px;
+}
+
+.profile-message-info {
+	font-size: 8px;
+	color: #ababab;
+}
+
+.profile-message-info img {
+	float: left;
+	margin-right: 5px;
+}
+
+.profile-right {
+	float: left;
+	width: 200px;
+}
+
+.profile-points {
+	width: 195px;
+	height: 90px;
+	background-color: #efae61;
+	padding: 5px;
+}
+
+.profile-points p {
+	color: white;	
+	font-size: 10px;
+	margin: 0;
+	float: left;
+}
+
+.profile-points p.profile-points-sum {
+	font-size: 20px;
+	float: right;
+}

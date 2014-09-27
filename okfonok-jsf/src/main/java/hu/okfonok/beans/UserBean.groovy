@@ -2,6 +2,7 @@ package hu.okfonok.beans
 
 import hu.okfonok.entities.Skill;
 import hu.okfonok.entities.user.User
+import hu.okfonok.entities.user.UserSkill
 import hu.okfonok.services.UserService
 import hu.okfonok.utils.ServiceLocator
 
@@ -28,6 +29,10 @@ class UserBean implements Serializable {
 			if (principal && principal instanceof UserDetails) {
 				user = ServiceLocator.getBean(UserService.class).findByUserName(principal.username)
 			}
+			
+			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
+			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
+			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
 		}
 		
 		

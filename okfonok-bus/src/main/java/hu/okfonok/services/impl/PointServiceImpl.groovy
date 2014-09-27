@@ -2,6 +2,7 @@ package hu.okfonok.services.impl;
 
 import hu.okfonok.dao.PointDao
 import hu.okfonok.entities.user.Point
+import hu.okfonok.entities.user.User;
 import hu.okfonok.services.PointService
 
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,6 +20,12 @@ class PointServiceImpl implements PointService {
 	List<Point> findLast5() {
 		dao.findLast5()
 	}
+	
+	@Override
+	List<Point> findLast5(User user) {
+		dao.findLast5(user.userName)
+	}
+
 
 	@Override
 	Point findLast() {
@@ -36,6 +43,12 @@ class PointServiceImpl implements PointService {
 		Point last = findLast()
 		Point newPoint = new Point(datum: new Date(), sum: last.sum - sum)
 		dao.save(newPoint)
+	}
+
+	@Override
+	Point findLast(User user) {
+		//	dao.findLast() //TODO
+		return new Point(sum: 18)
 	}
 	
 }
