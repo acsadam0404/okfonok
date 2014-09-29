@@ -17,7 +17,7 @@
 	<h:panelGroup id="help" class="help">
 		<p:graphicImage id="helpLink" library="img" name="layout/segitseg_gomb.png" style="cursor:pointer" onclick="PF('helpDialog').show();" />
 	</h:panelGroup>
-	<p:overlayPanel for="help" my="right" at="right">
+	<p:overlayPanel for="help" my="right" at="right"  showEffect="overlay">
 		<ui:include src="/fragments/help.xhtml" />
 	</p:overlayPanel>
 </ui:composition>

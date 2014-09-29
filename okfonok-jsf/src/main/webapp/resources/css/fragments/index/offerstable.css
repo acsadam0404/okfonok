@@ -20,12 +20,11 @@
 	color: white;
 }
 
-.ui-datatable-scrollable-header-box table thead tr th {
-	background: #acacac no-repeat 0 0 !important;
-	border-color: #acacac !important;
-	color: white !important;
-	font-weight: normal !important;
-	font-size: 13px !important;
+.ui-datatable-scrollable-header-box table thead tr th.ui-state-default {
+	background: #acacac no-repeat 0 0;
+	color: white;
+	font-weight: normal;
+	font-size: 13px;
 }
 
 .ui-datatable thead th.offerstable-col {

@@ -6,6 +6,20 @@
 </h:head>
 
 <h:body>
-	<okfonokcc:viewad ad="#{adsBean.adToView}" />
+	<c:set var="gmsg" value="#{messageBean.viewed}" scope="request" />
+
+	<div>
+		<p>Feladó: #{gmsg.advertisement.user.profile.realNameAbbr}</p>
+		<p>Hirdetés: #{gmsg.advertisement.category.name} - #{defaultMethods.abbreviate(gmsg.advertisement.description, 6)}</p>
+	</div>
+	<p:dataScroller value="#{gmsg.messages}" var="msg" chunkSize="2" mode="inline" scrollHeight="100">
+		<div class="viewmessagedialog-message">
+			<p>#{msg.fromUser.profile.realNameAbbr}</p>
+			<div class="viewmessagedialog-message-text">
+				<p>#{msg.text}</p>
+			</div>
+		</div>
+	</p:dataScroller>
+
 </h:body>
 </html>

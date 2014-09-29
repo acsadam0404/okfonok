@@ -1,0 +1,58 @@
+
+.ui-tabs .ui-tabs-nav.ui-widget-header li.messages-incoming-title a, .ui-tabs .ui-tabs-nav.ui-widget-header li.messages-outgoing-title a,.ui-tabs .ui-tabs-nav.ui-widget-header li.messages-deleted-title a {
+	color: white;
+}
+.ui-tabs .ui-tabs-nav.ui-widget-header li.messages-incoming-title {
+	background: url("#{resource['img/messages:bejovo_feher.png']}") no-repeat 0 0;
+	background-color: #d7d7d7;
+}
+
+.ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active.messages-incoming-title {
+	background: url("#{resource['img/messages:bejovo_feher.png']}") no-repeat 0 0;
+	background-color: #4ee437;
+}
+
+.messages-tabview .ui-tabs-panel {
+	background: url("#{resource['img/messages:boritek_feher.png']}") no-repeat 0 0;
+}
+
+.messages-incoming-table {
+	background-color: #4ee437;
+}
+
+.ui-datatable-tablewrapper table thead tr th.ui-state-default {
+	background: #4ee437 no-repeat 0 0;
+	color: white;
+	font-weight: normal;
+	font-size: 13px;
+}
+
+.ui-datatable-tablewrapper thead th.ui-state-default {
+	padding-left: 0;
+	padding-right: 0;
+	border: 0;
+	border-radius: 0;
+	white-space: normal;
+}
+
+/* kimenő üzenetek*/
+.ui-tabs .ui-tabs-nav.ui-widget-header li.messages-outgoing-title {
+	background: url("#{resource['img/messages:kimeno_feher.png']}") no-repeat 0 0;
+	background-color: #d7d7d7;
+}
+
+.ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active.messages-outgoing-title {
+	background: url("#{resource['img/messages:kimeno_feher.png']}") no-repeat 0 0;
+	background-color: #247984;
+}
+
+/* törölt üzenetek */
+.ui-tabs .ui-tabs-nav.ui-widget-header li.messages-deleted-title {
+	background: url("#{resource['img/messages:kuka.png']}") no-repeat 0 0;
+	background-color: #d7d7d7;
+}
+
+.ui-tabs .ui-tabs-nav.ui-widget-header li.ui-state-active.messages-deleted-title {
+	background: url("#{resource['img/messages:kuka.png']}") no-repeat 0 0;
+	background-color: #1e9cb2;
+}
