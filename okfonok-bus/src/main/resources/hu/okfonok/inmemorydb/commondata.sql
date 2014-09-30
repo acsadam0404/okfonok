@@ -2,12 +2,10 @@
 insert into Role (id, name) values (1, 'USER_ROLE');
 insert into Role (id, name) values (2, 'DEV_ROLE');
 insert into Role (id, name) values (3, 'ADMIN_ROLE');
-insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'acsadam0404@gmail.com', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121');
+insert into User (id, enabled, password, userName, lastName, firstName, email, phoneNumber, city, zipcode) values (1, 1, '82b9a701f55b9a48c6083f247beea5c1', 'acsadam0404@gmail.com', 'Ács', 'Ádám', 'acsadam0404@gmail.com', '062012121', 'Boldog', 3016);
 insert into User_Roles (user_id, role_id) values (1, 1);
 insert into User_Roles (user_id, role_id) values (1, 2);
 insert into User_Roles (user_id, role_id) values (1, 3);
-
-insert into User_Roles (user_id, role_id) values (2, 1);
 
 insert into ValueStore (id, name, value) values (1, 'help_mail', 'acsadam0404@gmail.com');
 

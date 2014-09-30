@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:composite="http://java.sun.com/jsf/composite">
-
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <composite:interface>
 	<composite:attribute name="ad" required="true" type="hu.okfonok.entities.Advertisement" />
 </composite:interface>
@@ -13,7 +13,7 @@
 	</f:facet>
 	<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 	<h:form styleClass="viewad-content">
-		<h:panelGroup rendered="#{!adsBean.overlayVisible}">
+		<h:panelGroup layout="block" rendered="#{!adsBean.overlayVisible}">
 			<div class="viewad-left">
 				<h1>Hirdető:</h1>
 				<h:outputText styleClass="text" value="#{cc.attrs.ad.user.profile.realName}" />
@@ -42,21 +42,38 @@
 					<p:graphicImage library="img" name="viewad/kek_elmentem.png" style="cursor:pointer" title="Elmentem" />
 				</p:commandLink>
 			</div>
-			<div class="viewad-right">
+			<h:panelGroup layout="block" id="rightPanel" class="viewad-right">
 				<p:galleria autoPlay="true" value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false" styleClass="gallery">
 					<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
 				</p:galleria>
 				<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
-				<!-- 			<p:schedule rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
-				<p:graphicImage library="img" name="/datapage/boritek.png" />
-				<h:link styleClass="ad-msg" value=" - Üzenetküldés a hirdetéssel kapcsolatban" />
-			</div>
+				<!-- 				<p:schedule rendered="#{!adsBean.messageVisible}" rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
+				<p:fragment autoUpdate="true">
+					<div class="message">
+						<h:panelGroup layout="block" rendered="#{adsBean.messageVisible}" class="message-box">
+							<p:inputTextarea pt:placeholder="Üzenet tartalma..." value="#{messageSenderBean.text}" />
+							<p>Ne adj meg elérhetőségi adatokat!</p>
+							<p:commandLink action="#{messageSenderBean.send()}">
+								<f:setPropertyActionListener target="#{messageSenderBean.advertisement}" value="#{cc.attrs.ad}" />
+								<p:graphicImage library="img" name="profile/kek_kuldes.png" style="cursor:pointer" />
+							</p:commandLink>
+						</h:panelGroup>
+						<div class="message-info">
+							<p:commandLink action="#{adsBean.setMessageVisible(!adsBean.messageVisible)}" update="rightPanel">
+								<p:graphicImage library="img" name="profile/kek_boritek.png" />
+								<p>Üzenetküldés a hirdetéssel kapcsolatban</p>
+							</p:commandLink>
+						</div>
+					</div>
+				</p:fragment>
+
+			</h:panelGroup>
 		</h:panelGroup>
 		<h:panelGroup rendered="#{adsBean.overlayVisible}" layout="block" styleClass="viewad-offer">
 			<p class="vieadad-offer-myoffer">Ajánlatom:</p>
 			<pe:inputNumber decimalPlaces="0" symbol=" Ft" symbolPosition="last" />
 			<p class="vieadad-offer-first">
-				<br /><span>Jelöld be,</span> hogy mikor tudod elvégezni a feldatatot.
+				<br /> <span>Jelöld be,</span> hogy mikor tudod elvégezni a feldatatot.
 			</p>
 			<p class="vieadad-offer-second">Vedd figyelembe, hogy a hirdető milyen időpontot preferál!</p>
 			<p:schedule view="basicWeek" styleClass="viewad-offer-cal" rightHeaderTemplate="" centerHeaderTemplate="" />

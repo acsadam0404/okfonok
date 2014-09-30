@@ -1,7 +1,5 @@
 package hu.okfonok.services;
 
-import java.util.Date;
-
 import hu.okfonok.entities.user.User;
 
 /**

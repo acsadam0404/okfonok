@@ -1,7 +1,7 @@
 package hu.okfonok.entities.user
 
-import groovy.transform.EqualsAndHashCode;
-import groovy.transform.ToString;
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
 import hu.okfonok.entities.Address
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.BaseEntity
@@ -14,14 +14,14 @@ import javax.persistence.Entity
 import javax.persistence.FetchType
 import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
 import javax.persistence.Table
-import javax.validation.Valid;
+import javax.validation.Valid
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Size
 
-import org.hibernate.annotations.Formula;
-import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Email
 
 /**
  * 
@@ -31,7 +31,6 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 @Table(name = 'user')
 @EqualsAndHashCode
-@ToString
 class User extends BaseEntity implements Serializable{
 
 	@Column(unique = true)

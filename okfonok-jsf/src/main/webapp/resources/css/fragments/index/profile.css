@@ -34,44 +34,6 @@
 	font-size: 10px;
 }
 
-.profile-message {
-	width: 210px;
-	height: 150px;
-}
-
-.profile-message-box {
-	height: 130px;
-	background-color: #1e9cb2;
-	padding: 5px;
-}
-
-.profile-message-box img {
-	margin-top: 5px;
-	float: right;
-}
-.profile-message-box p {
-	font-size: 8px;
-	color: white;
-	float: left;
-}
-
-.profile-message-box textarea {
-	width: 192px;
-	height: 90px;
-	color: #bfbfbf;
-	font-size: 10px;
-}
-
-.profile-message-info {
-	font-size: 8px;
-	color: #ababab;
-}
-
-.profile-message-info img {
-	float: left;
-	margin-right: 5px;
-}
-
 .profile-right {
 	float: left;
 	width: 200px;

@@ -36,10 +36,7 @@ class AdvertisementsBean implements Serializable {
 	ScheduleModel eventModel = new DefaultScheduleModel()
 	
 	boolean overlayVisible
-	
-	public void setOverlayVisible(boolean overlayVisible) {
-		this.overlayVisible = overlayVisible;
-	}
+	boolean messageVisible
 
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds

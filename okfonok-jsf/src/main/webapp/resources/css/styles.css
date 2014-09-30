@@ -73,7 +73,7 @@ p {
 
 a {
 	text-decoration: none;
-	color: #247984 !important;
+	color: #247984;
 }
 
 .note {
@@ -86,4 +86,43 @@ a {
 
 .pointer {
 	cursor: pointer;
+}
+
+
+.message {
+	width: 210px;
+	height: 150px;
+}
+
+.message-box {
+	height: 130px;
+	background-color: #1e9cb2;
+	padding: 5px;
+}
+
+.message-box img {
+	margin-top: 5px;
+	float: right;
+}
+.message-box p {
+	font-size: 8px;
+	color: white;
+	float: left;
+}
+
+.message-box textarea {
+	width: 192px;
+	height: 90px;
+	color: #bfbfbf;
+	font-size: 10px;
+}
+
+.message-info {
+	font-size: 8px;
+	color: #ababab;
+}
+
+.message-info img {
+	float: left;
+	margin-right: 5px;
 }

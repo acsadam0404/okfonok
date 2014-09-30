@@ -1,0 +1,3 @@
+moduleName=okfonok-groovyextension
+moduleVersion=1.0
+extensionClasses=hu.okfonok.utils.GroovyDefaultMethods
