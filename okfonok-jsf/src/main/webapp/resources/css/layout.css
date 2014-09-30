@@ -69,6 +69,13 @@ body {
 	vertical-align: middle;
 }
 
+.ui-widget-overlay.postad-overlay {
+	background-color: #f2966b;
+	width: 370px;
+	height: 510px;
+	opacity: 1;
+}
+
 .points {
 	top: 190px;
 	background-color: #efae61;

@@ -77,4 +77,12 @@ class PostAdBean implements Serializable{
 			eventModel.updateEvent(event)
 		}
 	}
+	
+	void specifiedJobTimeBtnAction() {
+		ad.specifiedJobTime = !ad.specifiedJobTime;
+	}
+	
+	void homeWorkBtnAction() {
+		ad.homework = !ad.homework;
+	}
 }

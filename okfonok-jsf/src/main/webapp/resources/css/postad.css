@@ -16,15 +16,18 @@
 }
 
 .postad-upload-outer {
-	display: table-cell;
+	display: table-caption;
 	vertical-align: middle;
+	background: white;
+	width: 60px;
+	height: 60px;
 }
 
 .postad-upload {
 	width: 46px;
 	height: 33px;
 	margin-right: auto;
-	margin-left: auto;
+	margin-top: 10px;
 }
 
 .postad-upload .ui-fileupload-buttonbar {
@@ -57,4 +60,33 @@
 .postad-upload .ui-fileupload-choose input {
 	height: 33px;
 	width: 46px;
+}
+
+.ui-selectonemenu.postad-category {
+	width: 320px !important;
+	height: 30px !important;
+}
+
+.postad-title {
+	color: white;
+	font-size: 18px;
+}
+
+.postad-subtitle {
+	color: white;
+	font-size: 16px;
+}
+
+.postad-text {
+	color: white;
+	font-size: 12px;
+}
+
+.postad-text-small {
+	color: white;
+	font-size: 10px;
+}
+
+.ui-inputfield.postad-adressbox{ 
+	width : 50px !important;
 }

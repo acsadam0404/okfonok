@@ -12,15 +12,16 @@
 	<ui:composition>
 		<h:outputStylesheet library="css" name="postad.css" />
 		<h:form id="postadForm">
-			<h1>Hirdetés feladás</h1>
+			<p class="postad-title">Hirdetés feladás</p>
 			<h:panelGrid columns="1">
-				<p:selectOneMenu id="category" value="#{postAdBean.ad.category}" converter="omnifaces.SelectItemsConverter" filter="true">
-					<f:selectItem itemLabel="Kategória" itemValue="" noSelectionOption="true"/>
+				<p:selectOneMenu id="category" value="#{postAdBean.ad.category}" converter="omnifaces.SelectItemsConverter" filter="true"
+					styleClass="postad-category">
+					<f:selectItem itemLabel="Kategória" itemValue="" noSelectionOption="true" />
 					<f:selectItems value="#{adsBean.getCategories()}" />
 				</p:selectOneMenu>
 
-				<p:editor value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" />
-				<h:outputText value="A feladat leírásába ne adj meg elérhetőségi adatokat!" />
+				<p:editor styleClass="postad-editor" value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" height="140" width="320" />
+				<p class="postad-text">A feladat leírásába ne adj meg elérhetőségi adatokat!</p>
 				<h:panelGrid columns="5">
 					<c:if test="#{not empty postAdBean.ad.imagePaths.get(0)}">
 					</c:if>
@@ -59,37 +60,57 @@
 					</c:otherwise>
 				</h:panelGrid>
 
-				<h2>Feladatvégzés helye</h2>
+				<p class="postad-subtitle">Feladatvégzés helye:</p>
 
-				<h:panelGrid columns="3">
-					<p:autoComplete completeMethod="#{addressBean.completeSettlement}" id="settlement" value="#{postAdBean.ad.address.zipcodeAndCity}" />
+				<h:panelGrid columns="2">
+					<p:autoComplete styleClass="postad-adressbox" completeMethod="#{addressBean.completeSettlement}" id="settlement"
+						value="#{postAdBean.ad.address.zipcodeAndCity}" />
 					<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
 				</h:panelGrid>
-				<p:watermark for="settlement" value="helység" />
+				<p:watermark for="settlement" value="helyiség" />
 				<p:watermark for="other" value="cím*" />
 
-				<h:outputText value="* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg." />
-				<h:outputText value="&nbsp;&nbsp;A pontos címet csak létrejött kapcsolat esetén küljük el a feladat elvégzőjének." />
+				<p class="postad-text-small">* A hirdetés megjelenítése során utcaszintű adatokat jelenítünk meg.</p>
+				<p class="postad-text-small">&nbsp;&nbsp;A pontos címet csak létrejött kapcsolat esetén küljük el a feladat elvégzőjének."</p>
 
+				<h:form>
+					<p:commandLink action="#{postAdBean.homeWorkBtnAction}" update="@this" immediate="true">
+						<p:graphicImage rendered="#{postAdBean.ad.homework}" library="img" name="/postad/otthonrol_vegezheto_igen.png" />
+						<p:graphicImage rendered="#{!postAdBean.ad.homework}" library="img" name="/postad/otthonrol_vegezheto_nem.png" />
+					</p:commandLink>
+				</h:form>
+				<p class="postad-subtitle">Díjazás</p>
 
-				<p:selectBooleanButton id="homework" value="#{postAdBean.ad.homework}" onLabel="Otthonról is végezhető" offLabel="Nem végezhető otthonról"
-					onIcon="ui-icon-check" offIcon="ui-icon-close" />
-				<h2>Díjazás</h2>
-
-				<p:selectOneRadio id="renumeration" value="#{postAdBean.ad.remuneration}">
-					<f:selectItems value="#{advertisementService.getRemunerations()}" />
-				</p:selectOneRadio>
+				<!-- TODO: ez itt lehet nagyon nem jó -->
+				<h:panelGrid columns="2">
+					<h:form>
+						<p:commandLink id="fix" action="#{postAdBean.specifiedJobTimeBtnAction}" update="@this" immediate="true">
+							<p:graphicImage rendered="#{postAdBean.ad.specifiedJobTime}" library="img" name="/postad/fix_igen.png" />
+							<p:graphicImage rendered="#{!postAdBean.ad.specifiedJobTime}" library="img" name="/postad/fix_nem.png" />
+						</p:commandLink>
+					</h:form>
+					<h:form>
+						<p:commandLink id="hourAward" action="#{postAdBean.specifiedJobTimeBtnAction}" update="@this" immediate="true">
+							<p:graphicImage rendered="#{postAdBean.ad.specifiedJobTime}" library="img" name="/postad/oradij_igen.png" />
+							<p:graphicImage rendered="#{!postAdBean.ad.specifiedJobTime}" library="img" name="/postad/oradij_nem.png" />
+						</p:commandLink>
+					</h:form>
+				</h:panelGrid>
+				<!-- 				<p:selectOneRadio id="renumeration" value="#{postAdBean.ad.remuneration}"> -->
+				<!-- 					<f:selectItems value="#{advertisementService.getRemunerations()}" /> -->
+				<!-- 				</p:selectOneRadio> -->
 				<pe:inputNumber id="maxOffer" value="#{postAdBean.ad.maxOffer}" symbol=" Ft" symbolPosition="suffix" decimalPlaces="0" />
 				<p:watermark for="maxOffer" value="maximum ajánlat (Ft)" />
 
 				<p:commandButton id="timechooser" value="Időpont választása" />
-				<p:overlayPanel my="left top" at="left top" id="postadSchedule" widgetVar="postadScheduleWidget" for="timechooser" dismissable="false" showCloseIcon="true">
+				<p:overlayPanel my="left top" at="left top" id="postadSchedule" widgetVar="postadScheduleWidget" for="timechooser" dismissable="false"
+					showCloseIcon="true">
 					<ui:include src="/fragments/postad/postadtimetable.xhtml" />
 				</p:overlayPanel>
 			</h:panelGrid>
 
 			<p:commandLink id="postad" action="#{postAdBean.post()}" validateClient="true">
-				<p:graphicImage library="img" name="postad/narancs_hirdetes.png" style="cursor:pointer" title="Hirdetés feladása" />
+				<p:graphicImage library="img" name="postad/narancs_hirdetes.png" style="cursor:pointer" title="Mentés" />
 			</p:commandLink>
 		</h:form>
 	</ui:composition>

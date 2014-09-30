@@ -3,9 +3,9 @@
 	<h:panelGroup id="postad" p:title="Hirdetés feladás" class="left-floating postad">
 		<span style="cursor: pointer">Hirdetés feladás</span>
 	</h:panelGroup>
-	<p:overlayPanel for="postad" my="left top" at="left top" appendToBody="true" dismissable="false" showCloseIcon="true">
+	<p:overlayPanel styleClass="ui-widget-overlay postad-overlay" for="postad" my="left top" at="left top" appendToBody="true" dismissable="false" showCloseIcon="true">
 		<ui:include src="/postad.xhtml" />
-	</p:overlayPanel>
+	</p:overlayPanel> 
 
 	<h:panelGroup id="points" class="left-floating points" style="cursor: pointer">
 		<span style="cursor: pointer">#{pointService.findLast().sum} pont</span>
@@ -17,7 +17,7 @@
 	<h:panelGroup id="help" class="help">
 		<p:graphicImage id="helpLink" library="img" name="layout/segitseg_gomb.png" style="cursor:pointer" onclick="PF('helpDialog').show();" />
 	</h:panelGroup>
-	<p:overlayPanel for="help" my="right" at="right">
+	<p:overlayPanel for="help" my="right" at="right"  showEffect="overlay">
 		<ui:include src="/fragments/help.xhtml" />
 	</p:overlayPanel>
 </ui:composition>
