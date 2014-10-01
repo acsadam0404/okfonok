@@ -69,6 +69,13 @@ body {
 	vertical-align: middle;
 }
 
+.points {
+	top: 190px;
+	background-color: #efae61;
+	display: table-cell;
+	vertical-align: middle;
+}
+
 .ui-widget-overlay.postad-overlay {
 	background-color: #f2966b;
 	width: 370px;
@@ -76,9 +83,16 @@ body {
 	opacity: 1;
 }
 
-.points {
-	top: 190px;
-	background-color: #efae61;
-	display: table-cell;
-	vertical-align: middle;
+.ui-widget-overlay.points-overlay {
+	background-color: white;
+	width: 430px;
+	height: 370px;
+	opacity: 1;
+}
+
+.ui-widget-overlay.help-overlay {
+	background-color: white;
+	width: 430px;
+	height: 370px;
+	opacity: 1;
 }

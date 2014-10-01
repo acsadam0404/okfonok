@@ -10,14 +10,14 @@
 	<h:panelGroup id="points" class="left-floating points" style="cursor: pointer">
 		<span style="cursor: pointer">#{pointService.findLast().sum} pont</span>
 	</h:panelGroup>
-	<p:overlayPanel for="points" my="left top" at="left top">
+	<p:overlayPanel styleClass="ui-widget-overlay points-overlay" for="points" my="left top" at="left top" appendToBody="true" dismissable="false" showCloseIcon="true">
 		<ui:include src="/fragments/index/points.xhtml" />
 	</p:overlayPanel>
 
 	<h:panelGroup id="help" class="help">
 		<p:graphicImage id="helpLink" library="img" name="layout/segitseg_gomb.png" style="cursor:pointer" onclick="PF('helpDialog').show();" />
 	</h:panelGroup>
-	<p:overlayPanel for="help" my="right" at="right"  showEffect="overlay">
+	<p:overlayPanel styleClass="ui-widget-overlay help-overlay" for="help" my="right" at="right"  showEffect="overlay">
 		<ui:include src="/fragments/help.xhtml" />
 	</p:overlayPanel>
 </ui:composition>
