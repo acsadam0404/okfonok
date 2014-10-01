@@ -63,9 +63,9 @@
 				<p class="postad-subtitle">Feladatvégzés helye:</p>
 
 				<h:panelGrid columns="2">
-					<p:autoComplete styleClass="postad-adressbox" completeMethod="#{addressBean.completeSettlement}" id="settlement"
+					<p:autoComplete size="13" completeMethod="#{addressBean.completeSettlement}" id="settlement"
 						value="#{postAdBean.ad.address.zipcodeAndCity}" />
-					<p:inputText id="other" value="#{postAdBean.ad.address.other}" />
+					<p:inputText size="13" id="other" value="#{postAdBean.ad.address.other}" />
 				</h:panelGrid>
 				<p:watermark for="settlement" value="helység" />
 				<p:watermark for="other" value="cím*" />
