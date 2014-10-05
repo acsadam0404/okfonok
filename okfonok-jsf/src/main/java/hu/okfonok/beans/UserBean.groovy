@@ -29,12 +29,7 @@ class UserBean implements Serializable {
 			if (principal && principal instanceof UserDetails) {
 				user = ServiceLocator.getBean(UserService.class).findByUserName(principal.username)
 			}
-			
-			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
-			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
-			user.skills << new UserSkill(skill: new Skill(), ownRating: 2, rating: 4)
 		}
-		
 		
 		return user
 	}

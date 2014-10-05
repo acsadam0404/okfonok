@@ -65,8 +65,3 @@
 .profile-upload .ui-fileupload-buttonbar .ui-fileupload-choose .ui-icon {
 	display: none;
 }
-
-.profile-upload .ui-fileupload-choose input {
-	height: 90px;
-	width: 92px;
-}

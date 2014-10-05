@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h:panelGrid columns="5" id="postadImages">
+			<p:fragment autoUpdate="true">
+				<h:panelGroup styleClass="postad-upload-outer">
+					<h:panelGroup rendered="#{not empty postAdBean.ad.imagePath1}" layout="block">
+						<p:graphicImage styleClass="postad-upload" library="img" name="/postad/kephelye.png" />
+						<p:commandLink action="#{postAdBean.ad.setImagePath1(null)}">
+							<p:graphicImage library="img" name="/postad/kep_minusz.png" />
+						</p:commandLink>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{empty postAdBean.ad.imagePath1}" layout="block">
+						<p:fileUpload label="" fileUploadListener="#{postAdBean.handleFileUpload1}" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:fragment>
+			<p:fragment autoUpdate="true">
+				<h:panelGroup styleClass="postad-upload-outer">
+					<h:panelGroup rendered="#{not empty postAdBean.ad.imagePath2}" layout="block">
+						<p:graphicImage styleClass="postad-upload" library="img" name="/postad/kephelye.png" />
+						<p:commandLink action="#{postAdBean.ad.setImagePath2(null)}">
+							<p:graphicImage library="img" name="/postad/kep_minusz.png" />
+						</p:commandLink>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{empty postAdBean.ad.imagePath2}" layout="block">
+						<p:fileUpload label="" fileUploadListener="#{postAdBean.handleFileUpload2}" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:fragment>
+			<p:fragment autoUpdate="true">
+				<h:panelGroup styleClass="postad-upload-outer">
+					<h:panelGroup rendered="#{not empty postAdBean.ad.imagePath3}" layout="block">
+						<p:graphicImage styleClass="postad-upload" library="img" name="/postad/kephelye.png" />
+						<p:commandLink action="#{postAdBean.ad.setImagePath3(null)}">
+							<p:graphicImage library="img" name="/postad/kep_minusz.png" />
+						</p:commandLink>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{empty postAdBean.ad.imagePath3}" layout="block">
+						<p:fileUpload label="" fileUploadListener="#{postAdBean.handleFileUpload3}" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:fragment>
+			<p:fragment autoUpdate="true">
+				<h:panelGroup styleClass="postad-upload-outer">
+					<h:panelGroup rendered="#{not empty postAdBean.ad.imagePath4}" layout="block">
+						<p:graphicImage styleClass="postad-upload" library="img" name="/postad/kephelye.png" />
+						<p:commandLink action="#{postAdBean.ad.setImagePath4(null)}">
+							<p:graphicImage library="img" name="/postad/kep_minusz.png" />
+						</p:commandLink>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{empty postAdBean.ad.imagePath4}" layout="block">
+						<p:fileUpload label="" fileUploadListener="#{postAdBean.handleFileUpload4}" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:fragment>
+			<p:fragment autoUpdate="true">
+				<h:panelGroup styleClass="postad-upload-outer">
+					<h:panelGroup rendered="#{not empty postAdBean.ad.imagePath5}" layout="block">
+						<p:graphicImage styleClass="postad-upload" library="img" name="/postad/kephelye.png" />
+						<p:commandLink action="#{postAdBean.ad.setImagePath5(null)}">
+							<p:graphicImage library="img" name="/postad/kep_minusz.png" />
+						</p:commandLink>
+					</h:panelGroup>
+					<h:panelGroup rendered="#{empty postAdBean.ad.imagePath5}" layout="block">
+						<p:fileUpload label="" fileUploadListener="#{postAdBean.handleFileUpload5}" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="1000000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" immediate="true" />
+					</h:panelGroup>
+				</h:panelGroup>
+			</p:fragment>
+		</h:panelGrid>
+	</ui:composition>
+</h:body>
+</html>

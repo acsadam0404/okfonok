@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags"
-	xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 </h:head>
@@ -16,7 +15,8 @@
 
 	<h:panelGroup layout="block" id="profile" class="profile">
 		<h:panelGroup id="profileImage" rendered="#{userBean.user.profile.profileImagePath != null}">
-			<img class="profile-image" src="#{skillsBean.user.profile.profileImagePath}" />
+			<img class="profile-image" src="#{userBean.user.profile.profileImagePath}" />
+
 			<canvas id="skillsRadar" class="profile-radar" width="200" height="200">[No canvas support]</canvas>
 			<script>
 			jQuery(document).ready(function() {
@@ -27,11 +27,21 @@
 		</script>
 
 			<!-- 								<c:if test="#{userBean.user.certification.certified}"> -->
-			<p:graphicImage library="img" name="help.png" />
+			<p:graphicImage library="img" name="profile/ellenorzottfh.png" />
 			<!-- 				</c:if>  -->
 
 			<h:outputText value="#{userBean.user.profile.realName}" />
+			<h:panelGroup id="ownProfileRating" layout="block">
+				<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
+			</h:panelGroup>
+			<p:overlayPanel id="ownProfileOverlay" for="ownProfileRating">
+			Megbízhatóság
 			<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
+			Pontosság
+			<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
+			Minőség
+			<p:rating readonly="true" value="#{userBean.user.profile.rating}" stars="5" />
+			</p:overlayPanel>
 			<h:outputText value="#{userBean.user.profile.ratings.size()}" />
 		</h:panelGroup>
 

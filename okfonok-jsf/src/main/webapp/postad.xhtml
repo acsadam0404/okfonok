@@ -18,44 +18,8 @@
 
 				<p:editor styleClass="postad-editor" value="#{postAdBean.ad.description}" controls="bold italic underline strikethrough" height="140" width="320" />
 				<p class="postad-text">A feladat leírásába ne adj meg elérhetőségi adatokat!</p>
-				<h:panelGrid columns="5">
-					<c:if test="#{not empty postAdBean.ad.imagePaths.get(0)}">
-					</c:if>
-					<c:otherwise>
-						<h:panelGroup styleClass="postad-upload-outer">
-							<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</h:panelGroup>
-					</c:otherwise>
-					<c:if test="#{not empty postAdBean.ad.imagePaths.get(1)}">
-					</c:if>
-					<c:otherwise>
-						<h:panelGroup styleClass="postad-upload-outer">
-							<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</h:panelGroup>
-					</c:otherwise>
-					<c:if test="#{not empty postAdBean.ad.imagePaths.get(2)}">
-					</c:if>
-					<c:otherwise>
-						<h:panelGroup styleClass="postad-upload-outer">
-							<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</h:panelGroup>
-					</c:otherwise>
-					<c:if test="#{not empty postAdBean.ad.imagePaths.get(3)}">
-					</c:if>
-					<c:otherwise>
-						<h:panelGroup styleClass="postad-upload-outer">
-							<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</h:panelGroup>
-					</c:otherwise>
-					<c:if test="#{not empty postAdBean.ad.imagePaths.get(4)}">
-					</c:if>
-					<c:otherwise>
-						<h:panelGroup styleClass="postad-upload-outer">
-							<p:fileUpload label="" styleClass="postad-upload" mode="advanced" auto="true" sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
-						</h:panelGroup>
-					</c:otherwise>
-				</h:panelGrid>
-
+				<ui:include src="postad_images.xhtml" />
+					
 				<p class="postad-subtitle">Feladatvégzés helye:</p>
 
 				<h:panelGrid columns="2">

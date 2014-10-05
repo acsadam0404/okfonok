@@ -5,11 +5,12 @@ import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
 import hu.okfonok.services.UserService
 
-import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage
-import javax.faces.event.ActionEvent
+import javax.faces.context.FacesContext
+import javax.servlet.ServletContext
 
+import org.apache.commons.io.FileUtils
 import org.primefaces.context.RequestContext
+import org.primefaces.event.FileUploadEvent
 import org.primefaces.event.ScheduleEntryMoveEvent
 import org.primefaces.event.ScheduleEntryResizeEvent
 import org.primefaces.event.SelectEvent
@@ -84,5 +85,41 @@ class PostAdBean implements Serializable{
 	
 	void homeWorkBtnAction() {
 		ad.homework = !ad.homework;
+	}
+	
+	void handleFileUpload1(FileUploadEvent event) {
+		handleFileUpload(event, 1)
+	}
+	
+	void handleFileUpload2(FileUploadEvent event) {
+		handleFileUpload(event, 2)
+	}
+	
+	void handleFileUpload3(FileUploadEvent event) {
+		handleFileUpload(event, 3)
+	}
+	
+	void handleFileUpload4(FileUploadEvent event) {
+		handleFileUpload(event, 4)
+	}
+	
+	void handleFileUpload5(FileUploadEvent event) {
+		handleFileUpload(event, 5)
+	}
+	
+	void handleFileUpload(FileUploadEvent event, int fileNumber) {
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()
+		FileUtils.writeByteArrayToFile(new File("${servletContext.getRealPath('')}/${getImagePath(fileNumber)}"), event.file.contents)
+		
+		ad."setImagePath${fileNumber}"(getImagePath(fileNumber))
+		RequestContext.getCurrentInstance().update("postadForm:postadImages")
+	}
+
+	void deleteFile(int fileNumber) {
+		new File(getImagePath(fileNumber)).delete()
+	}
+	
+	String getImagePath(int fileNumber) {
+		return "users/${userBean.user.userName}/ads/${ad.id}/${fileNumber}"
 	}
 }

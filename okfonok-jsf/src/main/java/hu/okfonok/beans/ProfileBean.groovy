@@ -28,7 +28,7 @@ class ProfileBean implements Serializable{
 
 	@PostConstruct
 	private void init() {
-		imagePath = "tmp/${userBean.user.userName}/profile.jpg"
+		imagePath = "users/${userBean.user.userName}/tmpprofile.jpg"
 	}
 
 	void profilePictureUpload(FileUploadEvent event) {
@@ -52,9 +52,10 @@ class ProfileBean implements Serializable{
 			return;
 		}
 
-		String newFileName = "${userBean.user.userName}/profile.jpg"
-		FileUtils.writeByteArrayToFile(new File(Config.userProfilePath + '/' + newFileName), croppedImage.bytes)
-		userBean.user.profile.profileImagePath = "users/${newFileName}"
+		String newFileName = "users/${userBean.user.userName}/profile.jpg"
+		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()
+		FileUtils.writeByteArrayToFile(new File(servletContext.getRealPath('') + '/' + newFileName), croppedImage.bytes)
+		userBean.user.profile.profileImagePath = newFileName
 		RequestContext.getCurrentInstance().closeDialog()
 	}
 }

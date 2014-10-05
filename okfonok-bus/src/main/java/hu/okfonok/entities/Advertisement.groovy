@@ -30,10 +30,11 @@ class Advertisement extends BaseEntity{
 	@NotNull
 	String remuneration
 
-	String imagePathsString
-
-	@Transient
-	private transient List<String> imagePaths
+	String imagePath1
+	String imagePath2
+	String imagePath3
+	String imagePath4
+	String imagePath5
 
 	@ManyToOne
 	@NotNull
@@ -61,20 +62,6 @@ class Advertisement extends BaseEntity{
 	@OneToMany(mappedBy = "ad", fetch = FetchType.EAGER)
 	Collection<Offer> offers = []
 
-	List<String> getImagePaths() {
-		if (imagePathsString) {
-			imagePathsString.split("|")
-		}
-		/* 5 elemű nullokból álló lista */
-		return [null,null,null,	null,null]
-	}
-
-	void setImagePaths(List<String> imagePaths) {
-		if (imagePaths && !imagePaths.empty) {
-			imagePathsString = imagePaths.collect { it + "|" }
-			imagePathsString -= '|'
-		}
-	}
 
 	void setPreferredTimes(List<DateInterval> intervals) {
 		if (intervals && !intervals.empty) {
