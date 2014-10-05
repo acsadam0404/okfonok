@@ -90,3 +90,11 @@
 .ui-inputfield.postad-adressbox{ 
 	width : 50px !important;
 }
+
+.postad-homework{
+	float: right;
+}
+
+.postad-maxoffer {
+	width: 170px;
+}
