@@ -42,13 +42,13 @@
 				<p class="postad-subtitle">Díjazás</p>
 
 				<h:panelGrid columns="2">
-					<p:commandLink id="fix" action="#{postAdBean.specifiedJobTimeBtnAction}" update="@this" immediate="true">
-						<p:graphicImage rendered="#{postAdBean.ad.specifiedJobTime}" library="img" name="/postad/fix_igen.png" />
-						<p:graphicImage rendered="#{!postAdBean.ad.specifiedJobTime}" library="img" name="/postad/fix_nem.png" />
+					<p:commandLink id="fixRemun" action="#{postAdBean.fixRemunerationBtnAction}" update="@this,hourRemun" immediate="true">
+						<p:graphicImage rendered="#{postAdBean.ad.isFixRemun}" library="img" name="/postad/fix_igen.png" />
+						<p:graphicImage rendered="#{!postAdBean.ad.isFixRemun}" library="img" name="/postad/fix_nem.png" />
 					</p:commandLink>
-					<p:commandLink id="hourAward" action="#{postAdBean.specifiedJobTimeBtnAction}" update="@this" immediate="true">
-						<p:graphicImage rendered="#{postAdBean.ad.specifiedJobTime}" library="img" name="/postad/oradij_igen.png" />
-						<p:graphicImage rendered="#{!postAdBean.ad.specifiedJobTime}" library="img" name="/postad/oradij_nem.png" />
+					<p:commandLink id="hourRemun" action="#{postAdBean.hourRemunerationBtnAction}" update="@this,fixRemun" immediate="true">
+						<p:graphicImage rendered="#{postAdBean.ad.isHourlyRemun}" library="img" name="/postad/oradij_igen.png" />
+						<p:graphicImage rendered="#{!postAdBean.ad.isHourlyRemun}" library="img" name="/postad/oradij_nem.png" />
 					</p:commandLink>
 				</h:panelGrid>
 				<h:panelGrid columns="3">

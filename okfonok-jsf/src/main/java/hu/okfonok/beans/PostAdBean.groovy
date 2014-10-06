@@ -69,7 +69,7 @@ class PostAdBean implements Serializable{
 		print event
 		//TODO eltárolni adatbébe
 	}
-	
+
 	private void addEvent(ScheduleEvent event) {
 		if(event.getId() == null) {
 			eventModel.addEvent(event)
@@ -78,39 +78,35 @@ class PostAdBean implements Serializable{
 			eventModel.updateEvent(event)
 		}
 	}
-	
-	void specifiedJobTimeBtnAction() {
-		ad.specifiedJobTime = !ad.specifiedJobTime;
-	}
-	
+
 	void homeWorkBtnAction() {
 		ad.homework = !ad.homework;
 	}
-	
+
 	void handleFileUpload1(FileUploadEvent event) {
 		handleFileUpload(event, 1)
 	}
-	
+
 	void handleFileUpload2(FileUploadEvent event) {
 		handleFileUpload(event, 2)
 	}
-	
+
 	void handleFileUpload3(FileUploadEvent event) {
 		handleFileUpload(event, 3)
 	}
-	
+
 	void handleFileUpload4(FileUploadEvent event) {
 		handleFileUpload(event, 4)
 	}
-	
+
 	void handleFileUpload5(FileUploadEvent event) {
 		handleFileUpload(event, 5)
 	}
-	
+
 	void handleFileUpload(FileUploadEvent event, int fileNumber) {
 		ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext()
 		FileUtils.writeByteArrayToFile(new File("${servletContext.getRealPath('')}/${getImagePath(fileNumber)}"), event.file.contents)
-		
+
 		ad."setImagePath${fileNumber}"(getImagePath(fileNumber))
 		RequestContext.getCurrentInstance().update("postadForm:postadImages")
 	}
@@ -118,8 +114,31 @@ class PostAdBean implements Serializable{
 	void deleteFile(int fileNumber) {
 		new File(getImagePath(fileNumber)).delete()
 	}
-	
+
 	String getImagePath(int fileNumber) {
 		return "users/${userBean.user.userName}/ads/${ad.id}/${fileNumber}"
 	}
+
+	/**
+	 * Díjazás (típusának) értékét állító függvény
+	 */
+	void fixRemunerationBtnAction() {
+		ad.isHourlyRemun = false
+		ad.isFixRemun = !ad.isFixRemun
+		if(ad.isFixRemun) {
+			ad.remuneration = "Fix"
+		}
+	}
+	
+	/**
+	 * Díjazás (típusának) értékét állító függvény
+	 */
+	void hourRemunerationBtnAction() {
+		ad.isFixRemun = false
+		ad.isHourlyRemun = !ad.isHourlyRemun
+		if(ad.isHourlyRemun) {
+			ad.remuneration = "Óradíjas"
+		}
+	}
+
 }

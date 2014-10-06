@@ -1,33 +1,28 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
 </h:head>
 
 <h:body>
 	<h:form id="postadScheduleForm">
-		<p:tabView>
-			<p:tab title="Feladatok">
-				<h2>Feladatok teszt!</h2>
-				<!--TODO: ezt a részt implementálni kell -->
-			</p:tab>
-			<p:tab title="Hirdetéseim">
-				<h:form>
-					<h:panelGrid columnClasses="value">
-						<h2>Jelöld ki, hogy mikor lenne neked a legalkalmasabb a feladat elvégzése.</h2>
-						<p:commandButton id="preftime" value="Preferált időpont" />
-						<p:commandButton id="fixtime" value="Fix időpont" />
-						<p:schedule id="schedule" locale="hu" axisFormat="H:mm" leftHeaderTemplate="prev,next" rightHeaderTemplate="null" centerHeaderTemplate="null" value="#{postAdBean.eventModel}" widgetVar="schedule" view="agendaWeek" style="width: 700px">
-							<p:ajax event="dateSelect" listener="#{postAdBean.onDateSelect}"  update="schedule"/>
-							<p:ajax event="eventSelect" listener="#{postAdBean.onEventSelect}" />
-							<p:ajax event="eventMove" listener="#{postAdBean.onEventMove}" />
-							<p:ajax event="eventResize" listener="#{postAdBean.onEventResize}" />
-						</p:schedule>
-					</h:panelGrid>
-				</h:form>
-			</p:tab>
-		</p:tabView>
+		<h:form>
+			<h:panelGrid columnClasses="value">
+				<h2>Jelöld ki, hogy mikor lenne neked a legalkalmasabb a feladat elvégzése.</h2>
+				<p:commandButton id="preftime" value="Preferált időpont" />
+				<p:commandButton id="fixtime" value="Fix időpont" />
+				<p:schedule id="schedule" locale="hu" axisFormat="H:mm" leftHeaderTemplate="prev,next" rightHeaderTemplate="null" centerHeaderTemplate="null"
+					value="#{postAdBean.eventModel}" widgetVar="schedule" view="agendaWeek" style="width: 700px">
+					<p:ajax event="dateSelect" listener="#{postAdBean.onDateSelect}" update="schedule" />
+					<p:ajax event="eventSelect" listener="#{postAdBean.onEventSelect}" />
+					<p:ajax event="eventMove" listener="#{postAdBean.onEventMove}" />
+					<p:ajax event="eventResize" listener="#{postAdBean.onEventResize}" />
+				</p:schedule>
+			</h:panelGrid>
+		</h:form>
 	</h:form>
 </h:body>
 </html>

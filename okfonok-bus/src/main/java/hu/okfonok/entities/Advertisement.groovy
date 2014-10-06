@@ -52,6 +52,12 @@ class Advertisement extends BaseEntity{
 	Integer maxOffer
 
 	boolean homework
+	
+	@Transient
+	boolean isFixRemun
+	
+	@Transient
+	boolean isHourlyRemun
 
 	@Transient
 	private transient List<DateInterval> preferredTimes
