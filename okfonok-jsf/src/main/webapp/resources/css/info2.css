@@ -1,0 +1,168 @@
+.info2-layout {
+	height: 1710px;
+	background: url("#{resource['img/info2/background.jpg']}") repeat;
+}
+
+.info2-header {
+	height: 667px;
+	background: url("#{resource['img/info2/info2-upper.jpg']}") no-repeat center;
+}
+
+.info2-header-bluebox {
+	width: 1024px;
+	height: 285px;
+	margin: auto auto;
+	background-color: #28b7c5;
+	position: relative;
+	top: 175px;
+}
+
+.info2-header-greybox {
+	height: 170px;
+	position: relative;
+	top: 180px;
+	margin: auto auto;
+	padding-left: 176px;
+	width: 780px;
+}
+
+.info2-header-bluebox div:nth-child(1) {
+	padding-left: 55px;
+	padding-top: 15px;
+	width: 500px;
+	float: left;
+}
+
+.info2-header-bluebox div:nth-child(2) {
+	margin-top: -20px;
+	float: left;
+	width: 450px;
+	float: left;
+}
+
+.info2-second {
+	height: 466px;
+	background: url("#{resource['img/info2/masodik.png']}") no-repeat center;
+}
+
+.info2-third {
+	height: 480px;
+	background: url("#{resource['img/info2/harmadik.png']}") no-repeat center;
+}
+
+.info2-youtube1 {
+	position: absolute;
+	left: 692px;
+	top: 738px;
+}
+
+.info2-youtube2 {
+	position: absolute;
+	top: 1265px;
+	left: 290px;
+}
+
+.info2-footer {
+	height: 100px;
+	background: #959595;
+}
+
+.info2-up {
+	position: absolute;
+	top: 1490px;
+	right: 43px;
+}
+
+h1 {
+	font-size: 30px;
+	font-weight: normal;
+	color: white;
+	line-height: 120%;
+}
+
+h2 {
+	font-size: 24px;
+	font-weight: normal;
+	color: white;
+	line-height: 125%;
+}
+
+body {
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	letter-spacing: -1px;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+	color: white;
+	font-size: 30px;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	color: white;
+	opacity: 1;
+	font-size: 30px;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: white;
+	opacity: 1;
+	font-size: 30px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+	color: white;
+	font-size: 30px;
+}
+
+.email, .ui-inputfield.email.ui-state-focus {
+	background: none;
+	border: 3px;
+	border-style: solid;
+	border-color: white;
+	height: 54px;
+	background-image: url("#{resource['img/info2:boritek.png']}");
+	background-repeat: no-repeat;
+	padding-left: 80px;
+	background-position-y: center;
+	background-position-x: 10px;
+	width: 280px;
+	margin-left: 55px;
+	color: white;
+	font-size: 30px;
+}
+
+.subscribe {
+	background-color: #f26522;
+	border: 3px;
+	border-style: solid;
+	border-color: white;
+	width: 145px;
+	height: 54px;
+	color: white;
+	padding: 14px 17px 15px 17px;
+	border-left: none;
+	font-size: 30px;
+}
+
+.facebook-div {
+	float: right;
+}
+
+.bal3szog {
+	position: relative;
+	top: 285px;
+	right: -5px;
+}
+
+.jobb3szog {
+	position: relative;
+	left: -1005px;
+	top: 271px;
+}
+
+.knowmore {
+	position: relative;
+	left: 216px;
+	top: 16px;
+	color: white;
+}

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+	<title>OK Főnök</title>
+</h:head>
+
+<h:body>
+	<f:facet name="last">
+		<h:outputStylesheet library="css" name="styles.css" />
+		<h:outputStylesheet library="css" name="info2.css" />
+	</f:facet>
+
+	<div id="top" class="info2-layout">
+		<div class="info2-header">
+			<div class="info2-header-bluebox">
+				<div>
+					<h1>Üdvözöljük az OKfőnök oldalán, ahol a feladatok gazdára találnak!</h1>
+					<h2>Az oldal hamarosan indul!</h2>
+					<h2>Ha kíváncsi vagy ránk, és elsők közt szeretnéd kipróbálni, iratkozz fel hírlevelünkre, vagy lájkolj minket Facebook-on!</h2>
+				</div>
+				<div>
+					<p:graphicImage library="img" name="info2/mac.png" />
+				</div>
+				<p:graphicImage styleClass="bal3szog" library="img" name="info2/bal3szog.png" />
+				<p:graphicImage styleClass="jobb3szog" library="img" name="info2/jobb3szog.png" />
+			</div>
+			<div class="info2-header-greybox">
+				<h2>Iratkozz fel hírlevelünkre, hogy értesülj legfrissebb híreinkről!</h2>
+				<p:inputText styleClass="email" placeholder="e-mail cím" />
+				<p:commandLink styleClass="subscribe" value="feliratkozás" />
+				<div class="facebook-div">
+					<a href="http://facebook.com/"> <p:graphicImage library="img" name="info2/face.png" />
+					</a>
+				</div>
+				<div>
+					<a class="knowmore" href="#second" onclick="$('html,body').animate({ scrollTop: $('#second').offset().top }, 'slow');">Tudj meg többet!</a>
+				</div>
+			</div>
+		</div>
+		<div id="second" class="info2-second">
+			<div class="info2-youtube1">
+				<iframe width="466" height="263" src="//www.youtube.com/embed/Z7OX-wHhiYY" frameborder="0" allowfullscreen="true"></iframe>
+			</div>
+		</div>
+		<div class="info2-third">
+			<div class="info2-youtube2">
+				<iframe width="434" height="272" src="//www.youtube.com/embed/Z7OX-wHhiYY" frameborder="0" allowfullscreen="true"></iframe>
+			</div>
+			<div class="info2-up">
+				<a href="#top" onclick="$('html,body').animate({ scrollTop: $('#top').offset().top }, 'slow');"> <p:graphicImage library="img" name="info2/fel.png" />
+				</a>
+			</div>
+		</div>
+		<div class="info2-footer"></div>
+
+		<p:button href="#top" onclick="$('html,body').animate({ scrollTop: $('#top').offset().top }, 'slow');" id="registrationnav" value="hiddenbutton" style="display: none;" />
+	</div>
+</h:body>
+</html>

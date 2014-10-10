@@ -10,6 +10,7 @@
 		<intercept-url pattern="/admin/**" access="isFullyAuthenticated()" />
 		<intercept-url pattern="/static/**" access="permitAll" />
 		<intercept-url pattern="/info.xhtml" access="permitAll" />
+		<intercept-url pattern="/info2.xhtml" access="permitAll" />
 		<intercept-url pattern="/resources/img/**" access="permitAll" />
 		<intercept-url pattern="/test/**" access="permitAll" />
 		<intercept-url pattern="/fragments/**" access="permitAll" />
