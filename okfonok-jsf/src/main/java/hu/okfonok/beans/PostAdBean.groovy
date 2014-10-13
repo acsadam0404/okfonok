@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Scope
  *
  */
 @org.springframework.stereotype.Component("postAdBean")
-@Scope("session")
+@Scope("request")
 class PostAdBean implements Serializable{
 	Advertisement ad = new Advertisement()
 

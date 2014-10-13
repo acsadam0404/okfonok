@@ -98,3 +98,9 @@
 .postad-maxoffer {
 	width: 170px;
 }
+
+.ui-widget-overlay.postad-timetableoverlay{
+	width: 800px;
+	height: 200px;
+	opacity: 1;
+}
