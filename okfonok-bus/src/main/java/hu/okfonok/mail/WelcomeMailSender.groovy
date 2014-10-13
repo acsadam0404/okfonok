@@ -1,5 +1,7 @@
 package hu.okfonok.mail
 
+import hu.okfonok.utils.Config
+
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,8 +25,8 @@ class WelcomeMailSender {
 
 		SimpleMailMessage msg = new SimpleMailMessage();
 
-		msg.setFrom("acsadam0404@gmail.com")
-		msg.setTo("acsadam0404@gmail.com")
+		msg.setFrom(Config.supportEmail)
+		msg.setTo(Config.supportEmail)
 		msg.setText("okfonok welcome")
 		msg.setSubject("okfonok welcome")
 
