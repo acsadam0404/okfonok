@@ -20,3 +20,6 @@ Fel kell venni static context rootokat.
 - Context docBase="/okfonokkönyvtár/static" path="/static"
 - Context docBase="/okfonokkönyvtár/email" path="/email" 
 - Context docBase="/okfonokkönyvtár/users" path="/users" 
+
+
+Support email: okfonok@gmail.com // 123qwe123123
