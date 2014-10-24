@@ -56,3 +56,18 @@
 	background: url("#{resource['img/messages:kuka.png']}") no-repeat 0 0;
 	background-color: #1e9cb2;
 }
+
+.messages-star {
+    margin: 2px;
+    padding: 0;
+    border: 0;
+    width: 100px;
+    height: 20px;
+    background-image: url("#{resource['img/messages:kuka.png']}") no-repeat 0 0;
+    cursor: pointer;
+    overflow: visible;
+}
+
+.messages-star:hover {
+    background-image: url("#{resource['img/messages:kek_kuka.png']}") no-repeat 0 0;
+}

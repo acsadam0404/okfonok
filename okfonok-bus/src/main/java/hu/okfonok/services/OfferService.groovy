@@ -1,10 +1,8 @@
 package hu.okfonok.services
 
-import hu.okfonok.entities.Offer;
-import hu.okfonok.entities.user.User;
+import hu.okfonok.entities.Offer
+import hu.okfonok.entities.user.User
 
-import java.util.List;
-
-interface OfferService {
+interface OfferService extends BaseService<Offer>{
 	List<Offer> findAllForUser(User user);
 }

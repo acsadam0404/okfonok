@@ -64,7 +64,10 @@ class OwnSkillsBean {
 	
 	def save() {
 		skills.each {
-			getUser().skills << new UserSkill(skill: it, ownRating: ratings.get(it))
+			Integer rating = ratings.get(it)
+			if (rating) {
+				getUser().skills << new UserSkill(skill: it, ownRating: rating)
+			}
 		}
 		ServiceLocator.getBean(UserService).save(getUser())
 	}
