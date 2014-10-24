@@ -42,7 +42,13 @@ insert into User_Points (user_id, point_id) values (1, 4);
 insert into skill (id, name, question, skillGroup) values (1, 'Kalapácsolás', 'Tudsz-e kalapácsolni?', 'fizikai');
 insert into skill (id, name, question, skillGroup) values (2, 'Kódolás', 'Tudsz-e programozni?', 'szellemi');
 insert into skill (id, name, question, skillGroup) values (3, 'fúrás', 'Tudsz-e fúrni?', 'fizikai');
-insert into skill (id, name, question, skillGroup) values (4, 'photoshop', 'Photoshop?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (4, 'photoshop1', 'Photoshop?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (5, 'photoshop2', 'Photoshop1?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (6, 'photoshop3', 'Photoshop2?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (7, 'photoshop4', 'Photoshop3?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (8, 'photoshop5', 'Photoshop4?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (9, 'photoshop6', 'Photoshop5?', 'szellemi');
+insert into skill (id, name, question, skillGroup) values (10, 'photosho7p', 'Photoshop7?', 'szellemi');
 
 insert into advertisement ( 
 id ,

@@ -9,16 +9,16 @@
 	<h:outputStylesheet library="css" name="fragments/index/fillskills.css" />
 
 	<p:dialog widgetVar="dlgFillskills" resizable="false" draggable="false">
-		<h:form>
+		<h:form prependId="false">
 			<h1>Skálázd tudásod és jártasságod!</h1>
 			<h:panelGrid columns="1">
-				<ui:repeat var="skill" value="#{ownSkillsBean.getRandomQuestions()}">
+				<ui:repeat var="skill" value="#{ownSkillsBean.getRandomSkills()}">
 					<h:outputText value="#{skill.question}" />
-					<p:rating stars="10" cancel="false" />
+					<p:rating stars="10" cancel="false" value="#{ownSkillsBean.ratings.get(skill)}" required="true" />
 				</ui:repeat>
 			</h:panelGrid>
-			<p:commandButton process="@this" value="Most elég lesz ennyi" onclick="PF('dlgFillskills').hide();" />
-			<p:commandButton value="Jöhet még kérdés" />
+			<p:commandButton process="@this" value="Most elég lesz ennyi" onclick="PF('dlgFillskills').hide();" action="#{ownSkillsBean.finish()}" update="@form" />
+			<p:commandButton value="Jöhet még kérdés" action="#{ownSkillsBean.next()}" update="@form" />
 		</h:form>
 	</p:dialog>
 </h:body>

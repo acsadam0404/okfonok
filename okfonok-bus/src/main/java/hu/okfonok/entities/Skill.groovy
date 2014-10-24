@@ -9,7 +9,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "skill")
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(includes=["name", "skillGroup"])
 class Skill extends BaseEntity {
 	String name
 	
