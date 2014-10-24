@@ -12,14 +12,14 @@ insert into ValueStore (id, name, value) values (1, 'help_mail', 'acsadam0404@gm
 insert into Valueset (id, name) values (1, 'help_category');
 insert into Valueset (id, name) values (3, 'employ_category');
 
-insert into ValueSetEntry (key, valueSet_id) values ('1', 1);
-insert into ValueSetEntry (key, valueSet_id) values ('2', 1);
-insert into ValueSetEntry (key, valueSet_id) values ('3', 1);
-insert into ValueSetEntry (key, valueSet_id) values ('4', 1);
+insert into ValueSetEntry (bkey, valueSet_id) values ('1', 1);
+insert into ValueSetEntry (bkey, valueSet_id) values ('2', 1);
+insert into ValueSetEntry (bkey, valueSet_id) values ('3', 1);
+insert into ValueSetEntry (bkey, valueSet_id) values ('4', 1);
 
-insert into ValueSetEntry (key, valueSet_id) values ('1', 3);
-insert into ValueSetEntry (key, valueSet_id) values ('2', 3);
-insert into ValueSetEntry (key, valueSet_id) values ('3', 3);
+insert into ValueSetEntry (bkey, valueSet_id) values ('1', 3);
+insert into ValueSetEntry (bkey, valueSet_id) values ('2', 3);
+insert into ValueSetEntry (bkey, valueSet_id) values ('3', 3);
 
 insert into JobCategory (id, main, name, main_id) values (1, 1, 'főkat1', null);
 insert into JobCategory (id, main, name, main_id) values (2, 1, 'főkat2', null);

@@ -211,7 +211,7 @@
 					</components>
 					<componentProperties>
 						<persistenceunit>Default</persistenceunit>
-						<outputfilename>fc-bus-schema.sql</outputfilename>
+						<outputfilename>okfonok-schema.sql</outputfilename>
 						<drop>false</drop>
 						<create>true</create>
 						<export>false</export>
