@@ -17,6 +17,11 @@ class MessageBean {
 	List<GroupedMessages> selected
 	
 	GroupedMessages viewed
+	
+	int getUnreadNum() {
+		def unread = service.findIncomingMessages(SessionUtils.user).collect() { !it.isRead }
+		return unread.size()
+	}
 
 	List<GroupedMessages> getIncomingMessages() {
 		List<Message> msgs = service.findIncomingMessages(SessionUtils.user)
@@ -48,5 +53,13 @@ class MessageBean {
 			contentHeight: 460
 		]
 		RequestContext.getCurrentInstance().openDialog("fragments/message/viewMessageDialog", options, null);
+		markAllRead(gmsg)
+	}
+	
+	def markAllRead(GroupedMessages gmsg) {
+		gmsg.messages?.each {
+			it.isRead = true
+			service.save(it)
+		}
 	}
 }

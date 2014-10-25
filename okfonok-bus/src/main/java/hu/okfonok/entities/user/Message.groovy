@@ -67,6 +67,9 @@ class Message extends BaseEntity {
 		return isRead
 	}
 
+	boolean setIsRead(boolean isRead) {
+		this.isRead = isRead
+	}
 	public Advertisement getAdvertisement() {
 		return advertisement;
 	}
