@@ -41,12 +41,27 @@ class OwnSkillsBean {
 		return skills
 	}
 	
+	
 	List<Skill> findNewSkills() {
 		skills = skillService.findRandom(getUser(), 4)
 		ratings.clear()
 		skills.each {
 			ratings[it] = 0
 		}
+	}
+	
+	String getOwnRatings() {
+		List ratings = getUser().skills.collect() {
+			it.ownRating
+		}
+		return ratings.join(',')
+	}
+	
+	String getNames() {
+		List names = getUser().skills.collect() {
+			"'" + it.skill.name + "'"
+		}
+		return names.join(',')
 	}
 	
 	def finish() {
