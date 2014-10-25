@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.OneToMany
+import javax.persistence.OneToOne;
 import javax.persistence.Table
 import javax.validation.Valid
 import javax.validation.constraints.NotNull
@@ -40,7 +41,7 @@ class User extends BaseEntity implements Serializable{
 	String userName
 
 	@NotNull
-	@Size(min=4)
+	@Size(min=4, max=30)
 	String password
 
 	Boolean enabled = false
@@ -82,7 +83,8 @@ class User extends BaseEntity implements Serializable{
 	@JoinTable(name = "user_notifications ", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "notification_id", referencedColumnName="id") ])
 	Set<Notification> notifications = new HashSet<>()
 	
-	Integer balance = 0
+	@OneToOne
+	Account account
 	
 	Date lastLogin
 	

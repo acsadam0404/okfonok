@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<p:dataList var="t" value="#{accountBean.transactions}">
+			Az #{t.id} sz. feladat elvégzéséért #{t.net} Ft-ot kaptál.
+			Ebből #{t.servicePrice} Ft szolgáltatásunk díja.
+		</p:dataList>
+		Fizetendő szolgáltatási díjaink összesen: ??? Ft.
+		<p:commandLink value="Korábbi befizetések" />
+		
+		<p:commandLink>
+		
+		</p:commandLink>
+		
+	</ui:composition>
+</h:body>
+</html>
