@@ -21,11 +21,34 @@ insert into ValueSetEntry (bkey, valueSet_id) values ('1', 3);
 insert into ValueSetEntry (bkey, valueSet_id) values ('2', 3);
 insert into ValueSetEntry (bkey, valueSet_id) values ('3', 3);
 
-insert into JobCategory (id, main, name, main_id) values (1, 1, 'főkat1', null);
-insert into JobCategory (id, main, name, main_id) values (2, 1, 'főkat2', null);
-insert into JobCategory (id, main, name, main_id) values (3, 0, 'alkat1', 1);
-insert into JobCategory (id, main, name, main_id) values (4, 0, 'alkat2', 1);
-insert into JobCategory (id, main, name, main_id) values (5, 0, 'alkat3', 2);
+insert into JobCategory (id, main, name, main_id) values (1, 1, 'ezermester', null);
+insert into JobCategory (id, main, name, main_id) values (5, 0, 'kisebb otthoni javítás', 1);
+insert into JobCategory (id, main, name, main_id) values (3, 0, 'bútor összeszerelés', 1);
+insert into JobCategory (id, main, name, main_id) values (4, 0, 'pakolás', 1);
+
+insert into JobCategory (id, main, name, main_id) values (2, 1, 'házvezető', null);
+insert into JobCategory (id, main, name, main_id) values (6, 0, 'takarítás', 2);
+insert into JobCategory (id, main, name, main_id) values (7, 0, 'mosás', 2);
+insert into JobCategory (id, main, name, main_id) values (8, 0, 'vasalás', 2);
+insert into JobCategory (id, main, name, main_id) values (9, 0, 'rendrakás', 2);
+insert into JobCategory (id, main, name, main_id) values (10, 0, 'főzés', 2);
+
+insert into JobCategory (id, main, name, main_id) values (11, 1, 'otthoni asszisztens (vagy segítség)', null);
+insert into JobCategory (id, main, name, main_id) values (12, 0, 'szállítás', 11);
+insert into JobCategory (id, main, name, main_id) values (13, 0, 'rendezvényszervezés', 11);
+insert into JobCategory (id, main, name, main_id) values (14, 0, 'segítség a mindennapokban', 11);
+insert into JobCategory (id, main, name, main_id) values (15, 0, 'segítség egy rendezvényre', 11);
+
+
+insert into JobCategory (id, main, name, main_id) values (16, 1, 'gyerek felvigyázó', null);
+insert into JobCategory (id, main, name, main_id) values (17, 0, 'gyerekre vigyázás', 16);
+insert into JobCategory (id, main, name, main_id) values (18, 0, 'gyerek tanítás', 16);
+
+insert into JobCategory (id, main, name, main_id) values (19, 1, 'magántanár', null);
+insert into JobCategory (id, main, name, main_id) values (20, 0, 'nyelvtanítás', 19);
+insert into JobCategory (id, main, name, main_id) values (21, 0, 'zenetanítás', 19);
+insert into JobCategory (id, main, name, main_id) values (22, 0, 'főiskolai/egyetemi tantárgy tanítás', 19);
+
 
 
 insert into Point (id, sum, datum) values (1, 15, {ts '2014-07-05'});
