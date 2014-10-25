@@ -30,13 +30,12 @@
 					</h:link>
 				</div>
 				<div class="header-icondiv">
-					<h:link outcome="/messages.xhtml">
-						<p:graphicImage library="img" name="header/villanykorte1.png" styleClass="header-icon" />
-					</h:link>
+					<ui:include src="/fragments/index/notification.xhtml" />
 				</div>
 
 				<div class="header-icondiv">
 					<h:link outcome="/messages.xhtml">
+					<span>#{messageBean.unreadNum}</span>
 						<p:graphicImage library="img" name="header/boritek1.png" styleClass="header-icon" />
 					</h:link>
 				</div>

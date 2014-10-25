@@ -78,6 +78,10 @@ class User extends BaseEntity implements Serializable{
 	@JoinTable(name = "user_savedAds", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "ad_id", referencedColumnName="id") ])
 	Set<Advertisement> savedAds = new HashSet<>()
 	
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinTable(name = "user_notifications ", joinColumns = [ @JoinColumn(name = "user_id", referencedColumnName="id") ], inverseJoinColumns = [ @JoinColumn(name = "notification_id", referencedColumnName="id") ])
+	Set<Notification> notifications = new HashSet<>()
+	
 	Integer balance = 0
 	
 	Date lastLogin

@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:okfonok="http://okfonok.hu/facelets" xmlns:sec="http://www.springframework.org/security/tags" xmlns:okfonokcc="http://java.sun.com/jsf/composite/okfonok" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<ui:composition>
+		<h:form prependId="false">
+			<p:commandLink action="#{notiBean.markAllRead()}">
+				<span>#{notiBean.unreadNum}</span>
+				<p:graphicImage id="noti" library="img" name="header/villanykorte1.png" styleClass="header-icon pointer" />
+			</p:commandLink>
+			<p:overlayPanel for="noti">
+				<p:dataList var="noti" value="#{notiBean.findAll()}" emptyMessage="Nincs megjeleníthető értesítés">
+					<p:column>
+
+			 	#{noti.isRead}
+			 </p:column>
+				</p:dataList>
+			</p:overlayPanel>
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>
