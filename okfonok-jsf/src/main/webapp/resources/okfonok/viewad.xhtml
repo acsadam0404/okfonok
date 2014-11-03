@@ -43,8 +43,12 @@
 				</p:commandLink>
 			</div>
 			<h:panelGroup layout="block" id="rightPanel" class="viewad-right">
-				<p:galleria autoPlay="true" value="#{ad.imagePaths}" var="image" panelWidth="190" panelHeight="140" showCaption="false" styleClass="gallery">
-					<!-- 			<p:graphicImage name="demo/images/nature/#{image}" /> -->
+				<p:galleria panelWidth="190" panelHeight="140" autoPlay="true" showCaption="false" styleClass="gallery" rendered="#{cc.attrs.ad.hasImage}">
+					<p:graphicImage value="/#{cc.attrs.ad.imagePath1}" rendered="#{cc.attrs.ad.imagePath1 != null}" />
+					<p:graphicImage value="/#{cc.attrs.ad.imagePath2}" rendered="#{cc.attrs.ad.imagePath2 != null}" />
+					<p:graphicImage value="/#{cc.attrs.ad.imagePath3}" rendered="#{cc.attrs.ad.imagePath3 != null}" />
+					<p:graphicImage value="/#{cc.attrs.ad.imagePath4}" rendered="#{cc.attrs.ad.imagePath4 != null}" />
+					<p:graphicImage value="/#{cc.attrs.ad.imagePath5}" rendered="#{cc.attrs.ad.imagePath5 != null}" />
 				</p:galleria>
 				<p:gmap center="#{mapBean.getCenter(cc.attrs.ad.address)}" zoom="15" type="ROADMAP" styleClass="map" model="#{mapBean.getModel(cc.attrs.ad.address)}" mapTypeControl="false" navigationControl="false" />
 				<!-- 				<p:schedule rendered="#{!adsBean.messageVisible}" rightHeaderTemplate="null" centerHeaderTemplate="" locale="hu" aspectRatio="2" styleClass="schedule" view="basicWeek" id="schedule" value="#{scheduleBean.eventModel}" widgetVar="myschedule" /> -->
@@ -77,7 +81,7 @@
 			</p>
 			<p class="vieadad-offer-second">Vedd figyelembe, hogy a hirdető milyen időpontot preferál!</p>
 			<p:schedule view="basicWeek" styleClass="viewad-offer-cal" rightHeaderTemplate="" centerHeaderTemplate="" />
-			<p:commandLink action="#{adsBean.setOverlayVisible(!adsBean.overlayVisible)}" update="@form">
+			<p:commandLink  action="#{adsBean.saveAd(cc.attrs.ad)}" update="@form">
 				<p:graphicImage library="img" name="viewad/kek_elmentem.png" style="cursor:pointer" title="Elmentem" />
 			</p:commandLink>
 		</h:panelGroup>

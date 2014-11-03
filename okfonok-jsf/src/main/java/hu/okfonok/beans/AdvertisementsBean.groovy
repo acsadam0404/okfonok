@@ -2,9 +2,12 @@ package hu.okfonok.beans;
 
 import hu.okfonok.entities.Advertisement
 import hu.okfonok.entities.JobCategory
+import hu.okfonok.entities.Offer
 import hu.okfonok.services.AdvertisementService
 import hu.okfonok.services.JobCategoryService
-import hu.okfonok.services.UserService;
+import hu.okfonok.services.OfferService
+import hu.okfonok.services.UserService
+import hu.okfonok.session.SessionUtils
 import hu.okfonok.utils.ServiceLocator
 
 import javax.faces.model.SelectItem
@@ -15,7 +18,6 @@ import org.primefaces.model.DefaultScheduleModel
 import org.primefaces.model.ScheduleModel
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Scope
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
 
 @Component("adsBean")
@@ -24,25 +26,20 @@ class AdvertisementsBean implements Serializable {
 	@Autowired
 	private AdvertisementService service
 	@Autowired
-	private JobCategoryService jcService
-	@Autowired
-	private UserBean userBean
-	@Autowired
 	private UserService userService
 
 	@Autowired
-	private MapBean mapBean
-
-	ScheduleModel eventModel = new DefaultScheduleModel()
-	
+	private OfferService offerService
 	boolean overlayVisible
 	boolean messageVisible
 
+	Advertisement adToView
+	Integer offerSum
+	
+	
+	Advertisement selected
 	private List<Advertisement> ads
 	List<Advertisement> filteredAds
-	Advertisement selected
-	Advertisement adToView
-
 	List<Advertisement> getAds() {
 		service.findAll()
 	}
@@ -80,21 +77,28 @@ class AdvertisementsBean implements Serializable {
 	}
 
 	boolean isSaved(Advertisement ad) {
-		boolean saved = userBean.user.savedAds.contains(ad)
+		boolean saved = SessionUtils.user.savedAds.contains(ad)
 		return saved
 	}
 
 	void saveAd(Advertisement ad) { 
-		if (!userBean.user.savedAds.contains(ad)) {
-			userBean.user.savedAds.add(ad)
-			userService.save(userBean.user)
+		if (!SessionUtils.user.savedAds.contains(ad)) {
+			SessionUtils.user.savedAds.add(ad)
+			userService.save(SessionUtils.user)
+		}
+	}
+	
+	def offer() {
+		if (offerSum) {
+			Offer offer = new Offer(ad: adToView, user: SessionUtils.user,  offer: offerSum)
+			offerService.save(offer) 
 		}
 	}
 
 	void removeAd(Advertisement ad) {
-		if (userBean.user.savedAds.contains(ad)) {
-			userBean.user.savedAds.remove(ad)
-			userService.save(userBean.user)
+		if (SessionUtils.user.savedAds.contains(ad)) {
+			SessionUtils.user.savedAds.remove(ad)
+			userService.save(SessionUtils.user)
 		}
 	}
 

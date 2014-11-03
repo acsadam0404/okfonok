@@ -17,7 +17,7 @@
 
 	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
-		<bean id="servicesPropertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+	<bean id="servicesPropertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
 			<list>
 				<value>classpath:config.properties</value>
@@ -26,43 +26,11 @@
 		</property>
 	</bean>
 
-	<jdbc:embedded-database id="dataSource" type="H2">
-		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/initialconfig.sql" encoding="utf-8" />
-		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/settlement.sql" encoding="utf-8" />
-		<jdbc:script location="classpath:/hu/okfonok/inmemorydb/commondata.sql" encoding="utf-8" />
-	</jdbc:embedded-database>
-
-	<!-- <bean id="dataSource" -->
-	<!-- class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-	<!-- <property name="driverClassName" value="${jdbc.driverClassName}" /> -->
-	<!-- <property name="url" value="${jdbc.url}" /> -->
-	<!-- <property name="username" value="${jdbc.username}" /> -->
-	<!-- <property name="password" value="${jdbc.password}" /> -->
-	<!-- </bean> -->
-	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean"> -->
-	<!-- <property name="dataSource" ref="dataSource" /> -->
-	<!-- <property name="packagesToScan" value="hu.okfonok.entities" /> -->
-	<!-- <property name="hibernateProperties"> -->
-	<!-- <props> -->
-	<!-- <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop> -->
-	<!-- <prop key="hibernate.show_sql">true</prop> -->
-	<!-- <prop key="hibernate.connection.characterEncoding">utf8</prop> -->
-	<!-- <prop key="hibernate.connection.useUnicode">true</prop> -->
-
-	<!-- </props> -->
-	<!-- </property> -->
-	<!-- </bean> -->
-
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
 		<property name="dataSource" ref="dataSource" />
 		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
 		<property name="jpaDialect" ref="jpaDialect" />
-	</bean>
-
-	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-		<property name="database" value="H2" />
-		<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
 	</bean>
 
 	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
@@ -77,4 +45,42 @@
 
 	<jpa:repositories base-package="hu.okfonok" transaction-manager-ref="transactionManager" entity-manager-factory-ref="entityManagerFactory" />
 
+
+	<beans profile="h2-db">
+		<jdbc:embedded-database id="dataSource" type="H2">
+			<jdbc:script location="classpath:/hu/okfonok/inmemorydb/initialconfig.sql" encoding="utf-8" />
+			<jdbc:script location="classpath:/hu/okfonok/inmemorydb/settlement.sql" encoding="utf-8" />
+			<jdbc:script location="classpath:/hu/okfonok/inmemorydb/commondata.sql" encoding="utf-8" />
+		</jdbc:embedded-database>
+
+		<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			<property name="database" value="H2" />
+			<property name="databasePlatform" value="org.hibernate.dialect.H2Dialect" />
+		</bean>
+	</beans>
+	<beans profile="mysql-db">
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+			<property name="driverClassName" value="${jdbc.driverClassName}" />
+			<property name="url" value="${jdbc.url}" />
+			<property name="username" value="${jdbc.username}" />
+			<property name="password" value="${jdbc.password}" />
+		</bean>
+		<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="packagesToScan" value="hu.okfonok.entities" />
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+					<prop key="hibernate.show_sql">true</prop>
+					<prop key="hibernate.connection.characterEncoding">utf8</prop>
+					<prop key="hibernate.connection.useUnicode">true</prop>
+				</props>
+			</property>
+		</bean>
+
+		<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+			<property name="database" value="MYSQL" />
+			<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+		</bean>
+	</beans>
 </beans>

@@ -14,7 +14,7 @@
 				<h:panelGrid columns="1">
 					<h:outputText value="#{userBean.user.profile.realName}" />
 					<h:panelGroup>
-						<h:link value="Szerkesztés"  />
+						<h:link value="Szerkesztés" />
 						<h:outputText value=" | " />
 						<h:form style="display: inline;">
 							<p:commandLink value="Kijelentkezés" action="#{userSessionBean.doLogout()}" ajax="false" />
@@ -30,28 +30,29 @@
 					</h:link>
 				</div>
 				<div class="header-icondiv">
-					<h:link outcome="/messages.xhtml">
-						<p:graphicImage library="img" name="header/villanykorte1.png" styleClass="header-icon" />
-					</h:link>
+					<ui:include src="/fragments/index/notification.xhtml" />
 				</div>
 
 				<div class="header-icondiv">
 					<h:link outcome="/messages.xhtml">
+						<span>#{messageBean.unreadNum}</span>
 						<p:graphicImage library="img" name="header/boritek1.png" styleClass="header-icon" />
 					</h:link>
 				</div>
 				<div class="header-icondiv header-balance">
-					<h:link outcome="/messages.xhtml">
+					<h:panelGroup id="headerAccountInfo" layout="block">
 						<p:graphicImage library="img" name="header/bankkartya.png" styleClass="header-icon" />
 						<h:panelGrid columns="1">
 							<h:outputText value="Egyenleg" />
-							<h:outputText value="#{userBean.user.balance} Ft" />
+							<h:outputText value="#{userBean.user.account.currentBalance} Ft" />
 						</h:panelGrid>
-					</h:link>
+					</h:panelGroup>
+					<p:overlayPanel for="headerAccountInfo">
+						<ui:include src="/fragments/header/accountinfo.xhtml" />
+					</p:overlayPanel>
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 </ui:composition>

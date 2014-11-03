@@ -2,6 +2,8 @@
 
 package hu.okfonok.services.impl
 
+import java.util.List;
+
 import hu.okfonok.dao.MessageDao
 import hu.okfonok.entities.user.Message
 import hu.okfonok.entities.user.User
@@ -43,6 +45,4 @@ class MessageServiceImpl extends BaseServiceImpl<Message> implements MessageServ
 		messages.addAll(repo.findByToUserAndDeletedTrue(user))
 		return messages
 	}
-
-	
 }

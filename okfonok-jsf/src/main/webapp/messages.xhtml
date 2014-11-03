@@ -13,41 +13,63 @@
 			</f:facet>
 			<h:outputScript library="primefaces" name="jquery/jquery.js" />
 
-			<p:tabView styleClass="messages-tabview">
-				<p:tab title="Bejövő üzenetek" titleStyleClass="messages-incoming-title">
-					<p:dataTable var="gmsg" value="#{messageBean.incomingMessages}" emptyMessage="Nincs bejövő üzenet" rowKey="#{gmsg.hashCode()}" selection="#{messageBean.selected}" styleClass="messages-incoming-table">
-						<p:column selectionMode="multiple">
-							<p:commandButton icon="ui-icon-search" action="#{messageBean.openDialog(gmsg)}" />
-						</p:column>
-						<p:column headerText="Feladó"> #{gmsg.user.profile.realNameAbbr} (#{gmsg.messages.size()})</p:column>
-						<p:column>
-							<p>#{gmsg.advertisement.category.name} - #{gmsg.advertisement.description}</p>
-							<p>#{gmsg.advertisement.description}</p>
-						</p:column>
-						<p:column headerText="Dátum">
-							<h:outputText value="#{gmsg.latestDatum}">
-								<f:convertDateTime type="date" pattern="yyyy.MM.dd. HH:mm" />
-							</h:outputText>
-						</p:column>
-						<p:column>
-							<p:commandLink>
-								<p:graphicImage library="img" name="messages/szurke_kuka.png" styleClass="pointer" />
-<!-- 								<p:graphicImage library="img" name="messages/kek_kuka.png" styleClass="pointer" /> -->
-							</p:commandLink>
-							<p:commandLink>
-								<p:graphicImage library="img" name="messages/szurke_csillag.png" styleClass="pointer" />
-<!-- 								<p:graphicImage library="img" name="messages/zold_csillag.png" styleClass="pointer" /> -->
-							</p:commandLink>
-						</p:column>
-					</p:dataTable>
-				</p:tab>
-				<p:tab title="Kimenő üzenetek" titleStyleClass="messages-outgoing-title">
-					<h:outputText value="Francis Ford Coppola's legendary..." />
-				</p:tab>
-				<p:tab title="Törölt üzenetek" titleStyleClass="messages-deleted-title">
-					<h:outputText value="After a break of more than 15 years..." />
-				</p:tab>
-			</p:tabView>
+			<h:form>
+				<p:tabView styleClass="messages-tabview">
+					<p:tab title="Bejövő üzenetek" titleStyleClass="messages-incoming-title">
+						<p:dataTable var="gmsg" value="#{messageBean.incomingMessages}" emptyMessage="Nincs bejövő üzenet" rowKey="#{gmsg.hashCode()}" selection="#{messageBean.selected}" styleClass="messages-incoming-table">
+							<p:column selectionMode="multiple">
+								<p:commandButton icon="ui-icon-search" action="#{messageBean.openDialog(gmsg)}" />
+							</p:column>
+							<p:column headerText="Feladó"> #{gmsg.user.profile.realNameAbbr} (#{gmsg.messages.size()})</p:column>
+							<p:column>
+								<p>#{gmsg.advertisement.category.name} - #{gmsg.advertisement.description}</p>
+								<p>#{gmsg.advertisement.description}</p>
+							</p:column>
+							<p:column headerText="Dátum">
+								<h:outputText value="#{gmsg.latestDatum}">
+									<f:convertDateTime type="date" pattern="yyyy.MM.dd. HH:mm" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<p:commandLink action="#{gmsg.setDeleted(true)}" update="@form">
+									<p:graphicImage library="img" name="messages/szurke_kuka.png" styleClass="pointer" onmouseover="this.src='/resources/img/messages/kek_kuka.png'" onmouseout="this.src='/resources/img/messages/szurke_kuka.png'" />
+								</p:commandLink>
+								<p:commandLink>
+									<p:graphicImage library="img" name="messages/szurke_csillag.png" styleClass="pointer" onmouseover="this.src='/resources/img/messages/zold_csillag.png'" onmouseout="this.src='/resources/img/messages/szurke_csillag.png'" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+					<p:tab title="Kimenő üzenetek" titleStyleClass="messages-outgoing-title">
+						<h:outputText value="Francis Ford Coppola's legendary..." />
+					</p:tab>
+					<p:tab title="Törölt üzenetek" titleStyleClass="messages-deleted-title">
+							<p:dataTable var="gmsg" value="#{messageBean.deletedMessages}" emptyMessage="Nincs bejövő üzenet" rowKey="#{gmsg.hashCode()}" selection="#{messageBean.selected}" styleClass="messages-incoming-table">
+							<p:column selectionMode="multiple">
+								<p:commandButton icon="ui-icon-search" action="#{messageBean.openDialog(gmsg)}" />
+							</p:column>
+							<p:column headerText="Feladó"> #{gmsg.user.profile.realNameAbbr} (#{gmsg.messages.size()})</p:column>
+							<p:column>
+								<p>#{gmsg.advertisement.category.name} - #{gmsg.advertisement.description}</p>
+								<p>#{gmsg.advertisement.description}</p>
+							</p:column>
+							<p:column headerText="Dátum">
+								<h:outputText value="#{gmsg.latestDatum}">
+									<f:convertDateTime type="date" pattern="yyyy.MM.dd. HH:mm" />
+								</h:outputText>
+							</p:column>
+							<p:column>
+								<p:commandLink action="#{gmsg.setDeleted(true)}" update="@form">
+									<p:graphicImage library="img" name="messages/szurke_kuka.png" styleClass="pointer" onmouseover="this.src='/resources/img/messages/kek_kuka.png'" onmouseout="this.src='/resources/img/messages/szurke_kuka.png'" />
+								</p:commandLink>
+								<p:commandLink>
+									<p:graphicImage library="img" name="messages/szurke_csillag.png" styleClass="pointer" onmouseover="this.src='/resources/img/messages/zold_csillag.png'" onmouseout="this.src='/resources/img/messages/szurke_csillag.png'" />
+								</p:commandLink>
+							</p:column>
+						</p:dataTable>
+					</p:tab>
+				</p:tabView>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>

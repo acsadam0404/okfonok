@@ -22,7 +22,11 @@ import org.springframework.security.core.userdetails.UserDetails
 @Scope("session")
 class UserBean implements Serializable {
 	private transient User user
-
+	
+	/**
+	 * Ne használd közvetlenül! SessionUtils.user kell, az statikus
+	 * @return
+	 */
 	User getUser() {
 		if (user == null) {
 			def principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal()

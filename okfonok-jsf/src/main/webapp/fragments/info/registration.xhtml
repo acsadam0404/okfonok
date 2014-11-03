@@ -44,10 +44,11 @@
 					</span>
 				</h:panelGroup>
 				<h:outputText value="vagy" styleClass="font-default" />
-				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" ajax="false" immediate="true">
+				<p:commandLink id="facebook" action="#{userSessionBean.socialConnect}" ajax="false" immediate="true" update="registrationMessages">
 					<f:setPropertyActionListener target="#{userSessionBean.providerID}" value="facebook" />
 					<p:graphicImage id="facebookReg" library="img" name="registration/faceb_reg.png" style="cursor:pointer" title="Regisztrálj Facebookkal" />
 				</p:commandLink>
+				<p:messages id="registrationMessages"/>
 			</h:panelGrid>
 
 		</h:panelGroup>

@@ -1,6 +1,7 @@
 package hu.okfonok.mail
 
 import hu.okfonok.services.ValueSetService
+import hu.okfonok.utils.Config
 import hu.okfonok.utils.ServiceLocator
 
 import javax.annotation.PostConstruct
@@ -29,31 +30,22 @@ class HelpMailSender implements Serializable{
 	@Autowired
 	private transient ValueSetService valueSetService
 
-	private List to
-
-	@PostConstruct
-	void init() {
-		to =  ['help_mail@gmail.com'] //TODO ide kell propertiesből kivenni a help mail címet
-	} 
-
 	void send(String email, String name, String subject, String category, String message) {
-		to.each {
-			SimpleMailMessage msg = new SimpleMailMessage();
+		SimpleMailMessage msg = new SimpleMailMessage();
 
-			msg.setFrom("${email}")
-			msg.setTo("${it}")
+		msg.setFrom("${email}")
+		msg.setTo(Config.supportEmail)
 
-			msg.setSubject("${subject}")
-			msg.setText("${message}")
-			try {
-				MailSender mailSender = ServiceLocator.getBean(MailSender.class);
-				mailSender.send(msg);
-				log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
-			}
-			catch (MailException mex) {
-				log.error("Sikertelen üzenet küldés segítségkérésnél. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
-				throw mex
-			}
+		msg.setSubject("${subject}")
+		msg.setText("${message}")
+		try {
+			MailSender mailSender = ServiceLocator.getBean(MailSender.class);
+			mailSender.send(msg);
+			log.info("Sikeres üzenetküldés. Üzenet:\n ${msg.to}\n${msg.subject}\n${msg.text}");
+		}
+		catch (MailException mex) {
+			log.error("Sikertelen üzenet küldés segítségkérésnél. Üzenet:\n ${msg.from}\n${msg.to}\n${msg.subject}\n${msg.text}", mex);
+			throw mex
 		}
 	}
 }

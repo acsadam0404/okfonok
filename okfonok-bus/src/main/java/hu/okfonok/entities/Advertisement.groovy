@@ -87,4 +87,12 @@ class Advertisement extends BaseEntity{
 		}
 		return intervals
 	}
+	
+	
+	/**
+	 * @return ha egyik se null akkor ad true-t
+	 */
+	boolean isHasImage() {
+		return imagePath1 || imagePath2 || imagePath3 || imagePath4 || imagePath5
+	}
 }

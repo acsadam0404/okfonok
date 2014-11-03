@@ -40,7 +40,7 @@ class Message extends BaseEntity {
 	@NotNull
 	private Date datum = new Date()
 
-	private boolean read
+	private boolean isRead
 
 	boolean deleted
 	
@@ -64,9 +64,12 @@ class Message extends BaseEntity {
 	}
 
 	boolean isRead() {
-		return read
+		return isRead
 	}
 
+	boolean setIsRead(boolean isRead) {
+		this.isRead = isRead
+	}
 	public Advertisement getAdvertisement() {
 		return advertisement;
 	}
