@@ -1,6 +1,8 @@
 package hu.okfonok.services.impl
 
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import hu.okfonok.dao.AdvertisementDao
 import hu.okfonok.entities.Address;
@@ -26,9 +28,13 @@ class AdvertisementServiceImpl extends BaseServiceImpl<Advertisement> implements
 	}
 	
 	@Override
-	public List<String> getRemunerations() {
+	public Map<String,String> getRemunerations() {
 		//TODO valueset
-		return ['Fix', 'Óradíjas'];
+		//return ['Fix', 'Óradíjas'];
+		Map<String,String> renumMap = new HashMap<String, String>()
+		renumMap.put("fixRemun","Fix")
+		renumMap.put("hourlyRemun","Óradíjas")
+		return renumMap
 	}
 
 	@Override

@@ -5,9 +5,14 @@ import hu.okfonok.entities.Advertisement;
 import hu.okfonok.entities.user.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface AdvertisementService  extends BaseService<Advertisement>{
-	List<String> getRemunerations();
+	
+	Map<String, String> getRemunerations();
+	
+	//TODO: valueset
+	//List<String> getRemunerations();
 	
 	List<String> getAdBearerTypes();
 	

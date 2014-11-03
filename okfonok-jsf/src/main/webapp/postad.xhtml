@@ -38,7 +38,7 @@
 					<p:graphicImage rendered="#{postAdBean.ad.homework}" library="img" name="/postad/otthonrol_vegezheto_igen.png" />
 					<p:graphicImage rendered="#{!postAdBean.ad.homework}" library="img" name="/postad/otthonrol_vegezheto_nem.png" />
 				</p:commandLink>
-				<p>Díjazás</p>
+				<p class="postad-subtitle">Díjazás</p>
 
 				<h:panelGrid columns="2">
 					<p:commandLink id="fixRemun" action="#{postAdBean.fixRemunerationBtnAction}" update="@this,hourRemun" immediate="true">
